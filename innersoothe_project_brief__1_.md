@@ -171,25 +171,24 @@ New module-level screen pattern — one layer deeper than Category screens. Esta
     - Right image: 136×164px, border-radius 14px, `breakup-hero.png` object-position:right center, left fade gradient rgba(240,232,216,0.90)→0% at 40%.
   - **Progress card** (margin 14px 20px, white 65%, border-radius 16px): "33%" Spectral 300 34px #B85C5C + leaf SVG #A06832 · "2 of 6 techniques completed" DM Sans 300 11px · progress bar track rgba(33,24,12,0.08) → fill gradient #B85C5C→#D4837A at 33%.
   - **"Begin Healing" section header**: leaf SVG #A06832 + Spectral 300 21px + DM Sans 300 12px subtitle.
-  - **3 Free technique cards** (114px, gap 10px, background rgba(255,255,255,0.60), border-radius 14px):
-    - Thumbnail: 92px container padding-left:14px · 78×78px img border-radius 10px.
-    - Divider: `.mod-thumb` on text area div → border-left 1px solid rgba(33,24,12,0.10).
-    - Text: Spectral 400 15px title + DM Sans 300 11px desc (flex:1, min-width:0).
-    - Right col 58px: Free tag rgba(180,200,170,0.35)/#A06832 + clock+time #A06832.
+  - **3 Free technique cards** (114px, gap 10px, background rgba(252,242,232,0.6), border-radius 14px):
+    - Thumbnail: 92px container, overflow:hidden, flush to card left/top/bottom edges (no padding). img width:100% height:100% object-fit:contain object-position:center center, no border-radius (card overflow:hidden clips left corners). Class `.tech-thumb` → border-right 1px solid rgba(33,24,12,0.10) hairline divider.
+    - Text: Spectral 400 15px title + DM Sans 300 11px desc (flex:1, min-width:0). No border class on text div.
+    - Right col 58px: Free tag rgba(180,200,170,0.35)/#A06832 + clock+time #A06832 white-space:nowrap.
     - Chevron 18px rgba(33,24,12,0.30).
-    - Card 1: stop-thumb.png → `showSection('breakup-stop')` · 10 min
-    - Card 2: pmr-thumb.png → `showSection('breakup-pmr')` · 18 min
-    - Card 3: closure-letter-thumb.png → `showSection('cl')` · 20 min
+    - Card 1: `assets/illustrations/Relationships/Modules/BreakupRecovery/stop.png` · "STOP Technique" · "Pause, breathe, and create space between you and your emotions." · `showSection('breakup-stop')` · 10 min
+    - Card 2: `assets/illustrations/Relationships/Modules/BreakupRecovery/pmr.png` · "Progressive Muscle Relaxation (PMR)" · "Release physical tension and calm your nervous system." · `showSection('breakup-pmr')` · 18 min
+    - Card 3: `assets/illustrations/Relationships/Modules/BreakupRecovery/closure-letter.png` · "Closure Letter" · "Express, release, and find closure through guided writing." · `showSection('cl')` · 20 min
   - **"Deep Healing" section header**: star SVG #A06832 + Spectral 300 21px + Premium pill rgba(219,162,162,0.25)/#B85C5C.
-  - **3 Premium technique cards** (114px, same structure + Premium tag rgba(219,162,162,0.20)/#B85C5C + lock SVG #A06832):
-    - Card 4: hypnodrama-thumb.png → `showSection('paywall')` · 30 min
-    - Card 5: cord-cutting-thumb.png → `showSection('paywall')` · 25 min
-    - Card 6: inner-child-thumb.png → `showSection('paywall')` · 35 min
+  - **3 Premium technique cards** (114px, same thumbnail/text/chevron structure + Premium tag rgba(219,162,162,0.20)/#B85C5C + lock SVG #A06832):
+    - Card 4: `assets/illustrations/Relationships/Modules/BreakupRecovery/hypnodrama.png` · "Hypnodrama" · "Explore your subconscious and heal deep-rooted emotional patterns." · `showSection('paywall')` · 30 min
+    - Card 5: `assets/illustrations/Relationships/Modules/BreakupRecovery/cord-cutting.png` · "Cord Cutting" · "Release energetic ties and reclaim your peace and power." · `showSection('paywall')` · 25 min
+    - Card 6: `assets/illustrations/Relationships/Modules/BreakupRecovery/inner-child.png` · "Inner Child Healing" · "Reconnect with your inner child and nurture your emotional self." · `showSection('paywall')` · 35 min
 - **Sticky upsell banner** (flex-shrink:0, background rgba(252,244,234,0.98), border-top rgba(184,92,92,0.15)): Crown SVG #A06832 + "Unlock all premium techniques" DM Sans 600 13px + "Go deeper with guided healing sessions" DM Sans 300 11px + "Go Premium" button #B85C5C → `showSection('paywall')`.
 - **Bottom nav:** Standard 5-tab, Home active #A06832, `showSection('relationship')`.
 - **Relationships category card 1:** `onclick` updated from `alert(...)` to `showSection('module-breakup-recovery')`.
 
-**Screenshots:** `screenshots/breakup-recovery/01-top.png` · `02-free-section.png` · `03-premium-section.png` · `04-sticky-banner.png` · `05-from-relationships.png`
+**Screenshots:** `screenshots/breakup-recovery/01-top.png` · `02-free-section.png` · `02-time-and-divider-fix.png` · `03-premium-section.png` · `03-card-bg-match.png` · `04-sticky-banner.png` · `04-thumbnail-integration.png` · `05-from-relationships.png` · `05-text-and-cropping-fix.png`
 
 ---
 
@@ -456,6 +455,9 @@ animate with repeatCount="1" and fill="freeze":
 | 2026-05-08 | Health Category Screen module icons updated: Anxiety → brain (cognitive anchor), Stress → lotus (release/letting go), Grief → leaf (impermanence). Replaces initial set (leaf/wind/heart). All icons remain lucide-style outline, 1.5px stroke, #2D4A2D, on sage rgba(180,200,170,0.35) circle backgrounds. | ✅ |
 | 2026-05-08 | Module card thumbnail divider added: 1px solid rgba(33,24,12,0.10) on left edge of all category screen thumbnail images. Solves boundary-disappearance when thumbnail content has light left edge (triggered by Health Anxiety and Grief misty illustrations). System-level fix applied at shared class — affects Relationships, Career, and Health uniformly. | ✅ |
 | 2026-05-09 | Breakup Recovery Module Screen (section-module-breakup-recovery) built — canonical module-level screen pattern established. 3 Free (STOP/PMR/Closure Letter) + 3 Premium (Hypnodrama/Cord Cutting/Inner Child). Sticky upsell banner between scrollable body and bottom nav (flex-shrink:0, not position:fixed). Crisis Support chip top-right. Progress card 33% / 2 of 6. Relationships category card 1 onclick wired from alert() to showSection('module-breakup-recovery'). 5 screenshots saved. | ✅ |
+| 2026-05-09 | Technique card visual fixes (3 rounds): (1) Time strings white-space:nowrap to prevent "min" wrapping. (2) Divider moved from .mod-thumb (border-left on text area) to new .tech-thumb class (border-right on thumbnail container). (3) Thumbnail integration: removed padding-left:14px and 78×78px fixed sizing; container now overflow:hidden flush to card edges; img fills container 100%×100% with no border-radius (card overflow:hidden clips left corners). | ✅ |
+| 2026-05-09–10 | Technique card content corrected: titles "Progressive Muscle Relaxation (PMR)" and "Inner Child Healing"; all 6 descriptions updated to exact spec copy. object-fit changed cover→contain on all 6 thumbnails (source images all 1536×1024 1.5:1 landscape; portrait container was cropping head/feet/hands with cover). | ✅ |
+| 2026-05-10 | Wireframe file renamed: innersoothe_wireframes_v3 (12).html → innersoothe_wireframes_v3_12.html. All references in CHANGES.md updated. First git commit to origin/main (107 files). .gitignore created to exclude .claude/ local settings. | ✅ |
 
 ---
 
