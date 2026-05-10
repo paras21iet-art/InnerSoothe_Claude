@@ -1,0 +1,5 @@
+# Claude Code local settings
+.claude/
+
+# Reference images with auto-generated names
+ChatGPT Image*.png
