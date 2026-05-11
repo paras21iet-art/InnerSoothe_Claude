@@ -412,10 +412,7 @@ animate with repeatCount="1" and fill="freeze":
 
 ## Open Questions
 
-1. **"No green in navigation" rule — lift or fix wireframe?**
-   The splash uses `linear-gradient(170deg, #1E1408 0%, #3E5247 60%, #4A6355 100%)` and the dark therapy screens use #1F2924 / #2A3530 — all contain green-shifted tones. The original "no green" rule was written when the splash was parchment. Decision needed: accept current dark-green treatment as intentional, or replace with warm-dark-only palette. Pending psychologist / design sync.
-
-2. **Crisis 🆘 button placement — needs to be reachable on every in-app screen.**
+1. **Crisis 🆘 button placement — needs to be reachable on every in-app screen.**
    Currently the 🆘 button is in the wireframe meta-navigation bar (designer view) only. It is not wired into individual phone mockup screens. Apple App Store guidelines for mental health apps require it to be accessible from within the app at all times. Pending psychologist sync on placement (header icon vs persistent footer element).
 
 ---
@@ -458,6 +455,9 @@ animate with repeatCount="1" and fill="freeze":
 | 2026-05-09 | Technique card visual fixes (3 rounds): (1) Time strings white-space:nowrap to prevent "min" wrapping. (2) Divider moved from .mod-thumb (border-left on text area) to new .tech-thumb class (border-right on thumbnail container). (3) Thumbnail integration: removed padding-left:14px and 78×78px fixed sizing; container now overflow:hidden flush to card edges; img fills container 100%×100% with no border-radius (card overflow:hidden clips left corners). | ✅ |
 | 2026-05-09–10 | Technique card content corrected: titles "Progressive Muscle Relaxation (PMR)" and "Inner Child Healing"; all 6 descriptions updated to exact spec copy. object-fit changed cover→contain on all 6 thumbnails (source images all 1536×1024 1.5:1 landscape; portrait container was cropping head/feet/hands with cover). | ✅ |
 | 2026-05-10 | Wireframe file renamed: innersoothe_wireframes_v3 (12).html → innersoothe_wireframes_v3_12.html. All references in CHANGES.md updated. First git commit to origin/main (107 files). .gitignore created to exclude .claude/ local settings. | ✅ |
+| 2026-05-10 | Dark therapy mode DEPRECATED for all Breakup Recovery techniques. All 6 techniques (STOP, PMR, Closure Letter, Hypnodrama, Cord Cutting, Inner Child) move to PARCHMENT-WITH-REDUCTION. Immersion via reduction (no nav on practice screens, simplified UI, generous whitespace, single point of focus) instead of inverted colours. Reasoning: dark + breathing animation pattern-matches meditation apps (Calm/Headspace); parchment + Cormorant + saffron is genuinely distinct and reinforces the self-therapy positioning. Brief Visual Identity section needs revision to reflect deprecated dark mode. | ✅ Direction locked |
+| 2026-05-10 | STOP Technique entry screen (section-breakup-stop) rebuilt in parchment. Old dark-era HTML block (lines 9611–13304 original, ~3700 lines including breakup-tipp, breakup-square, breakup-pmr, breakup-accepts, breakup-ss, breakup-improve) replaced with 128-line parchment entry screen. Old .sec-stop CSS (689 lines) replaced with 148-line parchment CSS. File reduced from 26,809 → 22,702 lines. CSS lines 1384–1531; HTML lines 9070–9197. Route from module card 1 (showSection('breakup-stop')) intact. Screenshot: screenshots/stop-rebuild/01-entry-parchment.png. | ✅ |
+| 2026-05-11 | STOP entry screen LOCKED — canonical entry-screen template for all 6 Breakup Recovery techniques. Tight-crop leaf-on-water metaphor hero (175px), Cormorant Garamond STOP wordmark with saffron flanking leaves, framed italic quote card ("You do not need to solve everything right now."), compact info line (use case + duration), 2 mode option cards (Guided default + Quick Reset), "Begin Slowly" saffron CTA, "You can pause anytime" footer. Bottom nav HIDDEN — immersion starts at technique entry. Fits in single viewport, no scroll. Each of the other 5 techniques (PMR, Closure Letter, Hypnodrama, Cord Cutting, Inner Child) will use this exact template with technique-specific metaphor image, wordmark, quote, info copy, and mode card descriptions. | ✅ Locked |
 
 ---
 
@@ -466,7 +466,8 @@ animate with repeatCount="1" and fill="freeze":
 1. ~~Build Career Category Screen wireframe (section-category-career)~~ — DONE (LOCKED)
 2. ~~Build Health Category Screen wireframe (section-category-health)~~ — DONE (LOCKED)
 3. ~~Build Breakup Recovery Module Screen (section-module-breakup-recovery)~~ — DONE (LOCKED)
-4. Psychologist sync: review Home v5 + Today scaffold + all three category screens (Relationships / Career / Health)
+4. ~~STOP Technique entry screen rebuilt — parchment-with-reduction~~ — DONE (LOCKED)
+5. Psychologist sync: review Home v5 + Today scaffold + all three category screens (Relationships / Career / Health)
 4. Psychologist sync: approve/adjust category tint colors (Relationships pink, Health sage, Career gold)
 5. Psychologist sync: green in splash/dark screens — lift rule or fix wireframe
 6. Psychologist sync: crisis 🆘 button placement on every in-app screen

@@ -1,7 +1,7 @@
 # InnerSoothe — Visual Style Guide
 
-Extracted from: Onboarding screens 01–04 · Pre-check-in screens · Post-check-in screens.
-No values from dark therapy screens, Home tab, or any other section are included here.
+Extracted from: Onboarding screens 01–04 · Pre-check-in screens · Post-check-in screens · Home tab · Today tab · Category screens (Relationships, Career, Health) · Module screen (Breakup Recovery — canonical).
+Dark therapy screens (section-breakup-paths and descendants) are not included here.
 
 ---
 
@@ -492,3 +492,505 @@ Derived from the psychologist constraints in the project brief and the reference
 
 7. **Emotion grid on pre check-in — emoji or text chips?**
    The pre check-in screen references `buildEmotionGrid()` (a JS function) and `#pre-emotion-grid` with no static HTML inside. The rendered state of this grid (emoji icons, text labels, size, selected state) is not derivable from static HTML alone and was not captured in this extraction. Needs a live browser review to confirm exact chip appearance.
+
+8. **Health category "Explore modules" label — #2D4A2D or #A06832?**
+   All other category screens use saffron `#A06832` for this label. Health uses dark forest green `#2D4A2D`. Pending psychologist sync — may unify to saffron.
+
+---
+
+---
+
+## 10. In-App Phone Shell
+
+Two shell variants used across in-app screens:
+
+| Context | Background | Notes |
+|---------|------------|-------|
+| Home · Today | `linear-gradient(160deg, #FAF0E4 0%, #EDE0CC 50%, #E2CEB8 100%)` | Warm gradient matching onboarding 04 |
+| Category screens · Module screen | `#F9EDD8` | Solid parchment |
+
+All shells share:
+```
+width: 370px; height: 780px
+border-radius: 48px
+box-shadow: 0 28px 70px rgba(30,20,8,0.13),
+            0 0 0 1.5px rgba(30,20,8,0.10),
+            inset 0 0 0 1px rgba(255,255,255,0.60)
+overflow: hidden
+display: flex; flex-direction: column
+```
+
+---
+
+## 11. In-App Status Bar
+
+Shared across all in-app screens:
+```
+padding: 14px 24px 0
+font-family: 'DM Sans', sans-serif
+font-size: 11px; font-weight: 600
+color: rgba(30,20,8,0.45)
+flex-shrink: 0; z-index: 10; position: relative
+```
+Left: time "9:41". Right: signal bars + WiFi + battery SVG cluster, fill/stroke `rgba(30,20,8,0.50)` (bars/WiFi) and `rgba(30,20,8,0.38)` / `rgba(30,20,8,0.55)` (battery outline/fill).
+
+---
+
+## 12. In-App Navigation System
+
+### 12.1 Back Button
+
+Used on all category and module screens. Not on Home or Today (no back on top-level tabs).
+
+```
+position: absolute; top: 42px; left: 16px; z-index: 30
+width: 44px; height: 44px; border-radius: 22px
+background: rgba(255,255,255,0.80)
+box-shadow: 0 2px 8px rgba(30,20,8,0.10)
+display: flex; align-items: center; justify-content: center
+```
+Icon: Lucide chevron-left, 22×22px, stroke `#1E1408`, stroke-width 1.8, rounded caps.
+
+### 12.2 Bottom 5-Tab Nav + FAB
+
+Two minor variants exist — use the correct one per screen type.
+
+**Variant A — Category screens + Module screen:**
+```
+background: rgba(250,244,234,0.98)
+border-top: 1px solid rgba(30,20,8,0.07)
+padding: 10px 4px 22px
+display: flex; justify-content: space-around; align-items: flex-end
+flex-shrink: 0
+```
+
+**Variant B — Today screen:**
+```
+background: rgba(250,240,228,0.95)
+border-top: 1px solid rgba(160,104,50,0.12)
+height: 68px
+padding: 0 8px 4px
+```
+
+**Tab items (both variants):**
+- Active: color `#A06832`; font DM Sans 10px 600 (Variant A) / 9px 600 (Variant B)
+- Inactive: color `rgba(30,20,8,0.60)` (Variant A) / `#A06832` opacity 0.55 (Variant B)
+- Icon: 22×22px stroke-width 1.5
+
+**Center FAB — Today:**
+```
+width: 54px; height: 54px; border-radius: 27px
+background: #A06832
+position: relative; top: -18px
+box-shadow (category/module screens): 0 6px 22px rgba(122,82,48,0.45), 0 0 0 4px rgba(250,244,234,0.98)
+box-shadow (Today screen active): 0 4px 16px rgba(160,104,50,0.40), 0 0 0 5px rgba(160,104,50,0.12)
+```
+Label "Today": DM Sans 9px, color `rgba(30,20,8,0.50)` (inactive) / `#A06832` 600 (active on Today).
+
+Tab order: Home · Journal · **Today (FAB)** · Progress · Settings.
+
+### 12.3 Crisis Chip — Two Variants
+
+**Variant A — Home screen (top-right, casual):**
+```
+position: absolute; top: 42px; right: 20px; z-index: 20
+background: rgba(250,240,228,0.82)
+border: 1.5px solid #A06832; border-radius: 22px
+padding: 5px 13px
+font: DM Sans 10px 600; color: #A06832
+label: "Crisis"
+```
+
+**Variant B — Module screen (top-right, prominent):**
+```
+position: absolute; top: 46px; right: 16px; z-index: 30
+background: rgba(160,104,50,0.10)
+border: 1px solid rgba(160,104,50,0.35); border-radius: 22px
+padding: 6px 12px
+font: DM Sans 12px 500; color: #A06832
+label: "Crisis Support"
+icon: shield SVG 13×13px stroke #A06832 stroke-width 2
+```
+
+Both route to `showSection('crisis-resources')`. Category screens carry no crisis chip.
+
+---
+
+## 13. Home Screen (`section-relationship`)
+
+**Background:** `linear-gradient(160deg, #FAF0E4 0%, #EDE0CC 50%, #E2CEB8 100%)`  
+**Scrollable body:** `flex:1; overflow-y:auto; scrollbar-width:none`
+
+### Hero Block
+```
+display: flex; flex-direction: row
+padding: 44px 24px 20px
+align-items: center
+```
+
+| Element | Spec |
+|---------|------|
+| Text column | `flex: 1.2; padding-top: 4px` |
+| "Hello," | Spectral 26px 300 #1E1408 line-height:30px display:block |
+| "Arjun." | Spectral 36px 300 italic #1E1408 display:block margin-top:-2px line-height:42px |
+| Tagline | DM Sans 14px 300 rgba(33,24,12,0.65) line-height:20px |
+| Image column | `flex: 1.1; height: 130px; overflow: hidden; position: relative` |
+| Hero image | object-fit:cover; object-position:center top |
+| Left-edge fade | position:absolute; width:45%; background: linear-gradient(to right, #F0E8D8, rgba(240,232,216,0)) |
+
+### Section Labels
+```
+font: DM Sans 13px 600; color: #A06832
+```
+- "Continue your path" — margin-bottom:10px
+- "Explore healing paths" + "View all ›" — flex row, space-between
+
+### Continue Card (last-in-progress path)
+```
+border-radius: 20px; overflow: hidden
+background: rgba(253,249,244,0.98)
+box-shadow: 0 2px 12px rgba(30,20,8,0.04), 0 8px 28px rgba(30,20,8,0.07)
+min-height: 132px; margin-bottom: 20px
+display: flex; flex-direction: row
+```
+Left `flex:1.3`, padding 16px 10px 14px 16px:
+- Icon circle: 36×36px, border-radius:18px, background `rgba(160,104,50,0.13)`
+- Module title: DM Sans 14px 600 `#1E1408`
+- Description: DM Sans 10.5px `rgba(30,20,8,0.56)` line-height:1.48
+- "Last session" text: DM Sans 9.5px `rgba(30,20,8,0.40)`
+- Progress bar: 3px, track `rgba(30,20,8,0.09)`, fill `linear-gradient(90deg,#A06832,#C4956A)`, border-radius:99px
+- Sessions text: DM Sans 9.5px `rgba(30,20,8,0.40)`
+
+Right `flex:1`, overflow:hidden:
+- Image: position:absolute; inset:0; object-fit:cover
+- Left fade div: 36px width, `linear-gradient(to right, rgba(253,249,244,0.98), transparent)`
+- CTA "Continue →": background `#A06832`, color `#FAF0E4`, border-radius:22px, padding:7px 15px, DM Sans 11px 600, box-shadow `0 4px 14px rgba(122,82,48,0.38)`
+
+### Home Category Cards (full-bleed)
+```
+height: 160px; border-radius: 20px; overflow: hidden
+box-shadow: 0 2px 12px rgba(30,20,8,0.05), 0 8px 24px rgba(30,20,8,0.07)
+margin-bottom: 12px; position: relative
+```
+Image: `position:absolute; inset:0; object-fit:cover`
+
+Gradient overlays by category:
+
+| Category | Overlay |
+|----------|---------|
+| Relationships | `linear-gradient(to right, rgba(219,162,162,0.90) 0%, rgba(219,162,162,0.45) 45%, rgba(219,162,162,0) 72%)` |
+| Health | `linear-gradient(to right, rgba(180,200,170,0.90) 0%, rgba(180,200,170,0.45) 45%, rgba(180,200,170,0) 72%)` |
+| Career | `linear-gradient(to right, rgba(219,191,150,0.90) 0%, rgba(219,191,150,0.45) 45%, rgba(219,191,150,0) 72%)` |
+
+Content area (z-index:2, padding:16px, width:62%, height:100%):
+- Icon circle: 34×34px, border-radius:17px, background `rgba(255,255,255,0.28)`, margin-bottom:7px
+- Category name: Cormorant Garamond 20px 400 `rgba(30,20,8,0.92)` line-height:1.1
+- Description: DM Sans 10px `rgba(30,20,8,0.72)` line-height:1.45
+- "Explore →" button: transparent, border `1.5px solid rgba(30,20,8,0.30)`, color `rgba(30,20,8,0.82)`, border-radius:18px, padding:5px 13px, DM Sans 11px 500
+
+---
+
+## 14. Today Screen (`section-today`)
+
+**Background:** `linear-gradient(160deg, #FAF0E4 0%, #EDE0CC 50%, #E2CEB8 100%)`  
+**Scrollable body padding:** `8px 20px 16px`
+
+### Header
+```
+display: flex; justify-content: space-between; align-items: flex-end
+margin-bottom: 20px; padding-top: 4px
+```
+- Date overline: DM Sans 11px 500 `rgba(30,20,8,0.45)` letter-spacing:0.8px uppercase margin-bottom:2px
+- "Today": Spectral 28px 300 `#1E1408` line-height:1.1
+- History icon: 36×36px circle, background `rgba(160,104,50,0.10)`, stroke `#A06832`
+
+### Content Cards (shared base)
+```
+background: rgba(255,255,255,0.48)
+border-radius: 18px
+padding: 18px 20px
+margin-bottom: 14px
+border: 1px solid rgba(160,104,50,0.12)
+```
+Card overline (shared): DM Sans 10px 600 `#A06832` letter-spacing:1px uppercase
+
+**Daily Intention card:**
+- Quote: Spectral 18px 300 italic `#1E1408` line-height:1.5 margin-bottom:12px
+- "Sit with this for a moment": DM Sans 11px `rgba(30,20,8,0.50)`
+- "New intention" button: border `1.5px solid rgba(160,104,50,0.35)`, color `#A06832`, border-radius:14px, padding:4px 12px, DM Sans 10px 500
+
+**Feeling check-in card:**
+- Emoji scale: 5 items (😞 😔 😐 🙂 😌), active item larger (26px vs 22px), active has drop-shadow
+- Slider track: height:4px, background `rgba(160,104,50,0.15)`, border-radius:2px
+- Fill: `linear-gradient(to right, rgba(160,104,50,0.35), #A06832)`
+- Thumb: 16×16px, border-radius:8px, background `#A06832`, box-shadow `0 2px 8px rgba(160,104,50,0.50)`
+- Scale labels: DM Sans 9px `rgba(30,20,8,0.40)` ("Heavy" / "Neutral" / "Light")
+
+### Exercise Cards
+```
+background: rgba(255,255,255,0.48)
+border-radius: 16px
+padding: 14px 16px
+border: 1px solid rgba(160,104,50,0.10)
+display: flex; align-items: center; gap: 14px
+```
+- Icon square: 46×46px, border-radius:14px, background `rgba(160,104,50,0.10)`, icon 22×22px stroke `#A06832`
+- Title: Cormorant Garamond 16px 400 `#1E1408` margin-bottom:2px
+- Subtitle (technique · duration): DM Sans 11px `rgba(30,20,8,0.50)`
+- Play button (primary/active): 32×32px circle, background `#A06832`, play icon white
+- Play button (secondary/inactive): background `rgba(160,104,50,0.15)`, play icon `#A06832`
+
+Section sub-label ("Suggested for you"): DM Sans 11px 600 `rgba(30,20,8,0.45)` letter-spacing:0.8px uppercase padding-left:2px margin-bottom:10px
+
+---
+
+## 15. Category Screens
+
+Shared across `section-category-relationships`, `section-category-career`, `section-category-health`.
+
+**Phone background:** `#F9EDD8` (solid parchment, not gradient)
+
+### A. Hero Band
+```
+position: relative; height: 340px; flex-shrink: 0
+```
+- Image: `position:absolute; inset:0; width:100%; height:100%; object-fit:cover`
+- Gradient overlay (canonical — all three categories):
+  ```
+  linear-gradient(to right, #F0E8D8 0%, rgba(240,232,216,0.55) 18%, rgba(240,232,216,0) 38%)
+  ```
+- Title: `position:absolute; padding: 52px 24px 0`
+
+Title typography by category:
+
+| Category | Font | Size | Weight | Color |
+|----------|------|------|--------|-------|
+| Relationships | Spectral | 40px | 300 | `#1E1408` |
+| Career | Spectral | 40px | 300 | `#1E1408` |
+| Health | Spectral | 40px | 300 | `#2D4A2D` |
+
+line-height: 1.05 (all three)
+
+### B. Subtitle Strip
+```
+padding: 16px 24px 8px
+background: #F0E8D8
+font: DM Sans 14px 300; color: rgba(33,24,12,0.65); line-height: 20px
+```
+
+| Category | Subtitle text |
+|----------|---------------|
+| Relationships | "Navigate heartbreak, attachment, distance, and emotional connection." |
+| Career | "Move through burnout, pressure, uncertainty, and work-life imbalance." |
+| Health | "Move through anxiety, stress, grief, and inner tension." |
+
+### C. "Explore Modules" Label
+```
+padding: 16px 24px 12px (Relationships) / 24px 24px 12px (Career + Health)
+font: DM Sans 14px 500; letter-spacing: 0.1px
+color: #A06832 (Relationships, Career) / #2D4A2D (Health — open question)
+```
+
+### D. Module Cards
+```
+display: flex; flex-direction: row
+height: 138px; border-radius: 18px; overflow: hidden
+box-shadow: 0 4px 12px rgba(30,20,8,0.05)
+margin-bottom: 14px (last card: 4px)
+padding: 0 20px 20px (container)
+```
+
+Background by category:
+
+| Category | Card background |
+|----------|----------------|
+| Relationships | `rgba(252,242,232,0.6)` |
+| Career | `rgba(252,243,228,0.6)` |
+| Health | `rgba(242,250,240,0.6)` |
+
+Left content `flex:1.1; padding:14px 16px; flex-direction:column; justify-content:center`:
+- Icon circle: 44×44px, border-radius:22px
+
+  | Category | Circle bg | Icon stroke |
+  |----------|-----------|-------------|
+  | Relationships | `rgba(219,162,162,0.25)` | `#B85C5C` |
+  | Career | `rgba(219,191,150,0.25)` | `#A06832` |
+  | Health | `rgba(180,200,170,0.35)` | `#2D4A2D` |
+
+- Title: Cormorant Garamond 17px 400 `#1E1408` margin-top:12px line-height:1.2 font-variant-numeric:lining-nums
+- Description: DM Sans 11px 300 `rgba(33,24,12,0.65)` line-height:16px margin-top:5px
+
+Right thumbnail (`.mod-thumb` class): `flex:1; overflow:hidden; flex-shrink:0`
+- img: `width:100%; height:100%; object-fit:contain; object-position:center center; display:block`
+- `.mod-thumb` CSS: `border-left: 1px solid rgba(33,24,12,0.10)`
+
+Chevron: `position:absolute; right:10px; top:50%; transform:translateY(-50%)`, stroke `rgba(33,24,12,0.50)`, 18×18px
+
+---
+
+## 16. Module Screen — Breakup Recovery (Canonical Pattern)
+
+**Phone background:** `#F9EDD8`
+
+### Hero (flex-row)
+```
+display: flex; flex-direction: row
+padding: 52px 20px 20px
+background: #F0E8D8
+gap: 16px; align-items: flex-end
+```
+Left column `flex:1.35`:
+- Title: Spectral 36px 300 `#1E1408` line-height:1.05
+- Description: DM Sans 13px 300 `rgba(33,24,12,0.65)` line-height:18px
+- Meta ("6 techniques · 3 free"): clock SVG 13px `rgba(33,24,12,0.50)` + DM Sans 11px same color
+
+Right image: `width:136px; height:164px; border-radius:14px; overflow:hidden; flex-shrink:0`
+- img: object-fit:cover; object-position:right center
+- Left fade overlay: `linear-gradient(to right, rgba(240,232,216,0.90) 0%, rgba(240,232,216,0) 40%)`
+
+### Progress Card
+```
+margin: 14px 20px
+padding: 16px 18px
+background: rgba(255,255,255,0.65)
+border-radius: 16px
+box-shadow: 0 2px 10px rgba(30,20,8,0.04)
+```
+- Percentage: Spectral 34px 300 `#B85C5C` line-height:1
+- Sessions text: DM Sans 11px 300 `rgba(33,24,12,0.50)` (right-aligned)
+- Progress bar: 6px track `rgba(33,24,12,0.08)`, fill `linear-gradient(to right, #B85C5C, #D4837A)` border-radius:3px
+
+### Section Headers
+`padding: 4px 20px 10px (Begin Healing) / 20px 20px 10px (Deep Healing)`
+
+- "Begin Healing": leaf SVG `#A06832` + Spectral 21px 300 `#1E1408` + sub DM Sans 12px 300 `rgba(33,24,12,0.55)`
+- "Deep Healing": star SVG `#A06832` + Spectral 21px 300 `#1E1408` + "Premium" pill: background `rgba(219,162,162,0.25)`, color `#B85C5C`, DM Sans 11px 500
+
+### Technique Cards
+```
+display: flex; flex-direction: row
+height: 114px; border-radius: 14px; overflow: hidden
+background: rgba(252,242,232,0.6)
+box-shadow: 0 2px 10px rgba(30,20,8,0.04)
+gap: 10px (container gap between cards)
+```
+
+Four-column structure (left to right):
+
+| Column | Width | Notes |
+|--------|-------|-------|
+| Thumbnail (`.tech-thumb`) | 92px | `.tech-thumb` CSS: `border-right: 1px solid rgba(33,24,12,0.10)` |
+| Text | flex:1 | min-width:0 to allow truncation |
+| Badge + time | 58px | flex-shrink:0 |
+| Chevron | 18px | flex-shrink:0 |
+
+Thumbnail: `overflow:hidden; flex-shrink:0` — img fills 100%×100% object-fit:contain, no border-radius (card's overflow:hidden clips left corners).
+
+Text (padding:14px 10px, gap:3px):
+- Title: Spectral 15px 400 `#1E1408` line-height:1.2
+- Description: DM Sans 11px 300 `rgba(33,24,12,0.60)` line-height:1.4
+
+Badge + time (padding:14px 8px for Free / 10px 8px for Premium):
+- Free badge: `rgba(180,200,170,0.35)` bg, color `#A06832`, DM Sans 10px 500, border-radius:10px, padding:3px 8px
+- Premium badge: `rgba(219,162,162,0.20)` bg, color `#B85C5C`, same font
+- Lock SVG (Premium only): 13×13px, stroke `#A06832`
+- Time: DM Sans 10px `#A06832`, `white-space:nowrap`
+
+Chevron: 14×14px, stroke `rgba(33,24,12,0.30)`, stroke-width 2
+
+### Sticky Upsell Banner
+Sits between scrollable body and bottom nav — NOT position:fixed.
+```
+flex-shrink: 0
+background: rgba(252,244,234,0.98)
+border-top: 1px solid rgba(184,92,92,0.15)
+padding: 12px 20px
+display: flex; align-items: center; gap: 10px
+```
+- Crown SVG: 18×18px stroke `#A06832`
+- Title: DM Sans 13px 600 `#1E1408`
+- Sub: DM Sans 11px 300 `rgba(33,24,12,0.55)`
+- "Go Premium" button: background `#B85C5C`, border-radius:22px, padding:8px 16px, DM Sans 12px 600 white
+
+---
+
+## 17. Shared CSS Utility Classes
+
+Defined globally in `<style>` block, used across multiple sections:
+
+```css
+.mod-thumb {
+  border-left: 1px solid rgba(33,24,12,0.10);
+}
+```
+Applied to the thumbnail container on **category screen** module cards. Creates a hairline between the text column and the right-side thumbnail.
+
+```css
+.tech-thumb {
+  border-right: 1px solid rgba(33,24,12,0.10);
+}
+```
+Applied to the thumbnail container on **module screen** technique cards. Creates a hairline between the left-side thumbnail and the text column.
+
+Note: border direction differs because layouts differ — module cards have text left + image right (`.mod-thumb`); technique cards have image left + text right (`.tech-thumb`).
+
+---
+
+## 18. In-App Typography Addendum
+
+Spectral and Cormorant Garamond are both used in-app (not just pre/post check-in). DM Sans remains the body/UI font throughout.
+
+| Element | Family | Size | Weight | Style | Color |
+|---------|--------|------|--------|-------|-------|
+| Home "Hello," | Spectral | 26px | 300 | — | `#1E1408` |
+| Home "Arjun." | Spectral | 36px | 300 | italic | `#1E1408` |
+| Home tagline | DM Sans | 14px | 300 | — | `rgba(33,24,12,0.65)` |
+| Home section label | DM Sans | 13px | 600 | — | `#A06832` |
+| Home category card name | Cormorant Garamond | 20px | 400 | — | `rgba(30,20,8,0.92)` |
+| Home recommended title | Spectral | 16px | 500 | — | `#1E1408` |
+| Home journey stats number | Cormorant Garamond | 24px | 400 | — | `rgba(30,20,8,0.90)` |
+| Today "Today" | Spectral | 28px | 300 | — | `#1E1408` |
+| Today date overline | DM Sans | 11px | 500 | uppercase | `rgba(30,20,8,0.45)` |
+| Today intention quote | Spectral | 18px | 300 | italic | `#1E1408` |
+| Today exercise title | Cormorant Garamond | 16px | 400 | — | `#1E1408` |
+| Category hero title | Spectral | 40px | 300 | — | `#1E1408` / `#2D4A2D` (Health) |
+| Category subtitle | DM Sans | 14px | 300 | — | `rgba(33,24,12,0.65)` |
+| Category "Explore modules" | DM Sans | 14px | 500 | — | `#A06832` / `#2D4A2D` (Health) |
+| Category module title | Cormorant Garamond | 17px | 400 | — | `#1E1408` |
+| Category module description | DM Sans | 11px | 300 | — | `rgba(33,24,12,0.65)` |
+| Module hero title | Spectral | 36px | 300 | — | `#1E1408` |
+| Module hero description | DM Sans | 13px | 300 | — | `rgba(33,24,12,0.65)` |
+| Module progress % | Spectral | 34px | 300 | — | `#B85C5C` |
+| Module section header | Spectral | 21px | 300 | — | `#1E1408` |
+| Technique card title | Spectral | 15px | 400 | — | `#1E1408` |
+| Technique card description | DM Sans | 11px | 300 | — | `rgba(33,24,12,0.60)` |
+| Crisis Support chip | DM Sans | 12px | 500 | — | `#A06832` |
+| Crisis chip (Home) | DM Sans | 10px | 600 | — | `#A06832` |
+
+---
+
+## 19. In-App Color Tokens
+
+Additional values used in-app (not covered in section 1):
+
+| Value | Usage |
+|-------|-------|
+| `#F9EDD8` | Phone shell solid parchment (category + module screens) |
+| `#F0E8D8` | Subtitle strip bg · category hero gradient start · module hero row bg |
+| `#2D4A2D` | Health category accent (title, "Explore modules", icon strokes) |
+| `#B85C5C` | Relationships module accent (progress %, premium badge, upsell CTA) |
+| `#D4837A` | Progress bar fill gradient end (pairs with #B85C5C) |
+| `rgba(219,162,162,0.25)` | Relationships icon circle bg |
+| `rgba(219,162,162,0.20)` | Premium badge bg |
+| `rgba(219,191,150,0.25)` | Career icon circle bg |
+| `rgba(180,200,170,0.35)` | Health icon circle bg · Free badge bg |
+| `rgba(242,250,240,0.6)` | Health module card bg |
+| `rgba(252,242,232,0.6)` | Relationships module card bg · technique card bg |
+| `rgba(252,243,228,0.6)` | Career module card bg |
+| `rgba(253,249,244,0.98)` | Continue card bg · Reflect card bg |
+| `rgba(255,255,255,0.48)` | Today content card bg |
+| `rgba(255,255,255,0.65)` | Module progress card bg |
+| `rgba(252,244,234,0.98)` | Sticky upsell banner bg |
+| `rgba(250,244,234,0.98)` | Bottom nav bg (category + module screens) |
+| `rgba(250,240,228,0.95)` | Bottom nav bg (Today screen) |
+| `rgba(184,92,92,0.15)` | Sticky upsell banner top border |
