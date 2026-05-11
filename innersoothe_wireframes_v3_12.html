@@ -1383,149 +1383,326 @@
 
 /* ===== STOP Technique ===== */
 .sec-stop {
-  --bg:#F9EDD8;
-  --card:rgba(255,253,248,0.70);
-  --sage:#A06832;
-  --sgl:#C4956A;
-  --charcoal:#1E1408;
-  --stone:#6B5540;
+  --bg: #F9EDD8;
+  --card: rgba(255,253,248,0.85);
+  --quote-card: rgba(255,251,243,0.80);
+  --sage: #A06832;
+  --sgl: #C4956A;
+  --charcoal: #1E1408;
+  --stone: #6B5540;
+  --hairline: rgba(33,24,12,0.10);
+  --hairline-light: rgba(33,24,12,0.06);
 }
+/* Phone shell */
 .sec-stop .phone {
-  width:330px;height:700px;background:var(--bg);border-radius:44px;
-  box-shadow:0 24px 60px rgba(30,20,8,0.12),0 0 0 1.5px rgba(30,20,8,0.10),inset 0 0 0 1px rgba(255,255,255,0.55);
-  overflow:hidden;display:flex;flex-direction:column;flex-shrink:0;position:relative;
+  width: 330px;
+  height: 760px;
+  background: #F9EDD8;
+  border-radius: 44px;
+  box-shadow: 0 18px 50px rgba(33,24,12,0.10), 0 0 0 1px rgba(33,24,12,0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: relative;
 }
-.sec-stop .status {
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 24px 0;
-  font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;
-  color:rgba(33,24,12,0.45);flex-shrink:0;z-index:10;position:relative;
+/* Back button */
+.stop-back {
+  position: absolute;
+  top: 42px; left: 16px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(33,24,12,0.08);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  z-index: 30;
 }
-.sec-stop .th-back {
-  position:absolute;top:42px;left:16px;z-index:30;
-  width:44px;height:44px;border-radius:22px;
-  background:rgba(255,255,255,0.80);
-  box-shadow:0 2px 8px rgba(30,20,8,0.10);
-  display:flex;align-items:center;justify-content:center;cursor:pointer;
+/* Crisis chip */
+.stop-crisis {
+  position: absolute;
+  top: 46px; right: 16px;
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 14px;
+  background: rgba(255,251,243,0.85);
+  border: 1.5px solid rgba(160,104,50,0.40);
+  border-radius: 22px;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  z-index: 30;
 }
-.sec-stop .crisis-chip {
-  position:absolute;top:46px;right:16px;z-index:30;
-  display:flex;align-items:center;gap:5px;
-  padding:6px 12px;
-  background:rgba(160,104,50,0.10);
-  border:1.5px solid rgba(160,104,50,0.35);
-  border-radius:22px;cursor:pointer;
+.stop-crisis-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #A06832;
 }
-.sec-stop .crisis-chip span {
-  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:#A06832;
+/* Hero image */
+.stop-hero {
+  width: 100%;
+  height: 280px;
+  background:
+    url('assets/illustrations/Relationships/Modules/BreakupRecovery/stop-hero.png') center center / cover no-repeat,
+    radial-gradient(circle at 50% 60%, rgba(196,149,106,0.35) 0%, rgba(196,149,106,0.18) 30%, transparent 70%), #F2DBB5;
+  flex-shrink: 0;
+  position: relative;
 }
-.sec-stop .tech-hdr {
-  padding:56px 22px 14px;flex-shrink:0;
+.stop-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 70%, #F9EDD8 100%);
+  pointer-events: none;
 }
-.sec-stop .th-eyebrow {
-  font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;
-  letter-spacing:2px;color:#A06832;text-transform:uppercase;margin-bottom:6px;
+/* Title block */
+.stop-title-block {
+  margin-top: -32px;
+  position: relative;
+  z-index: 2;
+  padding: 0 24px 16px;
+  text-align: center;
 }
-.sec-stop .th-title {
-  font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;
-  color:#1E1408;line-height:1.15;
+.stop-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #A06832;
+  text-transform: uppercase;
+  margin: 0 0 10px;
 }
-.sec-stop .mode-toggle {
-  display:flex;padding:3px;
-  background:rgba(33,24,12,0.05);
-  border-radius:12px;margin:0 22px 16px;
+.stop-wordmark-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
 }
-.sec-stop .mt-btn {
-  flex:1;padding:8px 12px;border:none;border-radius:9px;
-  background:transparent;cursor:pointer;
-  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;
-  transition:all 180ms ease;
+.stop-leaf-l, .stop-leaf-r { opacity: 0.6; flex-shrink: 0; }
+.stop-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px;
+  font-weight: 300;
+  color: #1E1408;
+  letter-spacing: 6px;
+  line-height: 1;
+  margin: 0;
 }
-.sec-stop .mt-btn.active {
-  background:rgba(160,104,50,0.18);
-  border:1px solid rgba(160,104,50,0.40);
-  color:#A06832;
+/* Heart + hairline rule under wordmark */
+.stop-heart-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto 14px;
 }
-.sec-stop .mt-btn.quick {
-  color:rgba(33,24,12,0.45);
+.stop-hr-line {
+  display: block;
+  width: 24px;
+  height: 0.5px;
+  background: rgba(160,104,50,0.25);
 }
-.sec-stop .hero-quote {
-  font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;
-  font-style:italic;line-height:1.55;color:#1E1408;
-  text-align:center;padding:22px 24px 10px;
+/* Tagline */
+.stop-tagline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(33,24,12,0.55);
+  text-align: center;
+  margin: 0 24px 24px;
 }
-.sec-stop .subtitle {
-  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:300;
-  color:rgba(33,24,12,0.55);text-align:center;padding:0 22px 16px;line-height:1.6;
+/* Quote card */
+.stop-quote-card {
+  margin: 0 24px 22px;
+  padding: 18px 20px;
+  background: var(--quote-card);
+  border: 1px solid var(--hairline-light);
+  border-radius: 14px;
+  text-align: center;
+  position: relative;
 }
-.sec-stop .step-preview {
-  padding:0 18px 14px;display:flex;flex-direction:column;gap:6px;
+.stop-quote-open {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: italic;
+  color: #A06832;
+  line-height: 0.5;
+  opacity: 0.45;
+  position: absolute;
+  top: 8px; left: 16px;
 }
-.sec-stop .step-row {
-  display:flex;gap:12px;align-items:center;
-  padding:12px 14px;
-  background:rgba(255,253,248,0.85);
-  border:1px solid rgba(33,24,12,0.08);
-  border-radius:12px;
+.stop-quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+  color: #1E1408;
+  margin: 4px 12px 0;
 }
-.sec-stop .step-letter {
-  width:32px;height:32px;border-radius:9px;flex-shrink:0;
-  background:rgba(160,104,50,0.18);
-  border:1px solid rgba(160,104,50,0.40);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;color:#A06832;
+.stop-quote-heart {
+  display: block;
+  margin: 12px auto 0;
+  opacity: 0.45;
 }
-.sec-stop .step-title {
-  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;
-  color:#1E1408;flex:1;
+/* Info rows */
+.stop-info-rows {
+  padding: 0 26px 22px;
 }
-.sec-stop .step-duration {
-  font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;
-  color:rgba(33,24,12,0.45);white-space:nowrap;
+.stop-info-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 0;
 }
-.sec-stop .voice-utility {
-  display:flex;align-items:center;gap:8px;
-  padding:7px 11px;
-  background:rgba(33,24,12,0.04);
-  border:1px solid rgba(33,24,12,0.08);
-  border-radius:10px;margin:0 22px 14px;
+.stop-info-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(160,104,50,0.10);
+  border: 1px solid rgba(160,104,50,0.30);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
-.sec-stop .voice-waves { display:flex;gap:2px;align-items:center;flex-shrink:0; }
-.sec-stop .voice-wave {
-  width:2px;border-radius:2px;background:#C4956A;
-  animation:sec-stop-wave 1.2s ease-in-out infinite;
+.stop-info-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(33,24,12,0.65);
+  flex: 1;
 }
-.sec-stop .voice-wave:nth-child(1){height:6px;animation-delay:0s;}
-.sec-stop .voice-wave:nth-child(2){height:11px;animation-delay:0.15s;}
-.sec-stop .voice-wave:nth-child(3){height:8px;animation-delay:0.3s;}
-.sec-stop .voice-wave:nth-child(4){height:13px;animation-delay:0.45s;}
-.sec-stop .voice-wave:nth-child(5){height:6px;animation-delay:0.6s;}
-@keyframes sec-stop-wave{0%,100%{transform:scaleY(0.5);opacity:0.4}50%{transform:scaleY(1);opacity:1}}
-.sec-stop .voice-text {
-  font-family:'DM Sans',sans-serif;font-size:10px;font-weight:300;
-  color:rgba(33,24,12,0.50);flex:1;line-height:1.4;
+.stop-info-em {
+  font-weight: 500;
+  color: #A06832;
 }
-.sec-stop .voice-mute {
-  font-family:'DM Sans',sans-serif;font-size:10px;font-weight:400;
-  color:rgba(33,24,12,0.55);background:none;border:none;cursor:pointer;padding:0;flex-shrink:0;
+/* Divider */
+.stop-divider {
+  height: 16px;
+  margin: 0 26px 14px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.sec-stop .cta-primary {
-  width:100%;padding:14px;border-radius:50px;border:none;
-  background:#A06832;color:white;
-  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;
-  box-shadow:0 4px 14px rgba(160,104,50,0.25);cursor:pointer;
+.stop-divider::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 0.5px;
+  background: rgba(160,104,50,0.20);
 }
-.sec-stop .cta-secondary {
-  font-family:'DM Sans',sans-serif;font-size:10px;font-weight:300;
-  color:rgba(33,24,12,0.40);text-align:center;
-  padding:8px 0;cursor:pointer;background:none;border:none;width:100%;display:block;
+.stop-divider-inner {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
 }
+/* Mode cards */
+.stop-modes {
+  padding: 0 24px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.stop-mode-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  border-radius: 14px;
+  background: rgba(255,253,248,0.60);
+  border: 1.5px solid var(--hairline-light);
+  transition: all 200ms ease;
+  cursor: pointer;
+}
+.stop-mode-card.active {
+  background: rgba(160,104,50,0.10);
+  border-color: rgba(160,104,50,0.45);
+}
+.stop-mode-radio {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(33,24,12,0.25);
+  background: transparent;
+  flex-shrink: 0;
+  transition: all 200ms ease;
+}
+.stop-mode-card.active .stop-mode-radio {
+  background: #A06832;
+  border-color: #A06832;
+  box-shadow: inset 0 0 0 3px var(--bg);
+}
+.stop-mode-icon {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline-light);
+  background: rgba(255,251,243,0.70);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.stop-mode-text { flex: 1; }
+.stop-mode-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1E1408;
+  margin: 0 0 3px;
+}
+.stop-mode-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 300;
+  line-height: 1.45;
+  color: rgba(33,24,12,0.55);
+  margin: 0;
+}
+.stop-mode-chev { flex-shrink: 0; }
+/* CTA */
+.stop-cta-wrapper { padding: 6px 24px 10px; }
+.stop-cta {
+  width: 100%;
+  padding: 15px;
+  border-radius: 50px;
+  background: #A06832;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  border: none;
+  box-shadow: 0 6px 18px rgba(160,104,50,0.28);
+  cursor: pointer;
+  text-align: center;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.stop-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(160,104,50,0.35);
+}
+/* Footer */
+.stop-footer {
+  padding: 0 24px 8px;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 300;
+  color: rgba(33,24,12,0.40);
+}
+/* Bottom nav */
 .sec-stop .bnav {
-  display:flex;justify-content:space-around;align-items:flex-end;
-  padding:10px 4px 22px;
-  border-top:1px solid rgba(30,20,8,0.07);
-  background:rgba(250,244,234,0.98);
-  flex-shrink:0;position:relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 10px 4px 22px;
+  border-top: 1px solid rgba(30,20,8,0.07);
+  background: rgba(250,244,234,0.98);
+  flex-shrink: 0;
+  position: relative;
 }
 
 
@@ -9072,8 +9249,8 @@
     <div class="phone-wrap">
       <div class="phone">
 
-        <!-- STATUS BAR -->
-        <div class="status">
+        <!-- Status bar -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px 4px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;color:rgba(33,24,12,0.45);flex-shrink:0;position:relative;z-index:10;">
           <span>9:41</span>
           <div style="display:flex;align-items:center;gap:6px;">
             <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
@@ -9082,88 +9259,125 @@
           </div>
         </div>
 
-        <!-- BACK BUTTON -->
-        <div class="th-back" onclick="showSection('module-breakup-recovery')">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <!-- Back button (absolute, floats over hero) -->
+        <div class="stop-back" onclick="showSection('module-breakup-recovery')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         </div>
 
-        <!-- CRISIS SUPPORT CHIP -->
-        <div class="crisis-chip" onclick="showSection('crisis-resources')">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Crisis Support</span>
+        <!-- Crisis Support chip (absolute, floats over hero) -->
+        <div class="stop-crisis" onclick="showSection('crisis-resources')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="stop-crisis-label">Crisis Support</span>
         </div>
 
-        <!-- SCROLLABLE BODY -->
-        <div style="flex:1;overflow-y:auto;scrollbar-width:none;">
+        <!-- Scrollable content (hero → title → quote → info → modes → CTA → footer) -->
+        <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
 
-          <!-- TECH HEADER -->
-          <div class="tech-hdr">
-            <div class="th-eyebrow">BREAKUP RECOVERY · FREE</div>
-            <div class="th-title">STOP Technique</div>
-          </div>
+          <!-- Hero: tight-crop leaf-on-water -->
+          <div class="stop-hero"></div>
 
-          <!-- MODE TOGGLE -->
-          <div class="mode-toggle">
-            <button class="mt-btn active guided">Guided</button>
-            <button class="mt-btn quick">Quick</button>
-          </div>
-
-          <!-- HERO QUOTE -->
-          <div class="hero-quote">“You’re feeling a lot right now. That’s okay. Let’s slow down.”</div>
-
-          <!-- SUBTITLE -->
-          <div class="subtitle">4-step DBT skill. Interrupts emotional flooding. ~3–5 min.</div>
-
-          <!-- STEP PREVIEW -->
-          <div class="step-preview">
-            <div class="step-row">
-              <div class="step-letter">S</div>
-              <div class="step-title">Stop — freeze for a moment</div>
-              <div class="step-duration">~30s</div>
+          <!-- Title block — overlaps bottom of hero via margin-top:-32px -->
+          <div class="stop-title-block">
+            <div class="stop-eyebrow">STOP TECHNIQUE</div>
+            <div class="stop-wordmark-row">
+              <!-- Left leaf -->
+              <svg class="stop-leaf-l" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M11 20C11 20 3 16 3 10C3 5 6 1 11 1C11 1 11 20 11 20Z" fill="#C4956A"/>
+                <line x1="11" y1="1" x2="11" y2="20" stroke="#C4956A" stroke-width="0.5" stroke-dasharray="1.5 1.5" opacity="0.55"/>
+              </svg>
+              <div class="stop-wordmark">STOP</div>
+              <!-- Right leaf (mirrored) -->
+              <svg class="stop-leaf-r" width="22" height="22" viewBox="0 0 22 22" fill="none" style="transform:scaleX(-1)">
+                <path d="M11 20C11 20 3 16 3 10C3 5 6 1 11 1C11 1 11 20 11 20Z" fill="#C4956A"/>
+                <line x1="11" y1="1" x2="11" y2="20" stroke="#C4956A" stroke-width="0.5" stroke-dasharray="1.5 1.5" opacity="0.55"/>
+              </svg>
             </div>
-            <div class="step-row">
-              <div class="step-letter">T</div>
-              <div class="step-title">Take a breath — box breathing</div>
-              <div class="step-duration">~2 min</div>
+            <!-- Heart + hairline rule -->
+            <div class="stop-heart-rule">
+              <span class="stop-hr-line"></span>
+              <svg width="8" height="7" viewBox="0 0 24 22" fill="#A06832" opacity="0.5">
+                <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
+              </svg>
+              <span class="stop-hr-line"></span>
             </div>
-            <div class="step-row">
-              <div class="step-letter">O</div>
-              <div class="step-title">Observe — name what you feel</div>
-              <div class="step-duration">~1 min</div>
+            <div class="stop-tagline">Pause before reacting.<br>Come back to the present.</div>
+          </div>
+
+          <!-- Quote card -->
+          <div class="stop-quote-card">
+            <span class="stop-quote-open">“</span>
+            <div class="stop-quote-text">"You do not need to solve everything right now."</div>
+            <!-- Small heart below quote -->
+            <svg class="stop-quote-heart" width="8" height="7" viewBox="0 0 24 22" fill="#A06832">
+              <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
+            </svg>
+          </div>
+
+          <!-- Info rows -->
+          <div class="stop-info-rows">
+            <div class="stop-info-row">
+              <div class="stop-info-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+              </div>
+              <div class="stop-info-text">A grounding technique for moments of emotional overwhelm, panic, or racing thoughts.</div>
             </div>
-            <div class="step-row">
-              <div class="step-letter">P</div>
-              <div class="step-title">Proceed — choose, don’t react</div>
-              <div class="step-duration">~30s</div>
+            <div class="stop-info-row">
+              <div class="stop-info-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="stop-info-text">Usually takes <span class="stop-info-em">3–5 minutes.</span></div>
             </div>
           </div>
 
-          <!-- VOICE UTILITY -->
-          <div class="voice-utility">
-            <div class="voice-waves">
-              <div class="voice-wave"></div>
-              <div class="voice-wave"></div>
-              <div class="voice-wave"></div>
-              <div class="voice-wave"></div>
-              <div class="voice-wave"></div>
+          <!-- Divider: hairline with centred leaf -->
+          <div class="stop-divider">
+            <div class="stop-divider-inner">
+              <svg width="11" height="11" viewBox="0 0 22 22" fill="none">
+                <path d="M11 21C11 21 2 17 2 10C2 4 6 0.5 11 0.5C11 0.5 11 21 11 21Z" fill="#C4956A" opacity="0.65"/>
+                <path d="M11 21C11 21 20 17 20 10C20 4 16 0.5 11 0.5C11 0.5 11 21 11 21Z" fill="#C4956A" opacity="0.40"/>
+              </svg>
             </div>
-            <div class="voice-text">Voiceover plays during guided mode</div>
-            <button class="voice-mute">Mute</button>
           </div>
 
-          <!-- PRIMARY CTA -->
-          <div style="padding:0 22px 8px;">
-            <button class="cta-primary" onclick="console.log('Phase 2: enter guided/quick flow based on mode')">I’m ready — Let’s begin</button>
+          <!-- Mode cards -->
+          <div class="stop-modes">
+            <!-- Guided Experience (active by default) -->
+            <div class="stop-mode-card active" data-mode="guided" onclick="stopSelectMode('guided')">
+              <div class="stop-mode-radio"></div>
+              <div class="stop-mode-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+              </div>
+              <div class="stop-mode-text">
+                <div class="stop-mode-title">Guided Experience</div>
+                <div class="stop-mode-desc">Soft voice guidance, pauses and gentle reminders.</div>
+              </div>
+              <svg class="stop-mode-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.30)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+            <!-- Quick Reset -->
+            <div class="stop-mode-card" data-mode="quick" onclick="stopSelectMode('quick')">
+              <div class="stop-mode-radio"></div>
+              <div class="stop-mode-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="stop-mode-text">
+                <div class="stop-mode-title">Quick Reset</div>
+                <div class="stop-mode-desc">Faster version to help you reset in the moment.</div>
+              </div>
+              <svg class="stop-mode-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.30)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
           </div>
 
-          <!-- SECONDARY ACTION -->
-          <div style="padding:0 22px 14px;">
-            <button class="cta-secondary" onclick="showSection('module-breakup-recovery')">Maybe later</button>
+          <!-- CTA -->
+          <div class="stop-cta-wrapper">
+            <button class="stop-cta" onclick="console.log('Phase 2 entry: ' + window.sec_stop_mode)">Begin Slowly</button>
           </div>
 
-        </div>
+          <!-- Footer -->
+          <div class="stop-footer">You can pause anytime.</div>
 
-        <!-- BOTTOM NAV -->
+        </div><!-- /scroll -->
+
+        <!-- Bottom nav — Home active -->
         <div class="bnav">
           <div onclick="showSection('relationship')" style="display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;color:#A06832;cursor:pointer;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -9187,12 +9401,30 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(30,20,8,0.60)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             Settings
           </div>
-        </div>
+        </div><!-- /bnav -->
 
-      </div>
-    </div>
-  </div>
-</div>
+      </div><!-- /phone -->
+    </div><!-- /phone-wrap -->
+  </div><!-- /phone-grid -->
+</div><!-- /section-breakup-stop -->
+
+<script>
+function stopSelectMode(mode) {
+  window.sec_stop_mode = mode;
+  document.querySelectorAll('#section-breakup-stop .stop-mode-card').forEach(function(c) {
+    c.classList.remove('active');
+  });
+  var cards = document.querySelectorAll('#section-breakup-stop .stop-mode-card');
+  var idx = (mode === 'guided') ? 0 : 1;
+  if (cards[idx]) cards[idx].classList.add('active');
+}
+window.sec_stop_mode = 'guided';
+(function () {
+  var img = new Image();
+  img.onerror = function () { console.warn('stop-hero.png missing — using placeholder'); };
+  img.src = 'assets/illustrations/Relationships/Modules/BreakupRecovery/stop-hero.png';
+})();
+</script>
 
 
 <div class="screens-area sec-hd" id="section-hypnodrama">
