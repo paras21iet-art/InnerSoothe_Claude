@@ -1704,206 +1704,187 @@
 }
 
 
-/* ===== STOP Technique — Step 1 (S — Stop) ===== */
-.sec-stop-s1 {
+/* ===== STOP Technique — Practice Screen (Steps 1–4) ===== */
+.sec-stop-step {
   --bg: #F9EDD8;
   --card: rgba(255,253,248,0.85);
+  --quote-card: rgba(255,251,243,0.80);
   --sage: #A06832;
   --sgl: #C4956A;
   --charcoal: #1E1408;
   --stone: #6B5540;
   --hairline: rgba(33,24,12,0.10);
+  --hairline-light: rgba(33,24,12,0.06);
 }
-.sec-stop-s1 .phone {
+.sec-stop-step .phone {
   width: 330px;
   height: 715px;
-  background: #F9EDD8;
   border-radius: 44px;
-  box-shadow: 0 18px 50px rgba(33,24,12,0.10), 0 0 0 1px rgba(33,24,12,0.06);
+  background: #F9EDD8;
+  box-shadow: 0 18px 50px rgba(33,24,12,0.10);
+  border: 1px solid rgba(33,24,12,0.06);
   overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
 }
-.s1-status {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 22px 4px;
+.sec-stop-step .status {
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   font-weight: 600;
   color: rgba(33,24,12,0.45);
-  flex-shrink: 0;
-}
-.s1-hdr {
+  padding: 12px 22px 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 16px 12px;
   flex-shrink: 0;
 }
-.s1-back {
-  width: 44px; height: 44px;
+.sec-stop-step .step-hdr {
+  padding: 6px 16px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.sec-stop-step .step-back {
+  width: 40px; height: 40px;
   border-radius: 50%;
   background: rgba(255,255,255,0.92);
   border: 1px solid rgba(33,24,12,0.08);
   backdrop-filter: blur(8px);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
-}
-.s1-crisis {
-  display: flex; align-items: center; gap: 6px;
-  padding: 7px 14px;
-  background: rgba(255,251,243,0.85);
-  border: 1.5px solid rgba(160,104,50,0.40);
-  border-radius: 22px;
-  backdrop-filter: blur(8px);
-  cursor: pointer;
-}
-.s1-crisis-label {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: #A06832;
-}
-.s1-eyebrow {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  color: #A06832;
-  text-transform: uppercase;
-  text-align: center;
-  margin: 8px 0 6px;
-}
-.s1-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 34px;
-  font-weight: 300;
-  color: #1E1408;
-  text-align: center;
-  line-height: 1.2;
-  margin: 0 24px 8px;
-}
-.s1-heart-rule {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 0 auto 18px;
-}
-.s1-hr-line {
-  display: block;
-  width: 20px;
-  height: 0.5px;
-  background: rgba(160,104,50,0.25);
-}
-.s1-body {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.55;
-  color: rgba(33,24,12,0.65);
-  text-align: center;
-  padding: 0 32px;
-  margin: 0 0 28px;
-}
-.s1-center {
-  width: 100%;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  margin: 0 0 24px;
-}
-@keyframes s1-ripple-expand-r1 {
-  0% { r: 20; opacity: 0; }
-  100% { r: 90; opacity: 0.15; }
-}
-@keyframes s1-ripple-expand-r2 {
-  0% { r: 20; opacity: 0; }
-  100% { r: 68; opacity: 0.30; }
-}
-@keyframes s1-ripple-expand-r3 {
-  0% { r: 20; opacity: 0; }
-  100% { r: 46; opacity: 0.55; }
-}
-.s1-ring-3 {
-  animation: s1-ripple-expand-r3 2s 0s ease-out both;
-}
-.s1-ring-2 {
-  animation: s1-ripple-expand-r2 2s 0.2s ease-out both;
-}
-.s1-ring-1 {
-  animation: s1-ripple-expand-r1 2s 0.4s ease-out both;
-}
-.s1-confirm {
-  margin: 0 32px 28px;
-  padding: 16px 18px;
-  background: rgba(255,253,248,0.90);
-  border: 1px solid rgba(160,104,50,0.20);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  transition: all 200ms ease;
-}
-.s1-confirm-check {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(33,24,12,0.25);
-  background: transparent;
   flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 200ms ease;
 }
-.s1-confirm.confirmed .s1-confirm-check {
-  background: #A06832;
-  border-color: #A06832;
-}
-.s1-confirm-label {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #1E1408;
-}
-.s1-progress {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 0;
-  white-space: nowrap;
-}
-.s1-pd {
-  width: 24px; height: 24px;
+.sec-stop-step .step-mute-area { display: flex; gap: 8px; align-items: center; }
+.sec-stop-step .stop-mute-btn {
+  width: 36px; height: 36px;
   border-radius: 50%;
-  border: 1.5px solid rgba(33,24,12,0.20);
-  background: transparent;
+  background: rgba(255,251,243,0.85);
+  border: 1px solid rgba(160,104,50,0.30);
   display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: #A06832;
+  transition: opacity 200ms ease;
+}
+.sec-stop-step .stop-mute-btn.muted { opacity: 0.6; }
+.sec-stop-step .stop-mute-btn .icon-vol-on { display: block; }
+.sec-stop-step .stop-mute-btn .icon-vol-off { display: none; }
+.sec-stop-step .stop-mute-btn.muted .icon-vol-on { display: none; }
+.sec-stop-step .stop-mute-btn.muted .icon-vol-off { display: block; }
+.sec-stop-step .step-crisis {
+  padding: 7px 12px;
+  background: rgba(255,251,243,0.85);
+  border: 1.3px solid rgba(160,104,50,0.40);
+  border-radius: 20px;
+  display: flex; gap: 5px; align-items: center;
+  cursor: pointer;
+}
+.sec-stop-step .step-crisis-label { font-family: 'DM Sans', sans-serif; font-size: 11.5px; font-weight: 500; color: #A06832; }
+.sec-stop-step .step-letter {
+  width: 44px; height: 44px;
+  border-radius: 11px;
+  background: rgba(160,104,50,0.18);
+  border: 1px solid rgba(160,104,50,0.40);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: #1E1408;
+  margin: 6px auto 8px;
+  flex-shrink: 0;
+}
+.sec-stop-step .step-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; color: #A06832; text-transform: uppercase; text-align: center; margin: 0 0 8px; }
+.sec-stop-step .step-headline { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: #1E1408; text-align: center; line-height: 1.25; padding: 0 28px; margin: 0 0 8px; }
+.sec-stop-step .step-subhead { font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 300; line-height: 1.5; color: rgba(33,24,12,0.60); text-align: center; padding: 0 32px; margin: 0 0 16px; }
+.sec-stop-step .step-body { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.55; color: rgba(33,24,12,0.65); text-align: center; padding: 0 30px; margin: 0 0 14px; }
+.sec-stop-step .step-cta-wrap { position: absolute; bottom: 70px; left: 24px; right: 24px; }
+.sec-stop-step .step-cta {
+  width: 100%;
+  padding: 14px;
+  border-radius: 50px;
+  background: #A06832;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  border: none;
+  box-shadow: 0 5px 16px rgba(160,104,50,0.26);
+  cursor: pointer;
+  text-align: center;
+  transition: all 200ms ease;
+  display: block;
+}
+.sec-stop-step .step-cta:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+.sec-stop-step .step-secondary {
+  text-align: center;
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 300;
   color: rgba(33,24,12,0.40);
-  flex-shrink: 0;
+  padding: 10px 0 0;
+  cursor: pointer;
+  transition: color 200ms ease;
+  background: none;
+  border: none;
+  width: 100%;
+  display: block;
 }
-.s1-pd.active {
-  background: #A06832;
-  border-color: #A06832;
-  color: white;
-}
-.s1-pd-line {
-  width: 20px;
-  height: 1px;
-  background: rgba(33,24,12,0.15);
-  flex-shrink: 0;
-}
+.sec-stop-step .step-secondary:hover { color: rgba(33,24,12,0.65); }
+.sec-stop-step .step-progress { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 0; white-space: nowrap; }
+.sec-stop-step .step-pd { width: 22px; height: 22px; border-radius: 50%; border: 1.3px solid rgba(33,24,12,0.20); background: transparent; display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; font-size: 9.5px; font-weight: 500; color: rgba(33,24,12,0.40); flex-shrink: 0; }
+.sec-stop-step .step-pd.on { background: #A06832; border-color: #A06832; color: white; }
+.sec-stop-step .step-pd.visited { border-color: rgba(160,104,50,0.50); color: rgba(160,104,50,0.70); }
+.sec-stop-step .step-pd-line { width: 16px; height: 1px; background: rgba(33,24,12,0.18); flex-shrink: 0; }
+
+/* Step 1 — S ─────────────────────── */
+.sec-stop-s1 .s1-quote-card { padding: 14px 18px; background: var(--quote-card); border: 1px solid var(--hairline-light); border-radius: 12px; margin: 0 26px 14px; flex-shrink: 0; }
+.sec-stop-s1 .s1-quote-text { font-family: 'Cormorant Garamond', serif; font-size: 13.5px; font-weight: 400; font-style: italic; line-height: 1.5; color: #1E1408; }
+.sec-stop-s1 .s1-quote-attr { font-family: 'DM Sans', sans-serif; font-size: 11px; color: rgba(33,24,12,0.45); margin-top: 6px; }
+.sec-stop-s1 .s1-centerpiece { width: 100%; display: flex; align-items: center; justify-content: center; padding: 6px 0 10px; flex-shrink: 0; }
+.sec-stop-s1 .s1-confirm-card { margin: 0 26px 0; padding: 14px 16px; background: rgba(255,253,248,0.92); border: 1px solid rgba(160,104,50,0.20); border-radius: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 200ms ease; flex-shrink: 0; }
+.sec-stop-s1 .s1-confirm-card.confirmed { border-color: rgba(160,104,50,0.45); background: rgba(255,253,248,0.98); }
+.sec-stop-s1 .s1-check-circle { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid rgba(33,24,12,0.25); background: transparent; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 200ms ease; }
+.sec-stop-s1 .s1-confirm-card.confirmed .s1-check-circle { background: #A06832; border-color: #A06832; }
+.sec-stop-s1 .s1-confirm-label { font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 500; color: #1E1408; flex: 1; }
+.sec-stop-s1 .s1-confirm-hint { font-family: 'DM Sans', sans-serif; font-size: 9.5px; font-weight: 300; color: rgba(33,24,12,0.35); }
+/* Step 1 tight vertical fit */
+.sec-stop-s1 .status { padding: 10px 22px 3px; }
+.sec-stop-s1 .step-hdr { padding: 4px 16px 8px; }
+.sec-stop-s1 .step-letter { margin: 2px auto 4px; }
+.sec-stop-s1 .step-eyebrow { margin: 0 0 6px; }
+.sec-stop-s1 .step-body { margin: 0 0 8px; }
+
+/* Step 2 — T ─────────────────────── */
+.sec-stop-s2 .breath-center { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; margin: 0 0 4px; }
+.sec-stop-s2 .breath-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
+.sec-stop-s2 .breath-phase-word { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 400; font-style: italic; color: #1E1408; display: block; line-height: 1.3; }
+.sec-stop-s2 .breath-countdown { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: #A06832; display: block; line-height: 1.1; }
+.sec-stop-s2 .breath-cycle { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 400; color: #A06832; text-align: center; margin-top: 10px; }
+.sec-stop-s2 .breath-pattern { padding: 6px 14px; background: rgba(255,253,248,0.6); border: 1px solid var(--hairline-light); border-radius: 16px; font-family: 'DM Sans', sans-serif; font-size: 10.5px; font-weight: 300; color: rgba(33,24,12,0.50); margin: 8px 28px 0; text-align: center; }
+
+/* Step 3 — O ─────────────────────── */
+.sec-stop-s3 .obs-section-label { font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #A06832; text-transform: uppercase; padding: 6px 26px 8px; }
+.sec-stop-s3 .obs-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 22px 14px; }
+.sec-stop-s3 .obs-chip { padding: 7px 12px; background: rgba(255,253,248,0.7); border: 1px solid var(--hairline-light); border-radius: 20px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 400; color: #1E1408; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all 180ms ease; }
+.sec-stop-s3 .obs-chip .chip-emoji { font-size: 13px; line-height: 1; }
+.sec-stop-s3 .obs-chip.on { background: rgba(160,104,50,0.18); border: 1.5px solid #A06832; }
+
+/* Step 4 — P ─────────────────────── */
+.sec-stop-s4 .action-cards { margin: 0 22px 14px; display: flex; flex-direction: column; gap: 9px; }
+.sec-stop-s4 .action-card { padding: 12px 14px; background: rgba(255,253,248,0.7); border: 1px solid var(--hairline-light); border-radius: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 180ms ease; }
+.sec-stop-s4 .action-card.on { background: rgba(160,104,50,0.14); border: 1.5px solid #A06832; }
+.sec-stop-s4 .action-emoji { width: 36px; height: 36px; border-radius: 50%; background: rgba(160,104,50,0.10); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: background 180ms ease; }
+.sec-stop-s4 .action-card.on .action-emoji { background: rgba(160,104,50,0.22); }
+.sec-stop-s4 .action-text { flex: 1; }
+.sec-stop-s4 .action-title { font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 500; color: #1E1408; }
+.sec-stop-s4 .action-desc { font-family: 'DM Sans', sans-serif; font-size: 11.5px; font-weight: 300; line-height: 1.4; color: rgba(33,24,12,0.55); margin-top: 2px; }
+
+/* Complete ────────────────────────── */
+.sec-stop-complete .complete-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 32px; text-align: center; }
+.sec-stop-complete .complete-headline { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; font-style: italic; color: #1E1408; margin: 0 0 14px; }
+.sec-stop-complete .complete-body { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(33,24,12,0.70); margin: 0 0 32px; }
+.sec-stop-complete .complete-cta { width: 100%; padding: 14px; border-radius: 50px; background: #A06832; color: white; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 500; border: none; box-shadow: 0 5px 16px rgba(160,104,50,0.26); cursor: pointer; }
 
 
 /* ===== TIPP Skill ===== */
@@ -9565,7 +9546,7 @@
 
           <!-- CTA -->
           <div class="stop-cta-wrapper">
-            <button class="stop-cta" onclick="if(window.sec_stop_mode==='quick'){console.log('Phase 2b: Quick Reset — not yet built')}else{showSection('breakup-stop-s1')}">Begin Slowly</button>
+            <button class="stop-cta" onclick="startStopGuided()">Begin Slowly</button>
           </div>
 
           <!-- Footer -->
@@ -9579,6 +9560,15 @@
 </div><!-- /section-breakup-stop -->
 
 <script>
+function startStopGuided() {
+  var mode = window.sec_stop_mode || 'guided';
+  if (mode === 'quick') {
+    console.log('Phase 3: Quick mode flow not built yet');
+    showSection('breakup-stop-s1');
+  } else {
+    showSection('breakup-stop-s1');
+  }
+}
 function stopSelectMode(mode) {
   window.sec_stop_mode = mode;
   document.querySelectorAll('#section-breakup-stop .stop-mode-card').forEach(function(c) {
@@ -9597,109 +9587,558 @@ window.sec_stop_mode = 'guided';
 </script>
 
 
-<div class="screens-area sec-stop-s1" id="section-breakup-stop-s1">
-  <div class="phone-grid">
-    <div class="phone-wrap">
-      <div class="phone">
-
-        <!-- Status bar -->
-        <div class="s1-status">
-          <span>9:41</span>
-          <div style="display:flex;align-items:center;gap:6px;">
-            <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
-            <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
-            <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
-          </div>
-        </div>
-
-        <!-- Header: back chip + Crisis chip -->
-        <div class="s1-hdr">
-          <div class="s1-back" onclick="window.confirmEndStopSession()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-          </div>
-          <div class="s1-crisis" onclick="showSection('crisis-resources')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span class="s1-crisis-label">Crisis Support</span>
-          </div>
-        </div>
-
-        <!-- Step eyebrow -->
-        <div class="s1-eyebrow">STEP 1 OF 4</div>
-
-        <!-- Step title -->
-        <div class="s1-title">S — Stop</div>
-
-        <!-- Heart rule divider -->
-        <div class="s1-heart-rule">
-          <span class="s1-hr-line"></span>
-          <svg width="8" height="7" viewBox="0 0 24 22" fill="#A06832" opacity="0.45"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
-          <span class="s1-hr-line"></span>
-        </div>
-
-        <!-- Body copy -->
-        <div class="s1-body">Freeze for a moment.<br>Pause whatever you were about to do.</div>
-
-        <!-- Centerpiece: frozen ripple -->
-        <div class="s1-center">
-          <svg id="s1-ripple-svg" width="200" height="200" viewBox="0 0 200 200">
-            <circle class="s1-ring-3" cx="100" cy="100" r="46" fill="none" stroke="#A06832" stroke-width="1.5"/>
-            <circle class="s1-ring-2" cx="100" cy="100" r="68" fill="none" stroke="#A06832" stroke-width="1.5"/>
-            <circle class="s1-ring-1" cx="100" cy="100" r="90" fill="none" stroke="#A06832" stroke-width="1"/>
-            <circle cx="100" cy="100" r="24" fill="#A06832" opacity="0.85"/>
-          </svg>
-        </div>
-
-        <!-- Tap-confirm card -->
-        <div class="s1-confirm" id="s1-confirm-card" onclick="s1ConfirmPause()">
-          <div class="s1-confirm-check" id="s1-check"></div>
-          <span class="s1-confirm-label">I've paused</span>
-        </div>
-
-        <!-- S-T-O-P progress dots -->
-        <div class="s1-progress">
-          <div class="s1-pd active">S</div>
-          <div class="s1-pd-line"></div>
-          <div class="s1-pd">T</div>
-          <div class="s1-pd-line"></div>
-          <div class="s1-pd">O</div>
-          <div class="s1-pd-line"></div>
-          <div class="s1-pd">P</div>
-        </div>
-
-      </div><!-- /phone -->
-    </div><!-- /phone-wrap -->
-  </div><!-- /phone-grid -->
-</div><!-- /section-breakup-stop-s1 -->
 <script>
-window.confirmEndStopSession = function() {
-  if (confirm('End STOP session? Your progress in this session won\'t save.')) {
-    showSection('module-breakup-recovery');
-  }
-};
-function s1ConfirmPause() {
-  var card = document.getElementById('s1-confirm-card');
-  if (card.classList.contains('confirmed')) return;
-  card.classList.add('confirmed');
-  document.getElementById('s1-check').innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-  setTimeout(function() {
-    console.log('Phase 2b: advance to Step 2 — T — Take a breath');
-    var s2 = document.getElementById('section-breakup-stop-s2');
-    if (s2) { showSection('breakup-stop-s2'); }
-  }, 600);
-}
+/* ===== STOP — Voice System ===== */
 (function() {
-  var _orig = window.showSection;
-  window.showSection = function(id) {
-    if (id === 'breakup-stop-s1') {
-      var card = document.getElementById('s1-confirm-card');
-      if (card) { card.classList.remove('confirmed'); }
-      var check = document.getElementById('s1-check');
-      if (check) { check.innerHTML = ''; }
+  window.stopSession = { muted: false, currentUtterance: null, voicesReady: false };
+  function getStopVoice() {
+    var voices = speechSynthesis.getVoices();
+    return voices.find(function(v){ return v.name === 'Samantha'; })
+        || voices.find(function(v){ return v.name === 'Karen'; })
+        || voices.find(function(v){ return v.name === 'Google US English' && v.lang === 'en-US'; })
+        || voices.find(function(v){ return v.lang === 'en-US' && v.name.toLowerCase().indexOf('female') > -1; })
+        || voices.find(function(v){ return v.lang.indexOf('en-US') === 0; })
+        || voices.find(function(v){ return v.lang.indexOf('en') === 0; })
+        || voices[0];
+  }
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = function() { window.stopSession.voicesReady = true; };
+  }
+  setTimeout(function(){ window.stopSession.voicesReady = true; }, 500);
+  window.stopSpeak = function(text, opts) {
+    if (window.stopSession.muted) return;
+    opts = opts || {};
+    var u = new SpeechSynthesisUtterance(text);
+    u.voice = getStopVoice();
+    u.rate = opts.rate || 0.82;
+    u.pitch = opts.pitch || 0.9;
+    u.volume = opts.volume || 0.85;
+    u.onend = opts.onend || null;
+    window.stopSession.currentUtterance = u;
+    speechSynthesis.speak(u);
+  };
+  window.stopSpeakSequence = function(items, doneCallback) {
+    if (window.stopSession.muted) { if (doneCallback) doneCallback(); return; }
+    var i = 0;
+    function next() {
+      if (i >= items.length) { if (doneCallback) doneCallback(); return; }
+      var item = items[i++];
+      if (typeof item === 'number') {
+        setTimeout(next, item);
+      } else {
+        window.stopSpeak(item, { onend: function(){ setTimeout(next, 250); } });
+      }
     }
-    if (typeof _orig === 'function') { _orig.call(window, id); }
+    next();
+  };
+  window.stopCancelVoice = function() {
+    speechSynthesis.cancel();
+    window.stopSession.currentUtterance = null;
+  };
+  window.stopToggleMute = function() {
+    window.stopSession.muted = !window.stopSession.muted;
+    if (window.stopSession.muted) window.stopCancelVoice();
+    document.querySelectorAll('.stop-mute-btn').forEach(function(btn) {
+      btn.classList.toggle('muted', window.stopSession.muted);
+      btn.setAttribute('aria-label', window.stopSession.muted ? 'Unmute' : 'Mute');
+    });
+  };
+  window.stopConfirmExit = function() {
+    if (confirm("End STOP session? Your progress won't save.")) {
+      window.stopCancelVoice();
+      showSection('module-breakup-recovery');
+    }
   };
 })();
 </script>
+
+
+<!-- ══════════ STOP Step 1 — S — Stop ══════════ -->
+<div class="screens-area sec-stop-step sec-stop-s1" id="section-breakup-stop-s1">
+  <div class="phone-grid"><div class="phone-wrap"><div class="phone">
+
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+    <div class="step-hdr">
+      <div class="step-back" onclick="stopConfirmExit()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
+    </div>
+    <div class="step-letter">S</div>
+    <div class="step-eyebrow">STEP 1 · STOP</div>
+    <div class="step-headline">Whatever you're about to do — don't do it yet.</div>
+    <div class="step-body">Don't send that message. Don't scroll back through the photos. Your emotions are running fast — that's exactly when to pause.</div>
+    <div class="s1-centerpiece">
+      <svg width="200" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="s1bg" cx="50%" cy="55%" r="50%"><stop offset="0%" stop-color="#C4956A" stop-opacity="0.20"/><stop offset="100%" stop-color="#F9EDD8" stop-opacity="0"/></radialGradient>
+          <radialGradient id="s1orb" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#C4956A" stop-opacity="0.70"/><stop offset="60%" stop-color="#A06832" stop-opacity="0.40"/><stop offset="100%" stop-color="#A06832" stop-opacity="0"/></radialGradient>
+          <filter id="s1blur"><feGaussianBlur stdDeviation="0.6"/></filter>
+        </defs>
+        <ellipse cx="100" cy="60" rx="92" ry="55" fill="url(#s1bg)"/>
+        <ellipse cx="100" cy="60" rx="86" ry="50" fill="none" stroke="#A06832" stroke-width="0.8" opacity="0.12" filter="url(#s1blur)"/>
+        <ellipse cx="100" cy="60" rx="68" ry="39" fill="none" stroke="#A06832" stroke-width="1.0" opacity="0.22" filter="url(#s1blur)"/>
+        <ellipse cx="100" cy="60" rx="51" ry="29" fill="none" stroke="#A06832" stroke-width="1.2" opacity="0.36" filter="url(#s1blur)"/>
+        <ellipse cx="100" cy="60" rx="34" ry="19" fill="none" stroke="#A06832" stroke-width="1.3" opacity="0.52" filter="url(#s1blur)"/>
+        <ellipse cx="100" cy="60" rx="18" ry="10" fill="none" stroke="#A06832" stroke-width="1.5" opacity="0.68" filter="url(#s1blur)"/>
+        <ellipse cx="100" cy="60" rx="11" ry="7" fill="url(#s1orb)" filter="url(#s1blur)"/>
+        <circle cx="65" cy="35" r="1.5" fill="#A06832" opacity="0.25"/>
+        <circle cx="142" cy="44" r="1.2" fill="#C4956A" opacity="0.30"/>
+        <circle cx="128" cy="88" r="1.8" fill="#A06832" opacity="0.20"/>
+        <circle cx="70" cy="82" r="1.0" fill="#C4956A" opacity="0.28"/>
+      </svg>
+    </div>
+    <div class="s1-quote-card">
+      <div class="s1-quote-text">"The pause between stimulus and response is where your freedom lives."</div>
+      <div class="s1-quote-attr">— DBT, Linehan 1993</div>
+    </div>
+    <div class="s1-confirm-card" id="s1-confirm-card" onclick="s1TapConfirm()">
+      <div class="s1-check-circle" id="s1-check-circle"></div>
+      <span class="s1-confirm-label">I've stopped. I'm not acting on anything right now.</span>
+      <span class="s1-confirm-hint">Tap to confirm</span>
+    </div>
+    <div class="step-cta-wrap">
+      <button class="step-cta" id="s1-cta" disabled onclick="stopCancelVoice();showSection('breakup-stop-s2')">Good. Now — Take a Breath →</button>
+      <button class="step-secondary" onclick="stopConfirmExit()">This doesn't feel right</button>
+    </div>
+    <div class="step-progress">
+      <div class="step-pd on">S</div><div class="step-pd-line"></div>
+      <div class="step-pd">T</div><div class="step-pd-line"></div>
+      <div class="step-pd">O</div><div class="step-pd-line"></div>
+      <div class="step-pd">P</div>
+    </div>
+
+  </div></div></div>
+</div><!-- /section-breakup-stop-s1 -->
+<script>
+function speakStopS1() {
+  stopSpeakSequence([
+    "Whatever you're about to do, don't do it yet.",
+    1200,
+    "Don't send that message. Don't scroll back through the photos.",
+    1000,
+    "Your emotions are running fast. That's exactly when to pause.",
+    1800,
+    "You are here. You are breathing. You don't have to do anything in this moment."
+  ]);
+}
+function s1TapConfirm() {
+  var card = document.getElementById('s1-confirm-card');
+  if (!card || card.classList.contains('confirmed')) return;
+  card.classList.add('confirmed');
+  var check = document.getElementById('s1-check-circle');
+  if (check) check.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  stopCancelVoice();
+  stopSpeak("Good. Now, take a breath.");
+  setTimeout(function() {
+    var cta = document.getElementById('s1-cta');
+    if (cta) cta.disabled = false;
+  }, 300);
+}
+</script>
+
+
+<!-- ══════════ STOP Step 2 — T — Take a Breath ══════════ -->
+<div class="screens-area sec-stop-step sec-stop-s2" id="section-breakup-stop-s2">
+  <div class="phone-grid"><div class="phone-wrap"><div class="phone">
+
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+    <div class="step-hdr">
+      <div class="step-back" onclick="stopConfirmExit()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
+    </div>
+    <div class="step-letter">T</div>
+    <div class="step-eyebrow">STEP 2 · TAKE A BREATH</div>
+    <div class="step-headline">Box breathing · 4 · 4 · 4 · 4</div>
+    <div class="step-subhead">2 complete cycles to continue</div>
+    <div class="breath-center">
+      <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="110" cy="110" r="95" fill="none" stroke="#A06832" stroke-width="1.5" opacity="0.20"/>
+        <circle cx="110" cy="110" r="72" fill="none" stroke="#A06832" stroke-width="1.5" opacity="0.35"/>
+        <circle cx="110" cy="110" r="50" fill="none" stroke="#A06832" stroke-width="1.5" opacity="0.55"/>
+        <circle class="breath-inner-ring" cx="110" cy="110" r="30" fill="none" stroke="#A06832" stroke-width="1" opacity="0.75"/>
+      </svg>
+      <div class="breath-overlay">
+        <span class="breath-phase-word">Breathe in</span>
+        <span class="breath-countdown">4</span>
+      </div>
+    </div>
+    <div class="breath-cycle">Cycle 1 of 2</div>
+    <div class="breath-pattern">In through nose · Hold · Out through mouth · Hold</div>
+    <div class="step-cta-wrap">
+      <button class="step-cta" id="s2-cta" disabled onclick="stopCancelVoice();showSection('breakup-stop-s3')">I've completed my breathing →</button>
+      <button class="step-secondary" onclick="stopCancelVoice();showSection('breakup-stop-s3')">Skip breathing</button>
+    </div>
+    <div class="step-progress">
+      <div class="step-pd visited">S</div><div class="step-pd-line"></div>
+      <div class="step-pd on">T</div><div class="step-pd-line"></div>
+      <div class="step-pd">O</div><div class="step-pd-line"></div>
+      <div class="step-pd">P</div>
+    </div>
+
+  </div></div></div>
+</div><!-- /section-breakup-stop-s2 -->
+<script>
+window._s2SessionId = 0;
+function startStopS2Breathing() {
+  window._s2SessionId++;
+  var sid = window._s2SessionId;
+  stopSpeak("Now, breathe with me. Box breathing — four, four, four, four.", {
+    onend: function() {
+      if (window._s2SessionId !== sid) return;
+      setTimeout(function() { if (window._s2SessionId !== sid) return; runBreathingCycles(sid); }, 800);
+    }
+  });
+}
+function runBreathingCycles(sid) {
+  var phases = [
+    { word: "Breathe in",  voice: "Breathe in",  rStart: 30, rEnd: 50 },
+    { word: "Hold",        voice: "Hold",        rStart: 50, rEnd: 50 },
+    { word: "Breathe out", voice: "Breathe out", rStart: 50, rEnd: 30 },
+    { word: "Hold",        voice: "Hold",        rStart: 30, rEnd: 30 }
+  ];
+  var cycleNum = 1, phaseIdx = 0;
+  function runPhase() {
+    if (window._s2SessionId !== sid) return;
+    if (cycleNum > 2) {
+      stopSpeak("Beautiful. Now, observe.");
+      var cta = document.getElementById('s2-cta');
+      if (cta) cta.disabled = false;
+      return;
+    }
+    var phase = phases[phaseIdx];
+    var pw = document.querySelector('.sec-stop-s2 .breath-phase-word');
+    if (pw) pw.textContent = phase.word;
+    var cy = document.querySelector('.sec-stop-s2 .breath-cycle');
+    if (cy) cy.textContent = 'Cycle ' + cycleNum + ' of 2';
+    animateRingR(sid, phase.rStart, phase.rEnd, 4000);
+    runCountdown(sid, 4000);
+    stopSpeak(phase.voice);
+    setTimeout(function() {
+      if (window._s2SessionId !== sid) return;
+      phaseIdx++;
+      if (phaseIdx >= 4) { phaseIdx = 0; cycleNum++; }
+      runPhase();
+    }, 4000);
+  }
+  runPhase();
+}
+function animateRingR(sid, from, to, duration) {
+  var ring = document.querySelector('.sec-stop-s2 .breath-inner-ring');
+  if (!ring) return;
+  var start = performance.now();
+  function step(now) {
+    if (window._s2SessionId !== sid) return;
+    var t = Math.min((now - start) / duration, 1);
+    ring.setAttribute('r', from + (to - from) * t);
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+function runCountdown(sid, duration) {
+  var el = document.querySelector('.sec-stop-s2 .breath-countdown');
+  if (!el) return;
+  var n = 4;
+  el.textContent = n;
+  var interval = setInterval(function() {
+    if (window._s2SessionId !== sid) { clearInterval(interval); return; }
+    n--;
+    if (n < 1) { clearInterval(interval); return; }
+    el.textContent = n;
+  }, duration / 4);
+}
+</script>
+
+
+<!-- ══════════ STOP Step 3 — O — Observe ══════════ -->
+<div class="screens-area sec-stop-step sec-stop-s3" id="section-breakup-stop-s3">
+  <div class="phone-grid"><div class="phone-wrap"><div class="phone">
+
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+    <div class="step-hdr">
+      <div class="step-back" onclick="stopConfirmExit()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
+    </div>
+    <div class="step-letter">O</div>
+    <div class="step-eyebrow">STEP 3 · OBSERVE</div>
+    <div class="step-headline">What are you feeling right now?</div>
+    <div class="step-subhead">Select all that apply — no judgment</div>
+    <div class="obs-section-label">EMOTIONS</div>
+    <div class="obs-chips">
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">💔</span>Grief</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">😔</span>Sadness</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">😠</span>Anger</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">😞</span>Guilt</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">😳</span>Shame</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">🫥</span>Loneliness</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">😰</span>Anxiety</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">😶</span>Numb</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">🥺</span>Hurt</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">😵‍💫</span>Confused</div>
+    </div>
+    <div class="obs-section-label">WHERE IN YOUR BODY?</div>
+    <div class="obs-chips">
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">🌸</span>Chest</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">🗣️</span>Throat</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">🌀</span>Stomach</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">🧠</span>Head</div>
+      <div class="obs-chip" onclick="s3ToggleChip(this)"><span class="chip-emoji">⚓</span>Shoulders</div>
+    </div>
+    <div class="step-cta-wrap">
+      <button class="step-cta" id="s3-cta" disabled onclick="stopCancelVoice();showSection('breakup-stop-s4')">I've noticed. Continue →</button>
+      <button class="step-secondary" onclick="stopCancelVoice();showSection('breakup-stop-s4')">I'm not sure what I'm feeling</button>
+    </div>
+    <div class="step-progress">
+      <div class="step-pd visited">S</div><div class="step-pd-line"></div>
+      <div class="step-pd visited">T</div><div class="step-pd-line"></div>
+      <div class="step-pd on">O</div><div class="step-pd-line"></div>
+      <div class="step-pd">P</div>
+    </div>
+
+  </div></div></div>
+</div><!-- /section-breakup-stop-s3 -->
+<script>
+function speakStopS3() {
+  stopSpeakSequence([
+    "Notice what you're feeling, right now. Without judgment.",
+    1500,
+    "What emotions are present? Select what you notice — you can choose more than one.",
+    3000,
+    "And where in your body? What sensations do you feel?"
+  ]);
+}
+window._s3HasSpoken = false;
+function s3ToggleChip(el) {
+  el.classList.toggle('on');
+  var anySelected = document.querySelectorAll('.sec-stop-s3 .obs-chip.on').length > 0;
+  var cta = document.getElementById('s3-cta');
+  if (cta) cta.disabled = !anySelected;
+  if (!window._s3HasSpoken && anySelected) {
+    window._s3HasSpoken = true;
+    stopSpeak("You see yourself clearly. Take your time.");
+  }
+}
+</script>
+
+
+<!-- ══════════ STOP Step 4 — P — Proceed ══════════ -->
+<div class="screens-area sec-stop-step sec-stop-s4" id="section-breakup-stop-s4">
+  <div class="phone-grid"><div class="phone-wrap"><div class="phone">
+
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+    <div class="step-hdr">
+      <div class="step-back" onclick="stopConfirmExit()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
+    </div>
+    <div class="step-letter">P</div>
+    <div class="step-eyebrow">STEP 4 · PROCEED</div>
+    <div class="step-headline">What would actually help you?</div>
+    <div class="step-subhead">Choose from awareness, not reaction</div>
+    <div class="action-cards">
+      <div class="action-card" onclick="s4SelectAction(this)">
+        <div class="action-emoji">🌙</div>
+        <div class="action-text">
+          <div class="action-title">Rest and breathe</div>
+          <div class="action-desc">Do nothing. Let yourself be still.</div>
+        </div>
+      </div>
+      <div class="action-card" onclick="s4SelectAction(this)">
+        <div class="action-emoji">📓</div>
+        <div class="action-text">
+          <div class="action-title">Journal this moment</div>
+          <div class="action-desc">Write what you noticed.</div>
+        </div>
+      </div>
+      <div class="action-card" onclick="s4SelectAction(this)">
+        <div class="action-emoji">💬</div>
+        <div class="action-text">
+          <div class="action-title">Talk to someone safe</div>
+          <div class="action-desc">To feel heard, not to fix it.</div>
+        </div>
+      </div>
+      <div class="action-card" onclick="s4SelectAction(this)">
+        <div class="action-emoji">🚶</div>
+        <div class="action-text">
+          <div class="action-title">Do something gentle</div>
+          <div class="action-desc">A walk, water, music, fresh air.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-cta-wrap">
+      <button class="step-cta" id="s4-cta" disabled onclick="stopCancelVoice();showSection('breakup-stop-complete')">I've chosen. Complete STOP →</button>
+      <button class="step-secondary" onclick="stopCancelVoice();showSection('breakup-stop-s3')">I'm not sure yet</button>
+    </div>
+    <div class="step-progress">
+      <div class="step-pd visited">S</div><div class="step-pd-line"></div>
+      <div class="step-pd visited">T</div><div class="step-pd-line"></div>
+      <div class="step-pd visited">O</div><div class="step-pd-line"></div>
+      <div class="step-pd on">P</div>
+    </div>
+
+  </div></div></div>
+</div><!-- /section-breakup-stop-s4 -->
+<script>
+function speakStopS4() {
+  stopSpeakSequence([
+    "Now choose. Not the impulsive thing — the thoughtful thing.",
+    1500,
+    "What would actually help you, right now?"
+  ]);
+}
+window._s4HasSpoken = false;
+function s4SelectAction(el) {
+  document.querySelectorAll('.sec-stop-s4 .action-card').forEach(function(c){ c.classList.remove('on'); });
+  el.classList.add('on');
+  var cta = document.getElementById('s4-cta');
+  if (cta) cta.disabled = false;
+  if (!window._s4HasSpoken) {
+    window._s4HasSpoken = true;
+    stopSpeak("Trust yourself. You've already done the work.");
+  }
+}
+</script>
+
+
+<!-- ══════════ STOP Complete (placeholder) ══════════ -->
+<div class="screens-area sec-stop-step sec-stop-complete" id="section-breakup-stop-complete">
+  <div class="phone-grid"><div class="phone-wrap"><div class="phone">
+
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+    <div class="step-hdr" style="justify-content:flex-end;">
+      <div class="step-crisis" onclick="showSection('crisis-resources')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span class="step-crisis-label">Crisis Support</span>
+      </div>
+    </div>
+    <div class="complete-center">
+      <div class="complete-headline">Well done.</div>
+      <div class="complete-body">You paused. You noticed. You chose. That's the practice.</div>
+      <button class="complete-cta" onclick="stopCancelVoice();showSection('module-breakup-recovery')">Return to Breakup Recovery</button>
+    </div>
+
+  </div></div></div>
+</div><!-- /section-breakup-stop-complete -->
+<script>
+window.onStopSectionShow = function(sectionId) {
+  stopCancelVoice();
+  if (sectionId === 'breakup-stop-s1') {
+    var c = document.getElementById('s1-confirm-card');
+    if (c) c.classList.remove('confirmed');
+    var ch = document.getElementById('s1-check-circle');
+    if (ch) ch.innerHTML = '';
+    var b = document.getElementById('s1-cta');
+    if (b) b.disabled = true;
+  }
+  if (sectionId === 'breakup-stop-s2') {
+    window._s2SessionId = (window._s2SessionId || 0) + 1;
+    var b = document.getElementById('s2-cta');
+    if (b) b.disabled = true;
+    var pw = document.querySelector('.sec-stop-s2 .breath-phase-word');
+    if (pw) pw.textContent = 'Breathe in';
+    var cd = document.querySelector('.sec-stop-s2 .breath-countdown');
+    if (cd) cd.textContent = '4';
+    var cy = document.querySelector('.sec-stop-s2 .breath-cycle');
+    if (cy) cy.textContent = 'Cycle 1 of 2';
+    var ring = document.querySelector('.sec-stop-s2 .breath-inner-ring');
+    if (ring) ring.setAttribute('r', '30');
+  }
+  if (sectionId === 'breakup-stop-s3') {
+    document.querySelectorAll('.sec-stop-s3 .obs-chip').forEach(function(c){ c.classList.remove('on'); });
+    window._s3HasSpoken = false;
+    var b = document.getElementById('s3-cta');
+    if (b) b.disabled = true;
+  }
+  if (sectionId === 'breakup-stop-s4') {
+    document.querySelectorAll('.sec-stop-s4 .action-card').forEach(function(c){ c.classList.remove('on'); });
+    window._s4HasSpoken = false;
+    var b = document.getElementById('s4-cta');
+    if (b) b.disabled = true;
+  }
+  setTimeout(function() {
+    if (sectionId === 'breakup-stop-s1') speakStopS1();
+    else if (sectionId === 'breakup-stop-s2') startStopS2Breathing();
+    else if (sectionId === 'breakup-stop-s3') speakStopS3();
+    else if (sectionId === 'breakup-stop-s4') speakStopS4();
+    else if (sectionId === 'breakup-stop-complete') stopSpeak("Well done. You paused. You noticed. You chose. That's the practice.");
+  }, 400);
+};
 
 
 <div class="screens-area sec-hd" id="section-hypnodrama">
@@ -14996,6 +15435,10 @@ function showSection(id) {
     'crisis-resources': function(){},
   };
   if (initMap[id]) initMap[id]();
+  // STOP practice flow hook
+  if (id && id.indexOf('breakup-stop-') === 0 && typeof window.onStopSectionShow === 'function') {
+    window.onStopSectionShow(id);
+  }
 }
 
 // ═══════════════════════════════════════════
