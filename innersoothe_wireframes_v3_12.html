@@ -1841,7 +1841,6 @@
 .sec-stop-s1 .s1-quote-card { padding: 14px 18px; background: var(--quote-card); border: 1px solid var(--hairline-light); border-radius: 12px; margin: 0 26px 14px; flex-shrink: 0; }
 .sec-stop-s1 .s1-quote-text { font-family: 'Cormorant Garamond', serif; font-size: 13.5px; font-weight: 400; font-style: italic; line-height: 1.5; color: #1E1408; }
 .sec-stop-s1 .s1-quote-attr { font-family: 'DM Sans', sans-serif; font-size: 11px; color: rgba(33,24,12,0.45); margin-top: 6px; }
-.sec-stop-s1 .s1-centerpiece { width: 100%; display: flex; align-items: center; justify-content: center; padding: 6px 0 10px; flex-shrink: 0; }
 .sec-stop-s1 .s1-confirm-card { margin: 0 26px 0; padding: 14px 16px; background: rgba(255,253,248,0.92); border: 1px solid rgba(160,104,50,0.20); border-radius: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 200ms ease; flex-shrink: 0; }
 .sec-stop-s1 .s1-confirm-card.confirmed { border-color: rgba(160,104,50,0.45); background: rgba(255,253,248,0.98); }
 .sec-stop-s1 .s1-check-circle { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid rgba(33,24,12,0.25); background: transparent; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 200ms ease; }
@@ -1853,13 +1852,27 @@
 .sec-stop-s1 .step-hdr { padding: 4px 16px 8px; }
 .sec-stop-s1 .step-letter { margin: 2px auto 4px; }
 .sec-stop-s1 .step-eyebrow { margin: 0 0 6px; }
-.sec-stop-s1 .step-body { margin: 0 0 8px; }
+.sec-stop-s1 .step-body { margin: 0 0 10px; }
+.s1-still-stage { position: relative; width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin: 0 0 10px; }
+.s1-still-halo { position: absolute; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(196,149,106,0.18) 0%, rgba(160,104,50,0.08) 40%, rgba(160,104,50,0) 70%); }
+.s1-still-orb { position: relative; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, rgba(217,184,148,0.95) 0%, rgba(196,149,106,0.85) 25%, rgba(160,104,50,0.70) 55%, rgba(160,104,50,0.40) 85%, rgba(160,104,50,0.15) 100%); box-shadow: 0 4px 20px rgba(160,104,50,0.22), inset 0 -6px 14px rgba(140,84,32,0.18); }
+.s1-still-spark { position: absolute; top: 25%; left: 35%; width: 14px; height: 10px; border-radius: 50%; background: radial-gradient(ellipse, rgba(255,251,243,0.50) 0%, rgba(255,251,243,0) 70%); filter: blur(2px); }
 
 /* Step 2 — T ─────────────────────── */
-.sec-stop-s2 .breath-center { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; margin: 0 0 4px; }
-.sec-stop-s2 .breath-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
-.sec-stop-s2 .breath-phase-word { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 400; font-style: italic; color: #1E1408; display: block; line-height: 1.3; }
-.sec-stop-s2 .breath-countdown { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: #A06832; display: block; line-height: 1.1; }
+.sec-stop-s2 .breath-stage { position: relative; width: 100%; height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 4px 0 12px; }
+.sec-stop-s2 .breath-halo { position: absolute; top: 50%; left: 50%; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(196,149,106,0.20) 0%, rgba(160,104,50,0.10) 40%, rgba(160,104,50,0) 70%); transform: translate(-50%, -50%); transition: transform 200ms ease-out; z-index: 1; }
+.sec-stop-s2 .breath-orb { position: relative; width: 130px; height: 130px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, rgba(217,184,148,0.95) 0%, rgba(196,149,106,0.85) 25%, rgba(160,104,50,0.70) 55%, rgba(160,104,50,0.40) 85%, rgba(160,104,50,0.15) 100%); box-shadow: 0 4px 24px rgba(160,104,50,0.25), inset 0 -8px 18px rgba(140,84,32,0.20); transform: scale(0.72); transition: transform 200ms ease-out; z-index: 2; margin: 0 0 -20px 0; }
+.sec-stop-s2 .breath-spark { position: absolute; top: 25%; left: 35%; width: 18px; height: 12px; border-radius: 50%; background: radial-gradient(ellipse, rgba(255,251,243,0.55) 0%, rgba(255,251,243,0) 70%); filter: blur(2px); }
+.sec-stop-s2 .breath-orb.inhale { transform: scale(1.0); }
+.sec-stop-s2 .breath-orb.hold-top { transform: scale(1.0); }
+.sec-stop-s2 .breath-orb.exhale { transform: scale(0.72); }
+.sec-stop-s2 .breath-orb.hold-bottom { transform: scale(0.72); }
+.sec-stop-s2 .breath-halo.inhale { transform: translate(-50%, -50%) scale(1.15); }
+.sec-stop-s2 .breath-halo.hold-top { transform: translate(-50%, -50%) scale(1.15); }
+.sec-stop-s2 .breath-halo.exhale { transform: translate(-50%, -50%) scale(0.85); }
+.sec-stop-s2 .breath-halo.hold-bottom { transform: translate(-50%, -50%) scale(0.85); }
+.sec-stop-s2 .breath-phase-label { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; color: #1E1408; margin-top: 28px; z-index: 3; position: relative; }
+.sec-stop-s2 .breath-countdown { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 30px; color: #A06832; line-height: 1; margin-top: 4px; z-index: 3; position: relative; }
 .sec-stop-s2 .breath-cycle { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 400; color: #A06832; text-align: center; margin-top: 10px; }
 .sec-stop-s2 .breath-pattern { padding: 6px 14px; background: rgba(255,253,248,0.6); border: 1px solid var(--hairline-light); border-radius: 16px; font-family: 'DM Sans', sans-serif; font-size: 10.5px; font-weight: 300; color: rgba(33,24,12,0.50); margin: 8px 28px 0; text-align: center; }
 
@@ -1885,6 +1898,73 @@
 .sec-stop-complete .complete-headline { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; font-style: italic; color: #1E1408; margin: 0 0 14px; }
 .sec-stop-complete .complete-body { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(33,24,12,0.70); margin: 0 0 32px; }
 .sec-stop-complete .complete-cta { width: 100%; padding: 14px; border-radius: 50px; background: #A06832; color: white; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 500; border: none; box-shadow: 0 5px 16px rgba(160,104,50,0.26); cursor: pointer; }
+
+/* ===== PMR Technique — All 4 Screens ===== */
+.pmr-phone { width: 370px; height: 780px; border-radius: 44px; box-shadow: 0 18px 50px rgba(33,24,12,0.10), 0 0 0 1px rgba(33,24,12,0.06); overflow: hidden; display: flex; flex-direction: column; position: relative; flex-shrink: 0; }
+.pmr-status { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px 0; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; color: rgba(30,20,8,0.45); flex-shrink: 0; }
+.pmr-back { position: absolute; top: 42px; left: 16px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.92); border: 1px solid rgba(33,24,12,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 30; }
+.pmr-crisis-chip { position: absolute; top: 46px; right: 16px; display: flex; align-items: center; gap: 6px; padding: 5px 11px; background: rgba(160,104,50,0.10); border: 0.5px solid rgba(160,104,50,0.35); border-radius: 16px; cursor: pointer; z-index: 30; }
+.pmr-crisis-chip span { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #A06832; }
+.pmr-scroll { flex: 1; overflow-y: auto; scrollbar-width: none; }
+.pmr-scroll::-webkit-scrollbar { display: none; }
+/* Entry */
+.pmr-entry-hero { padding: 52px 20px 0; }
+.pmr-entry-hero-img { width: 280px; height: 180px; border-radius: 16px; overflow: hidden; }
+.pmr-entry-hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.pmr-wordmark { margin: 22px 24px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 34px; color: #1E1408; line-height: 1.15; }
+.pmr-quote-card { margin: 20px 20px 0; padding: 18px 20px; background: rgba(252,242,232,0.6); border-radius: 14px; border-left: 2px solid #A06832; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-style: italic; font-size: 15px; line-height: 1.5; color: #1E1408; }
+.pmr-info-rows { margin: 18px 20px 0; display: flex; flex-direction: column; gap: 10px; }
+.pmr-info-row { display: flex; align-items: center; gap: 10px; font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 12px; color: #1E1408; }
+.pmr-cta-btn { display: block; width: calc(100% - 40px); margin: 26px 20px 0; height: 52px; border-radius: 28px; background: #A06832; color: #F3E9DC; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; border: none; cursor: pointer; }
+.pmr-footer-note { margin: 12px 20px 24px; text-align: center; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; color: rgba(33,24,12,0.45); }
+/* Setup */
+.pmr-setup-hdr { padding: 52px 24px 0; }
+.pmr-setup-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 28px; color: #1E1408; line-height: 1.2; }
+.pmr-setup-sub { margin-top: 6px; font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 13px; color: rgba(33,24,12,0.60); }
+.pmr-sect { margin: 24px 20px 0; }
+.pmr-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 600; color: #A06832; text-transform: uppercase; letter-spacing: 1.5px; }
+.pmr-card { padding: 14px 16px; background: rgba(252,242,232,0.6); border-radius: 14px; margin-top: 10px; position: relative; overflow: hidden; }
+.pmr-card + .pmr-card { margin-top: 14px; }
+.pmr-card-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 17px; font-weight: 400; color: #1E1408; }
+.pmr-card-body { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 300; line-height: 1.5; color: #1E1408; margin-top: 6px; }
+.pmr-badge-rec { font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 600; color: #A06832; text-transform: uppercase; letter-spacing: 1px; background: rgba(160,104,50,0.12); padding: 3px 8px; border-radius: 99px; float: right; margin-left: 8px; }
+.pmr-bullet-list { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.pmr-bullet-row { display: flex; align-items: flex-start; gap: 10px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 300; line-height: 1.6; color: #1E1408; }
+.pmr-dot { width: 6px; height: 6px; border-radius: 50%; background: #A06832; flex-shrink: 0; margin-top: 7px; }
+.pmr-env-rows { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+.pmr-env-row { display: flex; align-items: center; gap: 10px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 300; color: #1E1408; }
+.pmr-insight { margin: 24px 20px 0; padding: 14px 16px; background: rgba(160,104,50,0.07); border-left: 2px solid #A06832; border-radius: 0 8px 8px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-style: italic; font-size: 14px; line-height: 1.5; color: #1E1408; }
+.pmr-sticky { flex-shrink: 0; background: rgba(252,244,234,0.98); border-top: 1px solid rgba(160,104,50,0.15); padding: 12px 20px 16px; }
+.pmr-sticky button { display: block; width: 100%; height: 52px; border-radius: 28px; background: #A06832; color: #F3E9DC; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; border: none; cursor: pointer; }
+.pmr-sticky-note { margin-top: 8px; text-align: center; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; color: rgba(33,24,12,0.45); }
+/* Session */
+.pmr-session-bar { padding: 50px 16px 0; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+.pmr-exit-btn { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.55); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.pmr-session-crisis { display: flex; align-items: center; gap: 5px; padding: 5px 11px; background: rgba(160,104,50,0.12); border: 0.5px solid rgba(160,104,50,0.35); border-radius: 16px; cursor: pointer; }
+.pmr-session-crisis span { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #A06832; }
+.pmr-phase-eyebrow { margin: 28px 0 0; text-align: center; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-style: italic; font-size: 12px; color: #A06832; letter-spacing: 2px; text-transform: uppercase; flex-shrink: 0; transition: opacity 2s ease; }
+.pmr-schematic-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 12px 0; }
+.pmr-muscle-name { text-align: center; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 32px; color: #1E1408; line-height: 1.2; margin: 4px 0 0; flex-shrink: 0; }
+.pmr-caption { margin: 14px 20px 10px; padding: 11px 14px; background: rgba(33,24,12,0.04); border-top: 0.5px solid rgba(33,24,12,0.10); border-bottom: 0.5px solid rgba(33,24,12,0.10); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-style: italic; font-size: 12px; color: rgba(30,20,8,0.62); text-align: center; line-height: 1.5; flex-shrink: 0; }
+.pmr-controls { display: flex; justify-content: space-around; align-items: center; padding: 6px 18px 12px; flex-shrink: 0; }
+.pmr-ctrl { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 36px; cursor: pointer; background: none; border: none; padding: 0; }
+.pmr-ctrl-lbl { font-family: 'DM Sans', sans-serif; font-size: 8.5px; font-weight: 300; color: rgba(30,20,8,0.55); }
+.pmr-progress { height: 2px; background: rgba(33,24,12,0.08); flex-shrink: 0; }
+.pmr-progress-fill { height: 100%; width: 35%; background: #A06832; opacity: 0.75; }
+.pmr-phone.pmr-dimmed .pmr-session-bar,
+.pmr-phone.pmr-dimmed .pmr-phase-eyebrow,
+.pmr-phone.pmr-dimmed .pmr-muscle-name,
+.pmr-phone.pmr-dimmed .pmr-caption,
+.pmr-phone.pmr-dimmed .pmr-controls,
+.pmr-phone.pmr-dimmed .pmr-progress { opacity: 0.5; transition: opacity 800ms ease; }
+@media (prefers-reduced-motion: reduce) { .pmr-active-muscle animate { display: none; } }
+.pmr-mute-btn.pmr-muted .pmr-icon-volume { display: none; }
+.pmr-mute-btn.pmr-muted .pmr-icon-volume-off { display: block; }
+/* PMR body — three-layer silhouette + highlight system */
+.pmr-regions path { fill: transparent; stroke: none; transition: fill-opacity 0.8s ease; }
+.pmr-regions path.pmr-active { fill: #A06832; fill-opacity: 0.22; filter: url(#pmr-bloom); animation: pmr-muscle-pulse 4s ease-in-out infinite; }
+@keyframes pmr-muscle-pulse { 0%, 100% { fill-opacity: 0.14; } 50% { fill-opacity: 0.28; } }
+@media (prefers-reduced-motion: reduce) { .pmr-regions path.pmr-active { animation: none; fill-opacity: 0.22; } }
 
 
 /* ===== TIPP Skill ===== */
@@ -9064,7 +9144,7 @@
             </div>
 
             <!-- Card 2: Progressive Muscle Relaxation -->
-            <div onclick="showSection('breakup-pmr')" style="display:flex;flex-direction:row;height:114px;border-radius:14px;overflow:hidden;background:rgba(252,242,232,0.6);box-shadow:0 2px 10px rgba(30,20,8,0.04);cursor:pointer;">
+            <div onclick="showSection('breakup-pmr-entry')" style="display:flex;flex-direction:row;height:114px;border-radius:14px;overflow:hidden;background:rgba(252,242,232,0.6);box-shadow:0 2px 10px rgba(30,20,8,0.04);cursor:pointer;">
               <div class="tech-thumb" style="width:92px;overflow:hidden;flex-shrink:0;">
                 <img src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:center center;display:block;">
               </div>
@@ -9684,25 +9764,9 @@ window.sec_stop_mode = 'guided';
     <div class="step-eyebrow">STEP 1 · STOP</div>
     <div class="step-headline">Whatever you're about to do — don't do it yet.</div>
     <div class="step-body">Don't send that message. Don't scroll back through the photos. Your emotions are running fast — that's exactly when to pause.</div>
-    <div class="s1-centerpiece">
-      <svg width="200" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="s1bg" cx="50%" cy="55%" r="50%"><stop offset="0%" stop-color="#C4956A" stop-opacity="0.20"/><stop offset="100%" stop-color="#F9EDD8" stop-opacity="0"/></radialGradient>
-          <radialGradient id="s1orb" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#C4956A" stop-opacity="0.70"/><stop offset="60%" stop-color="#A06832" stop-opacity="0.40"/><stop offset="100%" stop-color="#A06832" stop-opacity="0"/></radialGradient>
-          <filter id="s1blur"><feGaussianBlur stdDeviation="0.6"/></filter>
-        </defs>
-        <ellipse cx="100" cy="60" rx="92" ry="55" fill="url(#s1bg)"/>
-        <ellipse cx="100" cy="60" rx="86" ry="50" fill="none" stroke="#A06832" stroke-width="0.8" opacity="0.12" filter="url(#s1blur)"/>
-        <ellipse cx="100" cy="60" rx="68" ry="39" fill="none" stroke="#A06832" stroke-width="1.0" opacity="0.22" filter="url(#s1blur)"/>
-        <ellipse cx="100" cy="60" rx="51" ry="29" fill="none" stroke="#A06832" stroke-width="1.2" opacity="0.36" filter="url(#s1blur)"/>
-        <ellipse cx="100" cy="60" rx="34" ry="19" fill="none" stroke="#A06832" stroke-width="1.3" opacity="0.52" filter="url(#s1blur)"/>
-        <ellipse cx="100" cy="60" rx="18" ry="10" fill="none" stroke="#A06832" stroke-width="1.5" opacity="0.68" filter="url(#s1blur)"/>
-        <ellipse cx="100" cy="60" rx="11" ry="7" fill="url(#s1orb)" filter="url(#s1blur)"/>
-        <circle cx="65" cy="35" r="1.5" fill="#A06832" opacity="0.25"/>
-        <circle cx="142" cy="44" r="1.2" fill="#C4956A" opacity="0.30"/>
-        <circle cx="128" cy="88" r="1.8" fill="#A06832" opacity="0.20"/>
-        <circle cx="70" cy="82" r="1.0" fill="#C4956A" opacity="0.28"/>
-      </svg>
+    <div class="s1-still-stage">
+      <div class="s1-still-halo"></div>
+      <div class="s1-still-orb"><span class="s1-still-spark"></span></div>
     </div>
     <div class="s1-quote-card">
       <div class="s1-quote-text">"The pause between stimulus and response is where your freedom lives."</div>
@@ -9785,17 +9849,13 @@ function s1TapConfirm() {
     <div class="step-eyebrow">STEP 2 · TAKE A BREATH</div>
     <div class="step-headline">Box breathing · 4 · 4 · 4 · 4</div>
     <div class="step-subhead">2 complete cycles to continue</div>
-    <div class="breath-center">
-      <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="110" cy="110" r="95" fill="none" stroke="#A06832" stroke-width="1.5" opacity="0.20"/>
-        <circle cx="110" cy="110" r="72" fill="none" stroke="#A06832" stroke-width="1.5" opacity="0.35"/>
-        <circle cx="110" cy="110" r="50" fill="none" stroke="#A06832" stroke-width="1.5" opacity="0.55"/>
-        <circle class="breath-inner-ring" cx="110" cy="110" r="30" fill="none" stroke="#A06832" stroke-width="1" opacity="0.75"/>
-      </svg>
-      <div class="breath-overlay">
-        <span class="breath-phase-word">Breathe in</span>
-        <span class="breath-countdown">4</span>
+    <div class="breath-stage">
+      <div class="breath-halo"></div>
+      <div class="breath-orb">
+        <span class="breath-spark"></span>
       </div>
+      <div class="breath-phase-label">Breathe in</div>
+      <div class="breath-countdown">4</div>
     </div>
     <div class="breath-cycle">Cycle 1 of 2</div>
     <div class="breath-pattern">In through nose · Hold · Out through mouth · Hold</div>
@@ -9826,10 +9886,10 @@ function startStopS2Breathing() {
 }
 function runBreathingCycles(sid) {
   var phases = [
-    { word: "Breathe in",  voice: "Breathe in",  rStart: 30, rEnd: 50 },
-    { word: "Hold",        voice: "Hold",        rStart: 50, rEnd: 50 },
-    { word: "Breathe out", voice: "Breathe out", rStart: 50, rEnd: 30 },
-    { word: "Hold",        voice: "Hold",        rStart: 30, rEnd: 30 }
+    { word: "Breathe in",  voice: "Breathe in",  className: "inhale" },
+    { word: "Hold",        voice: "Hold",         className: "hold-top" },
+    { word: "Breathe out", voice: "Breathe out",  className: "exhale" },
+    { word: "Hold",        voice: "Hold",         className: "hold-bottom" }
   ];
   var cycleNum = 1, phaseIdx = 0;
   function runPhase() {
@@ -9841,11 +9901,21 @@ function runBreathingCycles(sid) {
       return;
     }
     var phase = phases[phaseIdx];
-    var pw = document.querySelector('.sec-stop-s2 .breath-phase-word');
-    if (pw) pw.textContent = phase.word;
-    var cy = document.querySelector('.sec-stop-s2 .breath-cycle');
-    if (cy) cy.textContent = 'Cycle ' + cycleNum + ' of 2';
-    animateRingR(sid, phase.rStart, phase.rEnd, 4000);
+    var orb  = document.querySelector('.sec-stop-s2 .breath-orb');
+    var halo = document.querySelector('.sec-stop-s2 .breath-halo');
+    var label = document.querySelector('.sec-stop-s2 .breath-phase-label');
+    var cy   = document.querySelector('.sec-stop-s2 .breath-cycle');
+    if (orb)  { orb.className  = 'breath-orb '  + phase.className; }
+    if (halo) { halo.className = 'breath-halo ' + phase.className; }
+    if (phase.className === 'inhale' || phase.className === 'exhale') {
+      if (orb)  orb.style.transition  = 'transform 4000ms cubic-bezier(0.4, 0, 0.4, 1)';
+      if (halo) halo.style.transition = 'transform 4000ms cubic-bezier(0.4, 0, 0.4, 1)';
+    } else {
+      if (orb)  orb.style.transition  = 'none';
+      if (halo) halo.style.transition = 'none';
+    }
+    if (label) label.textContent = phase.word;
+    if (cy)    cy.textContent    = 'Cycle ' + cycleNum + ' of 2';
     runCountdown(sid, 4000);
     stopSpeak(phase.voice);
     setTimeout(function() {
@@ -9855,19 +9925,11 @@ function runBreathingCycles(sid) {
       runPhase();
     }, 4000);
   }
-  runPhase();
-}
-function animateRingR(sid, from, to, duration) {
-  var ring = document.querySelector('.sec-stop-s2 .breath-inner-ring');
-  if (!ring) return;
-  var start = performance.now();
-  function step(now) {
-    if (window._s2SessionId !== sid) return;
-    var t = Math.min((now - start) / duration, 1);
-    ring.setAttribute('r', from + (to - from) * t);
-    if (t < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
+  var orb  = document.querySelector('.sec-stop-s2 .breath-orb');
+  var halo = document.querySelector('.sec-stop-s2 .breath-halo');
+  if (orb)  { orb.style.transition  = 'none'; orb.className  = 'breath-orb hold-bottom'; }
+  if (halo) { halo.style.transition = 'none'; halo.className = 'breath-halo hold-bottom'; }
+  setTimeout(function() { if (window._s2SessionId !== sid) return; runPhase(); }, 600);
 }
 function runCountdown(sid, duration) {
   var el = document.querySelector('.sec-stop-s2 .breath-countdown');
@@ -10110,14 +10172,16 @@ window.onStopSectionShow = function(sectionId) {
     window._s2SessionId = (window._s2SessionId || 0) + 1;
     var b = document.getElementById('s2-cta');
     if (b) b.disabled = true;
-    var pw = document.querySelector('.sec-stop-s2 .breath-phase-word');
-    if (pw) pw.textContent = 'Breathe in';
+    var pl = document.querySelector('.sec-stop-s2 .breath-phase-label');
+    if (pl) pl.textContent = 'Breathe in';
     var cd = document.querySelector('.sec-stop-s2 .breath-countdown');
     if (cd) cd.textContent = '4';
     var cy = document.querySelector('.sec-stop-s2 .breath-cycle');
     if (cy) cy.textContent = 'Cycle 1 of 2';
-    var ring = document.querySelector('.sec-stop-s2 .breath-inner-ring');
-    if (ring) ring.setAttribute('r', '30');
+    var orb  = document.querySelector('.sec-stop-s2 .breath-orb');
+    var halo = document.querySelector('.sec-stop-s2 .breath-halo');
+    if (orb)  { orb.style.transition  = 'none'; orb.className  = 'breath-orb hold-bottom'; }
+    if (halo) { halo.style.transition = 'none'; halo.className = 'breath-halo hold-bottom'; }
   }
   if (sectionId === 'breakup-stop-s3') {
     document.querySelectorAll('.sec-stop-s3 .obs-chip').forEach(function(c){ c.classList.remove('on'); });
@@ -10139,6 +10203,473 @@ window.onStopSectionShow = function(sectionId) {
     else if (sectionId === 'breakup-stop-complete') stopSpeak("Well done. You paused. You noticed. You chose. That's the practice.");
   }, 400);
 };
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PMR — Progressive Muscle Relaxation (4 screens)       -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<!-- ══════════ PMR Screen 1 of 4: Entry ══════════ -->
+<div class="screens-area" id="section-breakup-pmr-entry">
+  <div class="phone-grid"><div class="phone-wrap"><div class="pmr-phone" style="background:#F9EDD8;">
+
+    <div class="pmr-status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+
+    <div class="pmr-back" onclick="showSection('module-breakup-recovery')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+
+    <div class="pmr-crisis-chip" onclick="showSection('crisis-resources')">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Crisis Support</span>
+    </div>
+
+    <div class="pmr-scroll">
+
+      <div class="pmr-entry-hero">
+        <div class="pmr-entry-hero-img">
+          <img src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr.png" alt="">
+        </div>
+      </div>
+
+      <div class="pmr-wordmark">Progressive Muscle Relaxation</div>
+
+      <div class="pmr-quote-card">Tension settles in the body before it shows up in the mind. PMR works backward — release the body, and the mind follows.</div>
+
+      <div class="pmr-info-rows">
+        <div class="pmr-info-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          18 minutes
+        </div>
+        <div class="pmr-info-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          Audio-guided
+        </div>
+        <div class="pmr-info-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Seated or lying down
+        </div>
+        <div class="pmr-info-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+          11 muscle groups
+        </div>
+      </div>
+
+      <button class="pmr-cta-btn" onclick="showSection('breakup-pmr-setup')">I'm ready to begin</button>
+
+      <div class="pmr-footer-note">You can pause anytime</div>
+
+    </div><!-- /pmr-scroll -->
+
+    <div style="display:flex;justify-content:space-around;align-items:flex-end;padding:10px 4px 22px;border-top:1px solid rgba(30,20,8,0.07);background:rgba(250,244,234,0.98);flex-shrink:0;position:relative;">
+      <div onclick="showSection('relationship')" style="display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;color:#A06832;cursor:pointer;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(30,20,8,0.60)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Journal
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;position:relative;top:-18px;" onclick="showSection('today')">
+        <div style="width:54px;height:54px;border-radius:27px;background:#A06832;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(122,82,48,0.45),0 0 0 4px rgba(250,244,234,0.98);cursor:pointer;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 5C13 5 6.5 8.5 6.5 14.5C6.5 18.09 9.41 21 13 21C16.59 21 19.5 18.09 19.5 14.5C19.5 8.5 13 5 13 5Z" fill="rgba(255,255,255,0.92)" stroke="rgba(255,255,255,0.40)" stroke-width="0.5"/><line x1="13" y1="21" x2="13" y2="14" stroke="rgba(160,104,50,0.55)" stroke-width="1.6" stroke-linecap="round"/><path d="M13 16.5C11.2 14.8 9 14.2 7.5 14" stroke="rgba(160,104,50,0.50)" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <span style="font-family:'DM Sans',sans-serif;font-size:9px;color:rgba(30,20,8,0.50);margin-top:3px;">Today</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(30,20,8,0.60)" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Progress
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(30,20,8,0.60)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </div>
+    </div>
+
+  </div></div></div>
+</div><!-- /section-breakup-pmr-entry -->
+
+
+<!-- ══════════ PMR Screen 2 of 4: Setup ══════════ -->
+<div class="screens-area" id="section-breakup-pmr-setup">
+  <div class="phone-grid"><div class="phone-wrap"><div class="pmr-phone" style="background:#FAF0E4;">
+
+    <div class="pmr-status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+
+    <div class="pmr-back" onclick="showSection('breakup-pmr-entry')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+
+    <div class="pmr-crisis-chip" onclick="showSection('crisis-resources')">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Crisis Support</span>
+    </div>
+
+    <div class="pmr-scroll" style="padding-bottom:100px;">
+
+      <div class="pmr-setup-hdr">
+        <div class="pmr-setup-title">Before we begin</div>
+        <div class="pmr-setup-sub">Two minutes to settle. This is part of the practice.</div>
+      </div>
+
+      <!-- HOW TO SIT -->
+      <div class="pmr-sect" style="margin-top:28px;">
+        <div class="pmr-eyebrow">HOW TO SIT</div>
+        <div class="pmr-card">
+          <span class="pmr-badge-rec">RECOMMENDED</span>
+          <div class="pmr-card-title">Seated, upright</div>
+          <div class="pmr-card-body">Feet flat. Hands resting on your thighs. Spine tall but not stiff. Best for staying present.</div>
+        </div>
+        <div class="pmr-card">
+          <div class="pmr-card-title">Lying down</div>
+          <div class="pmr-card-body">Flat on your back, arms slightly away from your sides. Comfortable — but you may drift off, and that's fine if it happens.</div>
+        </div>
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <div class="pmr-sect">
+        <div class="pmr-eyebrow">HOW IT WORKS</div>
+        <div class="pmr-card">
+          <div class="pmr-card-body">You'll close your eyes for most of this. Voice will guide you through each muscle group. The screen is here if you need to check something — but you won't need it once you settle in.</div>
+        </div>
+      </div>
+
+      <!-- BEFORE YOU START -->
+      <div class="pmr-sect">
+        <div class="pmr-eyebrow">BEFORE YOU START</div>
+        <ul class="pmr-bullet-list">
+          <li class="pmr-bullet-row"><div class="pmr-dot"></div><span>Skip any muscle group with a recent injury, surgery, or pain. Never push through it.</span></li>
+          <li class="pmr-bullet-row"><div class="pmr-dot"></div><span>If you have low blood pressure, a cardiovascular condition, or fibromyalgia, check with your doctor before practising regularly.</span></li>
+          <li class="pmr-bullet-row"><div class="pmr-dot"></div><span>Don't do this while driving or operating anything.</span></li>
+          <li class="pmr-bullet-row"><div class="pmr-dot"></div><span>If tensing increases your anxiety, switch to passive release: just notice the muscle without tensing it.</span></li>
+        </ul>
+      </div>
+
+      <!-- SETTING UP -->
+      <div class="pmr-sect">
+        <div class="pmr-eyebrow">SETTING UP</div>
+        <div class="pmr-env-rows">
+          <div class="pmr-env-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+            Headphones recommended
+          </div>
+          <div class="pmr-env-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            Phone on Do Not Disturb
+          </div>
+          <div class="pmr-env-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            Loose, comfortable clothes
+          </div>
+        </div>
+      </div>
+
+      <!-- ONE THING TO KNOW -->
+      <div class="pmr-insight">The goal isn't to relax. It's to notice the contrast between tense and released. The relaxation comes from the noticing.</div>
+
+    </div><!-- /pmr-scroll -->
+
+    <div class="pmr-sticky">
+      <button onclick="showSection('breakup-pmr-session'); pmrStartSession();">I'm ready</button>
+      <div class="pmr-sticky-note">You can pause anytime during the session.</div>
+    </div>
+
+  </div></div></div>
+</div><!-- /section-breakup-pmr-setup -->
+
+
+<!-- ══════════ PMR Screen 3 of 4: Session ══════════ -->
+<div class="screens-area" id="section-breakup-pmr-session">
+  <div class="phone-grid"><div class="phone-wrap"><div class="pmr-phone" style="background:#FAF0E4;">
+
+    <div class="pmr-status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+
+    <div class="pmr-session-bar">
+      <button class="pmr-exit-btn" onclick="showSection('breakup-pmr-setup')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="pmr-session-crisis" onclick="showSection('crisis-resources')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Crisis Support</span>
+      </div>
+    </div>
+
+    <div class="pmr-phase-eyebrow">LOWER BODY</div>
+
+    <div class="pmr-schematic-wrap">
+      <svg class="pmr-body" width="180" height="450" viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="pmr-bloom" x="-100%" y="-60%" width="300%" height="220%">
+            <feGaussianBlur stdDeviation="10"/>
+          </filter>
+        </defs>
+        <!-- Layer 1: flowing silhouette; fill matches phone bg to hide junction strokes; drawn back-to-front -->
+        <g class="pmr-silhouette" fill="#FAF0E4" stroke="rgba(30,20,8,0.75)" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M88,78 C72,82 52,90 42,102 C34,114 34,138 38,158 C40,174 44,186 44,204 C44,218 42,228 46,236 C64,240 80,244 100,244 C120,244 136,240 154,236 C158,228 156,218 156,204 C156,186 160,174 162,158 C166,138 166,114 158,102 C148,90 128,82 112,78Z"/>
+          <path d="M152,82 C162,80 172,84 177,94 C182,108 182,152 179,188 C178,208 177,244 176,268 C176,280 172,294 164,300 C156,306 149,300 147,290 C145,276 145,252 147,228 C149,204 151,170 152,140 C152,120 152,98 152,82Z"/>
+          <path d="M48,82 C38,80 28,84 23,94 C18,108 18,152 21,188 C22,208 23,244 24,268 C24,280 28,294 36,300 C44,306 51,300 53,290 C55,276 55,252 53,228 C51,204 49,170 48,140 C48,120 48,98 48,82Z"/>
+          <path d="M100,242 C112,242 134,244 146,250 C156,262 155,298 152,328 C150,346 146,362 144,374 C142,392 138,426 134,458 C138,460 148,462 154,466 C158,474 154,484 145,488 C134,492 118,492 110,486 C104,480 103,470 108,464 C114,460 120,458 122,454 C124,444 124,418 122,400 C120,374 118,354 116,330 C114,300 112,266 108,246 C106,242 102,242 100,242Z"/>
+          <path d="M100,242 C88,242 66,244 54,250 C44,262 45,298 48,328 C50,346 54,362 56,374 C58,392 62,426 66,458 C62,460 52,462 46,466 C42,474 46,484 55,488 C66,492 82,492 90,486 C96,480 97,470 92,464 C86,460 80,458 78,454 C76,444 76,418 78,400 C80,374 82,354 84,330 C86,300 88,266 92,246 C94,242 98,242 100,242Z"/>
+          <path d="M100,4 C124,4 135,15 135,30 C135,46 122,58 109,62 C107,67 107,73 110,84 L90,84 C93,73 93,67 91,62 C78,58 65,46 65,30 C65,15 76,4 100,4Z"/>
+        </g>
+        <!-- Layer 2: invisible regions — JS targets these IDs for highlight -->
+        <g class="pmr-regions" fill="transparent" stroke="none">
+          <path id="chest"           d="M62,95  L138,95  L138,175 L62,175  Z"/>
+          <path id="abdomen"         d="M62,175 L138,175 L148,210 L52,210  Z"/>
+          <path id="hips"            d="M52,210 L148,210 L152,242 L48,242  Z"/>
+          <path id="right-upper-arm" d="M150,84 L180,84  L180,188 L148,188 Z"/>
+          <path id="left-upper-arm"  d="M20,84  L50,84   L52,188  L18,188  Z"/>
+          <path id="right-forearm"   d="M147,188 L180,188 L178,272 L145,272 Z"/>
+          <path id="left-forearm"    d="M20,188  L53,188  L55,272  L22,272  Z"/>
+          <path id="right-thigh"     d="M100,242 L150,242 L148,368 L100,368 Z"/>
+          <path id="left-thigh"      d="M50,242  L100,242 L100,368 L52,368  Z"/>
+          <path id="right-calf"      d="M108,368 L148,368 L142,460 L106,460 Z"/>
+          <path id="left-calf"       d="M52,368  L92,368  L94,460  L58,460  Z"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="pmr-muscle-name">Right calf</div>
+
+    <!-- Caption: wireframe placeholder for voice-over. Replaced by Expo AV audio in app build. -->
+    <div class="pmr-caption">Tense the muscles in your right calf… hold… 5… 4… 3… 2… 1… release.</div>
+
+    <div class="pmr-controls">
+      <button class="pmr-ctrl" onclick="if(window.pmrStopSpeech)window.pmrStopSpeech();">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        <span class="pmr-ctrl-lbl">Pause</span>
+      </button>
+      <button class="pmr-ctrl" onclick="if(window.pmrSpeak){var c=document.querySelector('.pmr-caption');if(c)window.pmrSpeak(c.textContent);}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+        <span class="pmr-ctrl-lbl">Replay</span>
+      </button>
+      <button class="pmr-ctrl" onclick="pmrIdx = 0; pmrTick();">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+        <span class="pmr-ctrl-lbl">Restart</span>
+      </button>
+      <button class="pmr-ctrl" onclick="pmrTick();">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+        <span class="pmr-ctrl-lbl">Skip</span>
+      </button>
+      <button class="pmr-ctrl pmr-mute-btn" onclick="window.pmrToggleMute()">
+        <svg class="pmr-icon pmr-icon-volume" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        <svg class="pmr-icon pmr-icon-volume-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(30,20,8,0.30)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        <span class="pmr-ctrl-lbl">Sound</span>
+      </button>
+    </div>
+
+    <div class="pmr-progress">
+      <div class="pmr-progress-fill"></div>
+    </div>
+
+  </div></div></div>
+</div><!-- /section-breakup-pmr-session -->
+
+
+<!-- ══════════ PMR Screen 4 of 4: Complete (SCAFFOLD ONLY) ══════════ -->
+<!-- PMR Complete — SCAFFOLD ONLY. Sync to STOP Complete template in follow-up prompt once STOP locks. -->
+<div class="screens-area" id="section-breakup-pmr-complete">
+  <div class="phone-grid"><div class="phone-wrap"><div class="pmr-phone" style="background:#F9EDD8;">
+
+    <div class="pmr-status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+
+    <div style="padding:80px 24px 24px;display:flex;flex-direction:column;gap:20px;flex:1;">
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:30px;color:#1E1408;">Well done.</div>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:300;font-size:13px;color:rgba(33,24,12,0.65);">PMR complete template — to be inherited from STOP Complete template once locked.</div>
+      <button onclick="showSection('module-breakup-recovery')" style="width:100%;height:52px;border-radius:28px;background:#A06832;color:#F3E9DC;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border:none;cursor:pointer;">Back to module</button>
+    </div>
+
+    <div style="display:flex;justify-content:space-around;align-items:flex-end;padding:10px 4px 22px;border-top:1px solid rgba(30,20,8,0.07);background:rgba(250,244,234,0.98);flex-shrink:0;position:relative;">
+      <div onclick="showSection('relationship')" style="display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;color:#A06832;cursor:pointer;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(30,20,8,0.60)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Journal
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;position:relative;top:-18px;" onclick="showSection('today')">
+        <div style="width:54px;height:54px;border-radius:27px;background:#A06832;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(122,82,48,0.45),0 0 0 4px rgba(250,244,234,0.98);cursor:pointer;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 5C13 5 6.5 8.5 6.5 14.5C6.5 18.09 9.41 21 13 21C16.59 21 19.5 18.09 19.5 14.5C19.5 8.5 13 5 13 5Z" fill="rgba(255,255,255,0.92)" stroke="rgba(255,255,255,0.40)" stroke-width="0.5"/><line x1="13" y1="21" x2="13" y2="14" stroke="rgba(160,104,50,0.55)" stroke-width="1.6" stroke-linecap="round"/><path d="M13 16.5C11.2 14.8 9 14.2 7.5 14" stroke="rgba(160,104,50,0.50)" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <span style="font-family:'DM Sans',sans-serif;font-size:9px;color:rgba(30,20,8,0.50);margin-top:3px;">Today</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(30,20,8,0.60)" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Progress
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(30,20,8,0.60)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </div>
+    </div>
+
+  </div></div></div>
+</div><!-- /section-breakup-pmr-complete -->
+
+<script>
+/* ================================================================
+   PMR TTS — WIREFRAME ONLY
+   Browser Web Speech API for PMR session screen audio playback.
+   Remove this entire block before production build.
+   Production uses Expo AV with psychologist recording or ElevenLabs.
+   ================================================================ */
+(function() {
+  var pmrVoice = null;
+  var pmrMuted = false;
+
+  var PMR_VOICE_PREFERENCES = [
+    'Microsoft Aria Online (Natural) - English (United States)',
+    'Microsoft Jenny Online (Natural) - English (United States)',
+    'Microsoft Sonia Online (Natural) - English (United Kingdom)',
+    'Microsoft Emma Online (Natural) - English (United States)',
+    'Microsoft Aria - English (United States)',
+    'Microsoft Jenny - English (United States)',
+    'Samantha (Enhanced)',
+    'Ava (Enhanced)',
+    'Samantha',
+    'Karen',
+    'Google UK English Female',
+    'Google US English'
+  ];
+
+  function selectPmrVoice() {
+    if (!window.speechSynthesis) return null;
+    var voices = window.speechSynthesis.getVoices();
+    if (!voices.length) return null;
+    for (var i = 0; i < PMR_VOICE_PREFERENCES.length; i++) {
+      for (var j = 0; j < voices.length; j++) {
+        if (voices[j].name === PMR_VOICE_PREFERENCES[i]) return voices[j];
+      }
+    }
+    var goodKeywords = ['aria', 'jenny', 'sonia', 'emma', 'samantha', 'ava', 'karen', 'natural', 'enhanced'];
+    for (var k = 0; k < voices.length; k++) {
+      if (!voices[k].lang.startsWith('en')) continue;
+      var lname = voices[k].name.toLowerCase();
+      for (var m = 0; m < goodKeywords.length; m++) {
+        if (lname.indexOf(goodKeywords[m]) > -1) return voices[k];
+      }
+    }
+    for (var n = 0; n < voices.length; n++) {
+      if (voices[n].lang.startsWith('en')) return voices[n];
+    }
+    return voices[0] || null;
+  }
+
+  function initPmrVoice() {
+    pmrVoice = selectPmrVoice();
+    if (pmrVoice) console.log('[PMR TTS] Voice selected:', pmrVoice.name);
+  }
+
+  if (window.speechSynthesis) {
+    initPmrVoice();
+    window.speechSynthesis.onvoiceschanged = initPmrVoice;
+  }
+
+  window.pmrSpeak = function(text) {
+    if (pmrMuted || !window.speechSynthesis || !text) return;
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    if (pmrVoice) u.voice = pmrVoice;
+    u.rate = 0.85;
+    u.pitch = 0.95;
+    u.volume = 0.9;
+    window.speechSynthesis.speak(u);
+  };
+
+  window.pmrStopSpeech = function() {
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+  };
+
+  window.pmrToggleMute = function() {
+    pmrMuted = !pmrMuted;
+    if (pmrMuted) window.pmrStopSpeech();
+    var btn = document.querySelector('.pmr-mute-btn');
+    if (btn) btn.classList.toggle('pmr-muted', pmrMuted);
+    return pmrMuted;
+  };
+})();
+/* ================ END PMR TTS WIREFRAME BLOCK ================ */
+
+/* ===== PMR Session — Demo rotation + auto-dim (wireframe only) ===== */
+var _pmrDemoTimer = null;
+var _pmrDimTimer  = null;
+
+var PMR_MUSCLES = [
+  { id: 'right-calf',  name: 'Right calf',  caption: 'Tense the muscles in your right calf… hold… 5… 4… 3… 2… 1… release.' },
+  { id: 'left-calf',   name: 'Left calf',   caption: 'Now your left calf. Tense… hold… and release.' },
+  { id: 'right-thigh', name: 'Right thigh', caption: 'Bring your attention to your right thigh. Squeeze… and let go.' },
+  { id: 'left-thigh',  name: 'Left thigh',  caption: 'Left thigh. Tense for five… release.' }
+];
+var pmrIdx = 0;
+
+function pmrTick() {
+  clearTimeout(_pmrDemoTimer);
+  document.querySelectorAll('.pmr-body path.pmr-active').forEach(function(p) {
+    p.classList.remove('pmr-active');
+  });
+  var m = PMR_MUSCLES[pmrIdx];
+  var nameEl    = document.querySelector('.pmr-muscle-name');
+  var captionEl = document.querySelector('.pmr-caption');
+  if (nameEl)    nameEl.textContent    = m.name;
+  if (captionEl) captionEl.textContent = m.caption;
+  var muscleEl = document.querySelector('.pmr-body #' + m.id);
+  if (muscleEl) muscleEl.classList.add('pmr-active');
+  if (window.pmrSpeak) window.pmrSpeak(m.caption);
+  pmrIdx = (pmrIdx + 1) % PMR_MUSCLES.length;
+  _pmrDemoTimer = setTimeout(pmrTick, 12000);
+}
+
+function pmrResetDim() {
+  var phone = document.querySelector('#section-breakup-pmr-session .pmr-phone');
+  if (phone) phone.classList.remove('pmr-dimmed');
+  clearTimeout(_pmrDimTimer);
+  _pmrDimTimer = setTimeout(function() {
+    var phone = document.querySelector('#section-breakup-pmr-session .pmr-phone');
+    if (phone) phone.classList.add('pmr-dimmed');
+  }, 5000);
+}
+
+function pmrStartSession() {
+  pmrIdx = 0;
+  clearTimeout(_pmrDemoTimer);
+  clearTimeout(_pmrDimTimer);
+  setTimeout(function() {
+    pmrTick();
+    pmrResetDim();
+    var section = document.getElementById('section-breakup-pmr-session');
+    if (section) section.addEventListener('click', pmrResetDim);
+  }, 200);
+}
 </script>
 
 
@@ -15441,6 +15972,17 @@ function showSection(id) {
     window.onStopSectionShow(id);
   }
 }
+
+/* PMR TTS — stop speech when leaving PMR session. Remove for production. */
+(function() {
+  var _origShowSection = window.showSection;
+  window.showSection = function(id) {
+    if (id !== 'breakup-pmr-session' && window.pmrStopSpeech) {
+      window.pmrStopSpeech();
+    }
+    return _origShowSection.apply(this, arguments);
+  };
+})();
 
 // ═══════════════════════════════════════════
 // EMOTION CHECK-IN — Accordion + Intensity

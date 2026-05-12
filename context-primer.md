@@ -36,7 +36,7 @@
 
 ---
 
-## Current Wireframe State (as of 2026-05-10)
+## Current Wireframe State (as of 2026-05-11)
 
 ### Screens Built (in order)
 1. Pre-onboarding gate — 4 screens (age, safety, consent, crisis)
@@ -48,8 +48,10 @@
 7. **Career Category** (`section-category-career`) — hero, 3 module cards (v2 illustrations)
 8. **Health Category** (`section-category-health`) — hero, 3 module cards
 9. **Breakup Recovery Module** (`section-module-breakup-recovery`) — **canonical module template**, 3 free + 3 premium techniques, sticky upsell banner, progress card, Crisis Support chip
+10. **STOP technique** (`section-breakup-stop`, `breakup-stop-s1` through `breakup-stop-complete`) — parchment entry + 4 guided steps (S/T/O/P) + complete scaffold. S1 has static saffron orb; S2 has CSS breathing orb animation. S3/S4/Complete = partial/scaffold.
+11. **PMR technique** (`section-breakup-pmr-entry`, `-setup`, `-session`, `-complete`) — entry (canonical template), setup (position + safety), session (body schematic SVG + active muscle highlight + auto-dim), complete scaffold.
 
-Dark therapy screens (Breakup Recovery interactive paths) also exist but are an older pattern — not the current design language.
+Dark therapy screens deprecated — parchment-with-reduction is the current design language for all technique screens.
 
 ### Section ID → `showSection()` Routing
 The JS function `showSection(id)` prepends `'section-'` internally. So `showSection('category-relationships')` targets `id="section-category-relationships"`.
@@ -115,13 +117,15 @@ Quoted strings, code blocks, and explicitly-labelled copy in any prompt are **FI
 
 ## Key Pending Work (Next Steps, in order)
 
-1. Psychologist sync: review Home v5 + Today + all three category screens
-2. Psychologist sync: approve category tint colors (pink/sage/gold)
-3. Psychologist sync: green in splash/dark screens
-4. Psychologist sync: crisis button placement on all in-app screens
-5. Psychologist sync: onboarding modifications
-6. Resolve "heal from within" sub-brand
-7. Source production-resolution illustration assets (current repo assets are low-res wireframe crops)
-8. Psychologist records voice (Cord Cutting first)
-9. Set up full React Native modular architecture
-10. Build React Native screens (onboarding first)
+1. STOP Phase 2.2+: S3 (Observe) + S4 (Proceed) screens + complete screen real content
+2. STOP Phase 3: Quick Reset mode
+3. Psychologist sync: review Home v5 + Today + all three category screens
+4. Psychologist sync: approve category tint colors (pink/sage/gold)
+5. Psychologist sync: green in splash/dark screens
+6. Psychologist sync: crisis button placement on all in-app screens
+7. Psychologist sync: onboarding modifications
+8. Resolve "heal from within" sub-brand
+9. Source production-resolution illustration assets (current repo assets are low-res wireframe crops)
+10. Psychologist records voice (Cord Cutting first)
+11. Set up full React Native modular architecture
+12. Build React Native screens (onboarding first)

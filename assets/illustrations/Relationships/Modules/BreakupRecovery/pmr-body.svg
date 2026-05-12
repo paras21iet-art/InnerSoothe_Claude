@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 500" fill="none">
+  <g stroke="#1E1408" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- 1. head -->
+    <path id="head" d="
+      M100 10
+      C82 10 72 25 72 50
+      C72 75 82 90 100 90
+      C118 90 128 75 128 50
+      C128 25 118 10 100 10
+      Z" />
+
+    <!-- 2. neck -->
+    <path id="neck" d="
+      M88 90
+      L112 90
+      L118 112
+      L82 112
+      Z" />
+
+    <!-- 3. chest -->
+    <path id="chest" d="
+      M82 112
+      L118 112
+      C132 112 144 118 150 132
+      L154 178
+      C154 190 146 198 132 202
+      L68 202
+      C54 198 46 190 46 178
+      L50 132
+      C56 118 68 112 82 112
+      Z" />
+
+    <!-- 4. abdomen -->
+    <path id="abdomen" d="
+      M68 202
+      L132 202
+      L126 286
+      C122 298 114 304 100 304
+      C86 304 78 298 74 286
+      Z" />
+
+    <!-- 5. hips -->
+    <path id="hips" d="
+      M74 286
+      L126 286
+      L134 330
+      L66 330
+      Z" />
+
+    <!-- 6. right-upper-arm -->
+    <path id="right-upper-arm" d="
+      M150 132
+      L166 146
+      L172 224
+      L160 238
+      L146 224
+      L142 150
+      Z" />
+
+    <!-- 7. left-upper-arm -->
+    <path id="left-upper-arm" d="
+      M50 132
+      L34 146
+      L28 224
+      L40 238
+      L54 224
+      L58 150
+      Z" />
+
+    <!-- 8. right-forearm -->
+    <path id="right-forearm" d="
+      M160 238
+      L172 224
+      L178 320
+      L166 336
+      L154 320
+      L148 252
+      Z" />
+
+    <!-- 9. left-forearm -->
+    <path id="left-forearm" d="
+      M40 238
+      L28 224
+      L22 320
+      L34 336
+      L46 320
+      L52 252
+      Z" />
+
+    <!-- 10. right-hand -->
+    <path id="right-hand" d="
+      M166 336
+      C178 336 184 344 184 356
+      C184 368 178 376 166 376
+      C154 376 148 368 148 356
+      C148 344 154 336 166 336
+      Z" />
+
+    <!-- 11. left-hand -->
+    <path id="left-hand" d="
+      M34 336
+      C46 336 52 344 52 356
+      C52 368 46 376 34 376
+      C22 376 16 368 16 356
+      C16 344 22 336 34 336
+      Z" />
+
+    <!-- 12. right-thigh -->
+    <path id="right-thigh" d="
+      M100 330
+      L134 330
+      L138 410
+      L126 430
+      L108 430
+      L96 410
+      Z" />
+
+    <!-- 13. left-thigh -->
+    <path id="left-thigh" d="
+      M66 330
+      L100 330
+      L104 410
+      L92 430
+      L74 430
+      L62 410
+      Z" />
+
+    <!-- 14. right-calf -->
+    <path id="right-calf" d="
+      M108 430
+      L126 430
+      L132 474
+      L122 490
+      L108 490
+      L98 474
+      Z" />
+
+    <!-- 15. left-calf -->
+    <path id="left-calf" d="
+      M74 430
+      L92 430
+      L102 474
+      L92 490
+      L78 490
+      L68 474
+      Z" />
+
+    <!-- 16. right-foot -->
+    <path id="right-foot" d="
+      M108 490
+      L122 490
+      C132 490 140 494 144 498
+      L112 498
+      C106 498 102 496 100 494
+      Z" />
+
+    <!-- 17. left-foot -->
+    <path id="left-foot" d="
+      M78 490
+      L92 490
+      C98 490 102 494 104 498
+      L72 498
+      C60 498 56 494 56 490
+      Z" />
+
+  </g>
+</svg>

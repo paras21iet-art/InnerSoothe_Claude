@@ -458,6 +458,8 @@ animate with repeatCount="1" and fill="freeze":
 | 2026-05-10 | Dark therapy mode DEPRECATED for all Breakup Recovery techniques. All 6 techniques (STOP, PMR, Closure Letter, Hypnodrama, Cord Cutting, Inner Child) move to PARCHMENT-WITH-REDUCTION. Immersion via reduction (no nav on practice screens, simplified UI, generous whitespace, single point of focus) instead of inverted colours. Reasoning: dark + breathing animation pattern-matches meditation apps (Calm/Headspace); parchment + Cormorant + saffron is genuinely distinct and reinforces the self-therapy positioning. Brief Visual Identity section needs revision to reflect deprecated dark mode. | ✅ Direction locked |
 | 2026-05-10 | STOP Technique entry screen (section-breakup-stop) rebuilt in parchment. Old dark-era HTML block (lines 9611–13304 original, ~3700 lines including breakup-tipp, breakup-square, breakup-pmr, breakup-accepts, breakup-ss, breakup-improve) replaced with 128-line parchment entry screen. Old .sec-stop CSS (689 lines) replaced with 148-line parchment CSS. File reduced from 26,809 → 22,702 lines. CSS lines 1384–1531; HTML lines 9070–9197. Route from module card 1 (showSection('breakup-stop')) intact. Screenshot: screenshots/stop-rebuild/01-entry-parchment.png. | ✅ |
 | 2026-05-11 | STOP entry screen LOCKED — canonical entry-screen template for all 6 Breakup Recovery techniques. Tight-crop leaf-on-water metaphor hero (175px), Cormorant Garamond STOP wordmark with saffron flanking leaves, framed italic quote card ("You do not need to solve everything right now."), compact info line (use case + duration), 2 mode option cards (Guided default + Quick Reset), "Begin Slowly" saffron CTA, "You can pause anytime" footer. Bottom nav HIDDEN — immersion starts at technique entry. Fits in single viewport, no scroll. Each of the other 5 techniques (PMR, Closure Letter, Hypnodrama, Cord Cutting, Inner Child) will use this exact template with technique-specific metaphor image, wordmark, quote, info copy, and mode card descriptions. | ✅ Locked |
+| 2026-05-11 | STOP Phase 2a-revised: navigation bug fixed (missing `</script>` tag). S1 concentric SVG removed; static orb added (90px `.s1-still-orb` / `.s1-still-halo` — no animation, embodies stillness). S2 concentric rings replaced with div-based breathing orb (130px) + halo; CSS class transitions `.inhale`/`.hold-top`/`.exhale`/`.hold-bottom`; `runBreathingCycles()` rewritten; session-ID guard in place. Screenshots: stop-rebuild/02-step-s-v2.png, 03-step-t-v2.png. | ✅ |
+| 2026-05-11 | PMR (Progressive Muscle Relaxation) — 4 screens built (parchment-with-reduction). Entry (section-breakup-pmr-entry), Setup (section-breakup-pmr-setup), Session (section-breakup-pmr-session), Complete scaffold (section-breakup-pmr-complete). Session features body schematic SVG (220×320px), active muscle in saffron with SVG pulse animate, auto-dim after 5s inactivity, demo rotation cycling 4 muscle states. Module card 2 onclick wired to section. All 21 copy strings validated verbatim. Screenshots: pmr/01–06. | ✅ |
 
 ---
 
@@ -467,15 +469,19 @@ animate with repeatCount="1" and fill="freeze":
 2. ~~Build Health Category Screen wireframe (section-category-health)~~ — DONE (LOCKED)
 3. ~~Build Breakup Recovery Module Screen (section-module-breakup-recovery)~~ — DONE (LOCKED)
 4. ~~STOP Technique entry screen rebuilt — parchment-with-reduction~~ — DONE (LOCKED)
-5. Psychologist sync: review Home v5 + Today scaffold + all three category screens (Relationships / Career / Health)
-4. Psychologist sync: approve/adjust category tint colors (Relationships pink, Health sage, Career gold)
-5. Psychologist sync: green in splash/dark screens — lift rule or fix wireframe
-6. Psychologist sync: crisis 🆘 button placement on every in-app screen
-7. Psychologist sync: onboarding modifications per psychologist review
-8. Resolve "heal from within" sub-brand — in or out
-9. Source higher-resolution illustration assets (repo root crops < 600px, usable for wireframe but not production)
-10. Psychologist records Cord Cutting voice first
-11. Claude Code: set up full modular architecture
-12. Build React Native screens — onboarding first
-13. iubenda Privacy Policy + ToS
-14. App Store submission (~60 days at 10hrs/day)
+5. ~~STOP Phase 2a-revised: animation fixes (S1 still orb, S2 breathing orb)~~ — DONE
+6. ~~PMR — 4 screens built (entry/setup/session/complete-scaffold)~~ — DONE
+7. STOP Phase 2.2+: S3 (Observe) and S4 (Proceed) screens + complete screen real content (intensity sliders, AI insight, journal save)
+8. STOP Phase 3: Quick Reset mode (stub `startStopGuided()` exists, needs full implementation)
+9. Psychologist sync: review Home v5 + Today scaffold + all three category screens (Relationships / Career / Health)
+10. Psychologist sync: approve/adjust category tint colors (Relationships pink, Health sage, Career gold)
+11. Psychologist sync: green in splash/dark screens — lift rule or fix wireframe
+12. Psychologist sync: crisis 🆘 button placement on every in-app screen
+13. Psychologist sync: onboarding modifications per psychologist review
+14. Resolve "heal from within" sub-brand — in or out
+15. Source higher-resolution illustration assets (repo root crops < 600px, usable for wireframe but not production)
+16. Psychologist records Cord Cutting voice first
+17. Claude Code: set up full modular architecture
+18. Build React Native screens — onboarding first
+19. iubenda Privacy Policy + ToS
+20. App Store submission (~60 days at 10hrs/day)
