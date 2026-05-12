@@ -1837,26 +1837,300 @@
 .sec-stop-step .step-pd.visited { border-color: rgba(160,104,50,0.50); color: rgba(160,104,50,0.70); }
 .sec-stop-step .step-pd-line { width: 16px; height: 1px; background: rgba(33,24,12,0.18); flex-shrink: 0; }
 
-/* Step 1 — S ─────────────────────── */
-.sec-stop-s1 .s1-quote-card { padding: 14px 18px; background: var(--quote-card); border: 1px solid var(--hairline-light); border-radius: 12px; margin: 0 26px 14px; flex-shrink: 0; }
-.sec-stop-s1 .s1-quote-text { font-family: 'Cormorant Garamond', serif; font-size: 13.5px; font-weight: 400; font-style: italic; line-height: 1.5; color: #1E1408; }
-.sec-stop-s1 .s1-quote-attr { font-family: 'DM Sans', sans-serif; font-size: 11px; color: rgba(33,24,12,0.45); margin-top: 6px; }
-.sec-stop-s1 .s1-confirm-card { margin: 0 26px 0; padding: 14px 16px; background: rgba(255,253,248,0.92); border: 1px solid rgba(160,104,50,0.20); border-radius: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 200ms ease; flex-shrink: 0; }
-.sec-stop-s1 .s1-confirm-card.confirmed { border-color: rgba(160,104,50,0.45); background: rgba(255,253,248,0.98); }
-.sec-stop-s1 .s1-check-circle { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid rgba(33,24,12,0.25); background: transparent; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 200ms ease; }
-.sec-stop-s1 .s1-confirm-card.confirmed .s1-check-circle { background: #A06832; border-color: #A06832; }
-.sec-stop-s1 .s1-confirm-label { font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 500; color: #1E1408; flex: 1; }
-.sec-stop-s1 .s1-confirm-hint { font-family: 'DM Sans', sans-serif; font-size: 9.5px; font-weight: 300; color: rgba(33,24,12,0.35); }
-/* Step 1 tight vertical fit */
-.sec-stop-s1 .status { padding: 10px 22px 3px; }
-.sec-stop-s1 .step-hdr { padding: 4px 16px 8px; }
-.sec-stop-s1 .step-letter { margin: 2px auto 4px; }
-.sec-stop-s1 .step-eyebrow { margin: 0 0 6px; }
-.sec-stop-s1 .step-body { margin: 0 0 10px; }
-.s1-still-stage { position: relative; width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; margin: 0 0 10px; }
-.s1-still-halo { position: absolute; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(196,149,106,0.18) 0%, rgba(160,104,50,0.08) 40%, rgba(160,104,50,0) 70%); }
-.s1-still-orb { position: relative; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, rgba(217,184,148,0.95) 0%, rgba(196,149,106,0.85) 25%, rgba(160,104,50,0.70) 55%, rgba(160,104,50,0.40) 85%, rgba(160,104,50,0.15) 100%); box-shadow: 0 4px 20px rgba(160,104,50,0.22), inset 0 -6px 14px rgba(140,84,32,0.18); }
-.s1-still-spark { position: absolute; top: 25%; left: 35%; width: 14px; height: 10px; border-radius: 50%; background: radial-gradient(ellipse, rgba(255,251,243,0.50) 0%, rgba(255,251,243,0) 70%); filter: blur(2px); }
+/* === STOP Step 1 (S — Stop) — clean rewrite === */
+
+/* Phone container override — 720px, all content in flow */
+.sec-stop-s1.screens-area .phone {
+  display: flex;
+  flex-direction: column;
+  height: 720px;
+  overflow: hidden;
+}
+
+/* Eyebrow ABOVE pill+word */
+.sec-stop-s1 .s1-eyebrow {
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  color: #A06832;
+  text-transform: uppercase;
+  margin: 12px 0 6px;
+  padding: 0;
+}
+
+/* Pill + Word composition */
+.sec-stop-s1 .s1-letter-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0 0 10px;
+}
+
+.sec-stop-s1 .s1-pill {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: rgba(160, 104, 50, 0.18);
+  border: 1px solid rgba(160, 104, 50, 0.40);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: #1E1408;
+  line-height: 1;
+}
+
+.sec-stop-s1 .s1-pill-word {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: 26px;
+  color: #1E1408;
+  line-height: 1;
+}
+
+/* Headline */
+.sec-stop-s1 .s1-headline {
+  text-align: center;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.25;
+  color: #1E1408;
+  padding: 0 24px;
+  margin: 0 0 8px;
+}
+
+/* Body */
+.sec-stop-s1 .s1-body {
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(33, 24, 12, 0.60);
+  padding: 0 26px;
+  margin: 0 0 10px;
+}
+
+/* Hero image — object-fit: contain so orb is never cropped */
+.sec-stop-s1 .s1-hero {
+  width: 100%;
+  height: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sec-stop-s1 .s1-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+}
+
+/* Quote card */
+.sec-stop-s1 .s1-quote-card {
+  margin: 0 24px 6px;
+  padding: 12px 16px;
+  background: rgba(255, 251, 243, 0.85);
+  border: 1px solid rgba(33, 24, 12, 0.06);
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+}
+
+.sec-stop-s1 .s1-quote-open {
+  position: absolute;
+  top: 6px;
+  left: 14px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 24px;
+  color: #A06832;
+  opacity: 0.45;
+  line-height: 1;
+}
+
+.sec-stop-s1 .s1-quote-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #1E1408;
+  margin: 2px 8px 4px;
+}
+
+.sec-stop-s1 .s1-quote-attr {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10.5px;
+  color: rgba(33, 24, 12, 0.45);
+  margin: 0;
+}
+
+/* Heart rule — restored to flow */
+.sec-stop-s1 .s1-heart-rule {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 6px;
+  opacity: 0.45;
+}
+
+/* Confirm card */
+.sec-stop-s1 .s1-confirm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 24px 10px;
+  padding: 11px 14px;
+  background: rgba(255, 253, 248, 0.92);
+  border: 1px solid rgba(33, 24, 12, 0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  width: calc(100% - 48px);
+  box-sizing: border-box;
+  transition: all 200ms ease;
+  font-family: inherit;
+}
+
+.sec-stop-s1 .s1-confirm:hover { background: rgba(255, 253, 248, 0.98); }
+
+.sec-stop-s1 .s1-confirm-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(33, 24, 12, 0.25);
+  background: transparent;
+  flex-shrink: 0;
+  transition: all 200ms ease;
+}
+
+.sec-stop-s1 .s1-confirm.confirmed .s1-confirm-check {
+  background: #A06832;
+  border-color: #A06832;
+}
+
+.sec-stop-s1 .s1-confirm.confirmed .s1-confirm-check::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 6px;
+  border-left: 1.5px solid white;
+  border-bottom: 1.5px solid white;
+  transform: rotate(-45deg) translate(2px, -1px);
+  margin: 5px 0 0 4px;
+}
+
+.sec-stop-s1 .s1-confirm-label {
+  flex: 1;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #1E1408;
+  line-height: 1.35;
+}
+
+.sec-stop-s1 .s1-confirm-hint {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9.5px;
+  color: rgba(33, 24, 12, 0.40);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* CTA — in flow via .step-cta-wrap override below; targets actual HTML class .step-cta */
+.sec-stop-s1 .step-cta {
+  display: block;
+  margin: 0 0 4px;
+  width: 100%;
+  padding: 13px;
+  border-radius: 50px;
+  background: #A06832;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 13.5px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 5px 16px rgba(160, 104, 50, 0.26);
+  box-sizing: border-box;
+  transition: all 200ms ease;
+}
+
+.sec-stop-s1 .step-cta:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Progress dots — static flow, all 4 visible, !important defeats shared-scope absolute */
+.sec-stop-s1 .step-progress {
+  position: static !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  margin: 0 auto 4px !important;
+  padding: 0 !important;
+  width: auto !important;
+}
+
+.sec-stop-s1 .step-pd {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.3px solid rgba(33, 24, 12, 0.20);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 9.5px;
+  color: rgba(33, 24, 12, 0.40);
+}
+
+.sec-stop-s1 .step-pd.on {
+  background: #A06832;
+  border-color: #A06832;
+  color: white;
+}
+
+.sec-stop-s1 .step-pd-line {
+  width: 16px;
+  height: 1px;
+  background: rgba(33, 24, 12, 0.18);
+  display: inline-block;
+}
+
+/* .step-cta-wrap override — static so CTA flows before progress dots */
+.sec-stop-s1 .step-cta-wrap {
+  position: static !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  padding: 0 !important;
+  margin: 0 24px !important;
+  width: calc(100% - 48px) !important;
+  box-sizing: border-box !important;
+}
 
 /* Step 2 — T ─────────────────────── */
 .sec-stop-s2 .breath-stage { position: relative; width: 100%; height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 4px 0 12px; }
@@ -9739,60 +10013,80 @@ window.sec_stop_mode = 'guided';
 
     <div class="status">
       <span>9:41</span>
-      <div style="display:flex;align-items:center;gap:6px;">
-        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
-        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
-      </div>
+      <span style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(33,24,12,0.45)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(33,24,12,0.45)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(33,24,12,0.45)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(33,24,12,0.45)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(33,24,12,0.45)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(33,24,12,0.45)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(33,24,12,0.45)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(33,24,12,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(33,24,12,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(33,24,12,0.55)"/></svg>
+      </span>
     </div>
+
     <div class="step-hdr">
-      <div class="step-back" onclick="stopConfirmExit()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      </div>
+      <button class="step-back" onclick="stopConfirmExit()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
       <div class="step-mute-area">
         <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
           <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
           <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
         </button>
-        <div class="step-crisis" onclick="showSection('crisis-resources')">
+        <button class="step-crisis" onclick="showSection('crisis-resources')">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <span class="step-crisis-label">Crisis Support</span>
-        </div>
+        </button>
       </div>
     </div>
-    <div class="step-letter">S</div>
-    <div class="step-eyebrow">STEP 1 · STOP</div>
-    <div class="step-headline">Whatever you're about to do — don't do it yet.</div>
-    <div class="step-body">Don't send that message. Don't scroll back through the photos. Your emotions are running fast — that's exactly when to pause.</div>
-    <div class="s1-still-stage">
-      <div class="s1-still-halo"></div>
-      <div class="s1-still-orb"><span class="s1-still-spark"></span></div>
+
+    <div class="s1-eyebrow">STEP 1 OF 4</div>
+
+    <div class="s1-letter-row">
+      <div class="s1-pill"><span>S</span></div>
+      <div class="s1-pill-word">Stop</div>
     </div>
+
+    <h2 class="s1-headline">Whatever you're about to do —<br>don't do it yet.</h2>
+
+    <p class="s1-body">Don't send that message. Don't scroll back through the photos. Your emotions are running fast — that's exactly when to pause.</p>
+
+    <div class="s1-hero">
+      <img src="assets/illustrations/Relationships/Modules/BreakupRecovery/stop-s1-hero.png" alt="" class="s1-hero-img">
+    </div>
+
     <div class="s1-quote-card">
-      <div class="s1-quote-text">"The pause between stimulus and response is where your freedom lives."</div>
-      <div class="s1-quote-attr">— DBT, Linehan 1993</div>
+      <span class="s1-quote-open">"</span>
+      <p class="s1-quote-text">The pause between stimulus and response is where your freedom lives.</p>
+      <p class="s1-quote-attr">— DBT, Linehan 1993</p>
     </div>
-    <div class="s1-confirm-card" id="s1-confirm-card" onclick="s1TapConfirm()">
-      <div class="s1-check-circle" id="s1-check-circle"></div>
+
+    <div class="s1-heart-rule">
+      <svg width="8" height="8" viewBox="0 0 24 24" fill="#A06832" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+
+    <button class="s1-confirm" onclick="confirmStopS1()">
+      <span class="s1-confirm-check"></span>
       <span class="s1-confirm-label">I've stopped. I'm not acting on anything right now.</span>
       <span class="s1-confirm-hint">Tap to confirm</span>
-    </div>
+    </button>
+
     <div class="step-cta-wrap">
-      <button class="step-cta" id="s1-cta" disabled onclick="stopCancelVoice();showSection('breakup-stop-s2')">Good. Now — Take a Breath →</button>
-      <button class="step-secondary" onclick="stopConfirmExit()">This doesn't feel right</button>
+      <button class="step-cta" disabled onclick="advanceStopS1()">Good. Now — Take a Breath →</button>
     </div>
+
     <div class="step-progress">
-      <div class="step-pd on">S</div><div class="step-pd-line"></div>
-      <div class="step-pd">T</div><div class="step-pd-line"></div>
-      <div class="step-pd">O</div><div class="step-pd-line"></div>
-      <div class="step-pd">P</div>
+      <span class="step-pd on">S</span>
+      <span class="step-pd-line"></span>
+      <span class="step-pd">T</span>
+      <span class="step-pd-line"></span>
+      <span class="step-pd">O</span>
+      <span class="step-pd-line"></span>
+      <span class="step-pd">P</span>
     </div>
 
   </div></div></div>
 </div><!-- /section-breakup-stop-s1 -->
 <script>
 function speakStopS1() {
-  stopSpeakSequence([
+  if (!window.stopSpeakSequence) return;
+  window.stopSpeakSequence([
     "Whatever you're about to do, don't do it yet.",
     1200,
     "Don't send that message. Don't scroll back through the photos.",
@@ -9802,19 +10096,20 @@ function speakStopS1() {
     "You are here. You are breathing. You don't have to do anything in this moment."
   ]);
 }
-function s1TapConfirm() {
-  var card = document.getElementById('s1-confirm-card');
-  if (!card || card.classList.contains('confirmed')) return;
-  card.classList.add('confirmed');
-  var check = document.getElementById('s1-check-circle');
-  if (check) check.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-  stopCancelVoice();
-  stopSpeak("Good. Now, take a breath.");
-  setTimeout(function() {
-    var cta = document.getElementById('s1-cta');
+(function() {
+  window.confirmStopS1 = function() {
+    var card = document.querySelector('.sec-stop-s1 .s1-confirm');
+    var cta = document.querySelector('.sec-stop-s1 .step-cta');
+    if (!card || card.classList.contains('confirmed')) return;
+    card.classList.add('confirmed');
     if (cta) cta.disabled = false;
-  }, 300);
-}
+    if (window.stopSpeak) window.stopSpeak("Good. Now, take a breath.");
+  };
+  window.advanceStopS1 = function() {
+    if (window.stopCancelVoice) window.stopCancelVoice();
+    showSection('breakup-stop-s2');
+  };
+})();
 </script>
 
 
