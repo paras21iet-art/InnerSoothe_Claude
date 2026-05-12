@@ -1839,11 +1839,11 @@
 
 /* === STOP Step 1 (S — Stop) — clean rewrite === */
 
-/* Phone container override — 893px = content (869px) + 24px breathing room */
+/* Phone container override — 780px viewport target */
 .sec-stop-s1.screens-area .phone {
   display: flex;
   flex-direction: column;
-  height: 893px;
+  height: 780px;
   overflow: hidden;
 }
 
@@ -1856,7 +1856,7 @@
   letter-spacing: 2.5px;
   color: #A06832;
   text-transform: uppercase;
-  margin: 12px 0 6px;
+  margin: 6px 0 2px;
   padding: 0;
 }
 
@@ -1866,7 +1866,7 @@
   align-items: center;
   justify-content: center;
   gap: 14px;
-  margin: 0 0 10px;
+  margin: 0 0 6px;
 }
 
 .sec-stop-s1 .s1-pill {
@@ -1902,7 +1902,7 @@
   line-height: 1.25;
   color: #1E1408;
   padding: 0 24px;
-  margin: 0 0 8px;
+  margin: 0 0 4px;
 }
 
 /* Body */
@@ -1914,27 +1914,30 @@
   line-height: 1.5;
   color: rgba(33, 24, 12, 0.60);
   padding: 0 26px;
-  margin: 0 0 10px;
+  margin: 0 0 4px;
 }
 
-/* Hero image — natural aspect ratio, full width */
+/* Hero image — capped 220px, cover so orb stays centred */
 .sec-stop-s1 .s1-hero {
   width: 100%;
+  height: 220px;
   display: block;
-  margin: 0 0 8px;
+  margin: 0;
   overflow: hidden;
   flex-shrink: 0;
 }
 
 .sec-stop-s1 .s1-hero-img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
 
 /* Quote card */
 .sec-stop-s1 .s1-quote-card {
-  margin: 0 24px 6px;
+  margin: 0 24px 0;
   padding: 12px 16px;
   background: rgba(255, 251, 243, 0.85);
   border: 1px solid rgba(33, 24, 12, 0.06);
@@ -1968,7 +1971,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 24px 10px;
+  margin: 0 24px 4px;
   padding: 11px 14px;
   background: rgba(255, 253, 248, 0.92);
   border: 1px solid rgba(33, 24, 12, 0.08);
@@ -2024,13 +2027,13 @@
   font-size: 9.5px;
   color: rgba(33, 24, 12, 0.40);
   white-space: nowrap;
-  flex-shrink: 0;
+  flex: 0 0 auto;
 }
 
 /* CTA — in flow via .step-cta-wrap override below; targets actual HTML class .step-cta */
 .sec-stop-s1 .step-cta {
   display: block;
-  margin: 0 0 4px;
+  margin: 0;
   width: 100%;
   padding: 13px;
   border-radius: 50px;
