@@ -1856,7 +1856,7 @@
   letter-spacing: 2.5px;
   color: #A06832;
   text-transform: uppercase;
-  margin: 6px 0 2px;
+  margin: 2px 0 0;
   padding: 0;
 }
 
@@ -1866,7 +1866,7 @@
   align-items: center;
   justify-content: center;
   gap: 14px;
-  margin: 0 0 6px;
+  margin: 0 0 4px;
 }
 
 .sec-stop-s1 .s1-pill {
@@ -1914,7 +1914,7 @@
   line-height: 1.5;
   color: rgba(33, 24, 12, 0.60);
   padding: 0 26px;
-  margin: 0 0 4px;
+  margin: 0 0 2px;
 }
 
 /* Hero image — capped 220px, cover so orb stays centred */
@@ -1935,9 +1935,19 @@
   display: block;
 }
 
+/* Bottom stack — unified 24px horizontal inset */
+.sec-stop-s1 .s1-bottom-stack {
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 /* Quote card */
 .sec-stop-s1 .s1-quote-card {
-  margin: 0 24px 0;
+  margin: 0;
   padding: 12px 16px;
   background: rgba(255, 251, 243, 0.85);
   border: 1px solid rgba(33, 24, 12, 0.06);
@@ -1973,14 +1983,14 @@
   align-items: center;
   column-gap: 10px;
   row-gap: 4px;
-  margin: 0 24px 4px;
+  margin: 0;
   padding: 11px 14px;
   background: rgba(255, 253, 248, 0.92);
   border: 1px solid rgba(33, 24, 12, 0.08);
   border-radius: 12px;
   cursor: pointer;
   text-align: left;
-  width: calc(100% - 48px);
+  width: 100%;
   box-sizing: border-box;
   transition: all 200ms ease;
   font-family: inherit;
@@ -2070,9 +2080,9 @@
   align-items: center !important;
   justify-content: center !important;
   gap: 0 !important;
-  margin: 0 24px 4px !important;
+  margin: 0 !important;
   padding: 0 !important;
-  width: calc(100% - 48px) !important;
+  width: 100% !important;
 }
 
 .sec-stop-s1 .step-pd {
@@ -2097,10 +2107,11 @@
 }
 
 .sec-stop-s1 .step-pd-line {
-  width: 16px;
+  flex: 1;
+  min-width: 0;
   height: 1px;
   background: rgba(33, 24, 12, 0.18);
-  display: inline-block;
+  display: block;
 }
 
 /* .step-cta-wrap override — static so CTA flows before progress dots */
@@ -2110,8 +2121,8 @@
   left: auto !important;
   right: auto !important;
   padding: 0 !important;
-  margin: 0 24px !important;
-  width: calc(100% - 48px) !important;
+  margin: 0 !important;
+  width: 100% !important;
   box-sizing: border-box !important;
 }
 
@@ -10034,29 +10045,33 @@ window.sec_stop_mode = 'guided';
       <img src="assets/illustrations/Relationships/Modules/BreakupRecovery/stop-s1-hero.png" alt="" class="s1-hero-img">
     </div>
 
-    <div class="s1-quote-card">
-      <p class="s1-quote-text">The pause between stimulus and response is where your freedom lives.</p>
-      <p class="s1-quote-attr">— DBT, Linehan 1993</p>
-    </div>
+    <div class="s1-bottom-stack">
 
-    <button class="s1-confirm" onclick="confirmStopS1()">
-      <span class="s1-confirm-check"></span>
-      <span class="s1-confirm-label">I've stopped. I'm not acting on anything right now.</span>
-      <span class="s1-confirm-hint">Tap to confirm</span>
-    </button>
+      <div class="s1-quote-card">
+        <p class="s1-quote-text">The pause between stimulus and response is where your freedom lives.</p>
+        <p class="s1-quote-attr">— DBT, Linehan 1993</p>
+      </div>
 
-    <div class="step-cta-wrap">
-      <button class="step-cta" disabled onclick="advanceStopS1()">Good. Now — Take a Breath →</button>
-    </div>
+      <button class="s1-confirm" onclick="confirmStopS1()">
+        <span class="s1-confirm-check"></span>
+        <span class="s1-confirm-label">I've stopped. I'm not acting on anything right now.</span>
+        <span class="s1-confirm-hint">Tap to confirm</span>
+      </button>
 
-    <div class="step-progress">
-      <span class="step-pd on">S</span>
-      <span class="step-pd-line"></span>
-      <span class="step-pd">T</span>
-      <span class="step-pd-line"></span>
-      <span class="step-pd">O</span>
-      <span class="step-pd-line"></span>
-      <span class="step-pd">P</span>
+      <div class="step-cta-wrap">
+        <button class="step-cta" onclick="advanceStopS1()">Good. Now — Take a Breath →</button>
+      </div>
+
+      <div class="step-progress">
+        <span class="step-pd on">S</span>
+        <span class="step-pd-line"></span>
+        <span class="step-pd">T</span>
+        <span class="step-pd-line"></span>
+        <span class="step-pd">O</span>
+        <span class="step-pd-line"></span>
+        <span class="step-pd">P</span>
+      </div>
+
     </div>
 
   </div></div></div>
