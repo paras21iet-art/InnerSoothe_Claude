@@ -1839,11 +1839,11 @@
 
 /* === STOP Step 1 (S — Stop) — clean rewrite === */
 
-/* Phone container override — 720px, all content in flow */
+/* Phone container override — 893px = content (869px) + 24px breathing room */
 .sec-stop-s1.screens-area .phone {
   display: flex;
   flex-direction: column;
-  height: 720px;
+  height: 893px;
   overflow: hidden;
 }
 
@@ -1898,7 +1898,7 @@
   text-align: center;
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 300;
-  font-size: 22px;
+  font-size: 30px;
   line-height: 1.25;
   color: #1E1408;
   padding: 0 24px;
@@ -1917,13 +1917,10 @@
   margin: 0 0 10px;
 }
 
-/* Hero image — object-fit: contain so orb is never cropped */
+/* Hero image — natural aspect ratio, full width */
 .sec-stop-s1 .s1-hero {
   width: 100%;
-  height: 155px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   margin: 0 0 8px;
   overflow: hidden;
   flex-shrink: 0;
@@ -1931,9 +1928,7 @@
 
 .sec-stop-s1 .s1-hero-img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center center;
+  height: auto;
   display: block;
 }
 
@@ -1948,17 +1943,6 @@
   position: relative;
 }
 
-.sec-stop-s1 .s1-quote-open {
-  position: absolute;
-  top: 6px;
-  left: 14px;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
-  font-size: 24px;
-  color: #A06832;
-  opacity: 0.45;
-  line-height: 1;
-}
 
 .sec-stop-s1 .s1-quote-text {
   font-family: 'Cormorant Garamond', Georgia, serif;
@@ -1978,13 +1962,6 @@
   margin: 0;
 }
 
-/* Heart rule — restored to flow */
-.sec-stop-s1 .s1-heart-rule {
-  display: flex;
-  justify-content: center;
-  margin: 0 0 6px;
-  opacity: 0.45;
-}
 
 /* Confirm card */
 .sec-stop-s1 .s1-confirm {
@@ -10052,13 +10029,8 @@ window.sec_stop_mode = 'guided';
     </div>
 
     <div class="s1-quote-card">
-      <span class="s1-quote-open">"</span>
       <p class="s1-quote-text">The pause between stimulus and response is where your freedom lives.</p>
       <p class="s1-quote-attr">— DBT, Linehan 1993</p>
-    </div>
-
-    <div class="s1-heart-rule">
-      <svg width="8" height="8" viewBox="0 0 24 24" fill="#A06832" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
     </div>
 
     <button class="s1-confirm" onclick="confirmStopS1()">
