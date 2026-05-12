@@ -1969,8 +1969,10 @@
 /* Confirm card */
 .sec-stop-s1 .s1-confirm {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  column-gap: 10px;
+  row-gap: 4px;
   margin: 0 24px 4px;
   padding: 11px 14px;
   background: rgba(255, 253, 248, 0.92);
@@ -1987,10 +1989,10 @@
 .sec-stop-s1 .s1-confirm:hover { background: rgba(255, 253, 248, 0.98); }
 
 .sec-stop-s1 .s1-confirm-check {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 1.5px solid rgba(33, 24, 12, 0.25);
+  border: 1.5px solid #A06832;
   background: transparent;
   flex-shrink: 0;
   transition: all 200ms ease;
@@ -2009,7 +2011,7 @@
   border-left: 1.5px solid white;
   border-bottom: 1.5px solid white;
   transform: rotate(-45deg) translate(2px, -1px);
-  margin: 5px 0 0 4px;
+  margin: 7px 0 0 6px;
 }
 
 .sec-stop-s1 .s1-confirm-label {
@@ -2027,7 +2029,8 @@
   font-size: 9.5px;
   color: rgba(33, 24, 12, 0.40);
   white-space: nowrap;
-  flex: 0 0 auto;
+  flex: 0 0 100%;
+  text-align: right;
 }
 
 /* CTA — in flow via .step-cta-wrap override below; targets actual HTML class .step-cta */
@@ -2067,9 +2070,9 @@
   align-items: center !important;
   justify-content: center !important;
   gap: 0 !important;
-  margin: 0 auto 4px !important;
+  margin: 0 24px 4px !important;
   padding: 0 !important;
-  width: auto !important;
+  width: calc(100% - 48px) !important;
 }
 
 .sec-stop-s1 .step-pd {
