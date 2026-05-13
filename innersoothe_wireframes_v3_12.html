@@ -2220,19 +2220,22 @@
   border-radius: 14px;
   padding: 4px;
   margin: 16px 32px 0;
+  height: 46px;
+  box-sizing: border-box;
 }
 .sec-stop-s2 .s2-timeline-segment {
   flex: 1;
-  padding: 8px 4px;
+  height: 100%;
+  padding: 0 4px;
   border-radius: 10px;
   text-align: center;
   position: relative;
   overflow: hidden;
-  transition: background-color 250ms ease;
-  min-height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  transition: background-color 250ms ease;
 }
 .sec-stop-s2 .s2-timeline-segment.active {
   background: rgba(160,104,50,0.18);
@@ -2246,7 +2249,7 @@
   font-size: 10px;
   font-weight: 300;
   color: rgba(33,24,12,0.55);
-  line-height: 1.2;
+  line-height: 1;
   letter-spacing: 0.1px;
   position: relative;
   z-index: 1;
@@ -2254,6 +2257,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
+  max-width: 100%;
 }
 .sec-stop-s2 .s2-timeline-segment.active .s2-timeline-label {
   color: #1E1408;
@@ -2274,7 +2278,6 @@
 .sec-stop-s2 .s2-timeline-segment.completed .s2-timeline-fill {
   width: 100%;
   background: rgba(160,104,50,0.4);
-  height: 2px;
 }
 
 .sec-stop-s2 .s2-bottom-stack {
@@ -10584,7 +10587,6 @@ function speakStopS1() {
       if (window._s2SessionId !== sid) return;
       s2PhaseId++;
       var myPhaseId = s2PhaseId;
-      try { speechSynthesis.cancel(); } catch(e) {}
       if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
 
       var phase = phases[phaseIdx];
