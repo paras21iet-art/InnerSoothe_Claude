@@ -241,6 +241,57 @@ mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, 
 
 ---
 
+### STOP Step 2 (T — Take a Breath) — LOCKED 2026-05-13
+
+**Section:** `section-breakup-stop-s2`, CSS scope `.sec-stop-s2`
+**Purpose:** Box breathing 4-4-4-4 with 4 required cycles + optional "One more cycle" extension.
+
+#### Canonical voice-driven architecture (v9)
+Voice is the master clock. Speech is chained via utterance.onend; visual count + orb step fire on each utterance's onstart; phase advances only after "Four"'s onend fires.
+
+- **Phase sequence per phase:** 5 chained utterances — phase name → "One" → "Two" → "Three" → "Four"
+- **Speech parameters:** rate 1.0, pitch 0.9, volume 0.85, voice preference Samantha → Karen → Google US English → any en-US → any en
+- **Phase progression model:** scaleProgress steps 0 / 0.25 / 0.50 / 0.75 / 1.00 mapped to startScale → endScale via linear interpolation. Each step's onstart sets `orbEl.style.transform = scale(...)`. CSS `transition: transform 600ms linear` on the base `.s2-hero-img` rule smooths between steps.
+- **Phase advances** only via the chain's onComplete callback (after Four's onend), never on a fixed timer.
+- **Cancel discipline:** `speechSynthesis.cancel()` at start of every runPhase clears any leftover speech from previous phase. Session-ID and phase-ID guards on every callback prevent stale events from updating wrong-phase state.
+- **Muted mode:** speakChain detects mute, fires visuals immediately, chains next step via 800ms setTimeout (consistent rhythm without audio).
+
+#### Phase config
+| Phase | Visual label | Voice cue | startScale | endScale |
+|-------|--------------|-----------|------------|----------|
+| inhale | "Breathe in" | "Breathe in" | 0.92 | 1.05 |
+| hold-top | "Hold" | "Hold" | 1.05 | 1.05 |
+| exhale | "Breathe out" | "Breathe out" | 1.05 | 0.92 |
+| hold-bottom | "Hold" | "Hold" | 0.92 | 0.92 |
+
+Hold phases mathematically keep orb static (same start/end scale); voice and visual count still progress.
+
+#### Entry intro flow
+1. Utterance 1: full instructional ("Box breathing is a calming technique. You'll breathe in through your nose for four counts...")
+2. 2.5 second silence
+3. Utterance 2: "Get comfortable. When you're ready, follow the orb... Beginning now."
+4. After utterance 2 onend, runS2BreathingCycles starts cycle 1, phase 0.
+
+#### Timeline (locked)
+- Container: 46px fixed height, parchment background rgba(243,233,220,0.6), 14px radius, 4-segment flex
+- Segments: 4 equal-width, fill 100% of container height. Padding 0 4px.
+- Timeline labels (actual HTML): "In" / "Hold" / "Out" / "Hold" (shortened from v8f to fit count alongside label in active segment)
+- Phase label above orb (separate element): "Breathe in" / "Hold" / "Breathe out" / "Hold" — full length, Cormorant italic
+- Active segment: rgba(160,104,50,0.18) background, bold label, count visible
+- Completed segment: rgba(160,104,50,0.06) background, fill bar at 100% with rgba(160,104,50,0.4)
+- Fill bar: 2px saffron (#A06832) at bottom of segment, width driven by speech progress (0/25/50/75/100%)
+
+#### Phase length (variable, voice-driven)
+Approximate 3-6 seconds per phase depending on TTS engine speed. Actual timing follows voice cadence so sync is always preserved.
+
+#### Cycle completion
+After 4 required cycles complete, CTA enables, "One more cycle" extend link becomes visible. Each extra cycle runs the same 4-phase sequence but doesn't increment the required-cycles counter.
+
+#### Status of cleanup
+Diagnostic logging (the _diag object) was used during v8a-v9 iteration and has been removed at lock time.
+
+---
+
 ## Paid Techniques (Premium) — All Built in Wireframe
 
 | Technique | Type | Duration | Notes |
@@ -511,6 +562,7 @@ animate with repeatCount="1" and fill="freeze":
 | 2026-05-11 | PMR (Progressive Muscle Relaxation) — 4 screens built (parchment-with-reduction). Entry (section-breakup-pmr-entry), Setup (section-breakup-pmr-setup), Session (section-breakup-pmr-session), Complete scaffold (section-breakup-pmr-complete). Session features body schematic SVG (220×320px), active muscle in saffron with SVG pulse animate, auto-dim after 5s inactivity, demo rotation cycling 4 muscle states. Module card 2 onclick wired to section. All 21 copy strings validated verbatim. Screenshots: pmr/01–06. | ✅ |
 | 2026-05-13 | STOP Step 1 (S — Stop) LOCKED. Canonical practice-screen template established. `.s1-bottom-stack` wrapper with 32px horizontal padding and 16px gap holds quote card, confirm card, CTA, progress dots. Hero image uses radial-gradient mask-image for parchment-blend bleed (eliminates rectangular edge). Strict 780px viewport, no scroll. Headline 26px Cormorant 300 with text-wrap: balance. Body 12px DM Sans 300. Hero container 190px. Confirm circle default: 24×24px span, 1.5px solid #A06832 border, transparent background, ZERO inner HTML content (regression fixed at HTML level after 4 surface CSS patches failed). Confirm card default border matches quote card exactly (rgba(33,24,12,0.06)); confirmed state saffron border+glow via .confirmed selector. Architecture inherits to S2/S3/S4. | ✅ Locked |
 | 2026-05-13 | Phase 2b: STOP Step 2 (T — Take a Breath) voice narration wired. `speakStopS2()` added to S2 script block — speaks "Box breathing. Two cycles. Follow the orb." on section entry (dispatched 400ms after show). `stopSpeak(phase.label)` called at each breath phase boundary inside `runS2BreathingCycles()` → speaks 'Breathe in', 'Hold', 'Breathe out', 'Hold' in sync with orb animation. Stale `startStopS2Breathing()` reference in `onStopSectionShow` dispatch fixed to `speakStopS2()`. Pattern pill font-size 11→10px, horizontal padding 16→12px — single-line render confirmed. Screenshots: stop-rebuild/s2-04-voice-fixed.png, s2-05-full-fixed.png. | ✅ |
+| 2026-05-13 | STOP Step 2 (T — Take a Breath) — LOCKED. v9 voice-driven architecture: speech chain via utterance.onend, visual count + orb step fire on each onstart, phase advances on Four's onend. Box breathing 4-cycle pattern with optional extend. Diagnostic logging stripped. Canonical speakChain pattern documented in style-guide.md Section 21. | ✅ |
 
 ---
 
@@ -523,8 +575,8 @@ animate with repeatCount="1" and fill="freeze":
 5. ~~STOP Phase 2a-revised: animation fixes (S1 still orb, S2 breathing orb)~~ — DONE
 6. ~~PMR — 4 screens built (entry/setup/session/complete-scaffold)~~ — DONE
 7. ~~Phase 2a (STOP Step 1) — DONE (LOCKED 2026-05-13)~~
-8. ~~Phase 2b: STOP Step 2 (T — Take a Breath) — DONE (voice wired, pill fixed 2026-05-13)~~
-9. Phase 2c: Build STOP Step 3 (O — Observe) using ChatGPT design + S1 canonical pattern
+8. ~~Phase 2b: STOP Step 2 (T — Take a Breath) — DONE (LOCKED 2026-05-13, v9 voice-driven)~~
+9. **→ Phase 2c: Build STOP Step 3 (O — Observe) using ChatGPT design + S1 canonical pattern**
 10. Phase 2d: Build STOP Step 4 (P — Proceed) using 4 action cards + S1 canonical pattern
 11. Phase 2e: Complete screen for STOP technique
 12. STOP Phase 3: Quick Reset mode (stub `startStopGuided()` exists, needs full implementation)

@@ -10399,35 +10399,6 @@ function speakStopS1() {
 (function() {
   window._s2SessionId = window._s2SessionId || 0;
 
-  /* ── DIAGNOSTIC (temporary) — module-level so orb listeners always reference current state ── */
-  var _diag = {
-    t0: null, phaseStart: null, phase: '?', cycle: 0,
-    log: function(event, detail) {
-      var now = Date.now();
-      var d = new Date(now);
-      var ts = [d.getHours(), d.getMinutes(), d.getSeconds()]
-        .map(function(n) { return (n < 10 ? '0' : '') + n; }).join(':')
-        + '.' + (d.getMilliseconds() < 10 ? '00' : d.getMilliseconds() < 100 ? '0' : '') + d.getMilliseconds();
-      var t0r = _diag.t0 != null ? ' +' + (now - _diag.t0) + 'ms' : '';
-      var phr = _diag.phaseStart != null ? '  ph+' + (now - _diag.phaseStart) + 'ms' : '';
-      console.log('[' + ts + '] [' + _diag.phase + '/cy' + _diag.cycle + ']' + t0r + phr + '  ' + event + ': ' + detail);
-    },
-    attachOrb: function() {
-      var img = document.querySelector('.sec-stop-s2 .s2-hero-img');
-      if (!img || img._s2diagDone) return;
-      img._s2diagDone = true;
-      img.addEventListener('transitionstart', function(e) {
-        if (e.propertyName === 'transform')
-          _diag.log('ORB-transitionstart', 'class=' + img.className.trim());
-      });
-      img.addEventListener('transitionend', function(e) {
-        if (e.propertyName === 'transform')
-          _diag.log('ORB-transitionend', 'class=' + img.className.trim());
-      });
-    }
-  };
-  /* ── END DIAGNOSTIC SETUP ── */
-
   /* Two-part instructional intro — utterance 1 → 2.5s pause → utterance 2 → breathing cycle */
   window.speakStopS2 = function() {
     var sid = window._s2SessionId;
@@ -10486,18 +10457,9 @@ function speakStopS1() {
     speechSynthesis.speak(u1);
   };
 
-  /* rAF single-clock architecture — orb scale, visual counts, and speech from one frame loop */
   window.runS2BreathingCycles = function() {
     window._s2SessionId++;
     var sid = window._s2SessionId;
-
-    /* ── DIAGNOSTIC: reset per-session state ── */
-    _diag.t0 = Date.now();
-    _diag.phaseStart = null;
-    _diag.phase = 'init';
-    _diag.cycle = 0;
-    _diag.log('SESSION-START', 'sid=' + sid);
-    _diag.attachOrb();
 
     var PHASE_DURATION  = 4000;
     var COUNT_INTERVAL  = 800;
@@ -10521,11 +10483,8 @@ function speakStopS1() {
 
     function isMuted() { return !!(window.stopSession && window.stopSession.muted); }
 
-    /* DIAGNOSTIC s2Speak: creates utterance directly to attach onstart/onend timing */
     function s2Speak(text, opts) {
-      var callMs = Date.now() - _diag.t0;
-      _diag.log('SPEAK-queued', '"' + text + '"  callAt=+' + callMs + 'ms');
-      if (isMuted()) { _diag.log('SPEAK-skip', '"' + text + '"  (muted)'); return; }
+      if (isMuted()) return;
       var voices = speechSynthesis.getVoices();
       var voice = voices.find(function(v) { return v.name === 'Samantha'; })
         || voices.find(function(v) { return v.name === 'Karen'; })
@@ -10535,14 +10494,7 @@ function speakStopS1() {
         || (voices.length > 0 ? voices[0] : null);
       var u = new SpeechSynthesisUtterance(text);
       u.voice = voice; u.rate = 1.0; u.pitch = 0.9; u.volume = 0.85;
-      var queuedAt = performance.now();
-      u.onstart = function() {
-        var ttsMs = Math.round(performance.now() - queuedAt);
-        _diag.log('SPEAK-onstart', '"' + text + '"  ttsStartup=' + ttsMs + 'ms');
-        if (opts && opts.onstart) opts.onstart(ttsMs);
-      };
-      u.onend   = function() { _diag.log('SPEAK-onend',   '"' + text + '"'); };
-      u.onerror = function(e) { _diag.log('SPEAK-onerror', '"' + text + '"  err=' + (e && e.error)); };
+      if (opts && opts.onstart) u.onstart = function() { opts.onstart(); };
       if (window.stopSession) window.stopSession.currentUtterance = u;
       speechSynthesis.speak(u);
     }
@@ -10555,19 +10507,13 @@ function speakStopS1() {
       var step = steps[0];
 
       var fireVisual = function() {
-        if (step.countNum != null) {
-          s2UpdateActiveCount(step.countNum);
-          _diag.log('VISUAL-count-onstart', '"' + step.countNum + '"  word="' + step.word + '"');
-        }
+        if (step.countNum != null) s2UpdateActiveCount(step.countNum);
         if (orbEl) {
           var newScale = phase.startScale + (phase.endScale - phase.startScale) * step.scaleProgress;
           orbEl.style.transform = 'scale(' + newScale.toFixed(4) + ')';
-          _diag.log('ORB-step', 'word="' + step.word + '"  progress=' + step.scaleProgress + ' scale=' + newScale.toFixed(4));
         }
         var activeFill = document.querySelector('.sec-stop-s2 .s2-timeline-segment.active .s2-timeline-fill');
-        if (activeFill) {
-          activeFill.style.width = (step.scaleProgress * 100) + '%';
-        }
+        if (activeFill) activeFill.style.width = (step.scaleProgress * 100) + '%';
       };
 
       if (isMuted()) {
@@ -10588,23 +10534,18 @@ function speakStopS1() {
 
       var u = new SpeechSynthesisUtterance(step.word);
       u.voice = voice; u.rate = 1.0; u.pitch = 0.9; u.volume = 0.85;
-      var queuedAt = performance.now();
 
       u.onstart = function() {
-        var ttsMs = Math.round(performance.now() - queuedAt);
-        _diag.log('SPEAK-onstart', '"' + step.word + '"  ttsMs=' + ttsMs);
         if (window._s2SessionId !== sessionId) return;
         if (phaseId !== s2PhaseId) return;
         fireVisual();
       };
       u.onend = function() {
-        _diag.log('SPEAK-onend', '"' + step.word + '"');
         if (window._s2SessionId !== sessionId) return;
         if (phaseId !== s2PhaseId) return;
         speakChain(steps.slice(1), sessionId, phaseId, phase, onComplete);
       };
       u.onerror = function(e) {
-        _diag.log('SPEAK-onerror', '"' + step.word + '"  err=' + (e && e.error));
         if (window._s2SessionId !== sessionId) return;
         if (phaseId !== s2PhaseId) return;
         speakChain(steps.slice(1), sessionId, phaseId, phase, onComplete);
@@ -10690,14 +10631,10 @@ function speakStopS1() {
       if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
 
       var phase = phases[phaseIdx];
-      _diag.phase = phase.name;
-      _diag.cycle = cycleNum;
-      _diag.phaseStart = Date.now();
-      _diag.log('PHASE-start', 'label="' + phase.label + '"  voice="' + phase.voice + '"  ' + phase.startScale + '→' + phase.endScale);
 
       /* Visual label, cycle counter, count blank — immediate */
-      if (lblEl) { lblEl.textContent = phase.label; _diag.log('VISUAL-label', '"' + phase.label + '"'); }
-      s2ClearActiveCount(); _diag.log('VISUAL-num', 'blank');
+      if (lblEl) lblEl.textContent = phase.label;
+      s2ClearActiveCount();
       var cycleText = cycleNum <= 4 ? 'Cycle ' + cycleNum + ' of 4' : 'Cycle ' + cycleNum;
       if (cycEl) cycEl.textContent = cycleText;
 
@@ -10711,7 +10648,6 @@ function speakStopS1() {
         orbEl.style.transform = 'scale(' + phase.startScale + ')';
         void orbEl.offsetWidth;
         orbEl.style.transition = 'transform 600ms linear';
-        _diag.log('ORB-init', 'scale=' + phase.startScale);
       }
 
       /* Build the speech chain: phase name → One → Two → Three → Four
@@ -10730,7 +10666,6 @@ function speakStopS1() {
         if (window._s2SessionId !== sid) return;
         if (myPhaseId !== s2PhaseId) return;
         if (activeFill) activeFill.style.width = '100%';
-        _diag.log('PHASE-end', 'voice-driven (after Four onend)');
         goToNextPhase(phaseIdx, cycleNum);
       });
     }
@@ -10745,7 +10680,6 @@ function speakStopS1() {
 
     /* Initial state */
     if (orbEl) { orbEl.className = 's2-hero-img hold-bottom'; orbEl.style.transform = 'scale(0.92)'; }
-    _diag.log('INIT', 'orb→hold-bottom  scale=0.92  waiting 500ms');
     setTimeout(function() {
       if (window._s2SessionId !== sid) return;
       runPhase(0, 1);

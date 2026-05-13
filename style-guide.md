@@ -1067,3 +1067,45 @@ else if (sectionId === 'breakup-stop-s2') speakStopS2();
 - Hold-top phase: `'Hold'`
 - Exhale phase: `'Breathe out'`
 - Hold-bottom phase: `'Hold'`
+
+---
+
+## 21. STOP Practice Screen — Voice-Driven Timing Pattern
+
+Canonical pattern for any guided practice screen where voice, visual, and animation must stay synchronized. First locked in STOP Step 2 (Box Breathing). Inherits to STOP Step 3, Step 4, PMR steps, Cord Cutting steps, Inner Child steps, and any future screen with timed audio guidance.
+
+### Principle
+Speech is the master clock. Visual updates and animation steps fire from speech events (onstart / onend), never from a parallel timer. This eliminates voice/visual drift inherent to multi-clock architectures.
+
+### Architecture
+- **speakChain function**: takes an array of step objects `{ word, countNum, scaleProgress }`, sessionId, phaseId, phase config, and onComplete callback. Chains utterances sequentially via utterance.onend.
+- **Each step's onstart** fires the visual update (count number, animation step). Each step's onend triggers the next step in the chain. The final step's onend triggers onComplete.
+- **Phase boundary**: parent function calls `speechSynthesis.cancel()` at start of each new phase to clear leftover speech. Session-ID and phase-ID checks on every callback prevent stale events from corrupting current-phase state.
+- **Muted mode**: speakChain detects mute, fires visual immediately, chains next step via 800ms setTimeout (consistent visual rhythm without audio).
+
+### CSS for orb (or any animated element)
+```css
+.element {
+  transform: scale(initialScale);
+  transition: transform 600ms linear;
+}
+```
+Inline `style.transform` is set by JS on each speakChain step's onstart. CSS interpolates smoothly between values. Linear easing ensures visible motion throughout each interval (no perceived "stops" near the end of a transition).
+
+### Timeline segment (4-phase progress indicator)
+- Container: explicit `height: 46px`, parchment background rgba(243,233,220,0.6), 14px radius, flex 4 equal segments
+- Segment: `height: 100%`, padding 0 4px, overflow hidden, flex center
+- Label inside segment: `white-space: nowrap` + `overflow: hidden`, font-size 10px
+- Count display inside segment: `display: none` by default, `display: inline-block` when segment has `.active` class
+- Active state: rgba(160,104,50,0.18) background, bold label, count visible
+- Completed state: rgba(160,104,50,0.06) background, fill bar at 100% with rgba(160,104,50,0.4)
+- Fill bar: thin saffron line (#A06832, 2px height) at bottom of segment, width driven by speech progress (0/25/50/75/100%)
+
+### Speech configuration
+- Rate: 1.0 (natural pace, no acceleration since voice now drives timing)
+- Pitch: 0.9 (slightly warmer)
+- Volume: 0.85 (softer than default)
+- Voice preference order: Samantha → Karen → Google US English → first en-US → first en → first available
+
+### Phase length characteristics
+Phase length is variable, depending on TTS engine speed. Typical range 3-6 seconds per phase for a 5-utterance chain (phase name + 4 counts). Sync is always preserved because visual and animation are event-driven from speech, not parallel timers.

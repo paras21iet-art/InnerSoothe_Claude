@@ -236,3 +236,24 @@ Phase 2a complete. Canonical practice-screen template established. Key landings:
 - All other sections, S1, PMR, any other STEP screens
 - Breathing animation CSS, session-ID guard, cycle/countdown logic
 - CTA, progress dots, bottom-stack layout
+
+---
+
+## 2026-05-13 — STOP Step 2 (T — Take a Breath) LOCKED
+
+**Section locked:** `section-breakup-stop-s2`
+**Architecture:** v9 voice-driven phase timing.
+
+What was built:
+- Box breathing 4-phase cycle (Inhale → Hold-top → Exhale → Hold-bottom), 4 required cycles + optional extend
+- speakChain pattern: 5 chained utterances per phase (phase name + 4 counts), chained via utterance.onend
+- Visual count + orb scale step fire on each utterance's onstart for guaranteed voice/visual sync
+- Phase advances only after final count's onend (not on fixed timer)
+- 4-segment timeline progress indicator with active/completed states and per-step fill bar
+- Cycle counter, phase label (Cormorant italic), CTA gating after 4 cycles, "One more cycle" extend link
+- Entry intro flow: instructional utterance → 2.5s pause → "Beginning now" → cycle starts
+- Muted mode handled: visual continues without speech, consistent rhythm
+
+Iteration cost: 9 versions (v4 → v9) over the build. Key learning: voice-driven architecture is the correct hierarchy for guided audio screens; fixed-timer architectures cannot sync with variable TTS performance. Documented as canonical pattern in style-guide.md Section 21.
+
+Cleanup: temporary _diag diagnostic logging removed at lock time.
