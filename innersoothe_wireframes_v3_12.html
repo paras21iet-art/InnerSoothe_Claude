@@ -2185,15 +2185,15 @@
 
 .sec-stop-s2 .s2-hero-img {
   width: 100%; height: 100%; object-fit: cover; object-position: center;
-  display: block; transform: scale(0.85); transform-origin: center center;
+  display: block; transform: scale(0.92); transform-origin: center center;
   -webkit-mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
   mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
 }
-.sec-stop-s2 .s2-hero-img.waiting    { transform: scale(1.0);  transition: none; }
+.sec-stop-s2 .s2-hero-img.waiting    { transform: scale(0.92); transition: none; }
 .sec-stop-s2 .s2-hero-img.inhale     { transform: scale(1.05); transition: transform 4000ms cubic-bezier(0.4, 0, 0.4, 1); }
 .sec-stop-s2 .s2-hero-img.hold-top   { transform: scale(1.05); transition: none; }
-.sec-stop-s2 .s2-hero-img.exhale     { transform: scale(0.85); transition: transform 4000ms cubic-bezier(0.4, 0, 0.4, 1); }
-.sec-stop-s2 .s2-hero-img.hold-bottom{ transform: scale(0.85); transition: none; }
+.sec-stop-s2 .s2-hero-img.exhale     { transform: scale(0.92); transition: transform 4000ms cubic-bezier(0.4, 0, 0.4, 1); }
+.sec-stop-s2 .s2-hero-img.hold-bottom{ transform: scale(0.92); transition: none; }
 
 .sec-stop-s2 .s2-phase-label {
   text-align: center; font-family: 'Cormorant Garamond', Georgia, serif;
@@ -2203,7 +2203,7 @@
 
 .sec-stop-s2 .s2-phase-num {
   text-align: center; font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 300; font-size: 48px; color: #A06832; line-height: 1;
+  font-weight: 600; font-size: 48px; color: #A06832; line-height: 1;
   margin: 0; padding: 0;
 }
 
@@ -10274,7 +10274,7 @@ function speakStopS1() {
     <p class="s2-phase-label">Breathe in</p>
     <p class="s2-phase-num">4</p>
     <p class="s2-cycle">Cycle 1 of 4</p>
-    <p class="s2-pattern-pill">In through nose · Hold · Out through mouth · Hold</p>
+    <p class="s2-pattern-pill"><span style="font-weight:600;">In through nose</span> · <span style="font-weight:600;">Hold</span> · <span style="font-weight:600;">Out through mouth</span> · <span style="font-weight:600;">Hold</span></p>
 
     <div class="s2-bottom-stack">
       <div class="step-cta-wrap">
@@ -10363,10 +10363,10 @@ function speakStopS1() {
     var sid = window._s2SessionId;
 
     var phases = [
-      { label: 'Breathe in',  cls: 'inhale'      },
-      { label: 'Hold',        cls: 'hold-top'     },
-      { label: 'Breathe out', cls: 'exhale'       },
-      { label: 'Hold',        cls: 'hold-bottom'  }
+      { label: 'Breathe in',  voice: 'In',   cls: 'inhale'      },
+      { label: 'Hold',        voice: 'Hold',  cls: 'hold-top'    },
+      { label: 'Breathe out', voice: 'Out',  cls: 'exhale'       },
+      { label: 'Hold',        voice: 'Hold',  cls: 'hold-bottom' }
     ];
     var cycleNum = 1, phaseIdx = 0, s2CyclesCompleted = 0, inExtraCycle = false;
 
@@ -10382,17 +10382,17 @@ function speakStopS1() {
       if (more) more.classList.add('visible');
     }
 
+    /* Count UP 1→4: visual updates always; voice skipped when muted */
     function runCountdown() {
       var el = document.querySelector('.sec-stop-s2 .s2-phase-num');
-      if (!el) return;
-      var n = 4;
-      el.textContent = n;
-      var iv = setInterval(function() {
-        if (window._s2SessionId !== sid) { clearInterval(iv); return; }
-        n--;
-        if (n < 1) { clearInterval(iv); return; }
-        el.textContent = n;
-      }, 1000);
+      var words = ['One', 'Two', 'Three', 'Four'];
+      [400, 1400, 2400, 3400].forEach(function(delay, i) {
+        setTimeout(function() {
+          if (window._s2SessionId !== sid) return;
+          if (el) el.textContent = String(i + 1);
+          if (window.stopSpeak) window.stopSpeak(words[i]);
+        }, delay);
+      });
     }
 
     function runPhase() {
@@ -10402,7 +10402,7 @@ function speakStopS1() {
       var lbl = document.querySelector('.sec-stop-s2 .s2-phase-label');
       var cyc = document.querySelector('.sec-stop-s2 .s2-cycle');
       if (lbl) lbl.textContent = phase.label;
-      if (window.stopSpeak) window.stopSpeak(phase.label);
+      if (window.stopSpeak) window.stopSpeak(phase.voice);
       if (img) img.className = 's2-hero-img ' + phase.cls;
       var cycleText = cycleNum <= 4 ? 'Cycle ' + cycleNum + ' of 4' : 'Cycle ' + cycleNum;
       if (cyc) cyc.textContent = cycleText;
