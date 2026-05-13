@@ -10363,12 +10363,17 @@ function speakStopS1() {
     var sid = window._s2SessionId;
 
     var phases = [
-      { label: 'Breathe in',  voice: 'In',   cls: 'inhale'      },
-      { label: 'Hold',        voice: 'Hold',  cls: 'hold-top'    },
-      { label: 'Breathe out', voice: 'Out',  cls: 'exhale'       },
-      { label: 'Hold',        voice: 'Hold',  cls: 'hold-bottom' }
+      { label: 'Breathe in',  voice: 'Breathe in',  cls: 'inhale'      },
+      { label: 'Hold',        voice: 'Hold',         cls: 'hold-top'    },
+      { label: 'Breathe out', voice: 'Breathe out',  cls: 'exhale'      },
+      { label: 'Hold',        voice: 'Hold',         cls: 'hold-bottom' }
     ];
     var cycleNum = 1, phaseIdx = 0, s2CyclesCompleted = 0, inExtraCycle = false;
+
+    /* cancel-before-speak: forces utterance to play at scheduled time, not queue behind prior */
+    function s2Speak(text) {
+      if (window.stopSpeak) { speechSynthesis.cancel(); window.stopSpeak(text); }
+    }
 
     function onRequiredCyclesComplete() {
       var cta = document.getElementById('s2-cta');
@@ -10390,7 +10395,7 @@ function speakStopS1() {
         setTimeout(function() {
           if (window._s2SessionId !== sid) return;
           if (el) el.textContent = String(i + 1);
-          if (window.stopSpeak) window.stopSpeak(words[i]);
+          s2Speak(words[i]);
         }, delay);
       });
     }
@@ -10402,7 +10407,7 @@ function speakStopS1() {
       var lbl = document.querySelector('.sec-stop-s2 .s2-phase-label');
       var cyc = document.querySelector('.sec-stop-s2 .s2-cycle');
       if (lbl) lbl.textContent = phase.label;
-      if (window.stopSpeak) window.stopSpeak(phase.voice);
+      s2Speak(phase.voice);
       if (img) img.className = 's2-hero-img ' + phase.cls;
       var cycleText = cycleNum <= 4 ? 'Cycle ' + cycleNum + ' of 4' : 'Cycle ' + cycleNum;
       if (cyc) cyc.textContent = cycleText;
