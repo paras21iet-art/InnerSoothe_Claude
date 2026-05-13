@@ -10299,6 +10299,35 @@ function speakStopS1() {
 (function() {
   window._s2SessionId = window._s2SessionId || 0;
 
+  /* ── DIAGNOSTIC (temporary) — module-level so orb listeners always reference current state ── */
+  var _diag = {
+    t0: null, phaseStart: null, phase: '?', cycle: 0,
+    log: function(event, detail) {
+      var now = Date.now();
+      var d = new Date(now);
+      var ts = [d.getHours(), d.getMinutes(), d.getSeconds()]
+        .map(function(n) { return (n < 10 ? '0' : '') + n; }).join(':')
+        + '.' + (d.getMilliseconds() < 10 ? '00' : d.getMilliseconds() < 100 ? '0' : '') + d.getMilliseconds();
+      var t0r = _diag.t0 != null ? ' +' + (now - _diag.t0) + 'ms' : '';
+      var phr = _diag.phaseStart != null ? '  ph+' + (now - _diag.phaseStart) + 'ms' : '';
+      console.log('[' + ts + '] [' + _diag.phase + '/cy' + _diag.cycle + ']' + t0r + phr + '  ' + event + ': ' + detail);
+    },
+    attachOrb: function() {
+      var img = document.querySelector('.sec-stop-s2 .s2-hero-img');
+      if (!img || img._s2diagDone) return;
+      img._s2diagDone = true;
+      img.addEventListener('transitionstart', function(e) {
+        if (e.propertyName === 'transform')
+          _diag.log('ORB-transitionstart', 'class=' + img.className.trim());
+      });
+      img.addEventListener('transitionend', function(e) {
+        if (e.propertyName === 'transform')
+          _diag.log('ORB-transitionend', 'class=' + img.className.trim());
+      });
+    }
+  };
+  /* ── END DIAGNOSTIC SETUP ── */
+
   /* Two-part instructional intro — utterance 1 → 2.5s pause → utterance 2 → breathing cycle */
   window.speakStopS2 = function() {
     var sid = window._s2SessionId;
@@ -10362,6 +10391,14 @@ function speakStopS1() {
     window._s2SessionId++;
     var sid = window._s2SessionId;
 
+    /* ── DIAGNOSTIC: reset per-session state ── */
+    _diag.t0 = Date.now();
+    _diag.phaseStart = null;
+    _diag.phase = 'init';
+    _diag.cycle = 0;
+    _diag.log('SESSION-START', 'sid=' + sid);
+    _diag.attachOrb();
+
     var phases = [
       { label: 'Breathe in',  voice: 'Breathe in',  cls: 'inhale'      },
       { label: 'Hold',        voice: 'Hold',         cls: 'hold-top'    },
@@ -10370,9 +10407,28 @@ function speakStopS1() {
     ];
     var cycleNum = 1, phaseIdx = 0, s2CyclesCompleted = 0, inExtraCycle = false;
 
-    /* speak without cancel: utterances spaced 800ms apart so each completes naturally */
+    /* DIAGNOSTIC s2Speak: creates utterance directly to attach onstart/onend timing */
     function s2Speak(text) {
-      if (window.stopSpeak) { window.stopSpeak(text); }
+      var callMs = Date.now() - _diag.t0;
+      _diag.log('SPEAK-queued', '"' + text + '"  callAt=+' + callMs + 'ms');
+      if (window.stopSession && window.stopSession.muted) {
+        _diag.log('SPEAK-skip', '"' + text + '"  (muted)');
+        return;
+      }
+      var voices = speechSynthesis.getVoices();
+      var voice = voices.find(function(v) { return v.name === 'Samantha'; })
+        || voices.find(function(v) { return v.name === 'Karen'; })
+        || voices.find(function(v) { return v.name === 'Google US English'; })
+        || voices.find(function(v) { return v.lang && v.lang.startsWith('en-US'); })
+        || voices.find(function(v) { return v.lang && v.lang.startsWith('en'); })
+        || (voices.length > 0 ? voices[0] : null);
+      var u = new SpeechSynthesisUtterance(text);
+      u.voice = voice; u.rate = 0.82; u.pitch = 0.9; u.volume = 0.85;
+      u.onstart = function() { _diag.log('SPEAK-onstart', '"' + text + '"'); };
+      u.onend   = function() { _diag.log('SPEAK-onend',   '"' + text + '"'); };
+      u.onerror = function(e) { _diag.log('SPEAK-onerror', '"' + text + '"  err=' + (e && e.error)); };
+      if (window.stopSession) window.stopSession.currentUtterance = u;
+      speechSynthesis.speak(u);
     }
 
     function onRequiredCyclesComplete() {
@@ -10392,8 +10448,11 @@ function speakStopS1() {
       var el = document.querySelector('.sec-stop-s2 .s2-phase-num');
       var words = ['One', 'Two', 'Three', 'Four'];
       [800, 1600, 2400, 3200].forEach(function(delay, i) {
+        var expectedAbs = _diag.phaseStart + delay;
         setTimeout(function() {
           if (window._s2SessionId !== sid) return;
+          var lateMs = Date.now() - expectedAbs;
+          _diag.log('VISUAL-count', '"' + String(i + 1) + '"  sched+' + delay + 'ms  late=' + lateMs + 'ms');
           if (el) el.textContent = String(i + 1);
           s2Speak(words[i]);
         }, delay);
@@ -10402,20 +10461,31 @@ function speakStopS1() {
 
     function runPhase() {
       if (window._s2SessionId !== sid) return;
+      _diag.phase = phases[phaseIdx].cls;
+      _diag.cycle = cycleNum;
+      _diag.phaseStart = Date.now();
+      _diag.log('PHASE-start', 'label="' + phases[phaseIdx].label + '"  voice="' + phases[phaseIdx].voice + '"');
+
       var phase = phases[phaseIdx];
       var img = document.querySelector('.sec-stop-s2 .s2-hero-img');
       var lbl = document.querySelector('.sec-stop-s2 .s2-phase-label');
       var cyc = document.querySelector('.sec-stop-s2 .s2-cycle');
       var num = document.querySelector('.sec-stop-s2 .s2-phase-num');
-      if (lbl) lbl.textContent = phase.label;
-      if (num) num.textContent = '';
+
+      if (lbl) { lbl.textContent = phase.label;  _diag.log('VISUAL-label', '"' + phase.label + '"'); }
+      if (num) { num.textContent = '';            _diag.log('VISUAL-num', 'blank'); }
       s2Speak(phase.voice);
-      if (img) img.className = 's2-hero-img ' + phase.cls;
+      if (img) { img.className = 's2-hero-img ' + phase.cls; _diag.log('ORB-class-set', img.className.trim()); }
+
       var cycleText = cycleNum <= 4 ? 'Cycle ' + cycleNum + ' of 4' : 'Cycle ' + cycleNum;
       if (cyc) cyc.textContent = cycleText;
+
       runCountdown();
+
+      var phaseEndExpected = _diag.phaseStart + 4000;
       setTimeout(function() {
         if (window._s2SessionId !== sid) return;
+        _diag.log('PHASE-end', 'late=' + (Date.now() - phaseEndExpected) + 'ms  phaseIdx-before-inc=' + phaseIdx);
         phaseIdx++;
         var cycleJustCompleted = false;
         if (phaseIdx >= 4) {
@@ -10447,6 +10517,7 @@ function speakStopS1() {
 
     var img = document.querySelector('.sec-stop-s2 .s2-hero-img');
     if (img) img.className = 's2-hero-img hold-bottom';
+    _diag.log('INIT', 'orb→hold-bottom  waiting 500ms before phase 1');
     setTimeout(function() {
       if (window._s2SessionId !== sid) return;
       runPhase();
