@@ -2185,15 +2185,10 @@
 
 .sec-stop-s2 .s2-hero-img {
   width: 100%; height: 100%; object-fit: cover; object-position: center;
-  display: block; transform: scale(0.92); transform-origin: center center; transition: none;
+  display: block; transform: scale(0.92); transform-origin: center center; transition: transform 600ms linear;
   -webkit-mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
   mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
 }
-.sec-stop-s2 .s2-hero-img.waiting    { transform: scale(0.92); transition: none; }
-.sec-stop-s2 .s2-hero-img.inhale     { transform: scale(1.05); transition: none; }
-.sec-stop-s2 .s2-hero-img.hold-top   { transform: scale(1.05); transition: none; }
-.sec-stop-s2 .s2-hero-img.exhale     { transform: scale(0.92); transition: none; }
-.sec-stop-s2 .s2-hero-img.hold-bottom{ transform: scale(0.92); transition: none; }
 
 .sec-stop-s2 .s2-phase-label {
   text-align: center; font-family: 'Cormorant Garamond', Georgia, serif;
@@ -10508,10 +10503,10 @@ function speakStopS1() {
     var COUNT_INTERVAL  = 800;
 
     var phases = [
-      { name: 'inhale',      label: 'Breathe in',  voice: 'In',   startScale: 0.92, endScale: 1.05 },
-      { name: 'hold-top',    label: 'Hold',         voice: 'Hold', startScale: 1.05, endScale: 1.05 },
-      { name: 'exhale',      label: 'Breathe out',  voice: 'Out',  startScale: 1.05, endScale: 0.92 },
-      { name: 'hold-bottom', label: 'Hold',         voice: 'Hold', startScale: 0.92, endScale: 0.92 }
+      { name: 'inhale',      label: 'Breathe in',  voice: 'Breathe in',  startScale: 0.92, endScale: 1.05 },
+      { name: 'hold-top',    label: 'Hold',         voice: 'Hold',        startScale: 1.05, endScale: 1.05 },
+      { name: 'exhale',      label: 'Breathe out',  voice: 'Breathe out', startScale: 1.05, endScale: 0.92 },
+      { name: 'hold-bottom', label: 'Hold',         voice: 'Hold',        startScale: 0.92, endScale: 0.92 }
     ];
 
     var s2CyclesCompleted = 0;
@@ -10548,6 +10543,73 @@ function speakStopS1() {
       };
       u.onend   = function() { _diag.log('SPEAK-onend',   '"' + text + '"'); };
       u.onerror = function(e) { _diag.log('SPEAK-onerror', '"' + text + '"  err=' + (e && e.error)); };
+      if (window.stopSession) window.stopSession.currentUtterance = u;
+      speechSynthesis.speak(u);
+    }
+
+    function speakChain(steps, sessionId, phaseId, phase, onComplete) {
+      if (window._s2SessionId !== sessionId) return;
+      if (phaseId !== s2PhaseId) return;
+      if (steps.length === 0) { onComplete(); return; }
+
+      var step = steps[0];
+
+      var fireVisual = function() {
+        if (step.countNum != null) {
+          s2UpdateActiveCount(step.countNum);
+          _diag.log('VISUAL-count-onstart', '"' + step.countNum + '"  word="' + step.word + '"');
+        }
+        if (orbEl) {
+          var newScale = phase.startScale + (phase.endScale - phase.startScale) * step.scaleProgress;
+          orbEl.style.transform = 'scale(' + newScale.toFixed(4) + ')';
+          _diag.log('ORB-step', 'word="' + step.word + '"  progress=' + step.scaleProgress + ' scale=' + newScale.toFixed(4));
+        }
+        var activeFill = document.querySelector('.sec-stop-s2 .s2-timeline-segment.active .s2-timeline-fill');
+        if (activeFill) {
+          activeFill.style.width = (step.scaleProgress * 100) + '%';
+        }
+      };
+
+      if (isMuted()) {
+        fireVisual();
+        setTimeout(function() {
+          speakChain(steps.slice(1), sessionId, phaseId, phase, onComplete);
+        }, 800);
+        return;
+      }
+
+      var voices = speechSynthesis.getVoices();
+      var voice = voices.find(function(v) { return v.name === 'Samantha'; })
+        || voices.find(function(v) { return v.name === 'Karen'; })
+        || voices.find(function(v) { return v.name === 'Google US English'; })
+        || voices.find(function(v) { return v.lang && v.lang.startsWith('en-US'); })
+        || voices.find(function(v) { return v.lang && v.lang.startsWith('en'); })
+        || (voices.length > 0 ? voices[0] : null);
+
+      var u = new SpeechSynthesisUtterance(step.word);
+      u.voice = voice; u.rate = 1.0; u.pitch = 0.9; u.volume = 0.85;
+      var queuedAt = performance.now();
+
+      u.onstart = function() {
+        var ttsMs = Math.round(performance.now() - queuedAt);
+        _diag.log('SPEAK-onstart', '"' + step.word + '"  ttsMs=' + ttsMs);
+        if (window._s2SessionId !== sessionId) return;
+        if (phaseId !== s2PhaseId) return;
+        fireVisual();
+      };
+      u.onend = function() {
+        _diag.log('SPEAK-onend', '"' + step.word + '"');
+        if (window._s2SessionId !== sessionId) return;
+        if (phaseId !== s2PhaseId) return;
+        speakChain(steps.slice(1), sessionId, phaseId, phase, onComplete);
+      };
+      u.onerror = function(e) {
+        _diag.log('SPEAK-onerror', '"' + step.word + '"  err=' + (e && e.error));
+        if (window._s2SessionId !== sessionId) return;
+        if (phaseId !== s2PhaseId) return;
+        speakChain(steps.slice(1), sessionId, phaseId, phase, onComplete);
+      };
+
       if (window.stopSession) window.stopSession.currentUtterance = u;
       speechSynthesis.speak(u);
     }
@@ -10633,77 +10695,44 @@ function speakStopS1() {
       _diag.phaseStart = Date.now();
       _diag.log('PHASE-start', 'label="' + phase.label + '"  voice="' + phase.voice + '"  ' + phase.startScale + '→' + phase.endScale);
 
-      /* Label + cycle counter — immediate */
+      /* Visual label, cycle counter, count blank — immediate */
       if (lblEl) { lblEl.textContent = phase.label; _diag.log('VISUAL-label', '"' + phase.label + '"'); }
       s2ClearActiveCount(); _diag.log('VISUAL-num', 'blank');
       var cycleText = cycleNum <= 4 ? 'Cycle ' + cycleNum + ' of 4' : 'Cycle ' + cycleNum;
       if (cycEl) cycEl.textContent = cycleText;
 
-      /* Class for CSS label styling; inline style drives the actual scale (no CSS transition) */
+      /* Update timeline active segment */
+      updateTimeline(phaseIdx, cycleNum);
+      var activeFill = document.querySelector('.sec-stop-s2 .s2-timeline-segment[data-phase="' + phaseIdx + '"] .s2-timeline-fill');
+
+      /* Snap orb to startScale instantly (no transition for the initial jump) */
       if (orbEl) {
-        orbEl.className = 's2-hero-img ' + phase.name;
+        orbEl.style.transition = 'none';
         orbEl.style.transform = 'scale(' + phase.startScale + ')';
-        _diag.log('ORB-init', orbEl.className.trim() + '  scale=' + phase.startScale);
+        void orbEl.offsetWidth;
+        orbEl.style.transition = 'transform 600ms linear';
+        _diag.log('ORB-init', 'scale=' + phase.startScale);
       }
 
-      updateTimeline(phaseIdx, cycleNum);
-      const activeFill = document.querySelector(`.sec-stop-s2 .s2-timeline-segment[data-phase="${phaseIdx}"] .s2-timeline-fill`);
+      /* Build the speech chain: phase name → One → Two → Three → Four
+         Each count's onstart fires visual + orb step */
+      var steps = [
+        { word: phase.voice, countNum: null, scaleProgress: 0    },
+        { word: 'One',       countNum: 1,    scaleProgress: 0.25 },
+        { word: 'Two',       countNum: 2,    scaleProgress: 0.50 },
+        { word: 'Three',     countNum: 3,    scaleProgress: 0.75 },
+        { word: 'Four',      countNum: 4,    scaleProgress: 1.00 }
+      ];
 
-      /* Speak phase name immediately — TTS startup ~200ms places audio at ~ph+200ms */
-      s2Speak(phase.voice);
+      if (activeFill) activeFill.style.width = '0%';
 
-      /* Schedule counts: visual fires unconditionally at scheduled time; voice is best-effort */
-      words.forEach(function(word, i) {
-        var scheduledTime = (i + 1) * COUNT_INTERVAL;
-        var countNum = i + 1;
-        _diag.log('SPEAK-scheduled', '"' + word + '"  scheduledAt=+' + scheduledTime + 'ms');
-        setTimeout(function() {
-          if (window._s2SessionId !== sid) return;
-          if (myPhaseId !== s2PhaseId) return;
-
-          /* Visual ALWAYS fires at scheduled time — independent of voice timing */
-          s2UpdateActiveCount(countNum);
-          _diag.log('VISUAL-count', '"' + countNum + '"  scheduledAt=+' + scheduledTime + 'ms');
-
-          /* Voice plays best-effort — does not gate the visual */
-          if (!isMuted()) {
-            s2Speak(word);
-          }
-        }, scheduledTime);
-      });
-
-      /* rAF loop — drives orb scale and fill bar */
-      var rafStart = performance.now();
-      var lastDiagScaleTick = -1;
-
-      function frame(now) {
+      speakChain(steps, sid, myPhaseId, phase, function() {
         if (window._s2SessionId !== sid) return;
         if (myPhaseId !== s2PhaseId) return;
-
-        var elapsed  = now - rafStart;
-        var progress = Math.min(elapsed / PHASE_DURATION, 1);
-        var scale    = phase.startScale + (phase.endScale - phase.startScale) * progress;
-
-        if (orbEl) orbEl.style.transform = 'scale(' + scale.toFixed(4) + ')';
-        if (activeFill) activeFill.style.width = (progress * 100) + '%';
-
-        /* Log scale every 250ms */
-        var diagTick = Math.floor(elapsed / 250);
-        if (diagTick !== lastDiagScaleTick) {
-          lastDiagScaleTick = diagTick;
-          _diag.log('ORB-scale', scale.toFixed(3) + '  elapsed=' + Math.round(elapsed) + 'ms  progress=' + progress.toFixed(3));
-        }
-
-        if (progress < 1) {
-          rafId = requestAnimationFrame(frame);
-        } else {
-          if (orbEl) orbEl.style.transform = 'scale(' + phase.endScale + ')';
-          _diag.log('PHASE-end', 'elapsed=' + Math.round(elapsed) + 'ms  endScale=' + phase.endScale);
-          goToNextPhase(phaseIdx, cycleNum);
-        }
-      }
-
-      rafId = requestAnimationFrame(frame);
+        if (activeFill) activeFill.style.width = '100%';
+        _diag.log('PHASE-end', 'voice-driven (after Four onend)');
+        goToNextPhase(phaseIdx, cycleNum);
+      });
     }
 
     window.s2ExtendCycle = function() {
