@@ -2229,12 +2229,17 @@
   position: relative;
   overflow: hidden;
   transition: background-color 250ms ease;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .sec-stop-s2 .s2-timeline-segment.active {
-  background: rgba(160,104,50,0.12);
+  background: rgba(160,104,50,0.18);
+  box-shadow: 0 1px 3px rgba(160,104,50,0.15);
 }
 .sec-stop-s2 .s2-timeline-segment.completed {
-  background: rgba(160,104,50,0.04);
+  background: rgba(160,104,50,0.06);
 }
 .sec-stop-s2 .s2-timeline-label {
   font-family: 'DM Sans', sans-serif;
@@ -2246,6 +2251,9 @@
   position: relative;
   z-index: 1;
   transition: color 250ms ease, font-weight 250ms ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
 }
 .sec-stop-s2 .s2-timeline-segment.active .s2-timeline-label {
   color: #1E1408;
@@ -2265,7 +2273,8 @@
 }
 .sec-stop-s2 .s2-timeline-segment.completed .s2-timeline-fill {
   width: 100%;
-  background: rgba(160,104,50,0.5);
+  background: rgba(160,104,50,0.4);
+  height: 2px;
 }
 
 .sec-stop-s2 .s2-bottom-stack {
@@ -10478,6 +10487,7 @@ function speakStopS1() {
     var s2CyclesCompleted = 0;
     var inExtraCycle = false;
     var rafId = null;
+    var s2PhaseId = 0;
     var words = ['One', 'Two', 'Three', 'Four'];
 
     var orbEl = document.querySelector('.sec-stop-s2 .s2-hero-img');
@@ -10514,6 +10524,8 @@ function speakStopS1() {
     }
 
     function onRequiredCyclesComplete() {
+      s2PhaseId++;
+      try { speechSynthesis.cancel(); } catch(e) {}
       var cta = document.getElementById('s2-cta');
       if (cta) { cta.disabled = false; cta.classList.add('enabled'); }
       var more = document.getElementById('s2-more-cycle');
@@ -10570,6 +10582,9 @@ function speakStopS1() {
 
     function runPhase(phaseIdx, cycleNum) {
       if (window._s2SessionId !== sid) return;
+      s2PhaseId++;
+      var myPhaseId = s2PhaseId;
+      try { speechSynthesis.cancel(); } catch(e) {}
       if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
 
       var phase = phases[phaseIdx];
@@ -10604,6 +10619,7 @@ function speakStopS1() {
         _diag.log('SPEAK-scheduled', '"' + word + '"  scheduledAt=+' + scheduledTime + 'ms');
         setTimeout(function() {
           if (window._s2SessionId !== sid) return;
+          if (myPhaseId !== s2PhaseId) return;
           if (isMuted()) {
             /* Muted: onstart never fires — show visual immediately */
             if (numEl) numEl.textContent = String(countNum);
@@ -10613,6 +10629,7 @@ function speakStopS1() {
           s2Speak(word, {
             onstart: function(ttsMs) {
               if (window._s2SessionId !== sid) return;
+              if (myPhaseId !== s2PhaseId) return;
               if (numEl) numEl.textContent = String(countNum);
               _diag.log('VISUAL-count-onstart', '"' + countNum + '"  ttsStartup=' + ttsMs + 'ms  scheduledAt=+' + scheduledTime + 'ms');
             }
@@ -10626,6 +10643,7 @@ function speakStopS1() {
 
       function frame(now) {
         if (window._s2SessionId !== sid) return;
+        if (myPhaseId !== s2PhaseId) return;
 
         var elapsed  = now - rafStart;
         var progress = Math.min(elapsed / PHASE_DURATION, 1);
