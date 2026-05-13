@@ -2190,9 +2190,9 @@
   mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
 }
 .sec-stop-s2 .s2-hero-img.waiting    { transform: scale(0.92); transition: none; }
-.sec-stop-s2 .s2-hero-img.inhale     { transform: scale(1.05); transition: transform 4000ms linear; }
+.sec-stop-s2 .s2-hero-img.inhale     { transform: scale(1.05); transition: none; }
 .sec-stop-s2 .s2-hero-img.hold-top   { transform: scale(1.05); transition: none; }
-.sec-stop-s2 .s2-hero-img.exhale     { transform: scale(0.92); transition: transform 4000ms linear; }
+.sec-stop-s2 .s2-hero-img.exhale     { transform: scale(0.92); transition: none; }
 .sec-stop-s2 .s2-hero-img.hold-bottom{ transform: scale(0.92); transition: none; }
 
 .sec-stop-s2 .s2-phase-label {
@@ -10386,7 +10386,7 @@ function speakStopS1() {
     speechSynthesis.speak(u1);
   };
 
-  /* FIX 1 + FIX 2 — 4-cycle default with extend option; CTA gated on completion */
+  /* rAF single-clock architecture — orb scale, visual counts, and speech from one frame loop */
   window.runS2BreathingCycles = function() {
     window._s2SessionId++;
     var sid = window._s2SessionId;
@@ -10399,22 +10399,34 @@ function speakStopS1() {
     _diag.log('SESSION-START', 'sid=' + sid);
     _diag.attachOrb();
 
+    var PHASE_DURATION    = 4000;
+    var COUNT_INTERVAL    = 800;
+    var TTS_STARTUP_OFFSET = 200;
+
     var phases = [
-      { label: 'Breathe in',  voice: 'Breathe in',  cls: 'inhale'      },
-      { label: 'Hold',        voice: 'Hold',         cls: 'hold-top'    },
-      { label: 'Breathe out', voice: 'Breathe out',  cls: 'exhale'      },
-      { label: 'Hold',        voice: 'Hold',         cls: 'hold-bottom' }
+      { name: 'inhale',      label: 'Breathe in',  voice: 'Breathe in',  startScale: 0.92, endScale: 1.05 },
+      { name: 'hold-top',    label: 'Hold',         voice: 'Hold',        startScale: 1.05, endScale: 1.05 },
+      { name: 'exhale',      label: 'Breathe out',  voice: 'Breathe out', startScale: 1.05, endScale: 0.92 },
+      { name: 'hold-bottom', label: 'Hold',         voice: 'Hold',        startScale: 0.92, endScale: 0.92 }
     ];
-    var cycleNum = 1, phaseIdx = 0, s2CyclesCompleted = 0, inExtraCycle = false;
+
+    var s2CyclesCompleted = 0;
+    var inExtraCycle = false;
+    var rafId = null;
+    var words = ['One', 'Two', 'Three', 'Four'];
+
+    var orbEl = document.querySelector('.sec-stop-s2 .s2-hero-img');
+    var lblEl = document.querySelector('.sec-stop-s2 .s2-phase-label');
+    var numEl = document.querySelector('.sec-stop-s2 .s2-phase-num');
+    var cycEl = document.querySelector('.sec-stop-s2 .s2-cycle');
+
+    function isMuted() { return !!(window.stopSession && window.stopSession.muted); }
 
     /* DIAGNOSTIC s2Speak: creates utterance directly to attach onstart/onend timing */
     function s2Speak(text) {
       var callMs = Date.now() - _diag.t0;
       _diag.log('SPEAK-queued', '"' + text + '"  callAt=+' + callMs + 'ms');
-      if (window.stopSession && window.stopSession.muted) {
-        _diag.log('SPEAK-skip', '"' + text + '"  (muted)');
-        return;
-      }
+      if (isMuted()) { _diag.log('SPEAK-skip', '"' + text + '"  (muted)'); return; }
       var voices = speechSynthesis.getVoices();
       var voice = voices.find(function(v) { return v.name === 'Samantha'; })
         || voices.find(function(v) { return v.name === 'Karen'; })
@@ -10443,68 +10455,95 @@ function speakStopS1() {
       if (more) more.classList.add('visible');
     }
 
-    /* Count UP 1→4 at 800ms intervals; visual blank at t=0, appears with each count */
-    function runCountdown() {
-      var el = document.querySelector('.sec-stop-s2 .s2-phase-num');
-      var words = ['One', 'Two', 'Three', 'Four'];
-      [800, 1600, 2400, 3200].forEach(function(delay, i) {
-        var expectedAbs = _diag.phaseStart + delay;
-        setTimeout(function() {
-          if (window._s2SessionId !== sid) return;
-          var lateMs = Date.now() - expectedAbs;
-          _diag.log('VISUAL-count', '"' + String(i + 1) + '"  sched+' + delay + 'ms  late=' + lateMs + 'ms');
-          if (el) el.textContent = String(i + 1);
-          s2Speak(words[i]);
-        }, delay);
-      });
+    function goToNextPhase(phaseIdx, cycleNum) {
+      if (window._s2SessionId !== sid) return;
+      var nextIdx = phaseIdx + 1;
+      var nextCycle = cycleNum;
+      var cycleJustCompleted = false;
+      if (nextIdx >= 4) {
+        nextIdx = 0; s2CyclesCompleted++; nextCycle = cycleNum + 1; cycleJustCompleted = true;
+      }
+      if (cycleJustCompleted && !inExtraCycle && s2CyclesCompleted >= 4) { onRequiredCyclesComplete(); return; }
+      if (cycleJustCompleted && inExtraCycle) { inExtraCycle = false; onExtraCycleComplete(); return; }
+      runPhase(nextIdx, nextCycle);
     }
 
-    function runPhase() {
+    function runPhase(phaseIdx, cycleNum) {
       if (window._s2SessionId !== sid) return;
-      _diag.phase = phases[phaseIdx].cls;
-      _diag.cycle = cycleNum;
-      _diag.phaseStart = Date.now();
-      _diag.log('PHASE-start', 'label="' + phases[phaseIdx].label + '"  voice="' + phases[phaseIdx].voice + '"');
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
 
       var phase = phases[phaseIdx];
-      var img = document.querySelector('.sec-stop-s2 .s2-hero-img');
-      var lbl = document.querySelector('.sec-stop-s2 .s2-phase-label');
-      var cyc = document.querySelector('.sec-stop-s2 .s2-cycle');
-      var num = document.querySelector('.sec-stop-s2 .s2-phase-num');
+      _diag.phase = phase.name;
+      _diag.cycle = cycleNum;
+      _diag.phaseStart = Date.now();
+      _diag.log('PHASE-start', 'label="' + phase.label + '"  voice="' + phase.voice + '"  ' + phase.startScale + '→' + phase.endScale);
 
-      if (lbl) { lbl.textContent = phase.label;  _diag.log('VISUAL-label', '"' + phase.label + '"'); }
-      if (num) { num.textContent = '';            _diag.log('VISUAL-num', 'blank'); }
-      s2Speak(phase.voice);
-      if (img) { img.className = 's2-hero-img ' + phase.cls; _diag.log('ORB-class-set', img.className.trim()); }
-
+      /* Label + cycle counter — immediate */
+      if (lblEl) { lblEl.textContent = phase.label; _diag.log('VISUAL-label', '"' + phase.label + '"'); }
+      if (numEl) { numEl.textContent = ''; _diag.log('VISUAL-num', 'blank'); }
       var cycleText = cycleNum <= 4 ? 'Cycle ' + cycleNum + ' of 4' : 'Cycle ' + cycleNum;
-      if (cyc) cyc.textContent = cycleText;
+      if (cycEl) cycEl.textContent = cycleText;
 
-      runCountdown();
+      /* Class for CSS label styling; inline style drives the actual scale (no CSS transition) */
+      if (orbEl) {
+        orbEl.className = 's2-hero-img ' + phase.name;
+        orbEl.style.transform = 'scale(' + phase.startScale + ')';
+        _diag.log('ORB-init', orbEl.className.trim() + '  scale=' + phase.startScale);
+      }
 
-      var phaseEndExpected = _diag.phaseStart + 4000;
-      setTimeout(function() {
+      /* Speak phase name immediately — TTS startup ~200ms places audio at ~ph+200ms */
+      s2Speak(phase.voice);
+
+      /* Schedule speech for each count: fire TTS_STARTUP_OFFSET before the visual moment */
+      words.forEach(function(word, i) {
+        var visualTime = (i + 1) * COUNT_INTERVAL;
+        var speakTime  = Math.max(0, visualTime - TTS_STARTUP_OFFSET);
+        _diag.log('SPEAK-scheduled', '"' + word + '"  speakAt=+' + speakTime + 'ms  visualAt=+' + visualTime + 'ms');
+        setTimeout(function() {
+          if (window._s2SessionId !== sid) return;
+          s2Speak(word);
+        }, speakTime);
+      });
+
+      /* rAF loop — single clock drives orb scale + visual count */
+      var rafStart = performance.now();
+      var lastVisualCount = 0;
+      var lastDiagScaleTick = -1;
+
+      function frame(now) {
         if (window._s2SessionId !== sid) return;
-        _diag.log('PHASE-end', 'late=' + (Date.now() - phaseEndExpected) + 'ms  phaseIdx-before-inc=' + phaseIdx);
-        phaseIdx++;
-        var cycleJustCompleted = false;
-        if (phaseIdx >= 4) {
-          phaseIdx = 0;
-          s2CyclesCompleted++;
-          cycleNum++;
-          cycleJustCompleted = true;
+
+        var elapsed  = now - rafStart;
+        var progress = Math.min(elapsed / PHASE_DURATION, 1);
+        var scale    = phase.startScale + (phase.endScale - phase.startScale) * progress;
+
+        if (orbEl) orbEl.style.transform = 'scale(' + scale.toFixed(4) + ')';
+
+        /* Log scale every 250ms */
+        var diagTick = Math.floor(elapsed / 250);
+        if (diagTick !== lastDiagScaleTick) {
+          lastDiagScaleTick = diagTick;
+          _diag.log('ORB-scale', scale.toFixed(3) + '  elapsed=' + Math.round(elapsed) + 'ms  progress=' + progress.toFixed(3));
         }
-        if (cycleJustCompleted && !inExtraCycle && s2CyclesCompleted >= 4) {
-          onRequiredCyclesComplete();
-          return;
+
+        /* Visual count: advance when elapsed crosses 800/1600/2400/3200 boundary */
+        var expectedCount = Math.min(Math.floor(elapsed / COUNT_INTERVAL), 4);
+        if (expectedCount >= 1 && expectedCount !== lastVisualCount) {
+          lastVisualCount = expectedCount;
+          if (numEl) numEl.textContent = String(expectedCount);
+          _diag.log('COUNT-fire', '"' + expectedCount + '"  elapsed=' + Math.round(elapsed) + 'ms');
         }
-        if (cycleJustCompleted && inExtraCycle) {
-          inExtraCycle = false;
-          onExtraCycleComplete();
-          return;
+
+        if (progress < 1) {
+          rafId = requestAnimationFrame(frame);
+        } else {
+          if (orbEl) orbEl.style.transform = 'scale(' + phase.endScale + ')';
+          _diag.log('PHASE-end', 'elapsed=' + Math.round(elapsed) + 'ms  endScale=' + phase.endScale);
+          goToNextPhase(phaseIdx, cycleNum);
         }
-        runPhase();
-      }, 4000);
+      }
+
+      rafId = requestAnimationFrame(frame);
     }
 
     window.s2ExtendCycle = function() {
@@ -10512,15 +10551,15 @@ function speakStopS1() {
       var more = document.getElementById('s2-more-cycle');
       if (more) more.classList.remove('visible');
       inExtraCycle = true;
-      runPhase();
+      runPhase(0, s2CyclesCompleted + 1);
     };
 
-    var img = document.querySelector('.sec-stop-s2 .s2-hero-img');
-    if (img) img.className = 's2-hero-img hold-bottom';
-    _diag.log('INIT', 'orb→hold-bottom  waiting 500ms before phase 1');
+    /* Initial state */
+    if (orbEl) { orbEl.className = 's2-hero-img hold-bottom'; orbEl.style.transform = 'scale(0.92)'; }
+    _diag.log('INIT', 'orb→hold-bottom  scale=0.92  waiting 500ms');
     setTimeout(function() {
       if (window._s2SessionId !== sid) return;
-      runPhase();
+      runPhase(0, 1);
     }, 500);
   };
 })();
@@ -10756,7 +10795,7 @@ window.onStopSectionShow = function(sectionId) {
     var cyc = document.querySelector('.sec-stop-s2 .s2-cycle');
     var cta = document.getElementById('s2-cta');
     var more = document.getElementById('s2-more-cycle');
-    if (img) img.className = 's2-hero-img waiting';
+    if (img) { img.className = 's2-hero-img waiting'; img.style.transform = ''; }
     if (lbl) lbl.textContent = 'Breathe in';
     if (num) num.textContent = '4';
     if (cyc) cyc.textContent = 'Cycle 1 of 4';
