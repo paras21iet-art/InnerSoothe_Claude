@@ -10299,25 +10299,62 @@ function speakStopS1() {
 (function() {
   window._s2SessionId = window._s2SessionId || 0;
 
-  /* FIX 3 — Entry phrase speaks first; breathing starts on onend (5s fallback) */
+  /* Two-part instructional intro — utterance 1 → 2.5s pause → utterance 2 → breathing cycle */
   window.speakStopS2 = function() {
     var sid = window._s2SessionId;
-    var fallbackTimer;
+    var fb1, fb2, pauseTimer;
+    var u1done = false, u2done = false;
 
-    function onEntryPhraseEnd() {
-      clearTimeout(fallbackTimer);
+    function getVoice() {
+      var voices = speechSynthesis.getVoices();
+      return voices.find(function(v){ return v.name === 'Samantha'; })
+        || voices.find(function(v){ return v.name === 'Karen'; })
+        || voices.find(function(v){ return v.name === 'Google US English'; })
+        || voices.find(function(v){ return v.lang && v.lang.startsWith('en-US'); })
+        || voices.find(function(v){ return v.lang && v.lang.startsWith('en'); })
+        || (voices.length > 0 ? voices[0] : null);
+    }
+
+    function startCycle() {
+      clearTimeout(fb1); clearTimeout(fb2); clearTimeout(pauseTimer);
       if (window._s2SessionId !== sid) return;
       window.runS2BreathingCycles();
     }
 
+    function speakUtterance2() {
+      clearTimeout(fb1); clearTimeout(pauseTimer);
+      if (window._s2SessionId !== sid) return;
+      if (window.stopSession && window.stopSession.muted) { startCycle(); return; }
+      fb2 = setTimeout(startCycle, 8000);
+      var u2 = new SpeechSynthesisUtterance('Get comfortable. When you\'re ready, follow the orb... Beginning now.');
+      u2.voice = getVoice(); u2.rate = 0.82; u2.pitch = 0.9; u2.volume = 0.85;
+      function onU2Done() { if (u2done) return; u2done = true; clearTimeout(fb2); startCycle(); }
+      u2.onend = onU2Done; u2.onerror = onU2Done;
+      if (window.stopSession) window.stopSession.currentUtterance = u2;
+      speechSynthesis.speak(u2);
+    }
+
+    function afterUtterance1() {
+      if (u1done) return; u1done = true;
+      clearTimeout(fb1);
+      if (window._s2SessionId !== sid) return;
+      if (window.stopSession && window.stopSession.muted) { startCycle(); return; }
+      pauseTimer = setTimeout(speakUtterance2, 2500);
+    }
+
+    /* Pre-entry muted: skip both utterances and the pause, start cycle immediately */
     if (window.stopSession && window.stopSession.muted) {
       window.runS2BreathingCycles();
       return;
     }
 
-    fallbackTimer = setTimeout(onEntryPhraseEnd, 5000);
-    if (window.stopSpeak) window.stopSpeak('Box breathing. Four cycles. Follow the orb.', { onend: onEntryPhraseEnd });
-    else onEntryPhraseEnd();
+    fb1 = setTimeout(afterUtterance1, 25000);
+    var u1 = new SpeechSynthesisUtterance('Box breathing is a calming technique. You\'ll breathe in through your nose for four counts, hold for four, then breathe out through your mouth for four, and hold for four. We\'ll do this four times together.');
+    u1.voice = getVoice(); u1.rate = 0.82; u1.pitch = 0.9; u1.volume = 0.85;
+    u1.onend = afterUtterance1; u1.onerror = afterUtterance1;
+    if (window.stopSession) window.stopSession.currentUtterance = u1;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u1);
   };
 
   /* FIX 1 + FIX 2 — 4-cycle default with extend option; CTA gated on completion */
