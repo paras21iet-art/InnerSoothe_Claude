@@ -10370,9 +10370,9 @@ function speakStopS1() {
     ];
     var cycleNum = 1, phaseIdx = 0, s2CyclesCompleted = 0, inExtraCycle = false;
 
-    /* cancel-before-speak: forces utterance to play at scheduled time, not queue behind prior */
+    /* speak without cancel: utterances spaced 800ms apart so each completes naturally */
     function s2Speak(text) {
-      if (window.stopSpeak) { speechSynthesis.cancel(); window.stopSpeak(text); }
+      if (window.stopSpeak) { window.stopSpeak(text); }
     }
 
     function onRequiredCyclesComplete() {
@@ -10387,11 +10387,11 @@ function speakStopS1() {
       if (more) more.classList.add('visible');
     }
 
-    /* Count UP 1→4: visual updates always; voice skipped when muted */
+    /* Count UP 1→4 at 800ms intervals; visual blank at t=0, appears with each count */
     function runCountdown() {
       var el = document.querySelector('.sec-stop-s2 .s2-phase-num');
       var words = ['One', 'Two', 'Three', 'Four'];
-      [400, 1400, 2400, 3400].forEach(function(delay, i) {
+      [800, 1600, 2400, 3200].forEach(function(delay, i) {
         setTimeout(function() {
           if (window._s2SessionId !== sid) return;
           if (el) el.textContent = String(i + 1);
@@ -10406,7 +10406,9 @@ function speakStopS1() {
       var img = document.querySelector('.sec-stop-s2 .s2-hero-img');
       var lbl = document.querySelector('.sec-stop-s2 .s2-phase-label');
       var cyc = document.querySelector('.sec-stop-s2 .s2-cycle');
+      var num = document.querySelector('.sec-stop-s2 .s2-phase-num');
       if (lbl) lbl.textContent = phase.label;
+      if (num) num.textContent = '';
       s2Speak(phase.voice);
       if (img) img.className = 's2-hero-img ' + phase.cls;
       var cycleText = cycleNum <= 4 ? 'Cycle ' + cycleNum + ' of 4' : 'Cycle ' + cycleNum;
