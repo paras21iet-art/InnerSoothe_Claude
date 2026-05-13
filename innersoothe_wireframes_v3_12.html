@@ -1921,7 +1921,7 @@
 /* Hero image — 200px, cover so orb stays centred, aggressive mask dissolves edges to parchment */
 .sec-stop-s1 .s1-hero {
   width: 100%;
-  height: 200px;
+  height: 190px;
   display: block;
   margin: 0;
   overflow: visible;
@@ -1939,15 +1939,15 @@
   mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
 }
 
-/* Bottom stack — 32px horizontal inset, 16px top margin */
+/* Bottom stack — 32px horizontal inset, 20px bottom breathing, 2px top margin */
 .sec-stop-s1 .s1-bottom-stack {
-  padding: 0 32px;
+  padding: 0 32px 20px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
   width: 100%;
   box-sizing: border-box;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
 /* Quote card */
@@ -10057,14 +10057,14 @@ window.sec_stop_mode = 'guided';
         <p class="s1-quote-attr">— DBT, Linehan 1993</p>
       </div>
 
-      <button class="s1-confirm" onclick="confirmStopS1()">
-        <span class="s1-confirm-check"></span>
+      <button class="s1-confirm" id="s1-confirm-card" onclick="confirmStopS1()">
+        <span class="s1-confirm-check" id="s1-check-circle"></span>
         <span class="s1-confirm-label">I've stopped. I'm not acting on anything right now.</span>
         <span class="s1-confirm-hint">Tap to confirm</span>
       </button>
 
       <div class="step-cta-wrap">
-        <button class="step-cta" onclick="advanceStopS1()">Good. Now — Take a Breath →</button>
+        <button class="step-cta" id="s1-cta" onclick="advanceStopS1()">Good. Now — Take a Breath →</button>
       </div>
 
       <div class="step-progress">
