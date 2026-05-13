@@ -2212,11 +2212,60 @@
   font-size: 11px; color: rgba(33,24,12,0.50); margin: 12px 0 0; padding: 0;
 }
 
-.sec-stop-s2 .s2-pattern-pill {
-  text-align: center; font-family: 'DM Sans', sans-serif; font-weight: 300;
-  font-size: 10px; color: rgba(33,24,12,0.55);
-  background: rgba(243,233,220,0.50); border-radius: 20px;
-  padding: 8px 12px; margin: 16px 32px 0;
+.sec-stop-s2 .s2-timeline {
+  display: flex;
+  gap: 4px;
+  background: rgba(243,233,220,0.6);
+  border: 1px solid rgba(33,24,12,0.08);
+  border-radius: 14px;
+  padding: 4px;
+  margin: 16px 32px 0;
+}
+.sec-stop-s2 .s2-timeline-segment {
+  flex: 1;
+  padding: 8px 4px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 250ms ease;
+}
+.sec-stop-s2 .s2-timeline-segment.active {
+  background: rgba(160,104,50,0.12);
+}
+.sec-stop-s2 .s2-timeline-segment.completed {
+  background: rgba(160,104,50,0.04);
+}
+.sec-stop-s2 .s2-timeline-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  color: rgba(33,24,12,0.55);
+  line-height: 1.2;
+  letter-spacing: 0.1px;
+  position: relative;
+  z-index: 1;
+  transition: color 250ms ease, font-weight 250ms ease;
+}
+.sec-stop-s2 .s2-timeline-segment.active .s2-timeline-label {
+  color: #1E1408;
+  font-weight: 600;
+}
+.sec-stop-s2 .s2-timeline-segment.completed .s2-timeline-label {
+  color: rgba(33,24,12,0.40);
+}
+.sec-stop-s2 .s2-timeline-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #A06832;
+  width: 0%;
+  border-radius: 2px;
+}
+.sec-stop-s2 .s2-timeline-segment.completed .s2-timeline-fill {
+  width: 100%;
+  background: rgba(160,104,50,0.5);
 }
 
 .sec-stop-s2 .s2-bottom-stack {
@@ -10274,7 +10323,24 @@ function speakStopS1() {
     <p class="s2-phase-label">Breathe in</p>
     <p class="s2-phase-num">4</p>
     <p class="s2-cycle">Cycle 1 of 4</p>
-    <p class="s2-pattern-pill"><span style="font-weight:600;">In through nose</span> · <span style="font-weight:600;">Hold</span> · <span style="font-weight:600;">Out through mouth</span> · <span style="font-weight:600;">Hold</span></p>
+    <div class="s2-timeline">
+      <div class="s2-timeline-segment" data-phase="0">
+        <div class="s2-timeline-label">Breathe in</div>
+        <div class="s2-timeline-fill"></div>
+      </div>
+      <div class="s2-timeline-segment" data-phase="1">
+        <div class="s2-timeline-label">Hold</div>
+        <div class="s2-timeline-fill"></div>
+      </div>
+      <div class="s2-timeline-segment" data-phase="2">
+        <div class="s2-timeline-label">Breathe out</div>
+        <div class="s2-timeline-fill"></div>
+      </div>
+      <div class="s2-timeline-segment" data-phase="3">
+        <div class="s2-timeline-label">Hold</div>
+        <div class="s2-timeline-fill"></div>
+      </div>
+    </div>
 
     <div class="s2-bottom-stack">
       <div class="step-cta-wrap">
@@ -10472,6 +10538,36 @@ function speakStopS1() {
       runPhase(nextIdx, nextCycle);
     }
 
+    function updateTimeline(currentPhase, cycleNum) {
+      const segments = document.querySelectorAll('.sec-stop-s2 .s2-timeline-segment');
+
+      // New cycle starting (phase 0 of cycle > 1): reset all segments
+      if (currentPhase === 0 && cycleNum > 1) {
+        segments.forEach(seg => {
+          seg.classList.remove('active', 'completed');
+          seg.querySelector('.s2-timeline-fill').style.width = '0%';
+        });
+      }
+
+      // Mark previous phase completed (if applicable)
+      if (currentPhase > 0) {
+        const prev = document.querySelector(`.sec-stop-s2 .s2-timeline-segment[data-phase="${currentPhase - 1}"]`);
+        if (prev) {
+          prev.classList.remove('active');
+          prev.classList.add('completed');
+          prev.querySelector('.s2-timeline-fill').style.width = '100%';
+        }
+      }
+
+      // Mark current phase active
+      const curr = document.querySelector(`.sec-stop-s2 .s2-timeline-segment[data-phase="${currentPhase}"]`);
+      if (curr) {
+        curr.classList.remove('completed');
+        curr.classList.add('active');
+        curr.querySelector('.s2-timeline-fill').style.width = '0%';
+      }
+    }
+
     function runPhase(phaseIdx, cycleNum) {
       if (window._s2SessionId !== sid) return;
       if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
@@ -10494,6 +10590,9 @@ function speakStopS1() {
         orbEl.style.transform = 'scale(' + phase.startScale + ')';
         _diag.log('ORB-init', orbEl.className.trim() + '  scale=' + phase.startScale);
       }
+
+      updateTimeline(phaseIdx, cycleNum);
+      const activeFill = document.querySelector(`.sec-stop-s2 .s2-timeline-segment[data-phase="${phaseIdx}"] .s2-timeline-fill`);
 
       /* Speak phase name immediately — TTS startup ~200ms places audio at ~ph+200ms */
       s2Speak(phase.voice);
@@ -10533,6 +10632,7 @@ function speakStopS1() {
         var scale    = phase.startScale + (phase.endScale - phase.startScale) * progress;
 
         if (orbEl) orbEl.style.transform = 'scale(' + scale.toFixed(4) + ')';
+        if (activeFill) activeFill.style.width = (progress * 100) + '%';
 
         /* Log scale every 250ms */
         var diagTick = Math.floor(elapsed / 250);
