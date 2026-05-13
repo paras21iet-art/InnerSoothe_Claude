@@ -10539,7 +10539,7 @@ function speakStopS1() {
         || voices.find(function(v) { return v.lang && v.lang.startsWith('en'); })
         || (voices.length > 0 ? voices[0] : null);
       var u = new SpeechSynthesisUtterance(text);
-      u.voice = voice; u.rate = 0.82; u.pitch = 0.9; u.volume = 0.85;
+      u.voice = voice; u.rate = 1.0; u.pitch = 0.9; u.volume = 0.85;
       var queuedAt = performance.now();
       u.onstart = function() {
         var ttsMs = Math.round(performance.now() - queuedAt);
@@ -10623,6 +10623,7 @@ function speakStopS1() {
     function runPhase(phaseIdx, cycleNum) {
       if (window._s2SessionId !== sid) return;
       s2PhaseId++;
+      try { speechSynthesis.cancel(); } catch(e) {}
       var myPhaseId = s2PhaseId;
       if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
 
@@ -10651,7 +10652,7 @@ function speakStopS1() {
       /* Speak phase name immediately — TTS startup ~200ms places audio at ~ph+200ms */
       s2Speak(phase.voice);
 
-      /* Schedule speech for each count; visual fires from utterance.onstart for exact voice-visual lock */
+      /* Schedule counts: visual fires unconditionally at scheduled time; voice is best-effort */
       words.forEach(function(word, i) {
         var scheduledTime = (i + 1) * COUNT_INTERVAL;
         var countNum = i + 1;
@@ -10659,24 +10660,19 @@ function speakStopS1() {
         setTimeout(function() {
           if (window._s2SessionId !== sid) return;
           if (myPhaseId !== s2PhaseId) return;
-          if (isMuted()) {
-            /* Muted: onstart never fires — show visual immediately */
-            s2UpdateActiveCount(countNum);
-            _diag.log('VISUAL-count-muted', '"' + countNum + '"  scheduledAt=+' + scheduledTime + 'ms');
-            return;
+
+          /* Visual ALWAYS fires at scheduled time — independent of voice timing */
+          s2UpdateActiveCount(countNum);
+          _diag.log('VISUAL-count', '"' + countNum + '"  scheduledAt=+' + scheduledTime + 'ms');
+
+          /* Voice plays best-effort — does not gate the visual */
+          if (!isMuted()) {
+            s2Speak(word);
           }
-          s2Speak(word, {
-            onstart: function(ttsMs) {
-              if (window._s2SessionId !== sid) return;
-              if (myPhaseId !== s2PhaseId) return;
-              s2UpdateActiveCount(countNum);
-              _diag.log('VISUAL-count-onstart', '"' + countNum + '"  ttsStartup=' + ttsMs + 'ms  scheduledAt=+' + scheduledTime + 'ms');
-            }
-          });
         }, scheduledTime);
       });
 
-      /* rAF loop — drives orb scale only; visual count driven by utterance.onstart */
+      /* rAF loop — drives orb scale and fill bar */
       var rafStart = performance.now();
       var lastDiagScaleTick = -1;
 
