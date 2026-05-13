@@ -1844,8 +1844,7 @@
   display: flex;
   flex-direction: column;
   height: 780px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 /* Eyebrow ABOVE pill+word */
@@ -1899,11 +1898,11 @@
   text-align: center;
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 300;
-  font-size: 30px;
-  line-height: 1.25;
+  font-size: 26px;
+  line-height: 1.2;
   color: #1E1408;
   padding: 0 24px;
-  margin: 0 0 4px;
+  margin: 0 0 0;
 }
 
 /* Body */
@@ -1915,17 +1914,18 @@
   line-height: 1.5;
   color: rgba(33, 24, 12, 0.60);
   padding: 0 26px;
-  margin: 0 0 2px;
+  margin: 0 0 0;
 }
 
-/* Hero image — 240px, cover so orb stays centred, mask dissolves edges to parchment */
+/* Hero image — 200px, cover so orb stays centred, aggressive mask dissolves edges to parchment */
 .sec-stop-s1 .s1-hero {
   width: 100%;
-  height: 240px;
+  height: 200px;
   display: block;
   margin: 0;
   overflow: visible;
   flex-shrink: 0;
+  background: transparent;
 }
 
 .sec-stop-s1 .s1-hero-img {
@@ -1934,19 +1934,19 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  -webkit-mask-image: radial-gradient(ellipse 75% 78% at center 50%, black 28%, rgba(0,0,0,0.92) 48%, rgba(0,0,0,0.55) 72%, rgba(0,0,0,0.15) 90%, transparent 100%);
-  mask-image: radial-gradient(ellipse 75% 78% at center 50%, black 28%, rgba(0,0,0,0.92) 48%, rgba(0,0,0,0.55) 72%, rgba(0,0,0,0.15) 90%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
 }
 
-/* Bottom stack — unified 24px horizontal inset */
+/* Bottom stack — 32px horizontal inset, 16px top margin */
 .sec-stop-s1 .s1-bottom-stack {
-  padding: 0 24px;
+  padding: 0 32px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
   width: 100%;
   box-sizing: border-box;
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 /* Quote card */
