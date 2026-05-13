@@ -197,3 +197,19 @@ Renamed to strip the duplicate `.png` before use.
 ### Screenshots updated:
 - `screenshots/pmr/04-session.png` — clean silhouette, soft saffron bloom on right calf
 - `screenshots/pmr/05-session-dimmed.png` — same, UI dimmed, body + highlight visible
+
+---
+
+## 2026-05-13 — STOP Step 1 (S — Stop) LOCKED
+
+Phase 2a complete. Canonical practice-screen template established. Key landings:
+- Hero image bleed via radial-gradient mask-image (no rectangular edge)
+- `.s1-bottom-stack` wrapper architecture for vertical stack alignment
+- Strict 780px viewport restored
+- Confirm circle default: empty outlined circle, zero inner HTML content (root-cause HTML fix after multiple surface CSS patches)
+- Confirm card default border matches quote card exactly; saffron border+glow gated to `.confirmed` selector only
+- `outline: none` on confirm button suppresses browser focus ring
+- text-wrap: balance on headline for natural line breaks
+- Architecture inherits to S2/S3/S4
+
+Next: Phase 2b — STOP Step 2 (T — Take a Breath)

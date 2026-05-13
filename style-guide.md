@@ -994,3 +994,49 @@ Additional values used in-app (not covered in section 1):
 | `rgba(250,244,234,0.98)` | Bottom nav bg (category + module screens) |
 | `rgba(250,240,228,0.95)` | Bottom nav bg (Today screen) |
 | `rgba(184,92,92,0.15)` | Sticky upsell banner top border |
+
+---
+
+## 20. STOP Practice Screen (STEP screens) Patterns
+
+Extracted from STOP Step 1 (S — Stop), the canonical practice-screen template. Patterns inherit to S2/S3/S4.
+
+### Architecture
+- Wrapper class: `.s1-bottom-stack` (renamed `.s2-bottom-stack`, etc. per step) wraps quote card, confirm card, CTA, progress dots
+- CSS: `padding: 0 32px 20px; display: flex; flex-direction: column; gap: 16px; width: 100%; box-sizing: border-box;`
+- Ensures all 4 sibling elements have identical horizontal alignment
+
+### Hero Image Bleed (canonical)
+```css
+.s1-hero { width: 100%; height: 190px; background: transparent; overflow: visible; flex-shrink: 0; }
+.s1-hero-img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
+}
+```
+
+### Step Screen Typography (compact vs other screens)
+- Headline: Cormorant Garamond 300, 26px, line-height 1.2, `text-wrap: balance`
+- Body copy: DM Sans 300, 12px
+
+### Confirm Card Pattern
+- Card default border: `1px solid rgba(33, 24, 12, 0.06)` — matches quote card exactly (subtle neutral, NOT saffron)
+- Card confirmed state: separate selector `.s1-confirm.confirmed` with `border-color: rgba(160,104,50,0.30)` and `box-shadow: 0 0 0 1px rgba(160,104,50,0.10)`
+- Add `outline: none` to suppress browser focus ring on the button element
+- Inner circle default: 24×24px span, `border: 1.5px solid #A06832`, `border-radius: 50%`, `background: transparent`, **ZERO inner HTML content** (no SVG, no checkmark, no inner span)
+- Active state (post-tap, applied via `.confirmed` class on parent): saffron fill + white checkmark via `::after` pseudo-element — NEVER applies by default
+
+### Progress Dots Pattern (S-T-O-P)
+- Row width: 100% of `.sX-bottom-stack`
+- 4 circles distributed via flex; connector lines `flex: 1; min-width: 0` between them (overrides shared scope `width: 16px`)
+- Active step: saffron filled circle with white letter (`.step-pd.on`)
+- Inactive: outlined saffron circle with saffron letter
+
+### Viewport Constraint
+- All STEP screens fit within 780px viewport. No vertical scroll.
+- Section padding-bottom: 20px provides breathing for progress dots
+
+### Bottom Nav
+- Removed from practice screens (immersion via reduction)
+- User progresses via CTA only; back chevron returns to STOP entry with confirmation dialog

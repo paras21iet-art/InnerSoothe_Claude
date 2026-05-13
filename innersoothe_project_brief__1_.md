@@ -192,6 +192,45 @@ New module-level screen pattern — one layer deeper than Category screens. Esta
 
 ---
 
+### STOP Step 1 (S — Stop) — LOCKED
+
+Canonical practice-screen template for all 4 STEP screens within the STOP technique (S/T/O/P). Future steps inherit this architecture.
+
+**Section ID:** `section-breakup-stop-s1`
+**CSS scope:** `.sec-stop-s1`
+
+**Layout (top to bottom):**
+- Status bar (system clock + battery)
+- Header row: back chevron (44px white circle) + audio toggle (saffron outlined icon) + Crisis Support chip (saffron outlined pill)
+- Eyebrow: "STEP 1 OF 4" — DM Sans 11px 600, letter-spaced, color #A06832, centered
+- Letter pill + word: [S] Stop — pill is 44×44px saffron-tinted square with serif "S"; word "Stop" in Cormorant 300 to the right
+- Headline: "Whatever you're about to do — don't do it yet." — Cormorant Garamond 300, 26px, text-wrap: balance, line-height 1.2
+- Body copy: "Don't send that message. Don't scroll back through the photos. Your emotions are running fast — that's exactly when to pause." — DM Sans 300, 12px
+- Hero image: orb on water, container 190px height, radial-gradient mask-image for parchment bleed (NO rectangular edge)
+- `.s1-bottom-stack` wrapper (horizontal padding 32px, gap 16px, 20px bottom padding, flex column):
+  - Quote card: cream pill card, italic Cormorant text, "— DBT, Linehan 1993" attribution
+  - Confirm card: 24×24px empty outlined circle (saffron border, ZERO inner content) + 2-line confirm text + "Tap to confirm" label on right
+  - CTA button: saffron #A06832 pill, "Good. Now — Take a Breath →" in white
+  - Progress dots: S T O P, S filled saffron, others outlined, full-width connector lines
+- Section padding-bottom: 20px
+
+**Hero image mask (canonical for STEP screens):**
+```css
+mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
+```
+
+**Viewport constraint:** Total section height ≤ 780px. No vertical scroll.
+
+**Inheritance rules for S2/S3/S4:**
+- Same header pattern (back + audio + Crisis Support)
+- Same eyebrow + letter pill + word pattern (T/O/P substituted)
+- Same `.sX-bottom-stack` architecture (renamed per step)
+- Same hero image mask pattern (image content varies per step)
+- Same progress dots pattern with appropriate step highlighted
+- Same 780px viewport constraint
+
+---
+
 ## Paid Techniques (Premium) — All Built in Wireframe
 
 | Technique | Type | Duration | Notes |
@@ -460,6 +499,7 @@ animate with repeatCount="1" and fill="freeze":
 | 2026-05-11 | STOP entry screen LOCKED — canonical entry-screen template for all 6 Breakup Recovery techniques. Tight-crop leaf-on-water metaphor hero (175px), Cormorant Garamond STOP wordmark with saffron flanking leaves, framed italic quote card ("You do not need to solve everything right now."), compact info line (use case + duration), 2 mode option cards (Guided default + Quick Reset), "Begin Slowly" saffron CTA, "You can pause anytime" footer. Bottom nav HIDDEN — immersion starts at technique entry. Fits in single viewport, no scroll. Each of the other 5 techniques (PMR, Closure Letter, Hypnodrama, Cord Cutting, Inner Child) will use this exact template with technique-specific metaphor image, wordmark, quote, info copy, and mode card descriptions. | ✅ Locked |
 | 2026-05-11 | STOP Phase 2a-revised: navigation bug fixed (missing `</script>` tag). S1 concentric SVG removed; static orb added (90px `.s1-still-orb` / `.s1-still-halo` — no animation, embodies stillness). S2 concentric rings replaced with div-based breathing orb (130px) + halo; CSS class transitions `.inhale`/`.hold-top`/`.exhale`/`.hold-bottom`; `runBreathingCycles()` rewritten; session-ID guard in place. Screenshots: stop-rebuild/02-step-s-v2.png, 03-step-t-v2.png. | ✅ |
 | 2026-05-11 | PMR (Progressive Muscle Relaxation) — 4 screens built (parchment-with-reduction). Entry (section-breakup-pmr-entry), Setup (section-breakup-pmr-setup), Session (section-breakup-pmr-session), Complete scaffold (section-breakup-pmr-complete). Session features body schematic SVG (220×320px), active muscle in saffron with SVG pulse animate, auto-dim after 5s inactivity, demo rotation cycling 4 muscle states. Module card 2 onclick wired to section. All 21 copy strings validated verbatim. Screenshots: pmr/01–06. | ✅ |
+| 2026-05-13 | STOP Step 1 (S — Stop) LOCKED. Canonical practice-screen template established. `.s1-bottom-stack` wrapper with 32px horizontal padding and 16px gap holds quote card, confirm card, CTA, progress dots. Hero image uses radial-gradient mask-image for parchment-blend bleed (eliminates rectangular edge). Strict 780px viewport, no scroll. Headline 26px Cormorant 300 with text-wrap: balance. Body 12px DM Sans 300. Hero container 190px. Confirm circle default: 24×24px span, 1.5px solid #A06832 border, transparent background, ZERO inner HTML content (regression fixed at HTML level after 4 surface CSS patches failed). Confirm card default border matches quote card exactly (rgba(33,24,12,0.06)); confirmed state saffron border+glow via .confirmed selector. Architecture inherits to S2/S3/S4. | ✅ Locked |
 
 ---
 
@@ -471,17 +511,21 @@ animate with repeatCount="1" and fill="freeze":
 4. ~~STOP Technique entry screen rebuilt — parchment-with-reduction~~ — DONE (LOCKED)
 5. ~~STOP Phase 2a-revised: animation fixes (S1 still orb, S2 breathing orb)~~ — DONE
 6. ~~PMR — 4 screens built (entry/setup/session/complete-scaffold)~~ — DONE
-7. STOP Phase 2.2+: S3 (Observe) and S4 (Proceed) screens + complete screen real content (intensity sliders, AI insight, journal save)
-8. STOP Phase 3: Quick Reset mode (stub `startStopGuided()` exists, needs full implementation)
-9. Psychologist sync: review Home v5 + Today scaffold + all three category screens (Relationships / Career / Health)
-10. Psychologist sync: approve/adjust category tint colors (Relationships pink, Health sage, Career gold)
-11. Psychologist sync: green in splash/dark screens — lift rule or fix wireframe
-12. Psychologist sync: crisis 🆘 button placement on every in-app screen
-13. Psychologist sync: onboarding modifications per psychologist review
-14. Resolve "heal from within" sub-brand — in or out
-15. Source higher-resolution illustration assets (repo root crops < 600px, usable for wireframe but not production)
-16. Psychologist records Cord Cutting voice first
-17. Claude Code: set up full modular architecture
-18. Build React Native screens — onboarding first
-19. iubenda Privacy Policy + ToS
-20. App Store submission (~60 days at 10hrs/day)
+7. ~~Phase 2a (STOP Step 1) — DONE (LOCKED 2026-05-13)~~
+8. Phase 2b: Build STOP Step 2 (T — Take a Breath) using ChatGPT design + S1 canonical pattern
+9. Phase 2c: Build STOP Step 3 (O — Observe) using ChatGPT design + S1 canonical pattern
+10. Phase 2d: Build STOP Step 4 (P — Proceed) using 4 action cards + S1 canonical pattern
+11. Phase 2e: Complete screen for STOP technique
+12. STOP Phase 3: Quick Reset mode (stub `startStopGuided()` exists, needs full implementation)
+13. Psychologist sync: review Home v5 + Today scaffold + all three category screens (Relationships / Career / Health)
+14. Psychologist sync: approve/adjust category tint colors (Relationships pink, Health sage, Career gold)
+15. Psychologist sync: green in splash/dark screens — lift rule or fix wireframe
+16. Psychologist sync: crisis 🆘 button placement on every in-app screen
+17. Psychologist sync: onboarding modifications per psychologist review
+18. Resolve "heal from within" sub-brand — in or out
+19. Source higher-resolution illustration assets (repo root crops < 600px, usable for wireframe but not production)
+20. Psychologist records Cord Cutting voice first
+21. Claude Code: set up full modular architecture
+22. Build React Native screens — onboarding first
+23. iubenda Privacy Policy + ToS
+24. App Store submission (~60 days at 10hrs/day)
