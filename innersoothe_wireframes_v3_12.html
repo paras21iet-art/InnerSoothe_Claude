@@ -10399,9 +10399,8 @@ function speakStopS1() {
     _diag.log('SESSION-START', 'sid=' + sid);
     _diag.attachOrb();
 
-    var PHASE_DURATION    = 4000;
-    var COUNT_INTERVAL    = 800;
-    var TTS_STARTUP_OFFSET = 200;
+    var PHASE_DURATION  = 4000;
+    var COUNT_INTERVAL  = 800;
 
     var phases = [
       { name: 'inhale',      label: 'Breathe in',  voice: 'Breathe in',  startScale: 0.92, endScale: 1.05 },
@@ -10423,7 +10422,7 @@ function speakStopS1() {
     function isMuted() { return !!(window.stopSession && window.stopSession.muted); }
 
     /* DIAGNOSTIC s2Speak: creates utterance directly to attach onstart/onend timing */
-    function s2Speak(text) {
+    function s2Speak(text, opts) {
       var callMs = Date.now() - _diag.t0;
       _diag.log('SPEAK-queued', '"' + text + '"  callAt=+' + callMs + 'ms');
       if (isMuted()) { _diag.log('SPEAK-skip', '"' + text + '"  (muted)'); return; }
@@ -10436,7 +10435,12 @@ function speakStopS1() {
         || (voices.length > 0 ? voices[0] : null);
       var u = new SpeechSynthesisUtterance(text);
       u.voice = voice; u.rate = 0.82; u.pitch = 0.9; u.volume = 0.85;
-      u.onstart = function() { _diag.log('SPEAK-onstart', '"' + text + '"'); };
+      var queuedAt = performance.now();
+      u.onstart = function() {
+        var ttsMs = Math.round(performance.now() - queuedAt);
+        _diag.log('SPEAK-onstart', '"' + text + '"  ttsStartup=' + ttsMs + 'ms');
+        if (opts && opts.onstart) opts.onstart(ttsMs);
+      };
       u.onend   = function() { _diag.log('SPEAK-onend',   '"' + text + '"'); };
       u.onerror = function(e) { _diag.log('SPEAK-onerror', '"' + text + '"  err=' + (e && e.error)); };
       if (window.stopSession) window.stopSession.currentUtterance = u;
@@ -10494,20 +10498,31 @@ function speakStopS1() {
       /* Speak phase name immediately — TTS startup ~200ms places audio at ~ph+200ms */
       s2Speak(phase.voice);
 
-      /* Schedule speech for each count: fire TTS_STARTUP_OFFSET before the visual moment */
+      /* Schedule speech for each count; visual fires from utterance.onstart for exact voice-visual lock */
       words.forEach(function(word, i) {
-        var visualTime = (i + 1) * COUNT_INTERVAL;
-        var speakTime  = Math.max(0, visualTime - TTS_STARTUP_OFFSET);
-        _diag.log('SPEAK-scheduled', '"' + word + '"  speakAt=+' + speakTime + 'ms  visualAt=+' + visualTime + 'ms');
+        var scheduledTime = (i + 1) * COUNT_INTERVAL;
+        var countNum = i + 1;
+        _diag.log('SPEAK-scheduled', '"' + word + '"  scheduledAt=+' + scheduledTime + 'ms');
         setTimeout(function() {
           if (window._s2SessionId !== sid) return;
-          s2Speak(word);
-        }, speakTime);
+          if (isMuted()) {
+            /* Muted: onstart never fires — show visual immediately */
+            if (numEl) numEl.textContent = String(countNum);
+            _diag.log('VISUAL-count-muted', '"' + countNum + '"  scheduledAt=+' + scheduledTime + 'ms');
+            return;
+          }
+          s2Speak(word, {
+            onstart: function(ttsMs) {
+              if (window._s2SessionId !== sid) return;
+              if (numEl) numEl.textContent = String(countNum);
+              _diag.log('VISUAL-count-onstart', '"' + countNum + '"  ttsStartup=' + ttsMs + 'ms  scheduledAt=+' + scheduledTime + 'ms');
+            }
+          });
+        }, scheduledTime);
       });
 
-      /* rAF loop — single clock drives orb scale + visual count */
+      /* rAF loop — drives orb scale only; visual count driven by utterance.onstart */
       var rafStart = performance.now();
-      var lastVisualCount = 0;
       var lastDiagScaleTick = -1;
 
       function frame(now) {
@@ -10524,14 +10539,6 @@ function speakStopS1() {
         if (diagTick !== lastDiagScaleTick) {
           lastDiagScaleTick = diagTick;
           _diag.log('ORB-scale', scale.toFixed(3) + '  elapsed=' + Math.round(elapsed) + 'ms  progress=' + progress.toFixed(3));
-        }
-
-        /* Visual count: advance when elapsed crosses 800/1600/2400/3200 boundary */
-        var expectedCount = Math.min(Math.floor(elapsed / COUNT_INTERVAL), 4);
-        if (expectedCount >= 1 && expectedCount !== lastVisualCount) {
-          lastVisualCount = expectedCount;
-          if (numEl) numEl.textContent = String(expectedCount);
-          _diag.log('COUNT-fire', '"' + expectedCount + '"  elapsed=' + Math.round(elapsed) + 'ms');
         }
 
         if (progress < 1) {
