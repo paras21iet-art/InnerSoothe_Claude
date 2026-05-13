@@ -2213,9 +2213,9 @@
 
 .sec-stop-s2 .s2-pattern-pill {
   text-align: center; font-family: 'DM Sans', sans-serif; font-weight: 300;
-  font-size: 11px; color: rgba(33,24,12,0.55);
+  font-size: 10px; color: rgba(33,24,12,0.55);
   background: rgba(243,233,220,0.50); border-radius: 20px;
-  padding: 8px 16px; margin: 6px 32px 0;
+  padding: 8px 12px; margin: 6px 32px 0;
 }
 
 .sec-stop-s2 .s2-bottom-stack {
@@ -10289,6 +10289,10 @@ function speakStopS1() {
 (function() {
   window._s2SessionId = window._s2SessionId || 0;
 
+  window.speakStopS2 = function() {
+    if (window.stopSpeak) window.stopSpeak('Box breathing. Two cycles. Follow the orb.');
+  };
+
   window.runS2BreathingCycles = function() {
     window._s2SessionId++;
     var sid = window._s2SessionId;
@@ -10322,6 +10326,7 @@ function speakStopS1() {
       var lbl = document.querySelector('.sec-stop-s2 .s2-phase-label');
       var cyc = document.querySelector('.sec-stop-s2 .s2-cycle');
       if (lbl) lbl.textContent = phase.label;
+      if (window.stopSpeak) window.stopSpeak(phase.label);
       if (cyc) cyc.textContent = 'Cycle ' + cycleNum + ' of 2';
       if (img) img.className = 's2-hero-img ' + phase.cls;
       runCountdown();
@@ -10591,7 +10596,7 @@ window.onStopSectionShow = function(sectionId) {
   }
   setTimeout(function() {
     if (sectionId === 'breakup-stop-s1') speakStopS1();
-    else if (sectionId === 'breakup-stop-s2') startStopS2Breathing();
+    else if (sectionId === 'breakup-stop-s2') speakStopS2();
     else if (sectionId === 'breakup-stop-s3') speakStopS3();
     else if (sectionId === 'breakup-stop-s4') speakStopS4();
     else if (sectionId === 'breakup-stop-complete') stopSpeak("Well done. You paused. You noticed. You chose. That's the practice.");

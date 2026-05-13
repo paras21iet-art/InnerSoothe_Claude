@@ -228,6 +228,16 @@ mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, 
 - Same hero image mask pattern (image content varies per step)
 - Same progress dots pattern with appropriate step highlighted
 - Same 780px viewport constraint
+- Same voice narration pattern (see below)
+
+**Voice Narration — canonical pattern (S1 reference, inherited by S2+):**
+- Global system (one `<script>` block, defined once): `window.stopSpeak(text)`, `window.stopSpeakSequence(items, doneCallback)`, `window.stopCancelVoice()`, `window.stopToggleMute()`
+- Voice preference: Samantha > Karen > Google US English > en-US female > en-US > en > fallback. Rate: 0.82, pitch: 0.9, volume: 0.85
+- Each STEP screen defines `speakStopSX()` in its own `<script>` block
+- Dispatch: `onStopSectionShow` → 400ms delay → calls `speakStopS1()` / `speakStopS2()` / etc.
+- S1: `speakStopS1()` uses `stopSpeakSequence` with deliberate inter-phrase delays (4 phrases)
+- S2: `speakStopS2()` speaks "Box breathing. Two cycles. Follow the orb." on entry; `stopSpeak(phase.label)` at each breath phase boundary inside `runS2BreathingCycles()` ('Breathe in' / 'Hold' / 'Breathe out' / 'Hold')
+- Mute toggle: `stopToggleMute()` shared across all STEP screens via `.stop-mute-btn` class selector
 
 ---
 
@@ -500,6 +510,7 @@ animate with repeatCount="1" and fill="freeze":
 | 2026-05-11 | STOP Phase 2a-revised: navigation bug fixed (missing `</script>` tag). S1 concentric SVG removed; static orb added (90px `.s1-still-orb` / `.s1-still-halo` — no animation, embodies stillness). S2 concentric rings replaced with div-based breathing orb (130px) + halo; CSS class transitions `.inhale`/`.hold-top`/`.exhale`/`.hold-bottom`; `runBreathingCycles()` rewritten; session-ID guard in place. Screenshots: stop-rebuild/02-step-s-v2.png, 03-step-t-v2.png. | ✅ |
 | 2026-05-11 | PMR (Progressive Muscle Relaxation) — 4 screens built (parchment-with-reduction). Entry (section-breakup-pmr-entry), Setup (section-breakup-pmr-setup), Session (section-breakup-pmr-session), Complete scaffold (section-breakup-pmr-complete). Session features body schematic SVG (220×320px), active muscle in saffron with SVG pulse animate, auto-dim after 5s inactivity, demo rotation cycling 4 muscle states. Module card 2 onclick wired to section. All 21 copy strings validated verbatim. Screenshots: pmr/01–06. | ✅ |
 | 2026-05-13 | STOP Step 1 (S — Stop) LOCKED. Canonical practice-screen template established. `.s1-bottom-stack` wrapper with 32px horizontal padding and 16px gap holds quote card, confirm card, CTA, progress dots. Hero image uses radial-gradient mask-image for parchment-blend bleed (eliminates rectangular edge). Strict 780px viewport, no scroll. Headline 26px Cormorant 300 with text-wrap: balance. Body 12px DM Sans 300. Hero container 190px. Confirm circle default: 24×24px span, 1.5px solid #A06832 border, transparent background, ZERO inner HTML content (regression fixed at HTML level after 4 surface CSS patches failed). Confirm card default border matches quote card exactly (rgba(33,24,12,0.06)); confirmed state saffron border+glow via .confirmed selector. Architecture inherits to S2/S3/S4. | ✅ Locked |
+| 2026-05-13 | Phase 2b: STOP Step 2 (T — Take a Breath) voice narration wired. `speakStopS2()` added to S2 script block — speaks "Box breathing. Two cycles. Follow the orb." on section entry (dispatched 400ms after show). `stopSpeak(phase.label)` called at each breath phase boundary inside `runS2BreathingCycles()` → speaks 'Breathe in', 'Hold', 'Breathe out', 'Hold' in sync with orb animation. Stale `startStopS2Breathing()` reference in `onStopSectionShow` dispatch fixed to `speakStopS2()`. Pattern pill font-size 11→10px, horizontal padding 16→12px — single-line render confirmed. Screenshots: stop-rebuild/s2-04-voice-fixed.png, s2-05-full-fixed.png. | ✅ |
 
 ---
 
@@ -512,7 +523,7 @@ animate with repeatCount="1" and fill="freeze":
 5. ~~STOP Phase 2a-revised: animation fixes (S1 still orb, S2 breathing orb)~~ — DONE
 6. ~~PMR — 4 screens built (entry/setup/session/complete-scaffold)~~ — DONE
 7. ~~Phase 2a (STOP Step 1) — DONE (LOCKED 2026-05-13)~~
-8. Phase 2b: Build STOP Step 2 (T — Take a Breath) using ChatGPT design + S1 canonical pattern
+8. ~~Phase 2b: STOP Step 2 (T — Take a Breath) — DONE (voice wired, pill fixed 2026-05-13)~~
 9. Phase 2c: Build STOP Step 3 (O — Observe) using ChatGPT design + S1 canonical pattern
 10. Phase 2d: Build STOP Step 4 (P — Proceed) using 4 action cards + S1 canonical pattern
 11. Phase 2e: Complete screen for STOP technique

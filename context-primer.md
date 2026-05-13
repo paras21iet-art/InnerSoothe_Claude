@@ -50,9 +50,10 @@
 9. **Breakup Recovery Module** (`section-module-breakup-recovery`) — **canonical module template**
 10. **STOP Technique Entry** (`section-breakup-stop`) — Phase 1.5d
 11. **STOP Step 1 (S — Stop)** (`section-breakup-stop-s1`) — **LOCKED canonical practice-screen template (2026-05-13)**
+12. **STOP Step 2 (T — Take a Breath)** (`section-breakup-stop-s2`) — **Phase 2b DONE (2026-05-13)** — image orb, 4-4-4-4 breathing, voice wired
 
 ### Screens In-Progress / Pending
-- STOP Step 2 (T — Take a Breath) — earlier breathing-orb build exists (May 11), needs rebuild to canonical S1 pattern
+- STOP Step 2 voice integration — DONE (Phase 2b, 2026-05-13)
 - STOP Step 3 (O — Observe) — design ready (ChatGPT), not yet built
 - STOP Step 4 (P — Proceed) — design locked (4 action cards), not yet built
 - STOP Complete screen — not yet built
@@ -96,6 +97,7 @@ The JS function `showSection(id)` prepends `'section-'` internally. So `showSect
   - Confirm circle default: 24×24px span, 1.5px solid `#A06832` border, transparent background, **ZERO inner HTML content** (no SVG, no checkmark, no span — completely empty)
   - Active state (`.confirmed`): saffron fill + white checkmark, only when class is applied by JS
   - No bottom nav on STEP screens (immersion via reduction)
+  - Voice narration: global `stopSpeak()` / `stopSpeakSequence()` / `stopCancelVoice()` / `stopToggleMute()`; each step defines `speakStopSX()`; dispatched 400ms after section show. S1 uses sequence; S2 uses entry phrase + per-phase `stopSpeak(phase.label)` at each breath boundary
 - Bottom nav: 5 tabs — Home · Journal · **Today (center FAB)** · Progress · Settings
 - `.mod-thumb`: `border-left: 1px solid rgba(33,24,12,0.10)` (category screen thumbnails)
 - `.tech-thumb`: `border-right: 1px solid rgba(33,24,12,0.10)` (module screen thumbnails)
@@ -137,7 +139,7 @@ When a visual issue keeps recurring after multiple CSS-only fixes (e.g. the conf
 
 ## Key Pending Work (Next Steps, in order)
 
-1. Build STOP Step 2 (T — Take a Breath) using canonical S1 pattern + new ChatGPT design (rebuild over the earlier May 11 breathing orb work)
+1. ~~Build STOP Step 2 (T — Take a Breath)~~ — DONE (Phase 2b, 2026-05-13)
 2. Build STOP Step 3 (O — Observe) using canonical S1 pattern + ChatGPT design (chip grids for Emotions + Body)
 3. Build STOP Step 4 (P — Proceed) using canonical S1 pattern + 4 action cards spec (Rest and breathe / Journal this moment / Talk to someone safe / Do something gentle)
 4. Build STOP Complete screen

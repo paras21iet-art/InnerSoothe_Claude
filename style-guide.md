@@ -1040,3 +1040,30 @@ Extracted from STOP Step 1 (S — Stop), the canonical practice-screen template.
 ### Bottom Nav
 - Removed from practice screens (immersion via reduction)
 - User progresses via CTA only; back chevron returns to STOP entry with confirmation dialog
+
+### Voice Narration Pattern (canonical from S1, inherited by S2+)
+
+**Global system** (one `<script>` block, defined once in the HTML):
+- `window.stopSpeak(text)` — speaks single phrase; noop if `stopSession.muted`
+- `window.stopSpeakSequence(items, doneCallback)` — chains phrases with optional ms delays
+- `window.stopCancelVoice()` — calls `speechSynthesis.cancel()`
+- `window.stopToggleMute()` — toggles `stopSession.muted`; updates all `.stop-mute-btn` elements across all step screens
+- Voice preference: Samantha > Karen > Google US English > en-US female > en-US > en > fallback
+- Rate: 0.82, pitch: 0.9, volume: 0.85
+
+**Per-step function** (defined in each step's own `<script>` block):
+- `speakStopS1()` — uses `stopSpeakSequence`, 4 phrases with inter-phrase delays
+- `speakStopS2()` — uses `stopSpeak('Box breathing. Two cycles. Follow the orb.')` on entry; `stopSpeak(phase.label)` at each breath phase boundary inside `runS2BreathingCycles()`
+
+**Dispatch** (inside `onStopSectionShow` → 400ms setTimeout):
+```javascript
+if (sectionId === 'breakup-stop-s1') speakStopS1();
+else if (sectionId === 'breakup-stop-s2') speakStopS2();
+// S3/S4/complete follow same pattern
+```
+
+**S2 breath phase voices** (FINAL COPY — match visual phase labels exactly):
+- Inhale phase: `'Breathe in'`
+- Hold-top phase: `'Hold'`
+- Exhale phase: `'Breathe out'`
+- Hold-bottom phase: `'Hold'`

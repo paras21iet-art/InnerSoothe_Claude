@@ -212,4 +212,27 @@ Phase 2a complete. Canonical practice-screen template established. Key landings:
 - text-wrap: balance on headline for natural line breaks
 - Architecture inherits to S2/S3/S4
 
-Next: Phase 2b — STOP Step 2 (T — Take a Breath)
+---
+
+## 2026-05-13 — Phase 2b: STOP Step 2 voice wired + pattern pill fix
+
+**File:** `innersoothe_wireframes_v3_12.html`
+
+### Voice narration added (S2):
+- `speakStopS2()` function added to S2 `<script>` block: speaks "Box breathing. Two cycles. Follow the orb." on section entry (dispatched 400ms after show via `onStopSectionShow`)
+- `stopSpeak(phase.label)` called at each phase boundary inside `runS2BreathingCycles()` — speaks 'Breathe in', 'Hold', 'Breathe out', 'Hold' in sync with orb animation
+- Stale `startStopS2Breathing()` reference in `onStopSectionShow` dispatch fixed → `speakStopS2()`
+
+### Pattern pill single-line fix:
+- `.s2-pattern-pill` font-size: 11px → 10px
+- `.s2-pattern-pill` horizontal padding: 16px → 12px
+- "In through nose · Hold · Out through mouth · Hold" renders on one line at 370px phone width
+
+### Screenshots:
+- `screenshots/stop-rebuild/s2-04-voice-fixed.png` — inhale state, phase label "Breathe in"
+- `screenshots/stop-rebuild/s2-05-full-fixed.png` — exhale state, full fixed screen
+
+### What was not changed:
+- All other sections, S1, PMR, any other STEP screens
+- Breathing animation CSS, session-ID guard, cycle/countdown logic
+- CTA, progress dots, bottom-stack layout
