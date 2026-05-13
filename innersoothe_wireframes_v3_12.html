@@ -2179,7 +2179,7 @@
 }
 
 .sec-stop-s2 .s2-hero {
-  width: 100%; height: 190px; display: block; margin: 0;
+  width: 100%; height: 230px; display: block; margin: 20px 0 0;
   overflow: visible; flex-shrink: 0; background: transparent;
 }
 
@@ -2189,6 +2189,7 @@
   -webkit-mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
   mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
 }
+.sec-stop-s2 .s2-hero-img.waiting    { transform: scale(1.0);  transition: none; }
 .sec-stop-s2 .s2-hero-img.inhale     { transform: scale(1.05); transition: transform 4000ms cubic-bezier(0.4, 0, 0.4, 1); }
 .sec-stop-s2 .s2-hero-img.hold-top   { transform: scale(1.05); transition: none; }
 .sec-stop-s2 .s2-hero-img.exhale     { transform: scale(0.85); transition: transform 4000ms cubic-bezier(0.4, 0, 0.4, 1); }
@@ -2197,7 +2198,7 @@
 .sec-stop-s2 .s2-phase-label {
   text-align: center; font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 300; font-style: italic; font-size: 18px;
-  color: #1E1408; margin: 6px 0 0; line-height: 1.2; padding: 0;
+  color: #1E1408; margin: 24px 0 0; line-height: 1.2; padding: 0;
 }
 
 .sec-stop-s2 .s2-phase-num {
@@ -2208,19 +2209,19 @@
 
 .sec-stop-s2 .s2-cycle {
   text-align: center; font-family: 'DM Sans', sans-serif; font-weight: 300;
-  font-size: 11px; color: rgba(33,24,12,0.50); margin: 4px 0 0; padding: 0;
+  font-size: 11px; color: rgba(33,24,12,0.50); margin: 12px 0 0; padding: 0;
 }
 
 .sec-stop-s2 .s2-pattern-pill {
   text-align: center; font-family: 'DM Sans', sans-serif; font-weight: 300;
   font-size: 10px; color: rgba(33,24,12,0.55);
   background: rgba(243,233,220,0.50); border-radius: 20px;
-  padding: 8px 12px; margin: 6px 32px 0;
+  padding: 8px 12px; margin: 16px 32px 0;
 }
 
 .sec-stop-s2 .s2-bottom-stack {
   padding: 0 32px 20px; display: flex; flex-direction: column;
-  gap: 16px; width: 100%; box-sizing: border-box; margin-top: 4px;
+  gap: 16px; width: 100%; box-sizing: border-box; margin-top: auto;
 }
 
 .sec-stop-s2 .step-cta-wrap {
@@ -2234,10 +2235,18 @@
   background: #A06832; color: white; font-family: 'DM Sans', sans-serif;
   font-weight: 500; font-size: 13.5px; border: none; cursor: pointer;
   text-align: center; box-shadow: 0 5px 16px rgba(160,104,50,0.26);
-  box-sizing: border-box; transition: all 200ms ease;
+  box-sizing: border-box; transition: opacity 300ms ease;
 }
 
-.sec-stop-s2 .step-cta:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+.sec-stop-s2 .step-cta:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; pointer-events: none; }
+
+.sec-stop-s2 .s2-more-cycle {
+  display: none; background: none; border: none; padding: 0;
+  font-family: 'DM Sans', sans-serif; font-weight: 300;
+  font-size: 12px; color: #A06832; text-align: center;
+  cursor: pointer; width: 100%;
+}
+.sec-stop-s2 .s2-more-cycle.visible { display: block; }
 
 .sec-stop-s2 .step-progress {
   position: static !important; bottom: auto !important; left: auto !important;
@@ -10256,7 +10265,7 @@ function speakStopS1() {
     </div>
 
     <h2 class="s2-headline">Box breathing · 4 · 4 · 4 · 4</h2>
-    <p class="s2-body">2 complete cycles to continue</p>
+    <p class="s2-body">4 complete cycles to continue</p>
 
     <div class="s2-hero">
       <img src="assets/illustrations/Relationships/Modules/BreakupRecovery/stop-s1-hero.png" alt="" class="s2-hero-img">
@@ -10264,13 +10273,14 @@ function speakStopS1() {
 
     <p class="s2-phase-label">Breathe in</p>
     <p class="s2-phase-num">4</p>
-    <p class="s2-cycle">Cycle 1 of 2</p>
+    <p class="s2-cycle">Cycle 1 of 4</p>
     <p class="s2-pattern-pill">In through nose · Hold · Out through mouth · Hold</p>
 
     <div class="s2-bottom-stack">
       <div class="step-cta-wrap">
-        <button class="step-cta" id="s2-cta" onclick="stopCancelVoice(); showSection('breakup-stop-s3')">I've completed my breathing →</button>
+        <button class="step-cta" id="s2-cta" disabled onclick="if(this.classList.contains('enabled')){ stopCancelVoice(); showSection('breakup-stop-s3'); }">I've completed my breathing →</button>
       </div>
+      <button class="s2-more-cycle" id="s2-more-cycle" onclick="s2ExtendCycle()">↻ One more cycle</button>
       <button class="step-secondary" onclick="stopCancelVoice(); showSection('breakup-stop-s3')">Skip breathing</button>
       <div class="step-progress">
         <span class="step-pd visited">S</span>
@@ -10289,10 +10299,28 @@ function speakStopS1() {
 (function() {
   window._s2SessionId = window._s2SessionId || 0;
 
+  /* FIX 3 — Entry phrase speaks first; breathing starts on onend (5s fallback) */
   window.speakStopS2 = function() {
-    if (window.stopSpeak) window.stopSpeak('Box breathing. Two cycles. Follow the orb.');
+    var sid = window._s2SessionId;
+    var fallbackTimer;
+
+    function onEntryPhraseEnd() {
+      clearTimeout(fallbackTimer);
+      if (window._s2SessionId !== sid) return;
+      window.runS2BreathingCycles();
+    }
+
+    if (window.stopSession && window.stopSession.muted) {
+      window.runS2BreathingCycles();
+      return;
+    }
+
+    fallbackTimer = setTimeout(onEntryPhraseEnd, 5000);
+    if (window.stopSpeak) window.stopSpeak('Box breathing. Four cycles. Follow the orb.', { onend: onEntryPhraseEnd });
+    else onEntryPhraseEnd();
   };
 
+  /* FIX 1 + FIX 2 — 4-cycle default with extend option; CTA gated on completion */
   window.runS2BreathingCycles = function() {
     window._s2SessionId++;
     var sid = window._s2SessionId;
@@ -10303,7 +10331,19 @@ function speakStopS1() {
       { label: 'Breathe out', cls: 'exhale'       },
       { label: 'Hold',        cls: 'hold-bottom'  }
     ];
-    var cycleNum = 1, phaseIdx = 0;
+    var cycleNum = 1, phaseIdx = 0, s2CyclesCompleted = 0, inExtraCycle = false;
+
+    function onRequiredCyclesComplete() {
+      var cta = document.getElementById('s2-cta');
+      if (cta) { cta.disabled = false; cta.classList.add('enabled'); }
+      var more = document.getElementById('s2-more-cycle');
+      if (more) more.classList.add('visible');
+    }
+
+    function onExtraCycleComplete() {
+      var more = document.getElementById('s2-more-cycle');
+      if (more) more.classList.add('visible');
+    }
 
     function runCountdown() {
       var el = document.querySelector('.sec-stop-s2 .s2-phase-num');
@@ -10320,23 +10360,46 @@ function speakStopS1() {
 
     function runPhase() {
       if (window._s2SessionId !== sid) return;
-      if (cycleNum > 2) { return; }
       var phase = phases[phaseIdx];
       var img = document.querySelector('.sec-stop-s2 .s2-hero-img');
       var lbl = document.querySelector('.sec-stop-s2 .s2-phase-label');
       var cyc = document.querySelector('.sec-stop-s2 .s2-cycle');
       if (lbl) lbl.textContent = phase.label;
       if (window.stopSpeak) window.stopSpeak(phase.label);
-      if (cyc) cyc.textContent = 'Cycle ' + cycleNum + ' of 2';
       if (img) img.className = 's2-hero-img ' + phase.cls;
+      var cycleText = cycleNum <= 4 ? 'Cycle ' + cycleNum + ' of 4' : 'Cycle ' + cycleNum;
+      if (cyc) cyc.textContent = cycleText;
       runCountdown();
       setTimeout(function() {
         if (window._s2SessionId !== sid) return;
         phaseIdx++;
-        if (phaseIdx >= 4) { phaseIdx = 0; cycleNum++; }
+        var cycleJustCompleted = false;
+        if (phaseIdx >= 4) {
+          phaseIdx = 0;
+          s2CyclesCompleted++;
+          cycleNum++;
+          cycleJustCompleted = true;
+        }
+        if (cycleJustCompleted && !inExtraCycle && s2CyclesCompleted >= 4) {
+          onRequiredCyclesComplete();
+          return;
+        }
+        if (cycleJustCompleted && inExtraCycle) {
+          inExtraCycle = false;
+          onExtraCycleComplete();
+          return;
+        }
         runPhase();
       }, 4000);
     }
+
+    window.s2ExtendCycle = function() {
+      if (window._s2SessionId !== sid) return;
+      var more = document.getElementById('s2-more-cycle');
+      if (more) more.classList.remove('visible');
+      inExtraCycle = true;
+      runPhase();
+    };
 
     var img = document.querySelector('.sec-stop-s2 .s2-hero-img');
     if (img) img.className = 's2-hero-img hold-bottom';
@@ -10576,11 +10639,14 @@ window.onStopSectionShow = function(sectionId) {
     var lbl = document.querySelector('.sec-stop-s2 .s2-phase-label');
     var num = document.querySelector('.sec-stop-s2 .s2-phase-num');
     var cyc = document.querySelector('.sec-stop-s2 .s2-cycle');
-    if (img) img.className = 's2-hero-img hold-bottom';
+    var cta = document.getElementById('s2-cta');
+    var more = document.getElementById('s2-more-cycle');
+    if (img) img.className = 's2-hero-img waiting';
     if (lbl) lbl.textContent = 'Breathe in';
     if (num) num.textContent = '4';
-    if (cyc) cyc.textContent = 'Cycle 1 of 2';
-    if (typeof window.runS2BreathingCycles === 'function') window.runS2BreathingCycles();
+    if (cyc) cyc.textContent = 'Cycle 1 of 4';
+    if (cta) { cta.disabled = true; cta.classList.remove('enabled'); }
+    if (more) more.classList.remove('visible');
   }
   if (sectionId === 'breakup-stop-s3') {
     document.querySelectorAll('.sec-stop-s3 .obs-chip').forEach(function(c){ c.classList.remove('on'); });
