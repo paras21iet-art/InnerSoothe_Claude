@@ -2345,10 +2345,10 @@
 .sec-stop-s3 .obs-chip.on { background: rgba(160,104,50,0.18); border: 1.5px solid #A06832; }
 
 /* Step 4 — P ─────────────────────── */
-.sec-stop-s4 .action-cards { margin: 0 22px 14px; display: flex; flex-direction: column; gap: 9px; }
-.sec-stop-s4 .action-card { padding: 12px 14px; background: rgba(255,253,248,0.7); border: 1px solid var(--hairline-light); border-radius: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 180ms ease; }
+.sec-stop-s4 .action-cards { margin: 0 22px 10px; display: flex; flex-direction: column; gap: 7px; }
+.sec-stop-s4 .action-card { padding: 9px 12px; background: rgba(255,253,248,0.7); border: 1px solid var(--hairline-light); border-radius: 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: all 180ms ease; }
 .sec-stop-s4 .action-card.on { background: rgba(160,104,50,0.14); border: 1.5px solid #A06832; }
-.sec-stop-s4 .action-emoji { width: 36px; height: 36px; border-radius: 50%; background: rgba(160,104,50,0.10); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: background 180ms ease; }
+.sec-stop-s4 .action-emoji { width: 32px; height: 32px; border-radius: 50%; background: rgba(160,104,50,0.10); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: background 180ms ease; }
 .sec-stop-s4 .action-card.on .action-emoji { background: rgba(160,104,50,0.22); }
 .sec-stop-s4 .action-text { flex: 1; }
 .sec-stop-s4 .action-title { font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 500; color: #1E1408; }
@@ -2357,6 +2357,13 @@
 .sec-stop-s4 .step-subhead { font-style: italic; }
 /* Progress dots — with-labels variant (all four step screens) */
 .sec-stop-step .step-progress.with-labels { align-items: flex-start !important; justify-content: space-between !important; width: 100% !important; }
+.sec-stop-s3 .step-progress.with-labels,
+.sec-stop-s4 .step-progress.with-labels {
+  left: 32px !important;
+  right: 32px !important;
+  width: auto !important;
+  transform: none !important;
+}
 .sec-stop-step .step-pd-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex-shrink: 0; }
 .sec-stop-step .step-pd-label { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; color: rgba(33,24,12,0.55); white-space: nowrap; }
 .sec-stop-step .step-progress.with-labels .step-pd-line { flex: 1 !important; width: auto !important; min-width: 0; margin-top: 11px; }
@@ -10481,7 +10488,7 @@ function speakStopS1() {
       window.stopSpeakSequence([
         "Step two. Take a Breath. We will do four cycles of box breathing.",
         1000,
-        "Breathe in. Hold. Breathe out. Hold.",
+        "Breathe in. Hold. Breathe out. Hold. Four counts each.",
         600,
         "Let's begin."
       ], startCycle);
@@ -10805,7 +10812,7 @@ function speakStopS1() {
 <script>
 function speakStopS3() {
   if (typeof window.stopSpeak === 'function') {
-    window.stopSpeak("Step three. Observe. Notice what you're feeling. Select what fits.");
+    window.stopSpeak("Step three. Observe. Notice what you're feeling, and where in your body. Select all that fit.");
   }
 }
 window._s3HasSpoken = false;
@@ -10922,7 +10929,7 @@ function s3ToggleChip(el) {
 <script>
 function speakStopS4() {
   if (typeof window.stopSpeak === 'function') {
-    window.stopSpeak("Step four. Proceed. Choose what would actually help you.");
+    window.stopSpeak("Step four. Proceed. Choose your next gentle step — the thoughtful one, not the impulsive one.");
   }
 }
 window._s4HasSpoken = false;
