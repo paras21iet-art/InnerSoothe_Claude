@@ -10484,8 +10484,8 @@ function speakStopS1() {
       return;
     }
 
-    fb = setTimeout(startCycle, 8000);
-    var u = new SpeechSynthesisUtterance('Step two. Take a Breath. Box breathing — follow the orb.');
+    fb = setTimeout(startCycle, 12000);
+    var u = new SpeechSynthesisUtterance("Step two. Take a Breath. Four cycles of box breathing — breathe in, hold, breathe out, hold, four counts each. Let's begin.");
     u.voice = getVoice(); u.rate = 0.82; u.pitch = 0.9; u.volume = 0.85;
     u.onend = startCycle; u.onerror = startCycle;
     if (window.stopSession) window.stopSession.currentUtterance = u;
