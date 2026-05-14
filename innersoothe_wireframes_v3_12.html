@@ -9088,7 +9088,7 @@
             <span style="font-family:'DM Sans',sans-serif;font-size:9px;font-weight:600;color:#A06832;">Today</span>
           </div>
           <!-- Progress -->
-          <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:0.55;">
+          <div onclick="showSection('progress')" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:0.55;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
             <span style="font-family:'DM Sans',sans-serif;font-size:9px;font-weight:500;color:#A06832;">Progress</span>
           </div>
@@ -11262,6 +11262,200 @@ function s4SelectAction(el) {
     </div>
   </div></div></div>
 </div><!-- /section-breakup-stop-complete -->
+
+<!-- ══════════ PROGRESS TAB ══════════ -->
+<div class="screens-area" id="section-progress">
+  <div class="phone-grid"><div class="phone-wrap"><div class="phone" style="background:linear-gradient(160deg,#FAF0E4 0%,#EDE0CC 50%,#E2CEB8 100%);display:flex;flex-direction:column;overflow:hidden;">
+
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div style="padding:14px 24px 4px;flex-shrink:0;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#A06832;margin-bottom:4px;">Progress</div>
+      <div style="font-family:'Spectral',serif;font-weight:300;font-size:28px;color:#1E1408;line-height:1.1;">Your healing journey</div>
+    </div>
+
+    <!-- Stats card -->
+    <div style="margin:14px 22px 8px;padding:14px 10px;background:rgba(255,255,255,0.55);border:1px solid rgba(160,104,50,0.15);border-radius:14px;display:flex;justify-content:space-around;align-items:center;text-align:center;flex-shrink:0;">
+      <div style="flex:1;">
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;color:#A06832;line-height:1;" id="prog-sessions-count">0</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:9.5px;color:rgba(33,24,12,0.55);margin-top:3px;letter-spacing:0.3px;">Sessions</div>
+      </div>
+      <div style="width:1px;height:32px;background:rgba(160,104,50,0.18);"></div>
+      <div style="flex:1;">
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;color:#A06832;line-height:1;" id="prog-streak-count">0</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:9.5px;color:rgba(33,24,12,0.55);margin-top:3px;letter-spacing:0.3px;">Day streak</div>
+      </div>
+      <div style="width:1px;height:32px;background:rgba(160,104,50,0.18);"></div>
+      <div style="flex:1;">
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;color:#5C8A60;line-height:1;" id="prog-avg-shift">0</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:9.5px;color:rgba(33,24,12,0.55);margin-top:3px;letter-spacing:0.3px;">Avg shift</div>
+      </div>
+    </div>
+
+    <!-- Session list (scrollable) -->
+    <div style="flex:1;overflow-y:auto;padding:4px 22px 14px;scrollbar-width:none;" id="prog-session-list"></div>
+
+    <!-- Bottom nav -->
+    <div style="background:rgba(250,244,234,0.98);border-top:1px solid rgba(30,20,8,0.07);padding:8px 4px 18px;display:flex;justify-content:space-around;align-items:flex-end;flex-shrink:0;">
+      <div onclick="showSection('relationship')" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:rgba(30,20,8,0.50);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;">Home</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:rgba(30,20,8,0.50);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;">Journal</span>
+      </div>
+      <div onclick="showSection('today')" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;">
+        <div style="width:54px;height:54px;border-radius:27px;background:#A06832;position:relative;top:-18px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(122,82,48,0.45),0 0 0 4px rgba(250,244,234,0.98);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L8 12 L12 22 L16 12 Z"/></svg>
+        </div>
+        <span style="font-family:'DM Sans',sans-serif;font-size:9px;color:rgba(30,20,8,0.50);margin-top:-12px;">Today</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:#A06832;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;">Progress</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:rgba(30,20,8,0.50);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;">Settings</span>
+      </div>
+    </div>
+
+  </div></div></div>
+</div>
+
+<script>
+(function() {
+  var KEY = 'innersoothe_sessions';
+
+  window.stopSaveSession = function() {
+    var pre = window.stopPreRatings || {};
+    if (Object.keys(pre).length === 0) return;
+    var session = {
+      id: Date.now(),
+      date: new Date().toISOString(),
+      technique: 'STOP',
+      module: 'Breakup Recovery',
+      pre: JSON.parse(JSON.stringify(pre)),
+      preEmojis: JSON.parse(JSON.stringify(window.stopPreSelected || {})),
+      post: JSON.parse(JSON.stringify(window.stopPostRatings || {})),
+      cycles: window.stopS2CyclesCompleted || 0
+    };
+    var stored = [];
+    try { stored = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(e) {}
+    stored.unshift(session);
+    try { localStorage.setItem(KEY, JSON.stringify(stored)); } catch(e) {}
+  };
+
+  function mockSessions() {
+    var now = Date.now(); var hr = 3600000; var day = 24*hr;
+    return [
+      {id:now-2*hr, date:new Date(now-2*hr).toISOString(), technique:'STOP', module:'Breakup Recovery', pre:{Sadness:4,Anger:3}, preEmojis:{Sadness:'😔',Anger:'😠'}, post:{Sadness:2,Anger:1}, cycles:4},
+      {id:now-day, date:new Date(now-day).toISOString(), technique:'STOP', module:'Breakup Recovery', pre:{Anxiety:5}, preEmojis:{Anxiety:'😰'}, post:{Anxiety:2}, cycles:4},
+      {id:now-3*day, date:new Date(now-3*day).toISOString(), technique:'STOP', module:'Breakup Recovery', pre:{Sadness:3,Loneliness:4}, preEmojis:{Sadness:'😔',Loneliness:'🫥'}, post:{Sadness:2,Loneliness:3}, cycles:4},
+      {id:now-7*day, date:new Date(now-7*day).toISOString(), technique:'STOP', module:'Breakup Recovery', pre:{Grief:5}, preEmojis:{Grief:'💔'}, post:{Grief:3}, cycles:4}
+    ];
+  }
+
+  function groupByDate(sessions) {
+    var now = new Date();
+    var todayStart = new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();
+    var yStart = todayStart - 86400000;
+    var wStart = todayStart - 7*86400000;
+    var g = {today:[], yesterday:[], week:[], earlier:[]};
+    sessions.forEach(function(s){
+      var t = new Date(s.date).getTime();
+      if (t >= todayStart) g.today.push(s);
+      else if (t >= yStart) g.yesterday.push(s);
+      else if (t >= wStart) g.week.push(s);
+      else g.earlier.push(s);
+    });
+    var r = [];
+    if (g.today.length) r.push({label:'Today', sessions:g.today});
+    if (g.yesterday.length) r.push({label:'Yesterday', sessions:g.yesterday});
+    if (g.week.length) r.push({label:'Earlier this week', sessions:g.week});
+    if (g.earlier.length) r.push({label:'Earlier', sessions:g.earlier});
+    return r;
+  }
+
+  function calcStreak(sessions) {
+    if (!sessions.length) return 0;
+    var days = {};
+    sessions.forEach(function(s){
+      var d = new Date(s.date);
+      days[d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()] = true;
+    });
+    var streak = 0; var c = new Date();
+    while (true) {
+      var k = c.getFullYear()+'-'+c.getMonth()+'-'+c.getDate();
+      if (days[k]) { streak++; c.setDate(c.getDate()-1); } else break;
+    }
+    return streak;
+  }
+
+  function calcAvgShift(sessions) {
+    var total = 0, count = 0;
+    sessions.forEach(function(s){
+      Object.keys(s.pre || {}).forEach(function(em){
+        var p = s.pre[em]; var q = (s.post && s.post[em] != null) ? s.post[em] : p;
+        total += (p - q); count++;
+      });
+    });
+    return count ? (total/count) : 0;
+  }
+
+  window.renderProgress = function() {
+    var stored = [];
+    try { stored = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(e) {}
+    if (stored.length === 0) {
+      stored = mockSessions();
+      try { localStorage.setItem(KEY, JSON.stringify(stored)); } catch(e) {}
+    }
+    document.getElementById('prog-sessions-count').textContent = stored.length;
+    document.getElementById('prog-streak-count').textContent = calcStreak(stored);
+    var avg = calcAvgShift(stored);
+    document.getElementById('prog-avg-shift').textContent = (avg >= 0 ? '-' : '+') + Math.abs(avg).toFixed(1);
+
+    var listEl = document.getElementById('prog-session-list');
+    listEl.innerHTML = '';
+    var groups = groupByDate(stored);
+
+    groups.forEach(function(g) {
+      var h = document.createElement('div');
+      h.style.cssText = 'font-family:\'DM Sans\',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:rgba(33,24,12,0.50);margin:12px 4px 6px;';
+      h.textContent = g.label;
+      listEl.appendChild(h);
+
+      g.sessions.forEach(function(s) {
+        var card = document.createElement('div');
+        card.style.cssText = 'margin-bottom:9px;padding:11px 13px;background:rgba(255,255,255,0.62);border:1px solid rgba(160,104,50,0.14);border-radius:13px;';
+        var time = new Date(s.date);
+        var timeStr = time.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+        var header = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-family:\'DM Sans\',sans-serif;font-size:11px;color:rgba(33,24,12,0.62);"><span><span style="font-weight:600;">'+timeStr+'</span> · '+s.technique+'</span><span style="font-size:9px;color:#A06832;letter-spacing:0.5px;text-transform:uppercase;">'+s.module+'</span></div>';
+        var rows = '';
+        Object.keys(s.pre || {}).forEach(function(em){
+          var p = s.pre[em];
+          var q = (s.post && s.post[em] != null) ? s.post[em] : p;
+          var improved = q < p; var diff = p - q;
+          var emoji = (s.preEmojis && s.preEmojis[em]) || '';
+          rows += '<div style="display:flex;align-items:center;justify-content:space-between;font-family:\'DM Sans\',sans-serif;font-size:12px;margin-bottom:3px;"><div style="display:flex;align-items:center;gap:7px;"><span style="font-size:15px;">'+emoji+'</span><span style="color:#1E1408;">'+em+'</span></div><div style="display:flex;align-items:center;gap:5px;"><span style="color:rgba(33,24,12,0.45);font-size:10px;">'+p+'/5</span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.30)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span style="color:'+(improved?'#5C8A60':'rgba(33,24,12,0.65)')+';font-size:12px;font-weight:600;">'+q+'/5</span>'+(improved?'<span style="color:#5C8A60;font-size:10px;margin-left:3px;font-weight:600;">↓'+diff+'</span>':'')+'</div></div>';
+        });
+        card.innerHTML = header + rows;
+        listEl.appendChild(card);
+      });
+    });
+  };
+})();
+</script>
+
 <script>
 window.stopRenderComplete = function(){
   var eEl = document.getElementById('complete-emotion-summary');
@@ -11343,7 +11537,8 @@ window.onStopSectionShow = function(sectionId) {
     else if (sectionId === 'breakup-stop-s4') speakStopS4();
     else if (sectionId === 'breakup-stop-pre-checkin') { if (typeof stopBuildPreGrid === 'function') stopBuildPreGrid(); }
     else if (sectionId === 'breakup-stop-post-checkin') { if (typeof stopBuildPostChips === 'function') stopBuildPostChips(); }
-    else if (sectionId === 'breakup-stop-complete') { if (typeof stopRenderComplete === 'function') stopRenderComplete(); }
+    else if (sectionId === 'breakup-stop-complete') { if (typeof stopRenderComplete === 'function') stopRenderComplete(); if (typeof stopSaveSession === 'function') stopSaveSession(); }
+    else if (sectionId === 'progress') { if (typeof renderProgress === 'function') renderProgress(); }
   }, 400);
 };
 </script>
