@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -2427,6 +2427,21 @@
 .pmr-regions path.pmr-active { fill: #A06832; fill-opacity: 0.22; filter: url(#pmr-bloom); animation: pmr-muscle-pulse 4s ease-in-out infinite; }
 @keyframes pmr-muscle-pulse { 0%, 100% { fill-opacity: 0.14; } 50% { fill-opacity: 0.28; } }
 @media (prefers-reduced-motion: reduce) { .pmr-regions path.pmr-active { animation: none; fill-opacity: 0.22; } }
+
+@keyframes speaker-halo-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(160, 104, 50, 0.30); }
+  70%  { box-shadow: 0 0 0 10px rgba(160, 104, 50, 0);    }
+  100% { box-shadow: 0 0 0 0   rgba(160, 104, 50, 0);    }
+}
+.stop-mute-btn.speaking {
+  animation: speaker-halo-pulse 1.6s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stop-mute-btn.speaking {
+    animation: none;
+    box-shadow: 0 0 0 4px rgba(160, 104, 50, 0.20);
+  }
+}
 
 
 /* ===== TIPP Skill ===== */
@@ -24930,8 +24945,28 @@ function hdResume() {
     </div>
   </div>
 </div>
-
-
-
-
-
+<script>
+/* Speaker halo: poll speechSynthesis.speaking and toggle .speaking class on .stop-mute-btn elements.
+   Canonical visual cue for "voice is active" — works for any code that calls speechSynthesis.speak(). */
+(function () {
+  if (typeof window === 'undefined' || !window.speechSynthesis) return;
+  var lastState = null;
+  function tickSpeakerHalo() {
+    try {
+      var speaking = !!speechSynthesis.speaking;
+      if (speaking !== lastState) {
+        lastState = speaking;
+        var nodes = document.querySelectorAll('.stop-mute-btn');
+        for (var i = 0; i < nodes.length; i++) {
+          if (speaking) nodes[i].classList.add('speaking');
+          else nodes[i].classList.remove('speaking');
+        }
+      }
+    } catch (e) {
+      /* fail silent — don't crash UI on browser quirks */
+    }
+    requestAnimationFrame(tickSpeakerHalo);
+  }
+  requestAnimationFrame(tickSpeakerHalo);
+})();
+</script>
