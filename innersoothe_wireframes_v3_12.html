@@ -10283,7 +10283,7 @@ window.sec_stop_mode = 'guided';
       </button>
 
       <div class="step-cta-wrap">
-        <button class="step-cta" id="s1-cta" onclick="advanceStopS1()">Good. Now — Take a Breath →</button>
+        <button class="step-cta" id="s1-cta" onclick="advanceStopS1()">Continue →</button>
       </div>
 
       <div class="step-progress with-labels">
@@ -10334,7 +10334,7 @@ function speakStopS1() {
     if (!card || card.classList.contains('confirmed')) return;
     card.classList.add('confirmed');
     if (cta) cta.disabled = false;
-    if (window.stopSpeak) window.stopSpeak("Good. Now, take a breath.");
+    if (window.stopSpeak) window.stopSpeak("Good. You've paused.");
   };
   window.advanceStopS1 = function() {
     if (window.stopCancelVoice) window.stopCancelVoice();
