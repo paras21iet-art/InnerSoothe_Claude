@@ -2354,6 +2354,13 @@
 .sec-stop-s4 .action-text { flex: 1; }
 .sec-stop-s4 .action-title { font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 500; color: #1E1408; }
 .sec-stop-s4 .action-desc { font-family: 'DM Sans', sans-serif; font-size: 11.5px; font-weight: 300; line-height: 1.4; color: rgba(33,24,12,0.55); margin-top: 2px; }
+.sec-stop-s4 .action-chevron { margin-left: auto; flex-shrink: 0; }
+.sec-stop-s4 .step-subhead { font-style: italic; }
+/* Progress dots — with-labels variant (all four step screens) */
+.sec-stop-step .step-progress.with-labels { align-items: flex-start !important; justify-content: space-between !important; width: calc(100% - 44px) !important; }
+.sec-stop-step .step-pd-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex-shrink: 0; }
+.sec-stop-step .step-pd-label { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; color: rgba(33,24,12,0.55); white-space: nowrap; }
+.sec-stop-step .step-progress.with-labels .step-pd-line { flex: 1 !important; width: auto !important; min-width: 0; margin-top: 11px; }
 
 /* Complete ────────────────────────── */
 .sec-stop-complete .complete-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 32px; text-align: center; }
@@ -10176,14 +10183,20 @@ window.sec_stop_mode = 'guided';
   };
   window.stopSpeakSequence = function(items, doneCallback) {
     if (window.stopSession.muted) { if (doneCallback) doneCallback(); return; }
+    window._seqGeneration = (window._seqGeneration || 0) + 1;
+    var myGen = window._seqGeneration;
     var i = 0;
     function next() {
+      if (myGen !== window._seqGeneration) return;
       if (i >= items.length) { if (doneCallback) doneCallback(); return; }
       var item = items[i++];
       if (typeof item === 'number') {
-        setTimeout(next, item);
+        setTimeout(function(){ if (myGen === window._seqGeneration) next(); }, item);
       } else {
-        window.stopSpeak(item, { onend: function(){ setTimeout(next, 250); } });
+        window.stopSpeak(item, { onend: function(){
+          if (myGen !== window._seqGeneration) return;
+          setTimeout(function(){ if (myGen === window._seqGeneration) next(); }, 250);
+        }});
       }
     }
     next();
@@ -10191,6 +10204,8 @@ window.sec_stop_mode = 'guided';
   window.stopCancelVoice = function() {
     speechSynthesis.cancel();
     window.stopSession.currentUtterance = null;
+    window._s2SessionId = (window._s2SessionId || 0) + 1;
+    window._seqGeneration = (window._seqGeneration || 0) + 1;
   };
   window.stopToggleMute = function() {
     window.stopSession.muted = !window.stopSession.muted;
@@ -10224,7 +10239,7 @@ window.sec_stop_mode = 'guided';
     </div>
 
     <div class="step-hdr">
-      <button class="step-back" onclick="stopConfirmExit()">
+      <button class="step-back" onclick="showSection('breakup-stop')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
       <div class="step-mute-area">
@@ -10271,14 +10286,26 @@ window.sec_stop_mode = 'guided';
         <button class="step-cta" id="s1-cta" onclick="advanceStopS1()">Good. Now — Take a Breath →</button>
       </div>
 
-      <div class="step-progress">
-        <span class="step-pd on">S</span>
+      <div class="step-progress with-labels">
+        <div class="step-pd-wrap">
+          <span class="step-pd on">S</span>
+          <span class="step-pd-label">Stop</span>
+        </div>
         <span class="step-pd-line"></span>
-        <span class="step-pd">T</span>
+        <div class="step-pd-wrap">
+          <span class="step-pd">T</span>
+          <span class="step-pd-label">Take a breath</span>
+        </div>
         <span class="step-pd-line"></span>
-        <span class="step-pd">O</span>
+        <div class="step-pd-wrap">
+          <span class="step-pd">O</span>
+          <span class="step-pd-label">Observe</span>
+        </div>
         <span class="step-pd-line"></span>
-        <span class="step-pd">P</span>
+        <div class="step-pd-wrap">
+          <span class="step-pd">P</span>
+          <span class="step-pd-label">Proceed</span>
+        </div>
       </div>
 
     </div>
@@ -10329,7 +10356,7 @@ function speakStopS1() {
     </div>
 
     <div class="step-hdr">
-      <button class="step-back" onclick="stopConfirmExit()">
+      <button class="step-back" onclick="showSection('breakup-stop-s1')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
       <div class="step-mute-area">
@@ -10397,14 +10424,26 @@ function speakStopS1() {
       </div>
       <button class="s2-more-cycle" id="s2-more-cycle" onclick="s2ExtendCycle()">↻ One more cycle</button>
       <button class="step-secondary" onclick="stopCancelVoice(); showSection('breakup-stop-s3')">Skip breathing</button>
-      <div class="step-progress">
-        <span class="step-pd visited">S</span>
+      <div class="step-progress with-labels">
+        <div class="step-pd-wrap">
+          <span class="step-pd visited">S</span>
+          <span class="step-pd-label">Stop</span>
+        </div>
         <span class="step-pd-line"></span>
-        <span class="step-pd on">T</span>
+        <div class="step-pd-wrap">
+          <span class="step-pd on">T</span>
+          <span class="step-pd-label">Take a breath</span>
+        </div>
         <span class="step-pd-line"></span>
-        <span class="step-pd">O</span>
+        <div class="step-pd-wrap">
+          <span class="step-pd">O</span>
+          <span class="step-pd-label">Observe</span>
+        </div>
         <span class="step-pd-line"></span>
-        <span class="step-pd">P</span>
+        <div class="step-pd-wrap">
+          <span class="step-pd">P</span>
+          <span class="step-pd-label">Proceed</span>
+        </div>
       </div>
     </div>
 
@@ -10717,7 +10756,7 @@ function speakStopS1() {
       </div>
     </div>
     <div class="step-hdr">
-      <div class="step-back" onclick="stopConfirmExit()">
+      <div class="step-back" onclick="showSection('breakup-stop-s2')">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </div>
       <div class="step-mute-area">
@@ -10760,24 +10799,35 @@ function speakStopS1() {
       <button class="step-cta" id="s3-cta" disabled onclick="stopCancelVoice();showSection('breakup-stop-s4')">I've noticed. Continue →</button>
       <button class="step-secondary" onclick="stopCancelVoice();showSection('breakup-stop-s4')">I'm not sure what I'm feeling</button>
     </div>
-    <div class="step-progress">
-      <div class="step-pd visited">S</div><div class="step-pd-line"></div>
-      <div class="step-pd visited">T</div><div class="step-pd-line"></div>
-      <div class="step-pd on">O</div><div class="step-pd-line"></div>
-      <div class="step-pd">P</div>
+    <div class="step-progress with-labels">
+      <div class="step-pd-wrap">
+        <div class="step-pd visited">S</div>
+        <span class="step-pd-label">Stop</span>
+      </div>
+      <div class="step-pd-line"></div>
+      <div class="step-pd-wrap">
+        <div class="step-pd visited">T</div>
+        <span class="step-pd-label">Take a breath</span>
+      </div>
+      <div class="step-pd-line"></div>
+      <div class="step-pd-wrap">
+        <div class="step-pd on">O</div>
+        <span class="step-pd-label">Observe</span>
+      </div>
+      <div class="step-pd-line"></div>
+      <div class="step-pd-wrap">
+        <div class="step-pd">P</div>
+        <span class="step-pd-label">Proceed</span>
+      </div>
     </div>
 
   </div></div></div>
 </div><!-- /section-breakup-stop-s3 -->
 <script>
 function speakStopS3() {
-  stopSpeakSequence([
-    "Notice what you're feeling, right now. Without judgment.",
-    1500,
-    "What emotions are present? Select what you notice — you can choose more than one.",
-    3000,
-    "And where in your body? What sensations do you feel?"
-  ]);
+  if (typeof window.stopSpeak === 'function') {
+    window.stopSpeak("Observe. Notice what you're feeling. Select what fits.");
+  }
 }
 window._s3HasSpoken = false;
 function s3ToggleChip(el) {
@@ -10806,7 +10856,7 @@ function s3ToggleChip(el) {
       </div>
     </div>
     <div class="step-hdr">
-      <div class="step-back" onclick="stopConfirmExit()">
+      <div class="step-back" onclick="showSection('breakup-stop-s3')">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </div>
       <div class="step-mute-area">
@@ -10823,7 +10873,7 @@ function s3ToggleChip(el) {
     <div class="step-letter">P</div>
     <div class="step-eyebrow">STEP 4 · PROCEED</div>
     <div class="step-headline">What would actually help you?</div>
-    <div class="step-subhead">Choose from awareness, not reaction</div>
+    <div class="step-subhead">Choose your next gentle step</div>
     <div class="action-cards">
       <div class="action-card" onclick="s4SelectAction(this)">
         <div class="action-emoji">🌙</div>
@@ -10831,6 +10881,7 @@ function s3ToggleChip(el) {
           <div class="action-title">Rest and breathe</div>
           <div class="action-desc">Do nothing. Let yourself be still.</div>
         </div>
+        <svg class="action-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.38)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
       <div class="action-card" onclick="s4SelectAction(this)">
         <div class="action-emoji">📓</div>
@@ -10838,13 +10889,15 @@ function s3ToggleChip(el) {
           <div class="action-title">Journal this moment</div>
           <div class="action-desc">Write what you noticed.</div>
         </div>
+        <svg class="action-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.38)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
       <div class="action-card" onclick="s4SelectAction(this)">
         <div class="action-emoji">💬</div>
         <div class="action-text">
           <div class="action-title">Talk to someone safe</div>
-          <div class="action-desc">To feel heard, not to fix it.</div>
+          <div class="action-desc">To feel heard, not to fix.</div>
         </div>
+        <svg class="action-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.38)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
       <div class="action-card" onclick="s4SelectAction(this)">
         <div class="action-emoji">🚶</div>
@@ -10852,17 +10905,41 @@ function s3ToggleChip(el) {
           <div class="action-title">Do something gentle</div>
           <div class="action-desc">A walk, water, music, fresh air.</div>
         </div>
+        <svg class="action-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.38)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="action-card" onclick="s4SelectAction(this)">
+        <div class="action-emoji">🌅</div>
+        <div class="action-text">
+          <div class="action-title">Return gently to your day</div>
+          <div class="action-desc">One small next step is enough.</div>
+        </div>
+        <svg class="action-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.38)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
     </div>
     <div class="step-cta-wrap">
       <button class="step-cta" id="s4-cta" disabled onclick="stopCancelVoice();showSection('breakup-stop-complete')">I've chosen. Complete STOP →</button>
       <button class="step-secondary" onclick="stopCancelVoice();showSection('breakup-stop-s3')">I'm not sure yet</button>
     </div>
-    <div class="step-progress">
-      <div class="step-pd visited">S</div><div class="step-pd-line"></div>
-      <div class="step-pd visited">T</div><div class="step-pd-line"></div>
-      <div class="step-pd visited">O</div><div class="step-pd-line"></div>
-      <div class="step-pd on">P</div>
+    <div class="step-progress with-labels">
+      <div class="step-pd-wrap">
+        <div class="step-pd visited">S</div>
+        <span class="step-pd-label">Stop</span>
+      </div>
+      <div class="step-pd-line"></div>
+      <div class="step-pd-wrap">
+        <div class="step-pd visited">T</div>
+        <span class="step-pd-label">Take a breath</span>
+      </div>
+      <div class="step-pd-line"></div>
+      <div class="step-pd-wrap">
+        <div class="step-pd visited">O</div>
+        <span class="step-pd-label">Observe</span>
+      </div>
+      <div class="step-pd-line"></div>
+      <div class="step-pd-wrap">
+        <div class="step-pd on">P</div>
+        <span class="step-pd-label">Proceed</span>
+      </div>
     </div>
 
   </div></div></div>
@@ -16738,6 +16815,21 @@ function showSection(id) {
       window.pmrStopSpeech();
     }
     return _origShowSection.apply(this, arguments);
+  };
+})();
+
+/* STOP voice cancel — wrap showSection so any navigation also calls stopCancelVoice.
+   Catches every navigation path (back buttons, CTAs, Crisis chip, etc.) without per-handler edits.
+   Layered AFTER the PMR wrapper so both wrappers stack cleanly. */
+(function() {
+  if (window._showSectionWrappedForStopVoice) return;
+  window._showSectionWrappedForStopVoice = true;
+  var _prevShowSection = window.showSection;
+  window.showSection = function(id) {
+    if (typeof window.stopCancelVoice === 'function') {
+      try { window.stopCancelVoice(); } catch(e) {}
+    }
+    return _prevShowSection.apply(this, arguments);
   };
 })();
 
