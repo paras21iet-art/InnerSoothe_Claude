@@ -2412,13 +2412,19 @@
 .pmr-scroll { flex: 1; overflow-y: auto; scrollbar-width: none; }
 .pmr-scroll::-webkit-scrollbar { display: none; }
 /* Entry */
-.pmr-entry-hero { padding: 52px 20px 0; }
-.pmr-entry-hero-img { width: 280px; height: 180px; border-radius: 16px; overflow: hidden; }
+.pmr-entry-hero { padding: 52px 20px 0; display: flex; justify-content: center; }
+.pmr-entry-hero-img { width: 280px; height: 175px; border-radius: 16px; overflow: hidden; }
 .pmr-entry-hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-.pmr-wordmark { margin: 22px 24px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 34px; color: #1E1408; line-height: 1.15; }
-.pmr-quote-card { margin: 20px 20px 0; padding: 18px 20px; background: rgba(252,242,232,0.6); border-radius: 14px; border-left: 2px solid #A06832; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-style: italic; font-size: 15px; line-height: 1.5; color: #1E1408; }
-.pmr-info-rows { margin: 18px 20px 0; display: flex; flex-direction: column; gap: 10px; }
-.pmr-info-row { display: flex; align-items: center; gap: 10px; font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 12px; color: #1E1408; }
+.pmr-wordmark { margin: 22px 24px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 30px; color: #1E1408; line-height: 1.1; letter-spacing: 0.3px; text-align: center; }
+.pmr-quote-card { margin: 20px 20px 0; padding: 16px 22px; background: rgba(252,242,232,0.6); border-radius: 14px; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-style: italic; font-size: 15px; line-height: 1.5; color: #1E1408; text-align: center; }
+.pmr-info-line {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 14px 24px 4px; flex-wrap: wrap;
+  margin: 18px 0 0;
+}
+.pmr-info-text { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 11.5px; color: rgba(33,24,12,0.65); }
+.pmr-info-time { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 11.5px; color: #A06832; }
+.pmr-info-dot  { width: 4px; height: 4px; border-radius: 50%; background: #A06832; opacity: 0.5; }
 .pmr-cta-btn { display: block; width: calc(100% - 40px); margin: 26px 20px 0; height: 52px; border-radius: 28px; background: #A06832; color: #F3E9DC; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; border: none; cursor: pointer; }
 .pmr-footer-note { margin: 12px 20px 24px; text-align: center; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; color: rgba(33,24,12,0.45); }
 /* Setup */
@@ -11595,24 +11601,19 @@ window.onStopSectionShow = function(sectionId) {
 
       <div class="pmr-quote-card">Tension settles in the body before it shows up in the mind. PMR works backward — release the body, and the mind follows.</div>
 
-      <div class="pmr-info-rows">
-        <div class="pmr-info-row">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          18 minutes
-        </div>
-        <div class="pmr-info-row">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-          Audio-guided
-        </div>
-        <div class="pmr-info-row">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          Seated or lying down
-        </div>
-        <div class="pmr-info-row">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
-          11 muscle groups
-        </div>
-      </div>
+      <div class="pmr-info-line">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+    <path d="M2 21c0-3 1.85-5.36 5.08-6"/>
+  </svg>
+  <span class="pmr-info-text">For physical tension, stress, anxiety</span>
+  <span class="pmr-info-dot"></span>
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <polyline points="12 6 12 12 16 14"/>
+  </svg>
+  <span class="pmr-info-time">18 minutes</span>
+</div>
 
       <button class="pmr-cta-btn" onclick="showSection('breakup-pmr-setup')">I'm ready to begin</button>
 
