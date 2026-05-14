@@ -257,3 +257,21 @@ What was built:
 Iteration cost: 9 versions (v4 → v9) over the build. Key learning: voice-driven architecture is the correct hierarchy for guided audio screens; fixed-timer architectures cannot sync with variable TTS performance. Documented as canonical pattern in style-guide.md Section 21.
 
 Cleanup: temporary _diag diagnostic logging removed at lock time.
+
+---
+
+## 2026-05-14 — STOP Phase 2c: full pre→post→Complete→Progress flow
+
+**File:** `innersoothe_wireframes_v3_12.html`
+
+### Sections built / rebuilt this session:
+1. **STOP Step 3 (O — Observe)** — `section-breakup-stop-s3`. Emotion chips (10) + body location chips (5). State captured to window.
+2. **STOP Step 4 (P — Proceed)** — `section-breakup-stop-s4`. 5 action cards (single-select). State captured to window. CTA changed from "Complete STOP →" → "I've chosen. Continue →" (overpromise fix).
+3. **Pre check-in screen** — `section-breakup-stop-pre-checkin`. Saffron+parchment, back button to entry, no bottom nav. New chip+dot engine (`.spc-*`).
+4. **Post check-in screen** — `section-breakup-stop-post-checkin`. MANDATORY (no back, no nav). Chips auto-sync from pre. New chip+dot engine (`.spostc-*`).
+5. **Complete screen rebuild** — `section-breakup-stop-complete`. Saffron checkmark hero, YOUR SHIFT card (sage green for improvement), THIS SESSION card (4 rows: emotion + body + breathing + next step). Replaced 3-line placeholder.
+6. **Progress tab** — `section-progress`. Stats card + chronological session list (30-day cap) + localStorage persistence + mock seed.
+
+### Key architectural fixes:
+- **Voice system unified fix:** generation counter on `_s2SessionId` and `_seqGeneration` invalidates in-flight chains. `showSection` wrapped (idempotent) to auto-cancel voice on every navigation. Resolved chain leak after `speechSynthesis.cancel()`.
+- **Voice standardization:** all 4 STOP steps now use "Step [N]. [Step name]. [Brief instruction]." prefix
