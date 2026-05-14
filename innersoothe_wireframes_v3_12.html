@@ -11251,7 +11251,7 @@ function s4SelectAction(el) {
         </div>
         <span style="font-family:'DM Sans',sans-serif;font-size:9px;color:rgba(30,20,8,0.50);margin-top:-12px;">Today</span>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:rgba(30,20,8,0.60);">
+      <div onclick="stopCancelVoice();showSection('progress')" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:rgba(30,20,8,0.60);">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         <span style="font-family:'DM Sans',sans-serif;font-size:10px;">Progress</span>
       </div>
@@ -15083,8 +15083,8 @@ Start slowly counting up — one, two, three, four and five — eyes open, wide 
   </div>
 </div>
 
-<div class="screens-area" id="section-progress">
-  <div class="section-label">Progress & Tracking</div>
+<div class="screens-area" id="section-progress-mockup">
+  <div class="section-label">Progress & Tracking (mockup)</div>
   <div class="section-desc">Mood history, streaks, session logs, and emotional journey milestones. Encourages continued engagement without pressure.</div>
   <div class="phone-grid">
     <div class="phone-wrap">
@@ -17306,7 +17306,7 @@ function showSection(id) {
   };
   if (initMap[id]) initMap[id]();
   // STOP practice flow hook
-  if (id && id.indexOf('breakup-stop-') === 0 && typeof window.onStopSectionShow === 'function') {
+  if (id && (id.indexOf('breakup-stop-') === 0 || id === 'progress') && typeof window.onStopSectionShow === 'function') {
     window.onStopSectionShow(id);
   }
 }
