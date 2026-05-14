@@ -274,4 +274,42 @@ Cleanup: temporary _diag diagnostic logging removed at lock time.
 
 ### Key architectural fixes:
 - **Voice system unified fix:** generation counter on `_s2SessionId` and `_seqGeneration` invalidates in-flight chains. `showSection` wrapped (idempotent) to auto-cancel voice on every navigation. Resolved chain leak after `speechSynthesis.cancel()`.
-- **Voice standardization:** all 4 STOP steps now use "Step [N]. [Step name]. [Brief instruction]." prefix
+- **Voice standardization:** all 4 STOP steps now use "Step [N]. [Step name]. [Brief instruction]." prefix pattern.
+- **Speaker halo canonical pattern:** saffron CSS pulse on `.stop-mute-btn` when `speechSynthesis.speaking` is true (RAF polled).
+- **Back button overhaul:** S1→entry, S2→S1, S3→S2, S4→S3. No confirm dialogs.
+- **showSection wrapper dispatcher gate extended** from `breakup-stop-` only to also include `'progress'` (so `renderProgress()` fires).
+
+### Wording / UX iterations locked:
+- Pre eyebrow: "EMOTION CHECK-IN · BEFORE" + CTA "I'm ready →"
+- Post eyebrow: "EMOTION CHECK-IN · AFTER" + CTA "See your shift →"
+- S3 headline: "What are you noticing?" / subhead: "Now, notice what you're feeling, and where in your body."
+- S4 CTA: "I've chosen. Continue →"
+- Complete primary CTA: "Return to Breakup Recovery →"
+- Complete THIS SESSION labels: "Emotion noticed:" + "Tightness in body noticed at:"
+- Scale helper on pre/post: "1/5 = a little · 5/5 = a lot"
+- Removed: InnerSoothe quote card on Complete, decorative botanical leaves on Complete
+
+### Color / visual logic:
+- Sage green `#5C8A60` for emotion shift improvement (Complete YOUR SHIFT + Progress avg shift + Progress session card ↓N marker).
+- Neutral dark for stable / worsened (NO red — therapeutic decision, avoids shame).
+
+### Voice copy locked:
+- Pre check-in entry: "Before we begin. Notice how you're feeling. Pick up to three emotions and rate each."
+- Post check-in entry: "Now. Let's check in again. Rate the same feelings to see what shifted."
+- S3 entry: "Step three. Observe. Now notice what you're feeling, and where in your body."
+- S4 entry: "Step four. Proceed. Choose your next gentle step — the thoughtful one, not the impulsive one."
+
+### Data persistence:
+- localStorage key: `innersoothe_sessions`
+- Schema per session: `{id, date, technique, module, pre, preEmojis, post, cycles}`
+- Save call: `stopSaveSession()` fired on Complete entry via `stopRenderComplete`'s dispatcher hook.
+- Render call: `renderProgress()` fired when section 'progress' is shown.
+- Mock seed of 4 historical sessions if storage empty.
+- Retention: forever. Display cap: 30 days default.
+
+### Layout fixes:
+- Status bar padding-top: 8px on Progress phone shell (was clipping against rounded corner).
+- Complete screen tightened to fit single viewport (no scroll): hero padding 6px 0 2px, row gap 6px on THIS SESSION, CTA gap 5px.
+
+### Side update:
+- Old duplicate `section-progress` (designer mockup) renamed to `section-progress-mockup` to resolve HTML invalid duplicate ID.

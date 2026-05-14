@@ -36,28 +36,41 @@
 
 ---
 
-## Current Wireframe State (as of 2026-05-13)
+## Current Wireframe State (as of 2026-05-14)
 
 ### Screens Built and Locked
 1. Pre-onboarding gate — 4 screens (age, safety, consent, crisis)
 2. Onboarding — 4 screens (splash, name, category select, ready)
-3. Pre check-in / Post check-in flow
+3. Pre / Post check-in **designer mockup** (`section-pre-checkin`, line 8532) — showcase reference only, NOT the production flow
 4. **Home tab** (`section-relationship`)
 5. **Today tab** (`section-today`)
-6. **Relationships Category** (`section-category-relationships`)
-7. **Career Category** (`section-category-career`)
-8. **Health Category** (`section-category-health`)
-9. **Breakup Recovery Module** (`section-module-breakup-recovery`) — **canonical module template**
-10. **STOP Technique Entry** (`section-breakup-stop`) — Phase 1.5d
-11. **STOP Step 1 (S — Stop)** (`section-breakup-stop-s1`) — **LOCKED canonical practice-screen template (2026-05-13)**
-12. **STOP Step 2 (T — Take a Breath)** (`section-breakup-stop-s2`) — **Phase 2b DONE (2026-05-13)** — image orb, 4-4-4-4 breathing, voice wired
+6. **Relationships / Career / Health Category screens**
+7. **Breakup Recovery Module** (`section-module-breakup-recovery`) — canonical module template
+8. **STOP Technique Entry** (`section-breakup-stop`)
+9. **STOP Step 1 (S — Stop)** (`section-breakup-stop-s1`) — LOCKED canonical practice-screen template
+10. **STOP Step 2 (T — Take a Breath)** (`section-breakup-stop-s2`) — LOCKED v9 voice-driven box breathing
+11. **STOP Step 3 (O — Observe)** (`section-breakup-stop-s3`) — LOCKED (2026-05-14) emotion + body chip grids
+12. **STOP Step 4 (P — Proceed)** (`section-breakup-stop-s4`) — LOCKED (2026-05-14) 5 action cards
+13. **Pre check-in (functional)** (`section-breakup-stop-pre-checkin`) — LOCKED (2026-05-14), wedged between STOP entry and S1
+14. **Post check-in (functional, mandatory)** (`section-breakup-stop-post-checkin`) — LOCKED (2026-05-14), wedged between S4 and Complete
+15. **STOP Complete (redesigned)** (`section-breakup-stop-complete`) — LOCKED (2026-05-14), shift visualization + session summary
+16. **Progress tab** (`section-progress`) — LOCKED (2026-05-14), localStorage persistence + 30-day display cap
 
 ### Screens In-Progress / Pending
-- STOP Step 2 voice integration — DONE (Phase 2b, 2026-05-13)
-- STOP Step 3 (O — Observe) — design ready (ChatGPT), not yet built
-- STOP Step 4 (P — Proceed) — design locked (4 action cards), not yet built
-- STOP Complete screen — not yet built
-- PMR (Progressive Muscle Relaxation) — 4 screens built (entry, setup, session, complete) but needs canonical-pattern alignment
+- STOP Quick Reset mode (stub `startStopGuided()` exists; full implementation pending)
+- PMR Entry + Complete — alignment to STOP canonical templates (in parallel chat session)
+- Closure Letter — new module (3rd Free technique in Breakup Recovery)
+- Progress tab Phase 2: chart views, filter chips, archive with month navigation
+
+### New canonical patterns established 2026-05-14
+- **Pre/Post check-in chip+dot rating engine** (`.spc-*`, `.spostc-*`) — reusable for other modules
+- **Voice generation counter** (`_seqGeneration`, `_s2SessionId`) — prevents speech chain leaks
+- **showSection wrapper for voice cancellation** — idempotent layered with PMR wrapper
+- **Speaker halo** — visual cue when voice playing (CSS keyframe + RAF polled)
+- **Sage green `#5C8A60` for emotion improvement** — Complete + Progress + session cards
+- **"Step [N]. [Step name]. [Brief instruction]." voice prefix** — applied to all S1–S4
+- **Mandatory screen pattern** — no back button, no bottom nav, only audio + Crisis Support in header (post-checkin)
+- **localStorage session persistence** — key `innersoothe_sessions`, schema documented in CHANGES.md
 
 ### Section ID → `showSection()` Routing
 The JS function `showSection(id)` prepends `'section-'` internally. So `showSection('category-relationships')` targets `id="section-category-relationships"`.
