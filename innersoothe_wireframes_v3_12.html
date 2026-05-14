@@ -2374,6 +2374,35 @@
 .sec-stop-complete .complete-body { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(33,24,12,0.70); margin: 0 0 32px; }
 .sec-stop-complete .complete-cta { width: 100%; padding: 14px; border-radius: 50px; background: #A06832; color: white; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 500; border: none; box-shadow: 0 5px 16px rgba(160,104,50,0.26); cursor: pointer; }
 
+.sec-stop-pre-checkin, .sec-stop-post-checkin { background:#FAF0E4; }
+.sec-stop-pre-checkin .phone, .sec-stop-post-checkin .phone { background:#FAF0E4; display:flex; flex-direction:column; overflow:hidden; position:relative; }
+.spc-body, .spostc-body { flex:1; display:flex; flex-direction:column; padding:12px 24px 18px; overflow:hidden; }
+.spc-eyebrow, .spostc-eyebrow { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#A06832; margin-bottom:10px; }
+.spc-headline, .spostc-headline { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:26px; line-height:1.2; color:#1E1408; margin-bottom:8px; text-wrap:balance; }
+.spc-subhead, .spostc-subhead { font-family:'DM Sans',sans-serif; font-weight:300; font-size:12px; line-height:1.5; color:rgba(33,24,12,0.60); margin-bottom:16px; }
+.spc-counter, .spostc-counter { font-family:'DM Sans',sans-serif; font-size:10px; color:rgba(62,42,31,0.45); margin-bottom:10px; }
+.spc-counter b, .spostc-counter b { color:#A06832; font-weight:600; }
+.spc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin-bottom:12px; }
+.spc-pill { display:flex; flex-direction:column; align-items:center; gap:3px; padding:10px 2px 8px; border-radius:13px; border:1px solid rgba(62,42,31,0.14); background:rgba(255,255,255,0.55); cursor:pointer; transition:all 0.15s; }
+.spc-pill .em { font-size:20px; line-height:1; }
+.spc-pill .nm { font-size:8px; color:rgba(62,42,31,0.65); font-family:'DM Sans',sans-serif; }
+.spc-pill.on { background:rgba(250,225,190,0.85); border:1.5px solid #A06832; }
+.spc-pill.on .nm { color:#A06832; font-weight:600; }
+.spc-divider, .spostc-divider { height:1px; background:rgba(62,42,31,0.09); margin-bottom:10px; }
+.spc-chips, .spostc-chips { display:flex; flex-direction:column; gap:6px; margin-bottom:10px; min-height:28px; }
+.spc-chips-hint, .spostc-chips-hint { font-size:9px; color:rgba(62,42,31,0.30); font-style:italic; }
+.spc-chip, .spostc-chip { display:flex; align-items:center; gap:8px; padding:7px 10px; border-radius:11px; background:rgba(250,225,190,0.85); border:1px solid rgba(160,104,50,0.35); }
+.spc-chip .em, .spostc-chip .em { font-size:16px; line-height:1; flex-shrink:0; }
+.spc-chip .nm, .spostc-chip .nm { font-size:10px; color:rgba(62,42,31,0.80); font-weight:500; flex:1; font-family:'DM Sans',sans-serif; }
+.spc-dots, .spostc-dots { display:flex; gap:4px; align-items:center; }
+.spc-dot, .spostc-dot { width:10px; height:10px; border-radius:50%; border:1.5px solid #A06832; background:transparent; cursor:pointer; transition:background 0.12s; flex-shrink:0; }
+.spc-dot.filled, .spostc-dot.filled { background:#A06832; }
+.spc-lbl, .spostc-lbl { font-size:8px; color:#A06832; margin-left:2px; min-width:22px; font-family:'DM Sans',sans-serif; }
+.spc-nudge, .spostc-nudge { display:none; font-size:9.5px; color:#A06832; text-align:center; padding:6px 10px; background:rgba(160,104,50,0.08); border-radius:10px; margin-bottom:8px; }
+.spc-cta, .spostc-cta { width:100%; padding:13px; border-radius:22px; border:none; background:#A06832; color:#fff; font-size:13px; font-weight:600; font-family:'DM Sans',sans-serif; cursor:pointer; opacity:0.28; transition:opacity 0.22s; margin-top:auto; }
+.spc-cta.enabled, .spostc-cta.enabled { opacity:1; }
+.spc-cta-hint, .spostc-cta-hint { display:none; font-size:9.5px; color:#A06832; text-align:center; margin-top:6px; }
+
 /* ===== PMR Technique — All 4 Screens ===== */
 .pmr-phone { width: 370px; height: 780px; border-radius: 44px; box-shadow: 0 18px 50px rgba(33,24,12,0.10), 0 0 0 1px rgba(33,24,12,0.06); overflow: hidden; display: flex; flex-direction: column; position: relative; flex-shrink: 0; }
 .pmr-status { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px 0; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; color: rgba(30,20,8,0.45); flex-shrink: 0; }
@@ -10129,6 +10158,115 @@
   </div><!-- /phone-grid -->
 </div><!-- /section-breakup-stop -->
 
+<!-- STOP Pre Check-in -->
+<div class="screens-area sec-stop-step sec-stop-pre-checkin" id="section-breakup-stop-pre-checkin">
+  <div class="phone-grid"><div class="phone-wrap"><div class="phone">
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+    <div class="step-hdr">
+      <div class="step-back" onclick="showSection('breakup-stop')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
+    </div>
+    <div class="spc-body">
+      <div class="spc-eyebrow">Before we begin</div>
+      <div class="spc-headline">How are you feeling right now?</div>
+      <div class="spc-subhead">Select up to 3 emotions, then rate each. We'll check in again after.</div>
+      <div class="spc-counter">Selected · <b><span id="spc-count">0</span>/3</b></div>
+      <div class="spc-grid" id="spc-grid"></div>
+      <div class="spc-divider"></div>
+      <div class="spc-chips" id="spc-chips"><div class="spc-chips-hint" id="spc-chips-hint">Tap an emotion above to rate</div></div>
+      <div class="spc-nudge" id="spc-nudge">↑ Tap the dots to rate each feeling</div>
+      <button class="spc-cta" id="spc-cta" onclick="stopPreBeginTap()">Begin →</button>
+      <div class="spc-cta-hint" id="spc-cta-hint">Rate each feeling above to continue</div>
+    </div>
+  </div></div></div>
+</div>
+<script>
+(function(){
+  window.stopPreSelected = {}; window.stopPreRatings = {}; window.stopPostRatings = {};
+  var emotionSet = [
+    {em:'💔',nm:'Grief'},{em:'😔',nm:'Sadness'},{em:'😠',nm:'Anger'},{em:'😞',nm:'Guilt'},
+    {em:'😳',nm:'Shame'},{em:'🫥',nm:'Loneliness'},{em:'😰',nm:'Anxiety'},{em:'😶',nm:'Numb'}
+  ];
+  window.stopBuildPreGrid = function(){
+    var grid = document.getElementById('spc-grid'); if (!grid) return;
+    grid.innerHTML = ''; window.stopPreSelected={}; window.stopPreRatings={}; window.stopPostRatings={};
+    var chips = document.getElementById('spc-chips');
+    if (chips) chips.innerHTML = '<div class="spc-chips-hint" id="spc-chips-hint">Tap an emotion above to rate</div>';
+    var cnt = document.getElementById('spc-count'); if (cnt) cnt.textContent = '0';
+    stopPreCheckReady();
+    emotionSet.forEach(function(e){
+      var p = document.createElement('div'); p.className = 'spc-pill';
+      p.innerHTML = '<span class="em">'+e.em+'</span><span class="nm">'+e.nm+'</span>';
+      p.onclick = function(){ stopPreToggle(p, e.nm, e.em); };
+      grid.appendChild(p);
+    });
+  };
+  function stopPreToggle(el, emotion, emoji){
+    if (window.stopPreSelected[emotion]){
+      delete window.stopPreSelected[emotion]; delete window.stopPreRatings[emotion];
+      el.classList.remove('on');
+      var c = document.getElementById('spc-chip-'+emotion); if (c && c.parentNode) c.parentNode.removeChild(c);
+    } else {
+      if (Object.keys(window.stopPreSelected).length >= 3) return;
+      window.stopPreSelected[emotion] = emoji; el.classList.add('on');
+      stopPreAddChip(emotion, emoji);
+    }
+    var n = Object.keys(window.stopPreSelected).length;
+    document.getElementById('spc-count').textContent = n;
+    var h = document.getElementById('spc-chips-hint'); if (h) h.style.display = n > 0 ? 'none' : 'block';
+    stopPreCheckReady();
+  }
+  window.stopPreToggle = stopPreToggle;
+  function stopPreAddChip(emotion, emoji){
+    var a = document.getElementById('spc-chips');
+    var c = document.createElement('div'); c.className = 'spc-chip'; c.id = 'spc-chip-'+emotion;
+    var h = '<span class="em">'+emoji+'</span><span class="nm">'+emotion+'</span><div class="spc-dots">';
+    for (var i=1;i<=5;i++) h += '<div class="spc-dot" id="spc-dot-'+emotion+'-'+i+'" onclick="event.stopPropagation();stopPreDot(\''+emotion+'\','+i+')"></div>';
+    h += '</div><span class="spc-lbl" id="spc-lbl-'+emotion+'"></span>';
+    c.innerHTML = h; a.appendChild(c);
+  }
+  window.stopPreDot = function(emotion, n){
+    window.stopPreRatings[emotion] = n;
+    for (var i=1;i<=5;i++){ var d = document.getElementById('spc-dot-'+emotion+'-'+i); if (d){ if (i<=n) d.classList.add('filled'); else d.classList.remove('filled'); } }
+    var l = document.getElementById('spc-lbl-'+emotion); if (l) l.textContent = n+'/5';
+    stopPreCheckReady();
+  };
+  function stopPreCheckReady(){
+    var sel = Object.keys(window.stopPreSelected);
+    var all = sel.length > 0 && sel.every(function(e){ return window.stopPreRatings[e]; });
+    var some = sel.length > 0 && !all;
+    var b = document.getElementById('spc-cta'); var n = document.getElementById('spc-nudge');
+    if (b){ if (all) b.classList.add('enabled'); else b.classList.remove('enabled'); }
+    if (n) n.style.display = some ? 'block' : 'none';
+  }
+  window.stopPreCheckReady = stopPreCheckReady;
+  window.stopPreBeginTap = function(){
+    var sel = Object.keys(window.stopPreSelected);
+    var all = sel.length > 0 && sel.every(function(e){ return window.stopPreRatings[e]; });
+    if (all){ stopCancelVoice(); showSection('breakup-stop-s1'); return; }
+    var h = document.getElementById('spc-cta-hint'); if (h) h.style.display = 'block';
+  };
+})();
+</script>
+
 <script>
 function startStopGuided() {
   var mode = window.sec_stop_mode || 'guided';
@@ -10136,7 +10274,7 @@ function startStopGuided() {
     console.log('Phase 3: Quick mode flow not built yet');
     showSection('breakup-stop-s1');
   } else {
-    showSection('breakup-stop-s1');
+    showSection('breakup-stop-pre-checkin');
   }
 }
 function stopSelectMode(mode) {
@@ -10616,6 +10754,7 @@ function speakStopS1() {
       var cycleJustCompleted = false;
       if (nextIdx >= 4) {
         nextIdx = 0; s2CyclesCompleted++; nextCycle = cycleNum + 1; cycleJustCompleted = true;
+        window.stopS2CyclesCompleted = s2CyclesCompleted;
       }
       if (cycleJustCompleted && !inExtraCycle && s2CyclesCompleted >= 4) { onRequiredCyclesComplete(); return; }
       if (cycleJustCompleted && inExtraCycle) { inExtraCycle = false; onExtraCycleComplete(); return; }
@@ -10821,6 +10960,18 @@ function s3ToggleChip(el) {
   var anySelected = document.querySelectorAll('.sec-stop-s3 .obs-chip.on').length > 0;
   var cta = document.getElementById('s3-cta');
   if (cta) cta.disabled = !anySelected;
+  var groups = document.querySelectorAll('.sec-stop-s3 .obs-chips');
+  window.stopS3Emotions = []; window.stopS3Body = [];
+  if (groups.length >= 2) {
+    groups[0].querySelectorAll('.obs-chip.on').forEach(function(c){
+      var em = c.querySelector('.chip-emoji'); var emoji = em ? em.textContent : '';
+      window.stopS3Emotions.push({emoji:emoji, name:c.textContent.replace(emoji,'').trim()});
+    });
+    groups[1].querySelectorAll('.obs-chip.on').forEach(function(c){
+      var em = c.querySelector('.chip-emoji'); var emoji = em ? em.textContent : '';
+      window.stopS3Body.push({emoji:emoji, name:c.textContent.replace(emoji,'').trim()});
+    });
+  }
 }
 </script>
 
@@ -10899,7 +11050,7 @@ function s3ToggleChip(el) {
       </div>
     </div>
     <div class="step-cta-wrap">
-      <button class="step-cta" id="s4-cta" disabled onclick="stopCancelVoice();showSection('breakup-stop-complete')">I've chosen. Complete STOP →</button>
+      <button class="step-cta" id="s4-cta" disabled onclick="stopCancelVoice();showSection('breakup-stop-post-checkin')">I've chosen. Complete STOP →</button>
       <button class="step-secondary" onclick="stopCancelVoice();showSection('breakup-stop-s3')">I'm not sure yet</button>
     </div>
     <div class="step-progress with-labels">
@@ -10926,6 +11077,93 @@ function s3ToggleChip(el) {
 
   </div></div></div>
 </div><!-- /section-breakup-stop-s4 -->
+
+<!-- STOP Post Check-in (mandatory) -->
+<div class="screens-area sec-stop-step sec-stop-post-checkin" id="section-breakup-stop-post-checkin">
+  <div class="phone-grid"><div class="phone-wrap"><div class="phone">
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+    <div class="step-hdr" style="justify-content:flex-end;">
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
+    </div>
+    <div class="spostc-body">
+      <div class="spostc-eyebrow">After</div>
+      <div class="spostc-headline">How do you feel now?</div>
+      <div class="spostc-subhead">Rate the same feelings — let's see what shifted.</div>
+      <div class="spostc-counter">Rated · <b><span id="spostc-count">0/0</span></b></div>
+      <div class="spostc-divider"></div>
+      <div class="spostc-chips" id="spostc-chips"><div class="spostc-chips-hint" id="spostc-chips-hint">No emotions to rate</div></div>
+      <div class="spostc-nudge" id="spostc-nudge">↑ Tap the dots to rate how you feel now</div>
+      <button class="spostc-cta" id="spostc-cta" onclick="stopPostShiftTap()">See your shift →</button>
+      <div class="spostc-cta-hint" id="spostc-cta-hint">Rate each feeling above to continue</div>
+    </div>
+  </div></div></div>
+</div>
+<script>
+(function(){
+  window.stopBuildPostChips = function(){
+    var a = document.getElementById('spostc-chips'); if (!a) return;
+    a.innerHTML = ''; window.stopPostRatings = {};
+    var sel = Object.keys(window.stopPreSelected || {});
+    if (sel.length === 0){
+      a.innerHTML = '<div class="spostc-chips-hint">No emotions to rate</div>';
+      document.getElementById('spostc-count').textContent = '0/0';
+      stopPostCheckReady(); return;
+    }
+    sel.forEach(function(emotion){
+      var emoji = window.stopPreSelected[emotion];
+      var c = document.createElement('div'); c.className = 'spostc-chip'; c.id = 'spostc-chip-'+emotion;
+      var h = '<span class="em">'+emoji+'</span><span class="nm">'+emotion+'</span><div class="spostc-dots">';
+      for (var i=1;i<=5;i++) h += '<div class="spostc-dot" id="spostc-dot-'+emotion+'-'+i+'" onclick="stopPostDot(\''+emotion+'\','+i+')"></div>';
+      h += '</div><span class="spostc-lbl" id="spostc-lbl-'+emotion+'">0/5</span>';
+      c.innerHTML = h; a.appendChild(c);
+    });
+    stopPostUpdateCounter(); stopPostCheckReady();
+  };
+  window.stopPostDot = function(emotion, n){
+    window.stopPostRatings[emotion] = n;
+    for (var i=1;i<=5;i++){ var d = document.getElementById('spostc-dot-'+emotion+'-'+i); if (d){ if (i<=n) d.classList.add('filled'); else d.classList.remove('filled'); } }
+    var l = document.getElementById('spostc-lbl-'+emotion); if (l) l.textContent = n+'/5';
+    stopPostUpdateCounter(); stopPostCheckReady();
+  };
+  function stopPostUpdateCounter(){
+    var sel = Object.keys(window.stopPreSelected || {});
+    var rated = sel.filter(function(e){ return window.stopPostRatings[e]; }).length;
+    var el = document.getElementById('spostc-count'); if (el) el.textContent = rated+'/'+sel.length;
+  }
+  function stopPostCheckReady(){
+    var sel = Object.keys(window.stopPreSelected || {});
+    var all = sel.length > 0 && sel.every(function(e){ return window.stopPostRatings[e]; });
+    var some = sel.length > 0 && !all;
+    var b = document.getElementById('spostc-cta'); var n = document.getElementById('spostc-nudge');
+    if (b){ if (all) b.classList.add('enabled'); else b.classList.remove('enabled'); }
+    if (n) n.style.display = some ? 'block' : 'none';
+  }
+  window.stopPostCheckReady = stopPostCheckReady;
+  window.stopPostShiftTap = function(){
+    var sel = Object.keys(window.stopPreSelected || {});
+    var all = sel.length > 0 && sel.every(function(e){ return window.stopPostRatings[e]; });
+    if (all){ stopCancelVoice(); showSection('breakup-stop-complete'); return; }
+    var h = document.getElementById('spostc-cta-hint'); if (h) h.style.display = 'block';
+  };
+})();
+</script>
+
 <script>
 function speakStopS4() {
   if (typeof window.stopSpeak === 'function') {
@@ -10938,14 +11176,15 @@ function s4SelectAction(el) {
   el.classList.add('on');
   var cta = document.getElementById('s4-cta');
   if (cta) cta.disabled = false;
+  var emEl = el.querySelector('.action-emoji'), tEl = el.querySelector('.action-title'), dEl = el.querySelector('.action-desc');
+  window.stopS4Action = {emoji: emEl?emEl.textContent:'', title: tEl?tEl.textContent:'', desc: dEl?dEl.textContent:''};
 }
 </script>
 
 
-<!-- ══════════ STOP Complete (placeholder) ══════════ -->
+<!-- STOP Complete -->
 <div class="screens-area sec-stop-step sec-stop-complete" id="section-breakup-stop-complete">
-  <div class="phone-grid"><div class="phone-wrap"><div class="phone">
-
+  <div class="phone-grid"><div class="phone-wrap"><div class="phone" style="background:#FAF0E4;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;">
     <div class="status">
       <span>9:41</span>
       <div style="display:flex;align-items:center;gap:6px;">
@@ -10955,19 +11194,118 @@ function s4SelectAction(el) {
       </div>
     </div>
     <div class="step-hdr" style="justify-content:flex-end;">
-      <div class="step-crisis" onclick="showSection('crisis-resources')">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span class="step-crisis-label">Crisis Support</span>
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
       </div>
     </div>
-    <div class="complete-center">
-      <div class="complete-headline">Well done.</div>
-      <div class="complete-body">You paused. You noticed. You chose. That's the practice.</div>
-      <button class="complete-cta" onclick="stopCancelVoice();showSection('module-breakup-recovery')">Return to Breakup Recovery</button>
+    <div style="display:flex;justify-content:center;align-items:center;padding:18px 0 8px;position:relative;">
+      <svg width="60" height="40" viewBox="0 0 60 40" style="position:absolute;left:30%;transform:translateX(-100%);opacity:0.35;"><path d="M10 30 Q15 10 35 5 Q25 18 18 35 Z" fill="none" stroke="#A06832" stroke-width="1.2"/><path d="M15 32 Q20 18 38 14" fill="none" stroke="#A06832" stroke-width="1"/></svg>
+      <div style="width:80px;height:80px;border-radius:50%;border:1.5px solid #A06832;background:rgba(160,104,50,0.08);display:flex;align-items:center;justify-content:center;">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <svg width="60" height="40" viewBox="0 0 60 40" style="position:absolute;right:30%;transform:translateX(100%) scaleX(-1);opacity:0.35;"><path d="M10 30 Q15 10 35 5 Q25 18 18 35 Z" fill="none" stroke="#A06832" stroke-width="1.2"/><path d="M15 32 Q20 18 38 14" fill="none" stroke="#A06832" stroke-width="1"/></svg>
     </div>
-
+    <div style="text-align:center;padding:8px 28px 18px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">Session Complete</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;line-height:1.2;color:#1E1408;margin-bottom:10px;">You did something hard.</div>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:300;font-size:12px;font-style:italic;line-height:1.5;color:rgba(33,24,12,0.60);">You paused instead of reacting.<br>That takes real strength.</div>
+    </div>
+    <div id="complete-shift-card" style="margin:0 22px 12px;padding:14px 16px;background:rgba(255,255,255,0.55);border:1px solid rgba(160,104,50,0.18);border-radius:14px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">Your shift</div>
+      <div id="complete-shift-rows" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+    <div style="margin:0 22px 12px;padding:14px 16px;background:rgba(255,255,255,0.55);border:1px solid rgba(160,104,50,0.18);border-radius:14px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">This Session</div>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div style="display:flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#1E1408;"><span style="width:7px;height:7px;border-radius:50%;background:#A06832;"></span>Felt in: <span id="complete-body-summary" style="color:rgba(33,24,12,0.70);">—</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#1E1408;"><span style="width:7px;height:7px;border-radius:50%;background:#7CA39E;"></span>Breathing: <span id="complete-breath-summary" style="color:rgba(33,24,12,0.70);">—</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#1E1408;"><span style="width:7px;height:7px;border-radius:50%;background:#A8B89A;"></span>Next step: <span id="complete-next-summary" style="color:rgba(33,24,12,0.70);">—</span></div>
+      </div>
+    </div>
+    <div style="margin:0 22px 18px;padding:14px 16px;background:rgba(255,255,255,0.55);border-left:3px solid #A06832;border-radius:0 12px 12px 0;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:#A06832;margin-bottom:6px;">InnerSoothe</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;line-height:1.55;color:rgba(33,24,12,0.78);">"You paused, you breathed, you noticed. That's enough for now."</div>
+    </div>
+    <div style="padding:0 22px 14px;display:flex;flex-direction:column;gap:9px;">
+      <button onclick="stopCancelVoice();showSection('module-breakup-recovery')" style="width:100%;padding:13px;border-radius:24px;border:none;background:#A06832;color:#fff;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;">Return to my plan →</button>
+      <button onclick="stopCancelVoice();showSection('module-breakup-recovery')" style="width:100%;padding:12px;border-radius:24px;border:1.5px solid #A06832;background:transparent;color:#A06832;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;">Journal this moment</button>
+      <div onclick="stopCancelVoice();showSection('module-breakup-recovery')" style="text-align:center;font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(33,24,12,0.50);cursor:pointer;padding:4px;">Maybe later</div>
+    </div>
+    <div class="step-progress with-labels" style="left:32px;right:32px;width:auto;transform:none;padding:0;margin:6px 0 14px;">
+      <div class="step-pd-wrap"><div class="step-pd on">S</div><div class="step-pd-lbl">Stop</div></div>
+      <div class="step-pd-conn"></div>
+      <div class="step-pd-wrap"><div class="step-pd on">T</div><div class="step-pd-lbl">Take a breath</div></div>
+      <div class="step-pd-conn"></div>
+      <div class="step-pd-wrap"><div class="step-pd on">O</div><div class="step-pd-lbl">Observe</div></div>
+      <div class="step-pd-conn"></div>
+      <div class="step-pd-wrap"><div class="step-pd on">P</div><div class="step-pd-lbl">Proceed</div></div>
+    </div>
+    <div style="margin-top:auto;background:rgba(250,244,234,0.98);border-top:1px solid rgba(30,20,8,0.07);padding:10px 4px 22px;display:flex;justify-content:space-around;align-items:flex-end;flex-shrink:0;">
+      <div onclick="stopCancelVoice();showSection('relationship')" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:#A06832;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;">Home</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;">Journal</span>
+      </div>
+      <div onclick="stopCancelVoice();showSection('today')" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;">
+        <div style="width:54px;height:54px;border-radius:27px;background:#A06832;position:relative;top:-18px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(122,82,48,0.45),0 0 0 4px rgba(250,244,234,0.98);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L8 12 L12 22 L16 12 Z"/></svg>
+        </div>
+        <span style="font-family:'DM Sans',sans-serif;font-size:9px;color:rgba(30,20,8,0.50);margin-top:-12px;">Today</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;">Progress</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;">Settings</span>
+      </div>
+    </div>
   </div></div></div>
 </div><!-- /section-breakup-stop-complete -->
+<script>
+window.stopRenderComplete = function(){
+  var bEl = document.getElementById('complete-body-summary');
+  var body = window.stopS3Body || [];
+  if (bEl) bEl.textContent = body.length ? body.map(function(b){return b.name;}).join(', ') : '—';
+  var brEl = document.getElementById('complete-breath-summary');
+  var cycles = window.stopS2CyclesCompleted || 0;
+  if (brEl) brEl.textContent = cycles + (cycles === 1 ? ' complete cycle' : ' complete cycles');
+  var nEl = document.getElementById('complete-next-summary');
+  var a = window.stopS4Action;
+  if (nEl) nEl.textContent = a && a.title ? a.title : '—';
+  var rEl = document.getElementById('complete-shift-rows');
+  var card = document.getElementById('complete-shift-card');
+  if (!rEl || !card) return;
+  rEl.innerHTML = '';
+  var pre = window.stopPreSelected || {};
+  var sel = Object.keys(pre);
+  if (sel.length === 0){ card.style.display = 'none'; return; }
+  card.style.display = '';
+  sel.forEach(function(emotion){
+    var emoji = pre[emotion];
+    var p = (window.stopPreRatings || {})[emotion] || 0;
+    var q = (window.stopPostRatings || {})[emotion] || 0;
+    var improved = q < p;
+    var row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;font-family:\'DM Sans\',sans-serif;font-size:12px;';
+    var left = '<div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">'+emoji+'</span><span style="color:#1E1408;">'+emotion+'</span></div>';
+    var right = '<div style="display:flex;align-items:center;gap:6px;"><span style="color:rgba(33,24,12,0.45);font-size:11px;">'+p+'/5</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.30)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span style="color:'+(improved ? '#A06832' : 'rgba(33,24,12,0.65)')+';font-size:13px;font-weight:600;">'+q+'/5</span></div>';
+    row.innerHTML = left + right;
+    rEl.appendChild(row);
+  });
+};
+</script>
 <script>
 window.onStopSectionShow = function(sectionId) {
   stopCancelVoice();
@@ -10992,6 +11330,7 @@ window.onStopSectionShow = function(sectionId) {
     document.querySelectorAll('.sec-stop-s2 .s2-timeline-segment').forEach(function(seg){ seg.classList.remove('active','completed'); seg.querySelector('.s2-timeline-fill').style.width = '0%'; });
     if (cta) { cta.disabled = true; cta.classList.remove('enabled'); }
     if (more) more.classList.remove('visible');
+    window.stopS2CyclesCompleted = 0;
   }
   if (sectionId === 'breakup-stop-s3') {
     document.querySelectorAll('.sec-stop-s3 .obs-chip').forEach(function(c){ c.classList.remove('on'); });
@@ -11010,7 +11349,9 @@ window.onStopSectionShow = function(sectionId) {
     else if (sectionId === 'breakup-stop-s2') speakStopS2();
     else if (sectionId === 'breakup-stop-s3') speakStopS3();
     else if (sectionId === 'breakup-stop-s4') speakStopS4();
-    else if (sectionId === 'breakup-stop-complete') stopSpeak("Well done. You paused. You noticed. You chose. That's the practice.");
+    else if (sectionId === 'breakup-stop-pre-checkin') { if (typeof stopBuildPreGrid === 'function') stopBuildPreGrid(); }
+    else if (sectionId === 'breakup-stop-post-checkin') { if (typeof stopBuildPostChips === 'function') stopBuildPostChips(); }
+    else if (sectionId === 'breakup-stop-complete') { if (typeof stopRenderComplete === 'function') stopRenderComplete(); }
   }, 400);
 };
 </script>
