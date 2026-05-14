@@ -11535,8 +11535,8 @@ window.onStopSectionShow = function(sectionId) {
     else if (sectionId === 'breakup-stop-s2') speakStopS2();
     else if (sectionId === 'breakup-stop-s3') speakStopS3();
     else if (sectionId === 'breakup-stop-s4') speakStopS4();
-    else if (sectionId === 'breakup-stop-pre-checkin') { if (typeof stopBuildPreGrid === 'function') stopBuildPreGrid(); }
-    else if (sectionId === 'breakup-stop-post-checkin') { if (typeof stopBuildPostChips === 'function') stopBuildPostChips(); }
+    else if (sectionId === 'breakup-stop-pre-checkin') { if (typeof stopBuildPreGrid === 'function') stopBuildPreGrid(); if (typeof window.stopSpeak === 'function') window.stopSpeak("Before we begin. Notice how you're feeling. Pick up to three emotions and rate each."); }
+    else if (sectionId === 'breakup-stop-post-checkin') { if (typeof stopBuildPostChips === 'function') stopBuildPostChips(); if (typeof window.stopSpeak === 'function') window.stopSpeak("Now. Let's check in again. Rate the same feelings to see what shifted."); }
     else if (sectionId === 'breakup-stop-complete') { if (typeof stopRenderComplete === 'function') stopRenderComplete(); if (typeof stopSaveSession === 'function') stopSaveSession(); }
     else if (sectionId === 'progress') { if (typeof renderProgress === 'function') renderProgress(); }
   }, 400);
