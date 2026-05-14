@@ -11265,7 +11265,7 @@ function s4SelectAction(el) {
 
 <!-- ══════════ PROGRESS TAB ══════════ -->
 <div class="screens-area" id="section-progress">
-  <div class="phone-grid"><div class="phone-wrap"><div class="phone" style="background:linear-gradient(160deg,#FAF0E4 0%,#EDE0CC 50%,#E2CEB8 100%);display:flex;flex-direction:column;overflow:hidden;">
+  <div class="phone-grid"><div class="phone-wrap"><div class="phone" style="background:linear-gradient(160deg,#FAF0E4 0%,#EDE0CC 50%,#E2CEB8 100%);display:flex;flex-direction:column;overflow:hidden;padding-top:8px;">
 
     <div class="status">
       <span>9:41</span>
@@ -11422,11 +11422,18 @@ function s4SelectAction(el) {
     document.getElementById('prog-sessions-count').textContent = stored.length;
     document.getElementById('prog-streak-count').textContent = calcStreak(stored);
     var avg = calcAvgShift(stored);
-    document.getElementById('prog-avg-shift').textContent = (avg >= 0 ? '-' : '+') + Math.abs(avg).toFixed(1);
+    var avgEl = document.getElementById('prog-avg-shift');
+    if (avg > 0) { avgEl.textContent = '↓' + avg.toFixed(1); avgEl.style.color = '#5C8A60'; }
+    else if (avg < 0) { avgEl.textContent = '↑' + Math.abs(avg).toFixed(1); avgEl.style.color = 'rgba(33,24,12,0.65)'; }
+    else { avgEl.textContent = '—'; avgEl.style.color = 'rgba(33,24,12,0.45)'; }
 
     var listEl = document.getElementById('prog-session-list');
     listEl.innerHTML = '';
-    var groups = groupByDate(stored);
+    var DAY_MS = 86400000;
+    var cutoff = Date.now() - 30 * DAY_MS;
+    var recent = stored.filter(function(s) { return new Date(s.date).getTime() >= cutoff; });
+    var older = stored.length - recent.length;
+    var groups = groupByDate(recent);
 
     groups.forEach(function(g) {
       var h = document.createElement('div');
@@ -11452,6 +11459,12 @@ function s4SelectAction(el) {
         listEl.appendChild(card);
       });
     });
+    if (older > 0) {
+      var foot = document.createElement('div');
+      foot.style.cssText = 'text-align:center;margin:18px 4px 8px;font-family:\'DM Sans\',sans-serif;font-size:10.5px;color:rgba(33,24,12,0.45);font-style:italic;';
+      foot.textContent = 'Showing last 30 days · ' + older + ' earlier session' + (older === 1 ? '' : 's');
+      listEl.appendChild(foot);
+    }
   };
 })();
 </script>
