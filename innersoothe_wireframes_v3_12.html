@@ -11184,7 +11184,7 @@ function s4SelectAction(el) {
 
 <!-- STOP Complete -->
 <div class="screens-area sec-stop-step sec-stop-complete" id="section-breakup-stop-complete">
-  <div class="phone-grid"><div class="phone-wrap"><div class="phone" style="background:#FAF0E4;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;">
+  <div class="phone-grid"><div class="phone-wrap"><div class="phone" style="background:#FAF0E4;overflow:hidden;display:flex;flex-direction:column;">
     <div class="status">
       <span>9:41</span>
       <div style="display:flex;align-items:center;gap:6px;">
@@ -11205,23 +11205,23 @@ function s4SelectAction(el) {
         </div>
       </div>
     </div>
-    <div style="display:flex;justify-content:center;align-items:center;padding:18px 0 8px;position:relative;">
+    <div style="display:flex;justify-content:center;align-items:center;padding:6px 0 2px;position:relative;">
       <svg width="60" height="40" viewBox="0 0 60 40" style="position:absolute;left:30%;transform:translateX(-100%);opacity:0.35;"><path d="M10 30 Q15 10 35 5 Q25 18 18 35 Z" fill="none" stroke="#A06832" stroke-width="1.2"/><path d="M15 32 Q20 18 38 14" fill="none" stroke="#A06832" stroke-width="1"/></svg>
-      <div style="width:80px;height:80px;border-radius:50%;border:1.5px solid #A06832;background:rgba(160,104,50,0.08);display:flex;align-items:center;justify-content:center;">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <div style="width:62px;height:62px;border-radius:50%;border:1.5px solid #A06832;background:rgba(160,104,50,0.08);display:flex;align-items:center;justify-content:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <svg width="60" height="40" viewBox="0 0 60 40" style="position:absolute;right:30%;transform:translateX(100%) scaleX(-1);opacity:0.35;"><path d="M10 30 Q15 10 35 5 Q25 18 18 35 Z" fill="none" stroke="#A06832" stroke-width="1.2"/><path d="M15 32 Q20 18 38 14" fill="none" stroke="#A06832" stroke-width="1"/></svg>
     </div>
-    <div style="text-align:center;padding:8px 28px 18px;">
+    <div style="text-align:center;padding:4px 28px 10px;">
       <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">Session Complete</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;line-height:1.2;color:#1E1408;margin-bottom:10px;">You did something hard.</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:23px;line-height:1.2;color:#1E1408;margin-bottom:8px;">You did something hard.</div>
       <div style="font-family:'DM Sans',sans-serif;font-weight:300;font-size:12px;font-style:italic;line-height:1.5;color:rgba(33,24,12,0.60);">You paused instead of reacting.<br>That takes real strength.</div>
     </div>
-    <div id="complete-shift-card" style="margin:0 22px 12px;padding:14px 16px;background:rgba(255,255,255,0.55);border:1px solid rgba(160,104,50,0.18);border-radius:14px;">
+    <div id="complete-shift-card" style="margin:0 22px 7px;padding:11px 14px;background:rgba(255,255,255,0.55);border:1px solid rgba(160,104,50,0.18);border-radius:14px;">
       <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">Your shift</div>
       <div id="complete-shift-rows" style="display:flex;flex-direction:column;gap:8px;"></div>
     </div>
-    <div style="margin:0 22px 12px;padding:14px 16px;background:rgba(255,255,255,0.55);border:1px solid rgba(160,104,50,0.18);border-radius:14px;">
+    <div style="margin:0 22px 7px;padding:11px 14px;background:rgba(255,255,255,0.55);border:1px solid rgba(160,104,50,0.18);border-radius:14px;">
       <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">This Session</div>
       <div style="display:flex;flex-direction:column;gap:9px;">
         <div style="display:flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#1E1408;"><span style="width:7px;height:7px;border-radius:50%;background:#A06832;"></span>Felt in: <span id="complete-body-summary" style="color:rgba(33,24,12,0.70);">—</span></div>
@@ -11229,25 +11229,16 @@ function s4SelectAction(el) {
         <div style="display:flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#1E1408;"><span style="width:7px;height:7px;border-radius:50%;background:#A8B89A;"></span>Next step: <span id="complete-next-summary" style="color:rgba(33,24,12,0.70);">—</span></div>
       </div>
     </div>
-    <div style="margin:0 22px 18px;padding:14px 16px;background:rgba(255,255,255,0.55);border-left:3px solid #A06832;border-radius:0 12px 12px 0;">
+    <div style="margin:0 22px 10px;padding:10px 14px;background:rgba(255,255,255,0.55);border-left:3px solid #A06832;border-radius:0 12px 12px 0;">
       <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:#A06832;margin-bottom:6px;">InnerSoothe</div>
       <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;line-height:1.55;color:rgba(33,24,12,0.78);">"You paused, you breathed, you noticed. That's enough for now."</div>
     </div>
-    <div style="padding:0 22px 14px;display:flex;flex-direction:column;gap:9px;">
+    <div style="padding:0 22px 8px;display:flex;flex-direction:column;gap:6px;">
       <button onclick="stopCancelVoice();showSection('module-breakup-recovery')" style="width:100%;padding:13px;border-radius:24px;border:none;background:#A06832;color:#fff;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;">Return to my plan →</button>
       <button onclick="stopCancelVoice();showSection('module-breakup-recovery')" style="width:100%;padding:12px;border-radius:24px;border:1.5px solid #A06832;background:transparent;color:#A06832;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;">Journal this moment</button>
       <div onclick="stopCancelVoice();showSection('module-breakup-recovery')" style="text-align:center;font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(33,24,12,0.50);cursor:pointer;padding:4px;">Maybe later</div>
     </div>
-    <div class="step-progress with-labels" style="left:32px;right:32px;width:auto;transform:none;padding:0;margin:6px 0 14px;">
-      <div class="step-pd-wrap"><div class="step-pd on">S</div><div class="step-pd-lbl">Stop</div></div>
-      <div class="step-pd-conn"></div>
-      <div class="step-pd-wrap"><div class="step-pd on">T</div><div class="step-pd-lbl">Take a breath</div></div>
-      <div class="step-pd-conn"></div>
-      <div class="step-pd-wrap"><div class="step-pd on">O</div><div class="step-pd-lbl">Observe</div></div>
-      <div class="step-pd-conn"></div>
-      <div class="step-pd-wrap"><div class="step-pd on">P</div><div class="step-pd-lbl">Proceed</div></div>
-    </div>
-    <div style="margin-top:auto;background:rgba(250,244,234,0.98);border-top:1px solid rgba(30,20,8,0.07);padding:10px 4px 22px;display:flex;justify-content:space-around;align-items:flex-end;flex-shrink:0;">
+    <div style="margin-top:auto;background:rgba(250,244,234,0.98);border-top:1px solid rgba(30,20,8,0.07);padding:6px 4px 10px;display:flex;justify-content:space-around;align-items:flex-end;flex-shrink:0;">
       <div onclick="stopCancelVoice();showSection('relationship')" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:#A06832;">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;">Home</span>
