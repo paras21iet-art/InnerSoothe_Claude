@@ -10316,6 +10316,8 @@ window.sec_stop_mode = 'guided';
 function speakStopS1() {
   if (!window.stopSpeakSequence) return;
   window.stopSpeakSequence([
+    "Step one. Stop.",
+    1000,
     "Whatever you're about to do, don't do it yet.",
     1200,
     "Don't send that message. Don't scroll back through the photos.",
@@ -10453,11 +10455,11 @@ function speakStopS1() {
 (function() {
   window._s2SessionId = window._s2SessionId || 0;
 
-  /* Two-part instructional intro — utterance 1 → 2.5s pause → utterance 2 → breathing cycle */
+  /* Single-utterance intro → breathing cycle */
   window.speakStopS2 = function() {
     var sid = window._s2SessionId;
-    var fb1, fb2, pauseTimer;
-    var u1done = false, u2done = false;
+    var fb;
+    var done = false;
 
     function getVoice() {
       var voices = speechSynthesis.getVoices();
@@ -10470,45 +10472,25 @@ function speakStopS1() {
     }
 
     function startCycle() {
-      clearTimeout(fb1); clearTimeout(fb2); clearTimeout(pauseTimer);
+      if (done) return; done = true;
+      clearTimeout(fb);
       if (window._s2SessionId !== sid) return;
       window.runS2BreathingCycles();
     }
 
-    function speakUtterance2() {
-      clearTimeout(fb1); clearTimeout(pauseTimer);
-      if (window._s2SessionId !== sid) return;
-      if (window.stopSession && window.stopSession.muted) { startCycle(); return; }
-      fb2 = setTimeout(startCycle, 8000);
-      var u2 = new SpeechSynthesisUtterance('Get comfortable. When you\'re ready, follow the orb... Beginning now.');
-      u2.voice = getVoice(); u2.rate = 0.82; u2.pitch = 0.9; u2.volume = 0.85;
-      function onU2Done() { if (u2done) return; u2done = true; clearTimeout(fb2); startCycle(); }
-      u2.onend = onU2Done; u2.onerror = onU2Done;
-      if (window.stopSession) window.stopSession.currentUtterance = u2;
-      speechSynthesis.speak(u2);
-    }
-
-    function afterUtterance1() {
-      if (u1done) return; u1done = true;
-      clearTimeout(fb1);
-      if (window._s2SessionId !== sid) return;
-      if (window.stopSession && window.stopSession.muted) { startCycle(); return; }
-      pauseTimer = setTimeout(speakUtterance2, 2500);
-    }
-
-    /* Pre-entry muted: skip both utterances and the pause, start cycle immediately */
+    /* Pre-entry muted: skip voice, start cycle immediately */
     if (window.stopSession && window.stopSession.muted) {
       window.runS2BreathingCycles();
       return;
     }
 
-    fb1 = setTimeout(afterUtterance1, 25000);
-    var u1 = new SpeechSynthesisUtterance('Box breathing is a calming technique. You\'ll breathe in through your nose for four counts, hold for four, then breathe out through your mouth for four, and hold for four. We\'ll do this four times together.');
-    u1.voice = getVoice(); u1.rate = 0.82; u1.pitch = 0.9; u1.volume = 0.85;
-    u1.onend = afterUtterance1; u1.onerror = afterUtterance1;
-    if (window.stopSession) window.stopSession.currentUtterance = u1;
+    fb = setTimeout(startCycle, 8000);
+    var u = new SpeechSynthesisUtterance('Step two. Take a Breath. Box breathing — follow the orb.');
+    u.voice = getVoice(); u.rate = 0.82; u.pitch = 0.9; u.volume = 0.85;
+    u.onend = startCycle; u.onerror = startCycle;
+    if (window.stopSession) window.stopSession.currentUtterance = u;
     speechSynthesis.cancel();
-    speechSynthesis.speak(u1);
+    speechSynthesis.speak(u);
   };
 
   window.runS2BreathingCycles = function() {
@@ -10826,7 +10808,7 @@ function speakStopS1() {
 <script>
 function speakStopS3() {
   if (typeof window.stopSpeak === 'function') {
-    window.stopSpeak("Observe. Notice what you're feeling. Select what fits.");
+    window.stopSpeak("Step three. Observe. Notice what you're feeling. Select what fits.");
   }
 }
 window._s3HasSpoken = false;
@@ -10835,10 +10817,6 @@ function s3ToggleChip(el) {
   var anySelected = document.querySelectorAll('.sec-stop-s3 .obs-chip.on').length > 0;
   var cta = document.getElementById('s3-cta');
   if (cta) cta.disabled = !anySelected;
-  if (!window._s3HasSpoken && anySelected) {
-    window._s3HasSpoken = true;
-    stopSpeak("You see yourself clearly. Take your time.");
-  }
 }
 </script>
 
@@ -10946,11 +10924,9 @@ function s3ToggleChip(el) {
 </div><!-- /section-breakup-stop-s4 -->
 <script>
 function speakStopS4() {
-  stopSpeakSequence([
-    "Now choose. Not the impulsive thing — the thoughtful thing.",
-    1500,
-    "What would actually help you, right now?"
-  ]);
+  if (typeof window.stopSpeak === 'function') {
+    window.stopSpeak("Step four. Proceed. Choose what would actually help you.");
+  }
 }
 window._s4HasSpoken = false;
 function s4SelectAction(el) {
@@ -10958,10 +10934,6 @@ function s4SelectAction(el) {
   el.classList.add('on');
   var cta = document.getElementById('s4-cta');
   if (cta) cta.disabled = false;
-  if (!window._s4HasSpoken) {
-    window._s4HasSpoken = true;
-    stopSpeak("Trust yourself. You've already done the work.");
-  }
 }
 </script>
 
