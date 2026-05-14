@@ -11207,12 +11207,12 @@ function s4SelectAction(el) {
         </div>
       </div>
     </div>
-    <div style="display:flex;justify-content:center;align-items:center;padding:10px 0 4px;">
+    <div style="display:flex;justify-content:center;align-items:center;padding:6px 0 2px;">
       <div style="width:62px;height:62px;border-radius:50%;border:1.5px solid #A06832;background:rgba(160,104,50,0.08);display:flex;align-items:center;justify-content:center;">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
     </div>
-    <div style="text-align:center;padding:4px 28px 10px;">
+    <div style="text-align:center;padding:2px 28px 6px;">
       <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">Session Complete</div>
       <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:23px;line-height:1.2;color:#1E1408;margin-bottom:8px;">You did something hard.</div>
       <div style="font-family:'DM Sans',sans-serif;font-weight:300;font-size:12px;font-style:italic;line-height:1.5;color:rgba(33,24,12,0.60);">You paused instead of reacting.<br>That takes real strength.</div>
@@ -11223,7 +11223,7 @@ function s4SelectAction(el) {
     </div>
     <div style="margin:0 22px 7px;padding:11px 14px;background:rgba(255,255,255,0.55);border:1px solid rgba(160,104,50,0.18);border-radius:14px;">
       <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">This Session</div>
-      <div style="display:flex;flex-direction:column;gap:9px;">
+      <div style="display:flex;flex-direction:column;gap:6px;">
         <div style="display:flex;align-items:flex-start;gap:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#1E1408;line-height:1.4;"><span style="width:7px;height:7px;border-radius:50%;background:#A06832;flex-shrink:0;margin-top:5px;"></span><span>Emotion noticed: <span id="complete-emotion-summary" style="color:rgba(33,24,12,0.70);">—</span></span></div>
         <div style="display:flex;align-items:flex-start;gap:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#1E1408;line-height:1.4;"><span style="width:7px;height:7px;border-radius:50%;background:#A06832;flex-shrink:0;margin-top:5px;"></span><span>Tightness in body noticed at: <span id="complete-body-summary" style="color:rgba(33,24,12,0.70);">—</span></span></div>
         <div style="display:flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#1E1408;"><span style="width:7px;height:7px;border-radius:50%;background:#7CA39E;"></span>Breathing: <span id="complete-breath-summary" style="color:rgba(33,24,12,0.70);">—</span></div>
@@ -11231,7 +11231,7 @@ function s4SelectAction(el) {
       </div>
     </div>
 
-    <div style="padding:0 22px 8px;display:flex;flex-direction:column;gap:6px;">
+    <div style="padding:0 22px 4px;display:flex;flex-direction:column;gap:5px;">
       <button onclick="stopCancelVoice();showSection('module-breakup-recovery')" style="width:100%;padding:13px;border-radius:24px;border:none;background:#A06832;color:#fff;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;">Return to Breakup Recovery →</button>
       <button onclick="stopCancelVoice();showSection('module-breakup-recovery')" style="width:100%;padding:12px;border-radius:24px;border:1.5px solid #A06832;background:transparent;color:#A06832;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;">Journal this moment</button>
       <div onclick="stopCancelVoice();showSection('module-breakup-recovery')" style="text-align:center;font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(33,24,12,0.50);cursor:pointer;padding:4px;">Maybe later</div>
@@ -11292,7 +11292,7 @@ window.stopRenderComplete = function(){
     var row = document.createElement('div');
     row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;font-family:\'DM Sans\',sans-serif;font-size:12px;';
     var left = '<div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">'+emoji+'</span><span style="color:#1E1408;">'+emotion+'</span></div>';
-    var right = '<div style="display:flex;align-items:center;gap:6px;"><span style="color:rgba(33,24,12,0.45);font-size:11px;">'+p+'/5</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.30)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span style="color:'+(improved ? '#A06832' : 'rgba(33,24,12,0.65)')+';font-size:13px;font-weight:600;">'+q+'/5</span></div>';
+    var right = '<div style="display:flex;align-items:center;gap:6px;"><span style="color:rgba(33,24,12,0.45);font-size:11px;">'+p+'/5</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.30)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span style="color:'+(improved ? '#5C8A60' : 'rgba(33,24,12,0.65)')+';font-size:13px;font-weight:600;">'+q+'/5</span></div>';
     row.innerHTML = left + right;
     rEl.appendChild(row);
   });
