@@ -10187,7 +10187,7 @@
     <div class="spc-body">
       <div class="spc-eyebrow">Emotion check-in · Before</div>
       <div class="spc-headline">How are you feeling right now?</div>
-      <div class="spc-subhead">Select up to 3 emotions, then rate each. We'll check in again after.</div>
+      <div class="spc-subhead">Select up to 3 emotions and rate each. We'll check in again after the technique to see what shifted.</div>
       <div class="spc-counter">Selected · <b><span id="spc-count">0</span>/3</b></div>
       <div class="spc-grid" id="spc-grid"></div>
       <div class="spc-divider"></div>
@@ -11050,7 +11050,7 @@ function s3ToggleChip(el) {
       </div>
     </div>
     <div class="step-cta-wrap">
-      <button class="step-cta" id="s4-cta" disabled onclick="stopCancelVoice();showSection('breakup-stop-post-checkin')">I've chosen. Complete STOP →</button>
+      <button class="step-cta" id="s4-cta" disabled onclick="stopCancelVoice();showSection('breakup-stop-post-checkin')">I've chosen. Continue →</button>
       <button class="step-secondary" onclick="stopCancelVoice();showSection('breakup-stop-s3')">I'm not sure yet</button>
     </div>
     <div class="step-progress with-labels">
@@ -11205,12 +11205,10 @@ function s4SelectAction(el) {
         </div>
       </div>
     </div>
-    <div style="display:flex;justify-content:center;align-items:center;padding:6px 0 2px;position:relative;">
-      <svg width="60" height="40" viewBox="0 0 60 40" style="position:absolute;left:30%;transform:translateX(-100%);opacity:0.35;"><path d="M10 30 Q15 10 35 5 Q25 18 18 35 Z" fill="none" stroke="#A06832" stroke-width="1.2"/><path d="M15 32 Q20 18 38 14" fill="none" stroke="#A06832" stroke-width="1"/></svg>
+    <div style="display:flex;justify-content:center;align-items:center;padding:10px 0 4px;">
       <div style="width:62px;height:62px;border-radius:50%;border:1.5px solid #A06832;background:rgba(160,104,50,0.08);display:flex;align-items:center;justify-content:center;">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <svg width="60" height="40" viewBox="0 0 60 40" style="position:absolute;right:30%;transform:translateX(100%) scaleX(-1);opacity:0.35;"><path d="M10 30 Q15 10 35 5 Q25 18 18 35 Z" fill="none" stroke="#A06832" stroke-width="1.2"/><path d="M15 32 Q20 18 38 14" fill="none" stroke="#A06832" stroke-width="1"/></svg>
     </div>
     <div style="text-align:center;padding:4px 28px 10px;">
       <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">Session Complete</div>
