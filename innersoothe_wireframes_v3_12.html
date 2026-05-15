@@ -11989,8 +11989,6 @@ window.onStopSectionShow = function(sectionId) {
     else if (sectionId === 'breakup-stop-post-checkin') { if (typeof stopBuildPostChips === 'function') stopBuildPostChips(); if (typeof window.stopSpeak === 'function') window.stopSpeak("Now. Let's check in again. Rate the same feelings to see what shifted."); }
     else if (sectionId === 'breakup-stop-complete') { if (typeof stopRenderComplete === 'function') stopRenderComplete(); if (typeof stopSaveSession === 'function') stopSaveSession(); }
     else if (sectionId === 'progress') { if (typeof renderProgress === 'function') renderProgress(); }
-    else if (sectionId === 'cl-entry') { setTimeout(speakClEntry, 400); }
-    else if (sectionId === 'cl-pre-checkin') { if (typeof clBuildPreGrid === 'function') clBuildPreGrid(); setTimeout(speakClPreCheckin, 400); }
   }, 400);
 };
 </script>
@@ -18361,6 +18359,24 @@ function showSection(id) {
       try { window.stopCancelVoice(); } catch(e) {}
     }
     return _prevShowSection.apply(this, arguments);
+  };
+})();
+
+/* Closure Letter dispatch — fire clBuildPreGrid + voice for CL section navigations.
+   Layered after the STOP voice cancel wrapper so cancelVoice always runs first. */
+(function() {
+  if (window._showSectionWrappedForCl) return;
+  window._showSectionWrappedForCl = true;
+  var _prevCl = window.showSection;
+  window.showSection = function(id) {
+    var result = _prevCl.apply(this, arguments);
+    if (id === 'cl-entry') {
+      setTimeout(speakClEntry, 400);
+    } else if (id === 'cl-pre-checkin') {
+      if (typeof window.clBuildPreGrid === 'function') window.clBuildPreGrid();
+      setTimeout(speakClPreCheckin, 400);
+    }
+    return result;
   };
 })();
 
