@@ -2755,6 +2755,145 @@
   position: relative;
 }
 
+/* ===== Closure Letter — Complete shell + layout ===== */
+.sec-cl-complete {
+  width: 370px;
+  height: 780px;
+  border-radius: 48px;
+  box-shadow: 0 28px 70px rgba(30,20,8,0.13),
+              0 0 0 1.5px rgba(30,20,8,0.10),
+              inset 0 0 0 1px rgba(255,255,255,0.60);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #F9EDD8;
+  position: relative;
+}
+.cl-complete-hero-circle {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: rgba(243,233,220,0.80);
+  border: 1px solid rgba(160,104,50,0.20);
+  box-shadow: 0 2px 8px rgba(30,20,8,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px auto 6px;
+  flex-shrink: 0;
+}
+.cl-complete-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #A06832;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.cl-complete-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 26px;
+  color: #1E1408;
+  text-align: center;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.cl-complete-subhead {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 13px;
+  color: rgba(62,42,31,0.65);
+  text-align: center;
+  padding: 0 28px;
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.cl-complete-quote {
+  margin: 0 24px 8px;
+  padding: 8px 12px;
+  background: rgba(243,233,220,0.60);
+  border-left: 2px solid rgba(160,104,50,0.30);
+  border-radius: 0 8px 8px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #1E1408;
+}
+.cl-info-card {
+  margin: 0 24px 8px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(160,104,50,0.12);
+  border-radius: 14px;
+}
+.cl-info-card-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #A06832;
+  margin-bottom: 6px;
+}
+.cl-shift-row, .cl-session-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: #1E1408;
+  padding: 3px 0;
+}
+.cl-shift-row .cl-shift-improved { color: #5C8A60; font-weight: 600; }
+.cl-complete-ritual {
+  margin: 6px 24px 0;
+  font-family: 'DM Sans', sans-serif;
+  font-style: italic;
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(62,42,31,0.55);
+  text-align: center;
+  line-height: 1.4;
+}
+.cl-complete-cta-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 24px 8px;
+  margin-top: auto;
+}
+.cl-cta-outlined {
+  padding: 10px 0;
+  background: transparent;
+  color: #A06832;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  border: 1.5px solid #A06832;
+  border-radius: 22px;
+  cursor: pointer;
+  width: 100%;
+  outline: none;
+}
+.cl-cta-tertiary {
+  padding: 4px 0 2px;
+  background: transparent;
+  color: rgba(62,42,31,0.55);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  outline: none;
+}
+
 /* ===== PMR Technique — All 4 Screens ===== */
 .pmr-phone { width: 370px; height: 780px; border-radius: 44px; box-shadow: 0 18px 50px rgba(33,24,12,0.10), 0 0 0 1px rgba(33,24,12,0.06); overflow: hidden; display: flex; flex-direction: column; position: relative; flex-shrink: 0; }
 .pmr-status { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px 0; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; color: rgba(30,20,8,0.45); flex-shrink: 0; }
@@ -10942,6 +11081,85 @@ function speakClP3() {
 function speakClPostCheckin() {
   stopSpeak("Now. Let's check in again. Rate the same feelings to see what shifted.");
 }
+function speakClComplete() {
+  stopSpeak("Letter written. The unsaid things are out of your body now and on the page. You witnessed yourself. That matters — whether anyone ever reads this or not.");
+}
+function clSaveSession() {
+  var now = new Date();
+  var wordCount = [
+    window.clLetter.part1 || '',
+    window.clLetter.part2 || '',
+    window.clLetter.part3 || ''
+  ].join(' ').trim().split(/\s+/).filter(Boolean).length;
+  var timeSpent = window.clTimeStart
+    ? Math.round((Date.now() - window.clTimeStart) / 1000)
+    : 0;
+  var session = {
+    id: 'cl-' + Date.now(),
+    date: now.toISOString(),
+    technique: 'Closure Letter',
+    module: 'Breakup Recovery',
+    pre: Object.assign({}, window.clPreRatings),
+    preEmojis: (window.clPreSelected || []).slice(),
+    post: {},
+    cycles: null,
+    wordCount: wordCount,
+    timeSpent: timeSpent,
+    letterChoice: window.clChoice,
+    letterParts: window.clChoice === 'keep'
+      ? { part1: window.clLetter.part1, part2: window.clLetter.part2, part3: window.clLetter.part3 }
+      : null
+  };
+  window.clCurrentSessionId = session.id;
+  var sessions = JSON.parse(localStorage.getItem('innersoothe_sessions') || '[]');
+  sessions.push(session);
+  localStorage.setItem('innersoothe_sessions', JSON.stringify(sessions));
+  if (window.clChoice !== 'keep') {
+    window.clLetter = { part1: '', part2: '', part3: '' };
+  }
+}
+function clRenderComplete() {
+  var sessions = JSON.parse(localStorage.getItem('innersoothe_sessions') || '[]');
+  var session = null;
+  for (var i = sessions.length - 1; i >= 0; i--) {
+    if (sessions[i].id === window.clCurrentSessionId) { session = sessions[i]; break; }
+  }
+  if (!session) return;
+  var shiftHost = document.getElementById('cl-complete-shift-rows');
+  if (shiftHost) {
+    shiftHost.innerHTML = '';
+    (session.preEmojis || []).forEach(function(key) {
+      var preVal = session.pre[key];
+      var postVal = session.post[key];
+      var improved = (typeof preVal === 'number' && typeof postVal === 'number' && postVal < preVal);
+      var row = document.createElement('div');
+      row.className = 'cl-shift-row';
+      row.innerHTML = '<span>' + key + '</span><span class="' + (improved ? 'cl-shift-improved' : '') + '">' + (preVal||'—') + '/5 → ' + (postVal||'—') + '/5</span>';
+      shiftHost.appendChild(row);
+    });
+  }
+  var choiceLabels = {
+    'keep': 'Kept for yourself',
+    'delete': 'Deleted after reading',
+    'burn': 'Burned ritually',
+    'read-aloud': 'Read aloud alone'
+  };
+  var timeMinutes = Math.max(1, Math.round((session.timeSpent || 0) / 60));
+  var wEl = document.getElementById('cl-complete-words');
+  var tEl = document.getElementById('cl-complete-time');
+  var cEl = document.getElementById('cl-complete-choice');
+  if (wEl) wEl.textContent = session.wordCount || 0;
+  if (tEl) tEl.textContent = timeMinutes;
+  if (cEl) cEl.textContent = choiceLabels[session.letterChoice] || '—';
+  var ritualMsgs = {
+    'keep': 'You can find this letter in your Journal.',
+    'delete': 'The release is done. Move forward gently.',
+    'burn': 'Light a candle. Read it once more. Then let it go.',
+    'read-aloud': 'Find a quiet space. Speak it once, fully. Then leave it behind.'
+  };
+  var rEl = document.getElementById('cl-complete-ritual');
+  if (rEl) rEl.textContent = ritualMsgs[session.letterChoice] || '';
+}
 function clP2UpdateCTA() {
   var textarea = document.getElementById('cl-p2-textarea');
   var cta = document.getElementById('cl-p2-cta');
@@ -10969,6 +11187,7 @@ function clSelectChoice(value) {
 }
 function clCompleteTheLetter() {
   window.clLetter.part3 = document.getElementById('cl-p3-textarea').value;
+  clSaveSession();
   showSection('cl-post-checkin');
 }
 function speakStopS1() {
@@ -12172,11 +12391,105 @@ function s4SelectAction(el) {
   window.clPostShiftTap = function(){
     var sel = window.clPreSelected || [];
     var all = sel.length > 0 && sel.every(function(e){ return window.clPostRatings[e]; });
-    if (all){ stopCancelVoice(); showSection('cl-complete'); return; }
+    if (all){
+      var sessions = JSON.parse(localStorage.getItem('innersoothe_sessions') || '[]');
+      for (var i = sessions.length - 1; i >= 0; i--) {
+        if (sessions[i].id === window.clCurrentSessionId) {
+          sessions[i].post = Object.assign({}, window.clPostRatings);
+          break;
+        }
+      }
+      localStorage.setItem('innersoothe_sessions', JSON.stringify(sessions));
+      stopCancelVoice(); showSection('cl-complete'); return;
+    }
     var h = document.getElementById('clspostc-cta-hint'); if (h) h.style.display = 'block';
   };
 })();
 </script>
+
+<!-- ══════════ CLOSURE LETTER — COMPLETE ══════════ -->
+<div class="screens-area sec-stop-step" id="section-cl-complete">
+  <div class="sec-cl-complete">
+
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+    <div class="step-hdr" style="justify-content:flex-end;">
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cl-complete-hero-circle">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </div>
+
+    <div class="cl-complete-eyebrow">SESSION COMPLETE</div>
+    <div class="cl-complete-headline">Letter Written</div>
+    <div class="cl-complete-subhead">The unsaid things are out of your body now and on the page. You witnessed yourself.</div>
+
+    <div class="cl-complete-quote">Closure doesn't come from them giving you something. It comes from you deciding you no longer need it to move forward.</div>
+
+    <div class="cl-info-card">
+      <div class="cl-info-card-title">YOUR SHIFT</div>
+      <div id="cl-complete-shift-rows"></div>
+    </div>
+
+    <div class="cl-info-card">
+      <div class="cl-info-card-title">THIS SESSION</div>
+      <div class="cl-session-row"><span>Words written</span><span id="cl-complete-words">0</span></div>
+      <div class="cl-session-row"><span>Time spent</span><span><span id="cl-complete-time">0</span> min</span></div>
+      <div class="cl-session-row"><span>Closure ritual</span><span id="cl-complete-choice">—</span></div>
+    </div>
+
+    <div class="cl-complete-ritual" id="cl-complete-ritual"></div>
+
+    <div class="cl-complete-cta-stack">
+      <button class="cl-cta" onclick="showSection('module-breakup-recovery')">Return to Breakup Recovery →</button>
+      <button class="cl-cta-outlined" onclick="if(document.getElementById('section-journal')) showSection('journal'); else alert('Journal coming soon');">Reflect in Journal</button>
+      <button class="cl-cta-tertiary" onclick="showSection('relationship')">Maybe later</button>
+    </div>
+
+    <div style="background:rgba(250,244,234,0.98);border-top:1px solid rgba(30,20,8,0.07);padding:6px 4px 10px;display:flex;justify-content:space-around;align-items:flex-end;flex-shrink:0;">
+      <div onclick="showSection('relationship')" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:#A06832;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;">Home</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;">Journal</span>
+      </div>
+      <div onclick="showSection('today')" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;">
+        <div style="width:54px;height:54px;border-radius:27px;background:#A06832;position:relative;top:-18px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(122,82,48,0.45),0 0 0 4px rgba(250,244,234,0.98);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L8 12 L12 22 L16 12 Z"/></svg>
+        </div>
+        <span style="font-family:'DM Sans',sans-serif;font-size:9px;color:rgba(30,20,8,0.50);margin-top:-12px;">Today</span>
+      </div>
+      <div onclick="showSection('progress')" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;">Progress</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:rgba(30,20,8,0.60);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-size:10px;">Settings</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- /section-cl-complete -->
 
 <script>
 (function(){
@@ -18943,6 +19256,9 @@ function showSection(id) {
     } else if (id === 'cl-post-checkin') {
       if (typeof window.clBuildPostChips === 'function') window.clBuildPostChips();
       setTimeout(speakClPostCheckin, 400);
+    } else if (id === 'cl-complete') {
+      setTimeout(speakClComplete, 400);
+      clRenderComplete();
     }
     return result;
   };
