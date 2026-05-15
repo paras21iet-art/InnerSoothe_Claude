@@ -11876,28 +11876,21 @@ window.onStopSectionShow = function(sectionId) {
             <feGaussianBlur stdDeviation="10"/>
           </filter>
         </defs>
-        <!-- Layer 1: flowing silhouette; fill matches phone bg to hide junction strokes; drawn back-to-front -->
-        <g class="pmr-silhouette" fill="#FAF0E4" stroke="rgba(30,20,8,0.75)" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M88,78 C72,82 52,90 42,102 C34,114 34,138 38,158 C40,174 44,186 44,204 C44,218 42,228 46,236 C64,240 80,244 100,244 C120,244 136,240 154,236 C158,228 156,218 156,204 C156,186 160,174 162,158 C166,138 166,114 158,102 C148,90 128,82 112,78Z"/>
-          <path d="M152,82 C162,80 172,84 177,94 C182,108 182,152 179,188 C178,208 177,244 176,268 C176,280 172,294 164,300 C156,306 149,300 147,290 C145,276 145,252 147,228 C149,204 151,170 152,140 C152,120 152,98 152,82Z"/>
-          <path d="M48,82 C38,80 28,84 23,94 C18,108 18,152 21,188 C22,208 23,244 24,268 C24,280 28,294 36,300 C44,306 51,300 53,290 C55,276 55,252 53,228 C51,204 49,170 48,140 C48,120 48,98 48,82Z"/>
-          <path d="M100,242 C112,242 134,244 146,250 C156,262 155,298 152,328 C150,346 146,362 144,374 C142,392 138,426 134,458 C138,460 148,462 154,466 C158,474 154,484 145,488 C134,492 118,492 110,486 C104,480 103,470 108,464 C114,460 120,458 122,454 C124,444 124,418 122,400 C120,374 118,354 116,330 C114,300 112,266 108,246 C106,242 102,242 100,242Z"/>
-          <path d="M100,242 C88,242 66,244 54,250 C44,262 45,298 48,328 C50,346 54,362 56,374 C58,392 62,426 66,458 C62,460 52,462 46,466 C42,474 46,484 55,488 C66,492 82,492 90,486 C96,480 97,470 92,464 C86,460 80,458 78,454 C76,444 76,418 78,400 C80,374 82,354 84,330 C86,300 88,266 92,246 C94,242 98,242 100,242Z"/>
-          <path d="M100,4 C124,4 135,15 135,30 C135,46 122,58 109,62 C107,67 107,73 110,84 L90,84 C93,73 93,67 91,62 C78,58 65,46 65,30 C65,15 76,4 100,4Z"/>
-        </g>
-        <!-- Layer 2: invisible regions — JS targets these IDs for highlight -->
+        <!-- Layer 1: sourced anatomical line drawing (gender-neutral). Scales to fill width=200, height=350, centered vertically in 500-unit viewBox (occupies y=75 to y=425). -->
+        <image href="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-body.png" x="0" y="0" width="200" height="500" preserveAspectRatio="xMidYMid meet"/>
+        <!-- Layer 2: invisible regions, coordinated to PNG body anatomy (PNG occupies viewBox y 75-425). -->
         <g class="pmr-regions" fill="transparent" stroke="none">
-          <path id="chest"           d="M62,95  L138,95  L138,175 L62,175  Z"/>
-          <path id="abdomen"         d="M62,175 L138,175 L148,210 L52,210  Z"/>
-          <path id="hips"            d="M52,210 L148,210 L152,242 L48,242  Z"/>
-          <path id="right-upper-arm" d="M150,84 L180,84  L180,188 L148,188 Z"/>
-          <path id="left-upper-arm"  d="M20,84  L50,84   L52,188  L18,188  Z"/>
-          <path id="right-forearm"   d="M147,188 L180,188 L178,272 L145,272 Z"/>
-          <path id="left-forearm"    d="M20,188  L53,188  L55,272  L22,272  Z"/>
-          <path id="right-thigh"     d="M100,242 L150,242 L148,368 L100,368 Z"/>
-          <path id="left-thigh"      d="M50,242  L100,242 L100,368 L52,368  Z"/>
-          <path id="right-calf"      d="M108,368 L148,368 L142,460 L106,460 Z"/>
-          <path id="left-calf"       d="M52,368  L92,368  L94,460  L58,460  Z"/>
+          <path id="chest"           d="M72,149 L131,149 L131,197 L72,197 Z"/>
+          <path id="abdomen"         d="M74,197 L129,197 L129,237 L74,237 Z"/>
+          <path id="hips"            d="M72,237 L131,237 L131,259 L72,259 Z"/>
+          <path id="right-upper-arm" d="M129,138 L144,138 L144,218 L129,218 Z"/>
+          <path id="left-upper-arm"  d="M57,138  L72,138  L72,218  L57,218  Z"/>
+          <path id="right-forearm"   d="M129,218 L144,218 L144,294 L129,294 Z"/>
+          <path id="left-forearm"    d="M57,218  L72,218  L72,294  L57,294  Z"/>
+          <path id="right-thigh"     d="M101,259 L131,259 L131,337 L101,337 Z"/>
+          <path id="left-thigh"      d="M72,259  L101,259 L101,337 L72,337  Z"/>
+          <path id="right-calf"      d="M105,337 L129,337 L129,392 L105,392 Z"/>
+          <path id="left-calf"       d="M74,337  L97,337  L97,392  L74,392  Z"/>
         </g>
       </svg>
     </div>
