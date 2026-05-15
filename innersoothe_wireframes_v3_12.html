@@ -2517,23 +2517,47 @@
 .pmr-end-cta { width: 100%; padding: 11px; border-radius: 22px; background: #A06832; color: #F3E9DC; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 12px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(122,82,48,0.20); transition: box-shadow 180ms ease; }
 .pmr-end-cta:hover { box-shadow: 0 4px 14px rgba(122,82,48,0.30); }
 
-/* ============ PMR Quick session — mannequin + darkening highlights ============ */
+/* ============ PMR Quick session — sidebar + saffron glow + state pills ============ */
 .pmrq-phone { background: #FAF0E4; display: flex; flex-direction: column; }
-.pmrq-eyebrow { margin: 14px 0 0; text-align: center; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 10.5px; color: #A06832; letter-spacing: 2.4px; text-transform: uppercase; flex-shrink: 0; }
+.pmrq-eyebrow { margin: 6px 0 0; text-align: center; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 10.5px; color: #A06832; letter-spacing: 2.4px; text-transform: uppercase; flex-shrink: 0; }
 .pmrq-eyebrow-time { color: rgba(160,104,50,0.55); margin-left: 6px; font-weight: 400; letter-spacing: 1.4px; }
-.pmrq-body-stage { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; padding: 8px 14px; min-height: 0; }
+
+/* Body wrap: sidebar (78px) + mannequin stage (fills) */
+.pmrq-body-wrap { flex: 1; display: flex; align-items: stretch; gap: 4px; padding: 6px 6px 0 6px; min-height: 0; }
+.pmrq-sidebar { width: 78px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 4px 2px; }
+.pmrq-step { display: flex; align-items: center; gap: 7px; padding: 3px 0; cursor: pointer; }
+.pmrq-step-num { width: 19px; height: 19px; border-radius: 50%; border: 1px solid rgba(33,24,12,0.18); background: rgba(255,255,255,0.5); display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; font-size: 9.5px; font-weight: 600; color: rgba(33,24,12,0.45); flex-shrink: 0; transition: all 240ms ease; }
+.pmrq-step.done .pmrq-step-num { background: #A06832; border-color: #A06832; color: #F3E9DC; font-size: 11px; }
+.pmrq-step.current .pmrq-step-num { background: #FAF0E4; border: 2px solid #A06832; color: #A06832; box-shadow: 0 0 0 3px rgba(160,104,50,0.14); }
+.pmrq-step-name { font-family: 'DM Sans', sans-serif; font-size: 10px; color: rgba(33,24,12,0.55); white-space: nowrap; letter-spacing: 0.2px; transition: color 240ms ease; }
+.pmrq-step.current .pmrq-step-name { color: #1E1408; font-weight: 600; }
+.pmrq-step.done .pmrq-step-name { color: rgba(33,24,12,0.38); }
+
+/* Mannequin stage + saffron glow regions */
+.pmrq-body-stage { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; min-height: 0; }
 .pmrq-mannequin { max-height: 100%; max-width: 100%; object-fit: contain; display: block; }
-.pmrq-regions { position: absolute; top: 8px; bottom: 8px; left: 50%; transform: translateX(-50%); height: calc(100% - 16px); aspect-ratio: 2 / 3; pointer-events: none; }
-.pmrq-region { fill: #1E1408; fill-opacity: 0; filter: url(#pmrq-soften); transition: fill-opacity 1.2s ease-in-out; }
-.pmrq-region.tensing { fill-opacity: 0.34; transition: fill-opacity 1.0s ease-in; }
-.pmrq-region.releasing { fill-opacity: 0; transition: fill-opacity 6s ease-out; }
-.pmrq-muscle-name { text-align: center; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 28px; color: #1E1408; line-height: 1.2; margin: 2px 0 0; flex-shrink: 0; }
-.pmrq-caption { margin: 10px 22px 6px; padding: 9px 14px; background: rgba(33,24,12,0.05); border-top: 0.5px solid rgba(33,24,12,0.14); border-bottom: 0.5px solid rgba(33,24,12,0.14); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-style: italic; font-size: 13px; color: rgba(30,20,8,0.78); text-align: center; line-height: 1.5; flex-shrink: 0; min-height: 22px; }
+.pmrq-regions { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+.pmrq-region { fill: #A06832; fill-opacity: 0; filter: url(#pmrq-soften); transition: fill-opacity 1.0s ease-in-out; }
+.pmrq-region.tensing { animation: pmrq-pulse 1.6s ease-in-out infinite; }
+.pmrq-region.releasing { animation: none; fill-opacity: 0; transition: fill-opacity 6s ease-out; }
+@keyframes pmrq-pulse {
+  0%, 100% { fill-opacity: 0.42; }
+  50% { fill-opacity: 0.68; }
+}
+
+/* Muscle name + 4-state cycle indicator */
+.pmrq-muscle-name { text-align: center; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 24px; color: #1E1408; line-height: 1.2; margin: 4px 0 0; flex-shrink: 0; }
+.pmrq-states { display: flex; justify-content: center; gap: 5px; padding: 7px 14px 3px; flex-shrink: 0; }
+.pmrq-state-pill { padding: 4px 10px; border-radius: 11px; border: 1px solid rgba(33,24,12,0.14); background: transparent; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 9.5px; color: rgba(33,24,12,0.42); letter-spacing: 0.5px; text-transform: uppercase; transition: all 300ms ease; }
+.pmrq-state-pill.active { background: #A06832; border-color: #A06832; color: #F3E9DC; font-weight: 600; }
+
+/* Controls + progress (unchanged behavior) */
 .pmrq-controls { display: flex; justify-content: space-around; align-items: center; padding: 4px 18px 6px; flex-shrink: 0; }
 .pmrq-progress { height: 2px; background: rgba(33,24,12,0.08); flex-shrink: 0; }
 .pmrq-progress-fill { height: 100%; width: 0%; background: #A06832; opacity: 0.75; transition: width 600ms ease-out; }
+
 @media (prefers-reduced-motion: reduce) {
-  .pmrq-region, .pmrq-region.tensing, .pmrq-region.releasing { transition: none; }
+  .pmrq-region, .pmrq-region.tensing, .pmrq-region.releasing { transition: none; animation: none; }
 }
 .pmr-phone.pmr-dimmed .pmr-session-bar,
 .pmr-phone.pmr-dimmed .pmr-phase-eyebrow,
@@ -11989,26 +12013,42 @@ window.onStopSectionShow = function(sectionId) {
 
     <div class="pmrq-eyebrow">QUICK RESET<span class="pmrq-eyebrow-time">· 6 MIN</span></div>
 
-    <div class="pmrq-body-stage">
-      <img class="pmrq-mannequin" src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin.png" alt="" />
-      <svg class="pmrq-regions" viewBox="0 0 100 150" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="pmrq-soften" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3.2"/>
-          </filter>
-        </defs>
-        <path id="pmrq-r-hands"  class="pmrq-region" d="M22,42 L58,42 L58,66 L22,66 Z"/>
-        <path id="pmrq-r-arms"   class="pmrq-region" d="M38,19 L72,19 L72,45 L38,45 Z"/>
-        <path id="pmrq-r-face"   class="pmrq-region" d="M47,4 L66,4 L66,19 L47,19 Z"/>
-        <path id="pmrq-r-neck"   class="pmrq-region" d="M50,16 L65,16 L65,23 L50,23 Z"/>
-        <path id="pmrq-r-torso"  class="pmrq-region" d="M41,22 L66,22 L66,60 L41,60 Z"/>
-        <path id="pmrq-r-thighs" class="pmrq-region" d="M22,55 L58,55 L58,78 L22,78 Z"/>
-        <path id="pmrq-r-legs"   class="pmrq-region" d="M8,76 L50,76 L50,100 L8,100 Z"/>
-      </svg>
+    <div class="pmrq-body-wrap">
+      <div class="pmrq-sidebar">
+        <div class="pmrq-step" data-step="0" onclick="if(window.pmrqJumpTo)pmrqJumpTo(0)"><div class="pmrq-step-num">1</div><div class="pmrq-step-name">Hands</div></div>
+        <div class="pmrq-step" data-step="1" onclick="if(window.pmrqJumpTo)pmrqJumpTo(1)"><div class="pmrq-step-num">2</div><div class="pmrq-step-name">Arms</div></div>
+        <div class="pmrq-step" data-step="2" onclick="if(window.pmrqJumpTo)pmrqJumpTo(2)"><div class="pmrq-step-num">3</div><div class="pmrq-step-name">Face</div></div>
+        <div class="pmrq-step" data-step="3" onclick="if(window.pmrqJumpTo)pmrqJumpTo(3)"><div class="pmrq-step-num">4</div><div class="pmrq-step-name">Neck</div></div>
+        <div class="pmrq-step" data-step="4" onclick="if(window.pmrqJumpTo)pmrqJumpTo(4)"><div class="pmrq-step-num">5</div><div class="pmrq-step-name">Torso</div></div>
+        <div class="pmrq-step" data-step="5" onclick="if(window.pmrqJumpTo)pmrqJumpTo(5)"><div class="pmrq-step-num">6</div><div class="pmrq-step-name">Thighs</div></div>
+        <div class="pmrq-step" data-step="6" onclick="if(window.pmrqJumpTo)pmrqJumpTo(6)"><div class="pmrq-step-num">7</div><div class="pmrq-step-name">Legs</div></div>
+      </div>
+      <div class="pmrq-body-stage">
+        <img class="pmrq-mannequin" src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin.png" alt="" />
+        <svg class="pmrq-regions" viewBox="0 0 100 150" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="pmrq-soften" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="7"/>
+            </filter>
+          </defs>
+          <path id="pmrq-r-hands"  class="pmrq-region" d="M22,55 L58,55 L58,90 L22,90 Z"/>
+          <path id="pmrq-r-arms"   class="pmrq-region" d="M38,24 L72,24 L72,58 L38,58 Z"/>
+          <path id="pmrq-r-face"   class="pmrq-region" d="M48,5 L68,5 L68,22 L48,22 Z"/>
+          <path id="pmrq-r-neck"   class="pmrq-region" d="M50,20 L63,20 L63,28 L50,28 Z"/>
+          <path id="pmrq-r-torso"  class="pmrq-region" d="M41,28 L66,28 L66,72 L41,72 Z"/>
+          <path id="pmrq-r-thighs" class="pmrq-region" d="M22,75 L58,75 L58,110 L22,110 Z"/>
+          <path id="pmrq-r-legs"   class="pmrq-region" d="M5,108 L50,108 L50,148 L5,148 Z"/>
+        </svg>
+      </div>
     </div>
 
     <div class="pmrq-muscle-name">Settling in</div>
-    <div class="pmrq-caption">Take a slow breath.</div>
+    <div class="pmrq-states">
+      <div class="pmrq-state-pill" data-state="tense">Tense</div>
+      <div class="pmrq-state-pill" data-state="hold">Hold</div>
+      <div class="pmrq-state-pill" data-state="release">Release</div>
+      <div class="pmrq-state-pill" data-state="rest">Rest</div>
+    </div>
 
     <div class="pmrq-controls">
       <button class="pmr-ctrl" onclick="pmrqTogglePause()" id="pmrq-pause-btn">
@@ -12470,7 +12510,7 @@ function pmrSetupContinue() {
     { id: 'pmrq-r-legs',   name: 'Calves & feet',          prep: 'Toes up. Toes curl.',          instruct: "Point your toes up toward your knees. Curl your toes at the same time.", countdown: "Hold. Five… four… three… two… one.", release: "Release.", closing: "Feel the floor. You are here, in your body, right now." }
   ];
 
-  var QUICK_INTRO = "Six minutes. Find a comfortable position. We'll move through your body in seven groups. Each one — tense for five seconds, then let go.";
+  var QUICK_INTRO = "This Quick Reset takes about six minutes. Find a comfortable position. We'll move through your body in seven groups. For each one, you'll tense for five seconds, then let go.";
   var QUICK_OUTRO = "Your body is soft now. From head to feet. Notice how heavy you are. This calm was always inside you. You just made room for it. When you're ready, open your eyes. You did this.";
 
   var _sid = 0;
@@ -12501,9 +12541,24 @@ function pmrSetupContinue() {
     if (el) el.textContent = text;
   }
 
-  function setCaption(text) {
-    var el = document.querySelector('#section-breakup-pmr-session-quick .pmrq-caption');
-    if (el) el.textContent = text;
+  function setState(state) {
+    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-state-pill').forEach(function(p) {
+      p.classList.toggle('active', state !== null && p.dataset.state === state);
+    });
+  }
+
+  function updateSidebar(idx) {
+    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-step').forEach(function(s, i) {
+      s.classList.remove('done', 'current');
+      var numEl = s.querySelector('.pmrq-step-num');
+      if (i < idx) {
+        s.classList.add('done');
+        if (numEl) numEl.textContent = '✓';
+      } else {
+        if (i === idx) s.classList.add('current');
+        if (numEl) numEl.textContent = (i + 1);
+      }
+    });
   }
 
   function setProgress(pct) {
@@ -12517,15 +12572,17 @@ function pmrSetupContinue() {
     var g = QUICK_SCRIPT[idx];
     _idx = idx;
     setName(g.name);
-    setCaption(g.prep);
+    updateSidebar(idx);
     setProgress((idx / QUICK_SCRIPT.length) * 100);
+    setState('tense');
+    // Apply glow immediately as the instruction begins
+    var rNow = document.getElementById(g.id);
+    if (rNow) rNow.classList.add('tensing');
     speak(g.instruct);
 
     timer(function() {
       if (sid !== _sid) return;
-      var r = document.getElementById(g.id);
-      if (r) r.classList.add('tensing');
-      setCaption('Hold the tension.');
+      setState('hold');
       speak(g.countdown);
     }, 5000);
 
@@ -12533,9 +12590,14 @@ function pmrSetupContinue() {
       if (sid !== _sid) return;
       var r = document.getElementById(g.id);
       if (r) { r.classList.remove('tensing'); r.classList.add('releasing'); }
-      setCaption('Let it go.');
+      setState('release');
       speak(g.release + ' ' + g.closing);
     }, 13000);
+
+    timer(function() {
+      if (sid !== _sid) return;
+      setState('rest');
+    }, 17000);
 
     timer(function() {
       if (sid !== _sid) return;
@@ -12548,7 +12610,8 @@ function pmrSetupContinue() {
   function finish(sid) {
     if (sid !== _sid) return;
     setName('Complete');
-    setCaption('Notice the softness.');
+    setState(null);
+    updateSidebar(QUICK_SCRIPT.length);
     setProgress(100);
     speak(QUICK_OUTRO);
     timer(function() {
@@ -12564,13 +12627,14 @@ function pmrSetupContinue() {
     _idx = 0;
     _paused = false;
     setName('Settling in');
-    setCaption('Take a slow breath.');
+    setState(null);
+    updateSidebar(-1);
     setProgress(0);
     speak(QUICK_INTRO);
     timer(function() {
       if (sid !== _sid) return;
       runGroup(sid, 0);
-    }, 14000);
+    }, 18000);
   };
 
   window.pmrqExit = function() {
@@ -12607,6 +12671,18 @@ function pmrSetupContinue() {
       p.classList.remove('tensing','releasing');
     });
     runGroup(sid, _idx + 1);
+  };
+
+  window.pmrqJumpTo = function(idx) {
+    if (typeof idx !== 'number' || idx < 0 || idx >= QUICK_SCRIPT.length) return;
+    var sid = _sid;
+    _timers.forEach(function(t){ clearTimeout(t); });
+    _timers = [];
+    if (window.pmrStopSpeech) window.pmrStopSpeech();
+    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-region').forEach(function(p){
+      p.classList.remove('tensing','releasing');
+    });
+    runGroup(sid, idx);
   };
 })();
 
