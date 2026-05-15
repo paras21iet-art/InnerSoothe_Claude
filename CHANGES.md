@@ -369,3 +369,76 @@ Shell classes: `.sec-cl-p1` / `.sec-cl-p2` / `.sec-cl-p3` — 370×780px, `backg
 ### Pending (Patches 5–6):
 - `section-cl-post-checkin` — emotion re-rating using `.spostc-*` engine pattern
 - `section-cl-complete` — session summary + `clSaveSession()` + `clRenderComplete()`
+
+---
+
+## 2026-05-15 — Closure Letter module built end-to-end (7 sections)
+
+**File:** `innersoothe_wireframes_v3_12.html`
+
+### Sections built (in order, all LOCKED):
+1. `section-cl-entry` — parchment Entry with envelope hero, Pennebaker citation, USP highlight card, warm empathic voice cue
+2. `section-cl-pre-checkin` — emotion check-in BEFORE the letter, reuses `.spc-*` engine, state isolated from STOP
+3. `section-cl-p1` — Part 1 of 3 "The Truth" — write what happened
+4. `section-cl-p2` — Part 2 of 3 "The Need" — name the unmet need
+5. `section-cl-p3` — Part 3 of 3 "The Closing" — final words + closure ritual choice cards (4 options: Keep / Delete / Burn / Read aloud)
+6. `section-cl-post-checkin` — emotion check-in AFTER, MANDATORY (no back, no nav), auto-syncs chips from CL pre selections
+7. `section-cl-complete` — hybrid composition: "Letter Written" hero + closure quote + YOUR SHIFT + THIS SESSION + adaptive ritual instruction + 3 CTAs
+
+### Demolition:
+- Old dark-era `section-cl` block removed entirely (was multi-screen monolithic dark version)
+- All old `.sec-cl-*` / `.cl-*` dark CSS removed
+- Module Card 3 onclick updated: `showSection('cl')` → `showSection('cl-entry')`
+
+### New canonical patterns:
+- Shared practice-screen CSS (`.cl-write-stack`, `.cl-textarea`, `.cl-helper`, `.cl-field-label`, `.cl-cta`, `.cl-pd`, `.cl-pd-row`, `.cl-pd-line`) — reusable for any future expressive-writing technique
+- Closure ritual card pattern (`.cl-choice-card` + `.cl-choice-section`) — 4-option single-select with saffron-tinted selected state
+- Q4 honor-the-choice save logic: `letterParts` saved in session only when `letterChoice === 'keep'`; discarded otherwise (delete/burn/read-aloud)
+- Adaptive ritual instruction on Complete — single italic line whose text varies by closure choice
+- `clSaveSession()` fires on Part 3 CTA tap (not Complete entry) — honors discard choice at moment of decision
+- Post check-in CTA updates the already-saved session with post ratings
+
+### New JS functions added:
+- `speakClEntry`, `speakClPreCheckin`, `speakClP1`, `speakClP2`, `speakClP3`, `speakClPostCheckin`, `speakClComplete` (voice cues)
+- `clP1UpdateCTA`, `clP2UpdateCTA`, `clP3UpdateCTA` (CTA gating)
+- `clSelectChoice` (closure ritual single-select)
+- `clCompleteTheLetter` (Part 3 CTA handler — now calls `clSaveSession()` before navigation)
+- `clSaveSession` (localStorage persistence with Q4 honor logic)
+- `clRenderComplete` (Complete screen population)
+
+### State vars added to window:
+`clPreSelected`, `clPreRatings`, `clPostRatings`, `clLetter`, `clChoice`, `clTimeStart`, `clCurrentSessionId`
+
+### Voice copy (locked):
+- Entry: "If you're here, something has been left unsaid. That's heavy to carry. The closure letter is a way to put that weight down. You'll write in three parts — what happened, what you needed, and what you want to say now. Not to send. Just to release."
+- Pre check-in: "Before we begin. Notice how you're feeling. Pick up to three emotions and rate each."
+- P1: "Part one. The truth. Write what happened — and what it did to you. Don't soften it. This is your space."
+- P2: "Part two. The need. Name what you actually needed from them — what you were hoping they would see. The unmet need is worth saying out loud."
+- P3: "Part three. The closing. Write what you want to say, now that it's over. Then choose how to release it."
+- Post check-in: "Now. Let's check in again. Rate the same feelings to see what shifted."
+- Complete: "Letter written. The unsaid things are out of your body now and on the page. You witnessed yourself. That matters — whether anyone ever reads this or not."
+
+### Iteration cost:
+6 patches over the session. Key issues caught early (and fixed) thanks to patch-by-patch testing: CL dispatch was incorrectly placed inside onStopSectionShow (fixed via dedicated IIFE wrapper), header audio-toggle/Crisis Support overlap (fixed via STOP-verbatim header copy), progress dots sitting on phone shell rounded corners (fixed via 56px bottom padding + Part 3 layout compensation), textarea scrollbar on Part 3 (fixed via hidden scrollbar CSS).
+
+### Screenshots saved:
+- `screenshots/closure-letter/01-entry.png`
+- `screenshots/closure-letter/02-pre-checkin.png`
+- `screenshots/closure-letter/03-p1-v3.png`
+- `screenshots/closure-letter/04-p2-v3.png`
+- `screenshots/closure-letter/05-p3-v3.png`
+- `screenshots/closure-letter/06-post-checkin.png`
+- `screenshots/closure-letter/07-complete.png`
+
+### Commits:
+- `713c615` — Patch 1: demolition + entry screen
+- `6184880` — Patch 2: pre check-in
+- `19ca1fa` — Patch 2 fix: chips + voice + header
+- `71ebff3` — header verbatim copy fix (entry + pre check-in)
+- `1b2259a` — warmer entry voice cue
+- `e1cd900` — Patch 3: Part 1 + shared CSS
+- `896eff8` — Patch 4: Parts 2 + 3 + ritual cards
+- `a8c1387` — hide P3 scrollbar + lift progress dots
+- `8b37039` — aggressive dots lift + Part 3 compensation
+- `26c2c87` — Patch 5: post check-in
+- `10a78c7` — Patch 6: Complete + save logic + Progress integration

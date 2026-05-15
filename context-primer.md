@@ -55,24 +55,28 @@
 14. **Post check-in (functional, mandatory)** (`section-breakup-stop-post-checkin`) — LOCKED (2026-05-14), wedged between S4 and Complete
 15. **STOP Complete (redesigned)** (`section-breakup-stop-complete`) — LOCKED (2026-05-14), shift visualization + session summary
 16. **Progress tab** (`section-progress`) — LOCKED (2026-05-14), localStorage persistence + 30-day display cap
-17. **Closure Letter Entry** (`section-cl-entry`) — 2026-05-15, technique entry + speakClEntry voice
-18. **Closure Letter Pre Check-in** (`section-cl-pre-checkin`) — 2026-05-15, 8-emotion chip+dot grid
-19. **Closure Letter Part 1** (`section-cl-p1`) — 2026-05-15, "The Truth" writing screen
-20. **Closure Letter Part 2** (`section-cl-p2`) — 2026-05-15, "The Need" writing screen
-21. **Closure Letter Part 3** (`section-cl-p3`) — 2026-05-15, "The Closing" + 4 ritual choice cards
+17. **Closure Letter Entry** (`section-cl-entry`) — LOCKED (2026-05-15), warm empathic voice cue, Pennebaker citation
+18. **Closure Letter Pre check-in** (`section-cl-pre-checkin`) — LOCKED (2026-05-15), reuses `.spc-*` engine bound to `cl*` state
+19. **Closure Letter Part 1 — The Truth** (`section-cl-p1`) — LOCKED (2026-05-15)
+20. **Closure Letter Part 2 — The Need** (`section-cl-p2`) — LOCKED (2026-05-15)
+21. **Closure Letter Part 3 — The Closing** (`section-cl-p3`) — LOCKED (2026-05-15), with 4-option closure ritual cards
+22. **Closure Letter Post check-in** (`section-cl-post-checkin`) — LOCKED (2026-05-15), MANDATORY screen, chips auto-sync from CL pre
+23. **Closure Letter Complete** (`section-cl-complete`) — LOCKED (2026-05-15), hybrid composition with YOUR SHIFT + THIS SESSION cards, Q4 honor-the-choice save logic
 
 ### Screens In-Progress / Pending
-- **Closure Letter Patch 5:** `section-cl-post-checkin` (emotion re-rating, `.spostc-*` engine)
-- **Closure Letter Patch 6:** `section-cl-complete` + `clSaveSession()` + `clRenderComplete()`
 - STOP Quick Reset mode (stub `startStopGuided()` exists; full implementation pending)
 - PMR Entry + Complete — alignment to STOP canonical templates (in parallel chat session)
 - Progress tab Phase 2: chart views, filter chips, archive with month navigation
 
 ### New canonical patterns established 2026-05-15
-- **CL dispatch IIFE wrapper** — layered after STOP voice cancel wrapper; handles `cl-entry`, `cl-pre-checkin`, `cl-p1`, `cl-p2`, `cl-p3`; does NOT use DOMContentLoaded (correct pattern for late-in-file wrappers)
-- **`clspc-*` DOM ID prefix** — all CL pre check-in dynamic IDs use this prefix to avoid collision with STOP's `spc-*` IDs
+- **CL dispatch IIFE wrapper** — layered after STOP voice cancel wrapper; handles all 7 CL section IDs; does NOT use DOMContentLoaded (correct pattern for late-in-file wrappers)
+- **`clspc-*` / `clspostc-*` DOM ID prefixes** — CL check-in grid IDs avoid collision with STOP's `spc-*` / `spostc-*` IDs
 - **CL dispatch hook rule** — CL cases must NOT go inside `window.onStopSectionShow` (fires only for `breakup-stop-*` and `progress`)
-- **`sec-stop-step` class reuse** — all CL screens use this class on their outer div to inherit the full STOP step-hdr CSS (back + audio + Crisis Support) without duplicating rules
+- **`sec-stop-step` class reuse** — all CL screens use this class on their outer div to inherit the full STOP step-hdr CSS without duplicating rules
+- **Shared practice-screen CSS template** (`.cl-write-stack`, `.cl-textarea`, `.cl-helper`, `.cl-field-label`, `.cl-cta`, `.cl-pd-row`) — reusable for any future expressive-writing technique
+- **Closure ritual card pattern** (`.cl-choice-card` 4-option single-select) — saffron-tinted selected state, ready for reuse in any "choose-your-ending" therapeutic flow
+- **Honor-the-choice save logic** — discard user content from localStorage when discard intent selected; preserve only when keep intent selected
+- **Adaptive ritual instruction** — single italic line on Complete that adapts to closure choice; pattern reusable for any technique with outcome variants
 
 ### New canonical patterns established 2026-05-14
 - **Pre/Post check-in chip+dot rating engine** (`.spc-*`, `.spostc-*`) — reusable for other modules
@@ -165,10 +169,9 @@ When a visual issue keeps recurring after multiple CSS-only fixes (e.g. the conf
 ## Key Pending Work (Next Steps, in order)
 
 1. ~~Build STOP Steps 1–4, pre/post check-in, Complete, Progress~~ — ALL DONE (2026-05-13/14)
-2. **→ Closure Letter Patch 5:** `section-cl-post-checkin` — emotion re-rating using `.spostc-*` engine pattern (mirrors STOP post check-in)
-3. **→ Closure Letter Patch 6:** `section-cl-complete` + `clSaveSession()` + `clRenderComplete()`
-4. PMR Entry + Complete — alignment to STOP canonical templates (parallel chat session)
-5. STOP Quick Reset mode (stub `startStopGuided()` exists; needs full implementation)
+2. ~~Build Closure Letter 7 sections end-to-end~~ — DONE LOCKED (2026-05-15)
+3. **→ PMR Entry + Complete — alignment to STOP canonical templates** (parallel chat session)
+4. STOP Quick Reset mode (stub `startStopGuided()` exists; needs full implementation)
 6. Psychologist sync on the 5 open questions
 7. Resolve "heal from within" sub-brand
 8. Source production-resolution illustration assets

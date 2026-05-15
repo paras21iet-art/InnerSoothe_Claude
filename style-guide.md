@@ -1109,3 +1109,55 @@ Inline `style.transform` is set by JS on each speakChain step's onstart. CSS int
 
 ### Phase length characteristics
 Phase length is variable, depending on TTS engine speed. Typical range 3-6 seconds per phase for a 5-utterance chain (phase name + 4 counts). Sync is always preserved because visual and animation are event-driven from speech, not parallel timers.
+
+---
+
+## 22. Closure Letter Practice-Screen Pattern
+
+Canonical pattern for expressive-writing techniques. First locked in Closure Letter (2026-05-15). Inheritable for future writing-based modules.
+
+### `.cl-write-stack` — bottom wrapper
+- `padding: 0 32px 56px` (32px horizontal, 56px bottom — clears phone shell rounded corner)
+- `display: flex; flex-direction: column; gap: 16px` (8px gap on Part 3 after layout compensation)
+- `flex: 1; min-height: 0` so it claims available vertical space
+
+### `.cl-textarea` — writing field
+- Background `rgba(243,233,220,0.80)`, border `1px solid rgba(62,42,31,0.15)`, border-radius 16px
+- DM Sans 300 13px, line-height 1.6
+- Placeholder italic `rgba(62,42,31,0.30)`
+- Focus border `rgba(160,104,50,0.40)`
+- `flex: 1` on Parts 1/2 (claims space); fixed `height: 80px` on Part 3 (room for closure cards)
+- Scrollbar hidden on Part 3 (`scrollbar-width: none`)
+
+### `.cl-helper` — saffron-left-border permission microcopy
+- Saffron-tinted background `rgba(160,104,50,0.07)`, left border `2px solid rgba(160,104,50,0.30)`, border-radius `0 8px 8px 0`
+- DM Sans 300 11px, color `rgba(62,42,31,0.55)`
+
+### `.cl-cta` — primary CTA, gated
+- Saffron `#A06832` pill, full width, DM Sans 600 14px cream `#F3E9DC`
+- Disabled state: opacity 0.40, cursor not-allowed
+- Box shadow `0 4px 14px rgba(122,82,48,0.30)`
+
+### `.cl-pd` — 3-dot progress indicator
+- 22×22px circles, 1.5px saffron border, transparent default
+- Active (`.on`): saffron fill + white text + drop shadow
+- Connector lines `flex: 1` with thin saffron `rgba(160,104,50,0.25)` 1.5px height
+
+### `.cl-choice-card` — closure ritual single-select
+- Parchment background `rgba(243,233,220,0.80)`, border 1px `rgba(62,42,31,0.10)`, border-radius 14px
+- Padding 10px 14px
+- Title DM Sans 500 13px `#3E2A1F`, subline DM Sans 300 11px `rgba(62,42,31,0.55)`
+- Selected: saffron border `#A06832`, tinted background `rgba(160,104,50,0.12)`, inset box shadow
+
+### Complete screen hybrid pattern
+- 62px parchment-cream hero circle holding 36×36 envelope SVG (saffron stroke 1.8)
+- Closure quote card: parchment-cream bg + saffron left border (NOT the saffron-tinted helper pattern)
+- YOUR SHIFT and THIS SESSION as twin `.cl-info-card` rounded cards `rgba(255,255,255,0.55)` bg
+- Sage green `#5C8A60` for improved emotion shifts (post < pre); neutral dark for stable/worse. NO red.
+- Adaptive italic ritual line below cards adapts text by `letterChoice`
+- CTA stack: primary saffron pill + saffron-outlined secondary + tertiary text link
+
+### Voice scaffolding
+- All 7 CL section voice cues use empathic conversational tone, NOT the STOP "Step [N]. [Name]. [Brief instruction]." brisk pattern
+- Entry voice is longest (~19s) — acknowledges user state + names technique + explains parts + reassures
+- Part voice cues are shorter (~12s) — anchor the part + give permission + warm closer
