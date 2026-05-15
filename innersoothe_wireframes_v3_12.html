@@ -2403,6 +2403,132 @@
 .spc-cta.enabled, .spostc-cta.enabled { opacity:1; }
 .spc-cta-hint, .spostc-cta-hint { display:none; font-size:9.5px; color:#A06832; text-align:center; margin-top:6px; }
 
+/* ===== Closure Letter — Entry Screen ===== */
+.sec-cl-entry {
+  width: 370px;
+  height: 780px;
+  border-radius: 48px;
+  box-shadow: 0 28px 70px rgba(30,20,8,0.13),
+              0 0 0 1.5px rgba(30,20,8,0.10),
+              inset 0 0 0 1px rgba(255,255,255,0.60);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #F9EDD8;
+  position: relative;
+  margin: 0 auto;
+}
+.cl-entry-hero {
+  width: 100%;
+  height: 175px;
+  background: transparent;
+  overflow: visible;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.cl-entry-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
+}
+.cl-entry-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 28px;
+  color: #1E1408;
+  text-align: center;
+  margin: 4px 0 8px;
+  line-height: 1.1;
+}
+.cl-entry-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  color: #A06832;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.cl-entry-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 1.2;
+  color: #1E1408;
+  text-align: center;
+  text-wrap: balance;
+  padding: 0 24px;
+  margin-bottom: 10px;
+}
+.cl-entry-body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(62, 42, 31, 0.65);
+  padding: 0 24px;
+  margin-bottom: 10px;
+}
+.cl-entry-usp {
+  margin: 0 24px 10px;
+  padding: 10px 12px;
+  background: rgba(160, 104, 50, 0.07);
+  border-left: 2px solid rgba(160, 104, 50, 0.30);
+  border-radius: 0 8px 8px 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(62, 42, 31, 0.65);
+}
+.cl-entry-usp b {
+  font-weight: 600;
+  color: #A06832;
+  display: block;
+  margin-bottom: 2px;
+}
+.cl-entry-cta {
+  margin: auto 24px 18px;
+  padding: 13px 0;
+  background: #A06832;
+  color: #F3E9DC;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 22px;
+  cursor: pointer;
+  width: calc(100% - 48px);
+  outline: none;
+  transition: transform 150ms ease-in-out, box-shadow 150ms ease-in-out;
+  box-shadow: 0 4px 14px rgba(122, 82, 48, 0.30);
+}
+.cl-entry-cta:active {
+  transform: scale(0.98);
+}
+.sec-cl-entry .stop-mute-btn {
+  position: absolute;
+  top: 46px; right: 130px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,251,243,0.85);
+  border: 1px solid rgba(160,104,50,0.30);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: #A06832;
+  transition: opacity 200ms ease;
+  z-index: 30;
+}
+.sec-cl-entry .stop-mute-btn .icon-vol-on { display: block; }
+.sec-cl-entry .stop-mute-btn .icon-vol-off { display: none; }
+.sec-cl-entry .stop-mute-btn.muted { opacity: 0.6; }
+.sec-cl-entry .stop-mute-btn.muted .icon-vol-on { display: none; }
+.sec-cl-entry .stop-mute-btn.muted .icon-vol-off { display: block; }
+
 /* ===== PMR Technique — All 4 Screens ===== */
 .pmr-phone { width: 370px; height: 780px; border-radius: 44px; box-shadow: 0 18px 50px rgba(33,24,12,0.10), 0 0 0 1px rgba(33,24,12,0.06); overflow: hidden; display: flex; flex-direction: column; position: relative; flex-shrink: 0; }
 .pmr-status { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px 0; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; color: rgba(30,20,8,0.45); flex-shrink: 0; }
@@ -9789,7 +9915,7 @@
             </div>
 
             <!-- Card 3: Closure Letter -->
-            <div onclick="showSection('cl')" style="display:flex;flex-direction:row;height:114px;border-radius:14px;overflow:hidden;background:rgba(252,242,232,0.6);box-shadow:0 2px 10px rgba(30,20,8,0.04);cursor:pointer;">
+            <div onclick="showSection('cl-entry')" style="display:flex;flex-direction:row;height:114px;border-radius:14px;overflow:hidden;background:rgba(252,242,232,0.6);box-shadow:0 2px 10px rgba(30,20,8,0.04);cursor:pointer;">
               <div class="tech-thumb" style="width:92px;overflow:hidden;flex-shrink:0;">
                 <img src="assets/illustrations/Relationships/Modules/BreakupRecovery/closure-letter.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:center center;display:block;">
               </div>
@@ -10083,7 +10209,7 @@
               <div id="bp-arrow-proc" style="font-size:16px;color:rgba(255,255,255,0.3);flex-shrink:0;margin-left:4px;transition:transform 0.25s;">›</div>
             </div>
             <div id="bp-sub-proc" style="display:block;border-top:1px solid rgba(112,85,204,0.15);">
-              <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);opacity:1.0;cursor:pointer;" onclick="showSection('cognitive-defusion')"><div style="font-size:16px;flex-shrink:0;">🌀</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Cognitive Defusion</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">ACT · 15 min · Create distance from thoughts</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;" onclick="showSection('icd')"><div style="font-size:16px;flex-shrink:0;">🧠</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Identifying Cognitive Distortions</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">CBT · 20 min · Name the thinking traps</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;" onclick="showSection('cbe')"><div style="font-size:16px;flex-shrink:0;">📦</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Container Box Exercise</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">Visualisation · 10 min · Box the pain away temporarily</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div><div style="font-size:9px;color:rgba(255,255,255,0.25);flex-shrink:0;margin-left:4px;">Soon</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;" onclick="showSection('sc')"><div style="font-size:16px;flex-shrink:0;">💛</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Self Compassion</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">MSC · 15 min · Befriend yourself through the pain</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div><div style="font-size:9px;color:rgba(255,255,255,0.25);flex-shrink:0;margin-left:4px;">Soon</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;" onclick="showSection('rtr')"><div style="font-size:16px;flex-shrink:0;">📅</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Relationship Timeline Reflection</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">Narrative · 20 min · Map the arc, find the pattern</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div><div style="font-size:9px;color:rgba(255,255,255,0.25);flex-shrink:0;margin-left:4px;">Soon</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;" onclick="showSection('mr')"><div style="font-size:16px;flex-shrink:0;">🔮</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Memory Reconsolidation</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">Ecker · 25 min · Update the emotional charge of memory</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div><div style="font-size:9px;color:rgba(255,255,255,0.25);flex-shrink:0;margin-left:4px;">Soon</div></div><div style="display:flex;align-items:center;gap:8px;padding:8px 14px;"><div style="flex:1;height:1px;background:rgba(201,168,76,0.2);"></div><div style="font-size:9px;font-weight:700;color:rgba(201,168,76,0.6);letter-spacing:1px;">PREMIUM</div><div style="flex:1;height:1px;background:rgba(201,168,76,0.2);"></div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);opacity:1.0;cursor:pointer;" onclick="showSection('tr')"><div style="font-size:16px;flex-shrink:0;">🔄</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Thought Reset</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">CBT · 15 min · Pattern interrupt + cognitive reset</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(201,168,76,0.2);color:#D4B870;flex-shrink:0;">🔒 Premium</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);opacity:1.0;cursor:pointer;" onclick="showSection('hl')"><div style="font-size:16px;flex-shrink:0;">🪜</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Healing Ladder</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">Progress · Weekly · Where are you on the journey?</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(201,168,76,0.2);color:#D4B870;flex-shrink:0;">🔒 Premium</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);opacity:1.0;cursor:pointer;" onclick="showSection('cl')"><div style="font-size:16px;flex-shrink:0;">✉️</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Closure Letter</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">Journal · 20 min · Words you never sent</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(201,168,76,0.2);color:#D4B870;flex-shrink:0;">🔒 Premium</div></div>
+              <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);opacity:1.0;cursor:pointer;" onclick="showSection('cognitive-defusion')"><div style="font-size:16px;flex-shrink:0;">🌀</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Cognitive Defusion</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">ACT · 15 min · Create distance from thoughts</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;" onclick="showSection('icd')"><div style="font-size:16px;flex-shrink:0;">🧠</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Identifying Cognitive Distortions</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">CBT · 20 min · Name the thinking traps</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;" onclick="showSection('cbe')"><div style="font-size:16px;flex-shrink:0;">📦</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Container Box Exercise</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">Visualisation · 10 min · Box the pain away temporarily</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div><div style="font-size:9px;color:rgba(255,255,255,0.25);flex-shrink:0;margin-left:4px;">Soon</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;" onclick="showSection('sc')"><div style="font-size:16px;flex-shrink:0;">💛</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Self Compassion</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">MSC · 15 min · Befriend yourself through the pain</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div><div style="font-size:9px;color:rgba(255,255,255,0.25);flex-shrink:0;margin-left:4px;">Soon</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;" onclick="showSection('rtr')"><div style="font-size:16px;flex-shrink:0;">📅</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Relationship Timeline Reflection</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">Narrative · 20 min · Map the arc, find the pattern</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div><div style="font-size:9px;color:rgba(255,255,255,0.25);flex-shrink:0;margin-left:4px;">Soon</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;" onclick="showSection('mr')"><div style="font-size:16px;flex-shrink:0;">🔮</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Memory Reconsolidation</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">Ecker · 25 min · Update the emotional charge of memory</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(122,158,126,0.2);color:#B5CEAA;flex-shrink:0;">Free</div><div style="font-size:9px;color:rgba(255,255,255,0.25);flex-shrink:0;margin-left:4px;">Soon</div></div><div style="display:flex;align-items:center;gap:8px;padding:8px 14px;"><div style="flex:1;height:1px;background:rgba(201,168,76,0.2);"></div><div style="font-size:9px;font-weight:700;color:rgba(201,168,76,0.6);letter-spacing:1px;">PREMIUM</div><div style="flex:1;height:1px;background:rgba(201,168,76,0.2);"></div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);opacity:1.0;cursor:pointer;" onclick="showSection('tr')"><div style="font-size:16px;flex-shrink:0;">🔄</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Thought Reset</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">CBT · 15 min · Pattern interrupt + cognitive reset</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(201,168,76,0.2);color:#D4B870;flex-shrink:0;">🔒 Premium</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);opacity:1.0;cursor:pointer;" onclick="showSection('hl')"><div style="font-size:16px;flex-shrink:0;">🪜</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Healing Ladder</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">Progress · Weekly · Where are you on the journey?</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(201,168,76,0.2);color:#D4B870;flex-shrink:0;">🔒 Premium</div></div><div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);opacity:1.0;cursor:pointer;" onclick="showSection('cl-entry')"><div style="font-size:16px;flex-shrink:0;">✉️</div><div style="flex:1;"><div style="font-size:11px;font-weight:600;color:white;">Closure Letter</div><div style="font-size:9px;color:rgba(255,255,255,0.38);margin-top:1px;">Journal · 20 min · Words you never sent</div></div><div style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;background:rgba(201,168,76,0.2);color:#D4B870;flex-shrink:0;">🔒 Premium</div></div>
             </div>
           </div>
 
@@ -10307,6 +10433,9 @@
 <script>
 (function(){
   window.stopPreSelected = {}; window.stopPreRatings = {}; window.stopPostRatings = {};
+  window.clPreSelected = []; window.clPreRatings = {}; window.clPostRatings = {};
+  window.clLetter = { part1: '', part2: '', part3: '' };
+  window.clChoice = null; window.clTimeStart = null; window.clCurrentSessionId = null;
   var emotionSet = [
     {em:'💔',nm:'Grief'},{em:'😔',nm:'Sadness'},{em:'😠',nm:'Anger'},{em:'😞',nm:'Guilt'},
     {em:'😳',nm:'Shame'},{em:'🫥',nm:'Loneliness'},{em:'😰',nm:'Anxiety'},{em:'😶',nm:'Numb'}
@@ -10563,6 +10692,9 @@ window.sec_stop_mode = 'guided';
   </div></div></div>
 </div><!-- /section-breakup-stop-s1 -->
 <script>
+function speakClEntry() {
+  stopSpeak("Closure letter. Three parts. The truth, the need, the closing. Write what was never said.");
+}
 function speakStopS1() {
   if (!window.stopSpeakSequence) return;
   window.stopSpeakSequence([
@@ -11368,6 +11500,59 @@ function s4SelectAction(el) {
   </div></div></div>
 </div><!-- /section-breakup-stop-complete -->
 
+<!-- ══════════ CLOSURE LETTER — ENTRY ══════════ -->
+<div class="screens-area" id="section-cl-entry">
+  <div class="sec-cl-entry">
+
+    <!-- Status bar -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px 4px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;color:rgba(33,24,12,0.45);flex-shrink:0;position:relative;z-index:10;">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+
+    <!-- Back button (absolute, floats over hero) -->
+    <div class="stop-back" onclick="showSection('module-breakup-recovery')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+
+    <!-- Audio toggle (absolute) -->
+    <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+      <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+    </button>
+
+    <!-- Crisis Support chip (absolute, floats over hero) -->
+    <div class="stop-crisis" onclick="showSection('crisis-resources')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span class="stop-crisis-label">Crisis Support</span>
+    </div>
+
+    <div class="cl-entry-hero">
+      <img class="cl-entry-hero-img" src="assets/illustrations/Relationships/Modules/BreakupRecovery/closure-letter.png" alt="">
+    </div>
+
+    <div class="cl-entry-wordmark">Closure Letter</div>
+
+    <div class="cl-entry-eyebrow">EXPRESSIVE WRITING · ~20 MIN · 3 PARTS</div>
+
+    <div class="cl-entry-headline">Say what was never said. You don't have to send it.</div>
+
+    <div class="cl-entry-body">Research by James Pennebaker shows that expressive writing about emotional experiences produces measurable improvements in mental and physical health — regardless of whether anyone reads it.</div>
+
+    <div class="cl-entry-usp"><b>This letter is for you.</b>Not for them. Not to send. Not to get a response. To get the words out of your body and onto the page — because carrying unsaid things is heavy.</div>
+
+    <div class="cl-entry-body">You will write in three parts: what happened and how it affected you, what you needed, and what you want to say now that it's over.</div>
+
+    <button class="cl-entry-cta" onclick="window.clTimeStart = Date.now(); showSection('cl-pre-checkin');">Begin the letter →</button>
+
+  </div>
+</div>
+<!-- /section-cl-entry -->
+
 <!-- ══════════ PROGRESS TAB ══════════ -->
 <div class="screens-area" id="section-progress">
   <div class="phone-grid"><div class="phone-wrap"><div class="phone" style="background:linear-gradient(160deg,#FAF0E4 0%,#EDE0CC 50%,#E2CEB8 100%);display:flex;flex-direction:column;overflow:hidden;padding-top:8px;">
@@ -11657,6 +11842,7 @@ window.onStopSectionShow = function(sectionId) {
     else if (sectionId === 'breakup-stop-post-checkin') { if (typeof stopBuildPostChips === 'function') stopBuildPostChips(); if (typeof window.stopSpeak === 'function') window.stopSpeak("Now. Let's check in again. Rate the same feelings to see what shifted."); }
     else if (sectionId === 'breakup-stop-complete') { if (typeof stopRenderComplete === 'function') stopRenderComplete(); if (typeof stopSaveSession === 'function') stopSaveSession(); }
     else if (sectionId === 'progress') { if (typeof renderProgress === 'function') renderProgress(); }
+    else if (sectionId === 'cl-entry') { setTimeout(speakClEntry, 400); }
   }, 400);
 };
 </script>
@@ -15707,7 +15893,7 @@ Start slowly counting up — one, two, three, four and five — eyes open, wide 
 
       <div class="phone-wrap">
         <div class="screen-title">Closure Letter ✦</div>
-        <div class="phone" style="cursor:pointer;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;" onclick="showSection('cl')">
+        <div class="phone" style="cursor:pointer;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;" onclick="showSection('cl-entry')">
           <div style="font-size:44px;">✉️</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;text-align:center;">Closure Letter</div>
           <div style="font-size:11px;color:rgba(255,255,255,0.4);text-align:center;padding:0 20px;line-height:1.6;">Write the letter you never sent. Say what was never said.</div>
@@ -15724,7 +15910,7 @@ Start slowly counting up — one, two, three, four and five — eyes open, wide 
       <!-- Closure Letter -->
       <div class="phone-wrap">
         <div class="screen-title">Closure Letter ✦</div>
-        <div class="phone" style="cursor:pointer;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;" onclick="showSection('cl')">
+        <div class="phone" style="cursor:pointer;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;" onclick="showSection('cl-entry')">
           <div style="font-size:44px;">✉️</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;text-align:center;">Closure Letter</div>
           <div style="font-size:11px;color:rgba(255,255,255,0.4);text-align:center;padding:0 20px;line-height:1.6;">Write the letter you never sent. Say what was never said.</div>
@@ -22615,33 +22801,6 @@ function hlSelectRung(n) {
   var el = document.getElementById('hl-rung-'+n); if(el) el.classList.add('selected');
 }
 
-// ===== Closure Letter =====
-function clGoBack() { showSection('breakup-paths'); }
-function clStep(n) {
-  var g=document.getElementById('cl-guided-view');
-  if(!g) return;
-  g.querySelectorAll('.col').forEach(function(c,i){ c.style.display=(i===n-1)?'block':'none'; });
-  var sc=document.getElementById('cl-screens'); if(sc) sc.scrollIntoView({behavior:'smooth',block:'start'});
-}
-function clShowGuided() {
-  var g=document.getElementById('cl-guided-view'),q=document.getElementById('cl-quick-view');
-  if(g) g.style.display=''; if(q) q.style.display='none';
-  document.querySelectorAll('#section-cl .mt-btn').forEach(function(b,i){b.classList.toggle('active',i===0);});
-  clStep(1);
-}
-function clShowQuick() {
-  var g=document.getElementById('cl-guided-view'),q=document.getElementById('cl-quick-view');
-  if(g) g.style.display='none'; if(q) q.style.display='';
-  document.querySelectorAll('#section-cl .mt-btn').forEach(function(b,i){b.classList.toggle('active',i===1);});
-}
-function clSelectChoice(el) {
-  document.querySelectorAll('#cl-choice div').forEach(function(d){
-    d.style.background='rgba(255,255,255,0.05)'; d.style.borderColor='rgba(255,255,255,0.1)'; d.style.color='rgba(255,255,255,0.5)';
-  });
-  el.style.background='rgba(201,168,76,0.15)'; el.style.borderColor='rgba(201,168,76,0.4)'; el.style.color='#E8D08A';
-}
-
-
 // ===== Meet Your Future Self =====
 function myfsGoBack() { showSection('breakup-paths'); }
 function myfsStep(n) {
@@ -24715,237 +24874,6 @@ function hdResume() {
           </div>
         </div></div>
         <button style="width:100%;padding:13px;border-radius:22px;border:none;background:linear-gradient(135deg,#C9A84C,#A8863A);color:#181F1C;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px;" onclick="hlStep(4)">Log This Week →</button>
-      </div>
-      <div class="bnav">
-        <div class="bnav-item"><span style="font-size:18px;">🌸</span>Check-In</div>
-        <div class="bnav-item active"><span style="font-size:18px;">🌿</span>Heal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📖</span>Journal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📊</span>Progress</div>
-        <div class="bnav-item"><span style="font-size:18px;">⚙️</span>Settings</div>
-      </div>
-    </div>
-  </div>
-    </div>
-  </div>
-</div><div class="screens-area" id="section-cl">
-  <div class="section-label">✉️ Closure Letter</div>
-  <div class="section-desc">
-    <span onclick="showSection('breakup-paths')" style="cursor:pointer;color:var(--sage);font-weight:600;">← Process Breakup</span>
-    &nbsp;·&nbsp; Journal · 20 min · ✦ Premium · Words you never sent
-  </div>
-  <div class="sec-paid-tech">
-    <div class="phone-grid" id="cl-screens">
-      <div id="cl-guided-view">
-  <div class="col">
-    <div class="col-label">✉️ Intro — The Closure Letter</div>
-    <div class="phone sec-paid-tech">
-      <div class="status"><span>9:41</span><span style="font-size:9px;opacity:.4;">●●●</span></div>
-      <div class="tech-hdr">
-        <div class="th-back" onclick="clGoBack()" style="cursor:pointer;">← Breakup Recovery · Process</div>
-        <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
-          <span>✉️</span><span style="font-size:9px;color:rgba(255,255,255,0.3);">Journal · Expressive Writing · Premium</span>
-          <div style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;background:rgba(201,168,76,0.2);color:#E8D08A;margin-left:auto;">✦ Premium</div>
-        </div>
-        <div class="th-title">Closure Letter</div>
-        <div class="mode-toggle">
-          <button class="mt-btn active" onclick="clShowGuided()">🔊 Guided</button>
-          <button class="mt-btn" onclick="clShowQuick()">⚡ Quick</button>
-          <button class="tts-phone-mute" onclick="ttsToggleMute()" style="background:none;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:4px 10px;cursor:pointer;font-size:11px;color:rgba(255,255,255,0.45);flex-shrink:0;font-family:'DM Sans',sans-serif;">🔊</button>
-        </div>
-      </div>
-      <div class="prog-bar"><div style="height:100%;width:0%;background:var(--gold);border-radius:2px;transition:width 0.5s ease;"></div></div>
-      <div class="screen-body">
-        <div class="step-tag">Journal · Premium · ~20 min</div>
-        <div class="step-title">Say what was never said.<br>You don't have to send it.</div>
-        <div class="step-body">Research by James Pennebaker shows that expressive writing about emotional experiences produces measurable improvements in mental and physical health — regardless of whether anyone reads it.</div>
-        <div style="background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.22);border-radius:14px;padding:12px 14px;margin-bottom:12px;font-size:11px;color:rgba(255,255,255,0.6);line-height:1.7;"><strong style="color:#E8D08A;">This letter is for you.</strong><br>Not for them. Not to send. Not to get a response. To get the words out of your body and onto the page — because carrying unsaid things is heavy.</div>
-        <div class="step-body">You will write in three parts: what happened and how it affected you, what you needed, and what you want to say now that it's over.</div>
-        <button style="width:100%;padding:13px;border-radius:22px;border:none;background:linear-gradient(135deg,#C9A84C,#A8863A);color:#181F1C;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px;" onclick="clStep(2)">Begin the letter →</button>
-      </div>
-      <div class="bnav">
-        <div class="bnav-item"><span style="font-size:18px;">🌸</span>Check-In</div>
-        <div class="bnav-item active"><span style="font-size:18px;">🌿</span>Heal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📖</span>Journal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📊</span>Progress</div>
-        <div class="bnav-item"><span style="font-size:18px;">⚙️</span>Settings</div>
-      </div>
-    </div>
-  </div>  <div class="col">
-    <div class="col-label">💔 Part 1 — What happened. What it did to you.</div>
-    <div class="phone sec-paid-tech">
-      <div class="status"><span>9:41</span><span style="font-size:9px;opacity:.4;">●●●</span></div>
-      <div class="tech-hdr">
-        <div class="th-back" onclick="clGoBack()" style="cursor:pointer;">← Breakup Recovery · Process</div>
-        <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
-          <span>✉️</span><span style="font-size:9px;color:rgba(255,255,255,0.3);">Journal · Expressive Writing · Premium</span>
-          <div style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;background:rgba(201,168,76,0.2);color:#E8D08A;margin-left:auto;">✦ Premium</div>
-        </div>
-        <div class="th-title">Closure Letter</div>
-        <div class="mode-toggle">
-          <button class="mt-btn active" onclick="clShowGuided()">🔊 Guided</button>
-          <button class="mt-btn" onclick="clShowQuick()">⚡ Quick</button>
-          <button class="tts-phone-mute" onclick="ttsToggleMute()" style="background:none;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:4px 10px;cursor:pointer;font-size:11px;color:rgba(255,255,255,0.45);flex-shrink:0;font-family:'DM Sans',sans-serif;">🔊</button>
-        </div>
-      </div>
-      <div class="prog-bar"><div style="height:100%;width:25%;background:var(--gold);border-radius:2px;transition:width 0.5s ease;"></div></div>
-      <div class="screen-body">
-        <div class="step-tag">Part 1 of 3 · The Truth</div>
-        <div class="step-title">Tell them what happened.<br>What it did to you. How it felt.</div>
-        <div class="step-body">Write to them directly — "You..." Don't soften it for their comfort. This is your space.</div>
-        <div class="prompt-label">What happened — in your own words</div>
-        <textarea style="width:100%;min-height:196px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 12px;color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif;font-size:12px;line-height:1.65;resize:none;outline:none;box-sizing:border-box;" id="cl-part1" placeholder="Start with: "When you... I felt..." or "What I never told you is..." Write without stopping."></textarea>
-        <div style="background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.22);border-radius:14px;padding:12px 14px;margin-bottom:12px;font-size:11px;color:rgba(255,255,255,0.6);line-height:1.7;">Write fast. Don't edit. Let it be messy and honest. This is not a letter for them — it's a release for you.</div>
-        <button style="width:100%;padding:13px;border-radius:22px;border:none;background:linear-gradient(135deg,#C9A84C,#A8863A);color:#181F1C;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px;" onclick="clStep(3)">Continue →</button>
-      </div>
-      <div class="bnav">
-        <div class="bnav-item"><span style="font-size:18px;">🌸</span>Check-In</div>
-        <div class="bnav-item active"><span style="font-size:18px;">🌿</span>Heal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📖</span>Journal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📊</span>Progress</div>
-        <div class="bnav-item"><span style="font-size:18px;">⚙️</span>Settings</div>
-      </div>
-    </div>
-  </div>  <div class="col">
-    <div class="col-label">💛 Part 2 — What you needed.</div>
-    <div class="phone sec-paid-tech">
-      <div class="status"><span>9:41</span><span style="font-size:9px;opacity:.4;">●●●</span></div>
-      <div class="tech-hdr">
-        <div class="th-back" onclick="clGoBack()" style="cursor:pointer;">← Breakup Recovery · Process</div>
-        <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
-          <span>✉️</span><span style="font-size:9px;color:rgba(255,255,255,0.3);">Journal · Expressive Writing · Premium</span>
-          <div style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;background:rgba(201,168,76,0.2);color:#E8D08A;margin-left:auto;">✦ Premium</div>
-        </div>
-        <div class="th-title">Closure Letter</div>
-        <div class="mode-toggle">
-          <button class="mt-btn active" onclick="clShowGuided()">🔊 Guided</button>
-          <button class="mt-btn" onclick="clShowQuick()">⚡ Quick</button>
-          <button class="tts-phone-mute" onclick="ttsToggleMute()" style="background:none;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:4px 10px;cursor:pointer;font-size:11px;color:rgba(255,255,255,0.45);flex-shrink:0;font-family:'DM Sans',sans-serif;">🔊</button>
-        </div>
-      </div>
-      <div class="prog-bar"><div style="height:100%;width:55%;background:var(--gold);border-radius:2px;transition:width 0.5s ease;"></div></div>
-      <div class="screen-body">
-        <div class="step-tag">Part 2 of 3 · The Need</div>
-        <div class="step-title">What did you actually need from them?<br>What were you hoping they would see?</div>
-        <div class="step-body">This is often the most important part — and the part most people skip. Naming the unmet need is what creates real closure.</div>
-        <div class="prompt-label">What I actually needed from you was</div>
-        <textarea style="width:100%;min-height:140px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 12px;color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif;font-size:12px;line-height:1.65;resize:none;outline:none;box-sizing:border-box;" id="cl-part2" placeholder="e.g. "I needed you to see me. To choose me. To tell me I mattered even when things were hard...""></textarea>
-        <div style="background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.22);border-radius:14px;padding:12px 14px;margin-bottom:12px;font-size:11px;color:rgba(255,255,255,0.6);line-height:1.7;">This need is yours. It is valid. It may never have been met by them — but it can still be met, by yourself and by others.</div>
-        <button style="width:100%;padding:13px;border-radius:22px;border:none;background:linear-gradient(135deg,#C9A84C,#A8863A);color:#181F1C;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px;" onclick="clStep(4)">Continue →</button>
-      </div>
-      <div class="bnav">
-        <div class="bnav-item"><span style="font-size:18px;">🌸</span>Check-In</div>
-        <div class="bnav-item active"><span style="font-size:18px;">🌿</span>Heal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📖</span>Journal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📊</span>Progress</div>
-        <div class="bnav-item"><span style="font-size:18px;">⚙️</span>Settings</div>
-      </div>
-    </div>
-  </div>  <div class="col">
-    <div class="col-label">🕊️ Part 3 — What you want to say now.</div>
-    <div class="phone sec-paid-tech">
-      <div class="status"><span>9:41</span><span style="font-size:9px;opacity:.4;">●●●</span></div>
-      <div class="tech-hdr">
-        <div class="th-back" onclick="clGoBack()" style="cursor:pointer;">← Breakup Recovery · Process</div>
-        <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
-          <span>✉️</span><span style="font-size:9px;color:rgba(255,255,255,0.3);">Journal · Expressive Writing · Premium</span>
-          <div style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;background:rgba(201,168,76,0.2);color:#E8D08A;margin-left:auto;">✦ Premium</div>
-        </div>
-        <div class="th-title">Closure Letter</div>
-        <div class="mode-toggle">
-          <button class="mt-btn active" onclick="clShowGuided()">🔊 Guided</button>
-          <button class="mt-btn" onclick="clShowQuick()">⚡ Quick</button>
-          <button class="tts-phone-mute" onclick="ttsToggleMute()" style="background:none;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:4px 10px;cursor:pointer;font-size:11px;color:rgba(255,255,255,0.45);flex-shrink:0;font-family:'DM Sans',sans-serif;">🔊</button>
-        </div>
-      </div>
-      <div class="prog-bar"><div style="height:100%;width:80%;background:var(--gold);border-radius:2px;transition:width 0.5s ease;"></div></div>
-      <div class="screen-body">
-        <div class="step-tag">Part 3 of 3 · The Closing</div>
-        <div class="step-title">What do you want to say,<br>now that it's over?</div>
-        <div class="step-body">This can be anger, grief, gratitude, or goodbye. There is no right answer. Just what is true for you today.</div>
-        <div class="prompt-label">What I want to say to you now</div>
-        <textarea style="width:100%;min-height:140px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 12px;color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif;font-size:12px;line-height:1.65;resize:none;outline:none;box-sizing:border-box;" id="cl-part3" placeholder="This could be: goodbye, I forgive you, I will never forgive you, thank you, I wish things had been different — whatever is most true right now."></textarea>
-        <div class="prompt-label">What I choose to do with this letter</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;" id="cl-choice">
-          <div style="padding:7px 12px;border-radius:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-size:10px;color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.2s;" onclick="clSelectChoice(this)">Keep it for myself</div><div style="padding:7px 12px;border-radius:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-size:10px;color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.2s;" onclick="clSelectChoice(this)">Delete it after reading</div><div style="padding:7px 12px;border-radius:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-size:10px;color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.2s;" onclick="clSelectChoice(this)">Burn it ritually</div><div style="padding:7px 12px;border-radius:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-size:10px;color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.2s;" onclick="clSelectChoice(this)">Read it aloud alone</div><div style="padding:7px 12px;border-radius:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-size:10px;color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.2s;" onclick="clSelectChoice(this)">Archive it</div>
-        </div>
-        <button style="width:100%;padding:13px;border-radius:22px;border:none;background:linear-gradient(135deg,#C9A84C,#A8863A);color:#181F1C;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px;" onclick="clStep(5)">Complete the letter →</button>
-      </div>
-      <div class="bnav">
-        <div class="bnav-item"><span style="font-size:18px;">🌸</span>Check-In</div>
-        <div class="bnav-item active"><span style="font-size:18px;">🌿</span>Heal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📖</span>Journal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📊</span>Progress</div>
-        <div class="bnav-item"><span style="font-size:18px;">⚙️</span>Settings</div>
-      </div>
-    </div>
-  </div>  <div class="col">
-    <div class="col-label">✅ Letter Complete</div>
-    <div class="phone sec-paid-tech">
-      <div class="status"><span>9:41</span><span style="font-size:9px;opacity:.4;">●●●</span></div>
-      <div class="tech-hdr">
-        <div class="th-back" onclick="clGoBack()" style="cursor:pointer;">← Breakup Recovery · Process</div>
-        <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
-          <span>✉️</span><span style="font-size:9px;color:rgba(255,255,255,0.3);">Journal · Expressive Writing · Premium</span>
-          <div style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;background:rgba(201,168,76,0.2);color:#E8D08A;margin-left:auto;">✦ Premium</div>
-        </div>
-        <div class="th-title">Closure Letter</div>
-        <div class="mode-toggle">
-          <button class="mt-btn active" onclick="clShowGuided()">🔊 Guided</button>
-          <button class="mt-btn" onclick="clShowQuick()">⚡ Quick</button>
-          <button class="tts-phone-mute" onclick="ttsToggleMute()" style="background:none;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:4px 10px;cursor:pointer;font-size:11px;color:rgba(255,255,255,0.45);flex-shrink:0;font-family:'DM Sans',sans-serif;">🔊</button>
-        </div>
-      </div>
-      <div class="prog-bar"><div style="height:100%;width:100%;background:var(--gold);border-radius:2px;transition:width 0.5s ease;"></div></div>
-      <div class="screen-body" style="text-align:center;padding-top:16px;">
-        <div style="font-size:44px;margin-bottom:14px;">✉️🕊️</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:white;margin-bottom:10px;">Letter Written</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.75;margin-bottom:14px;">The unsaid things are out of your body now and on the page. That matters — whether anyone ever reads this or not. You witnessed yourself.</div>
-        <div style="background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.22);border-radius:14px;padding:12px 14px;margin-bottom:12px;font-size:11px;color:rgba(255,255,255,0.6);line-height:1.7;">"Closure doesn't come from them giving you something. It comes from you deciding you no longer need it to move forward."</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.75;margin-bottom:14px;">If you chose to burn or delete it — do it as a ritual. Light a candle. Read it once more. Then let it go.</div>
-        <button style="width:100%;padding:13px;border-radius:22px;border:none;background:linear-gradient(135deg,#C9A84C,#A8863A);color:#181F1C;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px;" onclick="showSection('breakup-paths')">← Back to Process Breakup</button>
-      </div>
-      <div class="bnav">
-        <div class="bnav-item"><span style="font-size:18px;">🌸</span>Check-In</div>
-        <div class="bnav-item active"><span style="font-size:18px;">🌿</span>Heal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📖</span>Journal</div>
-        <div class="bnav-item"><span style="font-size:18px;">📊</span>Progress</div>
-        <div class="bnav-item"><span style="font-size:18px;">⚙️</span>Settings</div>
-      </div>
-    </div>
-  </div>
-      </div>
-  <div class="col" id="cl-quick-view" style="display:none">
-    <div class="col-label">⚡ Quick Mode</div>
-    <div class="phone sec-paid-tech">
-      <div class="status"><span>9:41</span><span style="font-size:9px;opacity:.4;">●●●</span></div>
-      <div class="tech-hdr">
-        <div class="th-back" onclick="clGoBack()" style="cursor:pointer;">← Breakup Recovery · Process</div>
-        <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
-          <span>✉️</span><span style="font-size:9px;color:rgba(255,255,255,0.3);">Journal · Expressive Writing · Premium</span>
-          <div style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;background:rgba(201,168,76,0.2);color:#E8D08A;margin-left:auto;">✦ Premium</div>
-        </div>
-        <div class="th-title">Closure Letter</div>
-        <div class="mode-toggle">
-          <button class="mt-btn active" onclick="clShowGuided()">🔊 Guided</button>
-          <button class="mt-btn" onclick="clShowQuick()">⚡ Quick</button>
-          <button class="tts-phone-mute" onclick="ttsToggleMute()" style="background:none;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:4px 10px;cursor:pointer;font-size:11px;color:rgba(255,255,255,0.45);flex-shrink:0;font-family:'DM Sans',sans-serif;">🔊</button>
-        </div>
-      </div>
-      <div class="prog-bar"><div style="height:100%;width:0%;background:var(--gold);border-radius:2px;transition:width 0.5s ease;"></div></div>
-      <div class="screen-body">
-        <div class="step-tag">⚡ Quick · ~10 min</div>
-        <div class="step-title">Closure Letter — Condensed</div>
-        <div style="margin-bottom:10px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:5px;">What happened & how it felt</div>
-          <textarea style="width:100%;min-height:84px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 12px;color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif;font-size:12px;line-height:1.65;resize:none;outline:none;box-sizing:border-box;" id="clq-1" placeholder="When you... I felt... What I never told you is..."></textarea>
-        </div><div style="margin-bottom:10px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:5px;">What I actually needed</div>
-          <textarea style="width:100%;min-height:84px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 12px;color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif;font-size:12px;line-height:1.65;resize:none;outline:none;box-sizing:border-box;" id="clq-2" placeholder="I needed you to see... I wanted you to..."></textarea>
-        </div><div style="margin-bottom:10px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:5px;">What I want to say now</div>
-          <textarea style="width:100%;min-height:84px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 12px;color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif;font-size:12px;line-height:1.65;resize:none;outline:none;box-sizing:border-box;" id="clq-3" placeholder="Goodbye. / Thank you. / I forgive you. / Whatever is true today."></textarea>
-        </div>
-        <button style="width:100%;padding:13px;border-radius:22px;border:none;background:linear-gradient(135deg,#C9A84C,#A8863A);color:#181F1C;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px;" onclick="clStep(5)">Complete →</button>
       </div>
       <div class="bnav">
         <div class="bnav-item"><span style="font-size:18px;">🌸</span>Check-In</div>
