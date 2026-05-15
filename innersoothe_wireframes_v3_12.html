@@ -3014,7 +3014,7 @@
 .pmrq-eyebrow-time { color: rgba(160,104,50,0.55); margin-left: 6px; font-weight: 400; letter-spacing: 1.4px; }
 
 /* Body wrap: sidebar (78px) + mannequin stage (fills) */
-.pmrq-body-wrap { flex: 1; display: flex; align-items: stretch; gap: 4px; padding: 6px 6px 0 6px; min-height: 0; }
+.pmrq-body-wrap { flex: 1; display: flex; align-items: stretch; gap: 4px; padding: 0 0 0 6px; min-height: 0; overflow: hidden; }
 .pmrq-sidebar { width: 78px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 4px 2px; }
 .pmrq-step { display: flex; align-items: center; gap: 7px; padding: 3px 0; cursor: pointer; }
 .pmrq-step-num { width: 19px; height: 19px; border-radius: 50%; border: 1px solid rgba(33,24,12,0.18); background: rgba(255,255,255,0.5); display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; font-size: 9.5px; font-weight: 600; color: rgba(33,24,12,0.45); flex-shrink: 0; transition: all 240ms ease; }
@@ -3026,8 +3026,8 @@
 
 /* Mannequin stage + saffron glow regions */
 .pmrq-body-stage { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; min-height: 0; }
-.pmrq-mannequin { width: 100%; height: 100%; object-fit: contain; display: block; }
-.pmrq-pose { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; pointer-events: none; transition: opacity 1s ease-in; }
+.pmrq-mannequin { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%); }
+.pmrq-pose { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; opacity: 0; pointer-events: none; transition: opacity 1s ease-in; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%); }
 .pmrq-pose.active { opacity: 1; transition: opacity 1s ease-in; }
 .pmrq-pose.releasing { opacity: 0; transition: opacity 6s ease-out; }
 .pmrq-regions { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
@@ -3042,8 +3042,13 @@
 /* Muscle name + 4-state cycle indicator */
 .pmrq-muscle-name { text-align: center; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 24px; color: #1E1408; line-height: 1.2; margin: 4px 0 0; flex-shrink: 0; }
 .pmrq-states { display: flex; justify-content: center; gap: 5px; padding: 7px 14px 3px; flex-shrink: 0; }
-.pmrq-state-pill { padding: 4px 10px; border-radius: 11px; border: 1px solid rgba(33,24,12,0.14); background: transparent; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 9.5px; color: rgba(33,24,12,0.42); letter-spacing: 0.5px; text-transform: uppercase; transition: all 300ms ease; }
-.pmrq-state-pill.active { background: #A06832; border-color: #A06832; color: #F3E9DC; font-weight: 600; }
+.pmrq-state-pill { padding: 4px 10px; border-radius: 11px; border: 1px solid rgba(33,24,12,0.14); background: transparent; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 9.5px; color: rgba(33,24,12,0.42); letter-spacing: 0.5px; text-transform: uppercase; transition: background 600ms ease, border-color 600ms ease, color 600ms ease, font-weight 600ms ease; transform-origin: center; }
+.pmrq-state-pill.active { background: #A06832; border-color: #A06832; color: #F3E9DC; font-weight: 600; animation: pmrq-pill-arrive 700ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes pmrq-pill-arrive {
+  0% { transform: scale(0.92); }
+  60% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
 
 /* Controls + progress (unchanged behavior) */
 .pmrq-controls { display: flex; justify-content: space-around; align-items: center; padding: 4px 18px 6px; flex-shrink: 0; }
@@ -12922,11 +12927,11 @@ window.onStopSectionShow = function(sectionId) {
 </div>
 
       <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
-        <button class="pmr-cta-btn" onclick="window.pmrMode='quick';showSection('breakup-pmr-pre-checkin')" style="display:flex;flex-direction:column;align-items:center;gap:1px;padding:9px 13px;line-height:1.2;">
+        <button class="pmr-cta-btn" onclick="window.pmrMode='quick';showSection('breakup-pmr-pre-checkin')" style="display:flex;flex-direction:column;align-items:center;gap:1px;padding:9px 13px;line-height:1.2;width:100%;box-sizing:border-box;border:1.5px solid transparent;">
           <span style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:14px;color:#F3E9DC;">Quick Reset</span>
           <span style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:10px;color:rgba(243,233,220,0.78);letter-spacing:0.3px;">Bernstein-Borkovec · 6 min · 7 groups</span>
         </button>
-        <button onclick="window.pmrMode='full';showSection('breakup-pmr-pre-checkin')" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:1px;padding:9px 13px;border-radius:24px;background:transparent;border:1.5px solid #A06832;cursor:pointer;line-height:1.2;">
+        <button onclick="window.pmrMode='full';showSection('breakup-pmr-pre-checkin')" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:1px;padding:9px 13px;border-radius:24px;background:transparent;border:1.5px solid #A06832;cursor:pointer;line-height:1.2;box-sizing:border-box;">
           <span style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:14px;color:#A06832;">Full Session</span>
           <span style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:10px;color:rgba(160,104,50,0.72);letter-spacing:0.3px;">Jacobson · 15 min · 16 groups</span>
         </button>
