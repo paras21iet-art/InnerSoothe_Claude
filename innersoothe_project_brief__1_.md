@@ -292,6 +292,74 @@ Diagnostic logging (the _diag object) was used during v8a-v9 iteration and has b
 
 ---
 
+### Closure Letter — In Progress (2026-05-15)
+
+**Section IDs (in DOM order):**
+- `section-cl-entry` — technique entry
+- `section-cl-pre-checkin` — emotion check-in before writing
+- `section-cl-p1` — Part 1 "The Truth"
+- `section-cl-p2` — Part 2 "The Need"
+- `section-cl-p3` — Part 3 "The Closing" + ritual choice
+- `section-cl-post-checkin` — *(Patch 5 — pending)*
+- `section-cl-complete` — *(Patch 6 — pending)*
+
+**CSS:** All CL sections use `class="screens-area sec-stop-step"` on the outer div — inherits the entire STOP step-hdr pattern (back chevron + audio toggle + Crisis Support) without duplicating CSS.
+
+**Shell CSS:** `.sec-cl-p1`, `.sec-cl-p2`, `.sec-cl-p3` — `370×780px`, `background: #F9EDD8`, `overflow: hidden`, `display: flex`, `flex-direction: column`
+
+**Shared CSS classes (`.cl-*`):** `.cl-write-stack` · `.cl-field-label` · `.cl-textarea` · `.cl-helper` · `.cl-cta` · `.cl-pd-row` · `.cl-pd` · `.cl-pd-line` · `.cl-choice-section` · `.cl-choice-card` · `.cl-choice-title` · `.cl-choice-subline`
+
+**State variables (line ~10309):**
+```js
+window.clPreSelected = []; window.clPreRatings = {}; window.clPostRatings = {};
+window.clLetter = { part1: '', part2: '', part3: '' };
+window.clChoice = null; window.clTimeStart = null; window.clCurrentSessionId = null;
+```
+
+**Dispatch architecture:** CL uses a dedicated IIFE wrapper layered after the STOP voice cancel wrapper (line ~18347). Does NOT use DOMContentLoaded. Handles `cl-entry`, `cl-pre-checkin`, `cl-p1`, `cl-p2`, `cl-p3`. CL cases must NOT be placed inside `window.onStopSectionShow` (that hook only fires for `breakup-stop-*` and `progress`).
+
+**Pre check-in IIFE** (wedged after `<!-- /section-cl-pre-checkin -->`): builds 8-pill emotion grid with `clspc-*` DOM ID prefix (avoids collision with STOP's `spc-*`). Functions: `window.clBuildPreGrid`, `window.clPreDot`, `window.clPreBeginTap`.
+
+**Emotion set (pre check-in):** 💔 Grief · 😔 Sadness · 😠 Anger · 😞 Guilt · 😳 Shame · 🫥 Loneliness · 😰 Anxiety · 😶 Numb
+
+**Writing parts:**
+
+| Part | Section | Field label | Placeholder hint |
+|------|---------|-------------|-----------------|
+| 1 | `section-cl-p1` | WHAT HAPPENED — AND WHAT IT DID TO YOU | "Start wherever you need to. You don't have to be fair." |
+| 2 | `section-cl-p2` | WHAT I ACTUALLY NEEDED FROM YOU | "You needed to feel seen. Heard. Safe. Name it." |
+| 3 | `section-cl-p3` | WHAT I WANT TO SAY TO YOU NOW | "This could be: goodbye, I forgive you, I will never forgive you…" |
+
+**Closure ritual choices (Part 3):**
+| Value | Title | Subline |
+|-------|-------|---------|
+| `keep` | Keep it for myself | Saved to your Journal. |
+| `delete` | Delete it after reading | Let the words go. |
+| `burn` | Burn it ritually | A symbolic release. The text is discarded. |
+| `read-aloud` | Read it aloud alone | Speak it once. The text is discarded. |
+
+CTA `clCompleteTheLetter()` navigates to `cl-post-checkin`. Disabled until textarea non-empty AND choice selected.
+
+**Key layout spec — Part 3 (locked):**
+- `.cl-write-stack` padding: `0 32px 56px` — 56px bottom lifts progress dots clear of phone shell edge
+- `.sec-cl-p3 .cl-textarea`: `flex: none; min-height: 80px; height: 80px; scrollbar-width: none`
+- `.sec-cl-p3 .cl-write-stack` gap: `8px`
+- `.cl-choice-section` gap: `4px`
+
+**Progress dots:**
+- P1: dot 1 filled · dots 2–3 outlined
+- P2: dot 2 filled · others outlined
+- P3: dot 3 filled · others outlined
+
+**Voice copy (locked):**
+- CL entry: "If you're here, something has been left unsaid. That's heavy to carry. The closure letter is a way to put that weight down. You'll write in three parts — what happened, what you needed, and what you want to say now. Not to send. Just to release."
+- Pre check-in: "Before we begin. Notice how you're feeling. Pick up to three emotions and rate each."
+- Part 1: "Part one. The truth. Write what happened — and what it did to you. Don't soften it. This is your space."
+- Part 2: "Part two. The need. Name what you actually needed from them — what you were hoping they would see. The unmet need is worth saying out loud."
+- Part 3: "Part three. The closing. Write what you want to say, now that it's over. Then choose how to release it."
+
+---
+
 ## Paid Techniques (Premium) — All Built in Wireframe
 
 | Technique | Type | Duration | Notes |
@@ -570,6 +638,7 @@ animate with repeatCount="1" and fill="freeze":
 | 2026-05-14 | Post check-in screen LOCKED. Section `section-breakup-stop-post-checkin`. MANDATORY: NO back button, NO bottom nav (only audio toggle + Crisis Support in header). Eyebrow "EMOTION CHECK-IN · AFTER" + headline "How do you feel now?" + subhead "Rate the same feelings — let's see what shifted." + scale helper "1/5 = a little · 5/5 = a lot" + CTA "See your shift →" (disabled until all rated) + voice "Now. Let's check in again. Rate the same feelings to see what shifted." Chips auto-sync from pre selections — user rates same emotions with new intensity. State: `window.stopPostRatings`. Wedged between S4 and Complete. | ✅ Locked |
 | 2026-05-14 | Complete screen redesigned. Section `section-breakup-stop-complete` (replaced original 3-line "Well done" placeholder). Saffron checkmark in 62px circle (decorative botanical leaves removed — were noise without purpose). SESSION COMPLETE eyebrow + "You did something hard." 23px Cormorant 300 headline + italic subhead "You paused instead of reacting. That takes real strength." YOUR SHIFT card: emotion shift rows with emoji + name + pre/5 → post/5, sage green #5C8A60 for improvement, neutral dark for stable/worse — NO red (no shame coloring). THIS SESSION card (4 rows): "Emotion noticed: [list]" + "Tightness in body noticed at: [list]" + "Breathing: N complete cycles" + "Next step: [action title]". CTAs: "Return to Breakup Recovery →" / "Journal this moment" (outlined) / "Maybe later" (tertiary). Bottom nav visible. No vertical scroll (fits 780px). Auto-populates from window state via `stopRenderComplete()`. Saves session to localStorage via `stopSaveSession()` on section entry. | ✅ Locked |
 | 2026-05-14 | Progress tab built and LOCKED. Section `section-progress`. Background parchment gradient. Header: PROGRESS eyebrow + "Your healing journey" Spectral 28. Stats card: Sessions count + Day streak + Avg shift (↓N.N in sage green for improvement, ↑N.N neutral for worse, "—" for zero). Session list grouped by date buckets (Today / Yesterday / Earlier this week / Earlier). Display cap: last 30 days. Footer "Showing last 30 days · N earlier sessions" when older data exists. Session cards: timestamp + technique + module + emotion shift rows. localStorage key `innersoothe_sessions`. Mock seed of 4 historical sessions when empty. `renderProgress()` dispatched via showSection wrapper for 'progress' (gate extended from `breakup-stop-` only). Data retention: ALL data forever (no auto-deletion, localStorage ~5MB capacity handles thousands of sessions). Phase 2 features pending: chart views (avg shift trend), filter chips, archive view with month navigation. Old duplicate `section-progress` (designer mockup) renamed to `section-progress-mockup` to resolve invalid HTML ID collision. | ✅ Locked |
+| 2026-05-15 | Closure Letter — Patches 1–4 built. Entry screen + pre check-in (chip+dot grid, 8 emotions, `clspc-*` IDs) + Part 1 "The Truth" + Part 2 "The Need" + Part 3 "The Closing" + closure ritual 4 choice cards. Shared `.cl-*` CSS written. CL dispatch IIFE wrapper layered after STOP voice cancel wrapper. Bug fix: dispatch was placed in `onStopSectionShow` (wrong hook — only fires for `breakup-stop-*`). Header verbatim copy from STOP pre check-in fixed overlap. Cosmetic: P3 textarea scrollbar hidden; progress dots lifted via `0 32px 56px` bottom padding with Part 3 layout compensation (80px textarea, 8px gap, 4px choice gap). State: `window.clLetter`, `window.clChoice`, `window.clPreSelected`, `window.clPreRatings`. `clCompleteTheLetter()` → `cl-post-checkin`. Pending: Patch 5 (post check-in) + Patch 6 (complete + session save). | ✅ (Patches 1–4 done) |
 
 ---
 
@@ -588,11 +657,12 @@ animate with repeatCount="1" and fill="freeze":
 11. ~~Phase 2e: Complete screen for STOP technique~~ — DONE (LOCKED 2026-05-14, rich design with shift visualization)
 12. ~~Pre check-in + Post check-in (mandatory) wired into STOP flow~~ — DONE (LOCKED 2026-05-14)
 13. ~~Progress tab with localStorage persistence~~ — DONE (LOCKED 2026-05-14)
-14. **→ Tomorrow: Paras review of full STOP flow end-to-end (pre→S1→S2→S3→S4→post→Complete→Progress)**
+14. ~~STOP flow end-to-end review~~ — superseded by Closure Letter build
 15. **→ PMR Entry + Complete sync to STOP canonical templates** (parallel chat — prompt ready)
-16. STOP Phase 3: Quick Reset mode (stub `startStopGuided()` exists, needs full implementation)
-17. Progress tab Phase 2: chart view (weekly avg shift trend), filter chips, archive view with month navigation
-18. Closure Letter build (new module — 3rd Free technique in Breakup Recovery)
+16. **→ Closure Letter — Patch 5:** `section-cl-post-checkin` (emotion re-rating, `.spostc-*` engine pattern, mirrors STOP post check-in)
+17. **→ Closure Letter — Patch 6:** `section-cl-complete` + `clSaveSession()` + `clRenderComplete()` (session persistence to `innersoothe_sessions`)
+18. STOP Phase 3: Quick Reset mode (stub `startStopGuided()` exists, needs full implementation)
+19. Progress tab Phase 2: chart view (weekly avg shift trend), filter chips, archive view with month navigation
 13. Psychologist sync: review Home v5 + Today scaffold + all three category screens (Relationships / Career / Health)
 14. Psychologist sync: approve/adjust category tint colors (Relationships pink, Health sage, Career gold)
 15. Psychologist sync: green in splash/dark screens — lift rule or fix wireframe

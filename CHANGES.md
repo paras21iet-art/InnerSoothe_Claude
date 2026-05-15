@@ -313,3 +313,59 @@ Cleanup: temporary _diag diagnostic logging removed at lock time.
 
 ### Side update:
 - Old duplicate `section-progress` (designer mockup) renamed to `section-progress-mockup` to resolve HTML invalid duplicate ID.
+
+---
+
+## 2026-05-15 — Closure Letter — Patches 1–4 + cosmetic fixes
+
+**File:** `innersoothe_wireframes_v3_12.html`
+
+### Sections built this session:
+1. **CL Entry** — `section-cl-entry`. Technique entry screen: parchment shell, canonical `step-hdr` pattern (back chevron + audio toggle + Crisis Support), `speakClEntry` voice ("If you're here, something has been left unsaid..."), "Begin →" CTA → `cl-pre-checkin`. Wired from Breakup Recovery module card 3 (`showSection('cl')`).
+2. **CL Pre Check-in** — `section-cl-pre-checkin`. 8-emotion chip+dot grid (💔 Grief · 😔 Sadness · 😠 Anger · 😞 Guilt · 😳 Shame · 🫥 Loneliness · 😰 Anxiety · 😶 Numb). Select up to 3, rate each 1–5 via dot tap. `clspc-*` DOM ID prefix avoids collision with STOP's `spc-*` IDs.
+3. **CL Part 1 "The Truth"** — `section-cl-p1`. Full-height textarea, shared `.cl-*` CSS, CTA gated by non-empty textarea. Progress dots 1●–2–3.
+4. **CL Part 2 "The Need"** — `section-cl-p2`. Same shared CSS. CTA gated. Progress dots 1–2●–3.
+5. **CL Part 3 "The Closing" + ritual cards** — `section-cl-p3`. Fixed-height textarea (80px) + 4 closure ritual choice cards (keep / delete / burn / read-aloud). CTA disabled until textarea non-empty AND choice selected. `clCompleteTheLetter()` → `cl-post-checkin`. Progress dots 1–2–3●.
+
+### Architecture established:
+- **CL dispatch IIFE wrapper** — layered after STOP voice cancel wrapper (line ~18347). Extends `showSection` for `cl-entry`, `cl-pre-checkin`, `cl-p1`, `cl-p2`, `cl-p3`. Does NOT use DOMContentLoaded (correct for late-in-file wrappers placed after `showSection` is declared).
+- **CL pre check-in IIFE** — wedged immediately after `<!-- /section-cl-pre-checkin -->`. `window.clBuildPreGrid`, `window.clPreDot`, `window.clPreBeginTap`.
+- **Bug fix:** dispatch cases for CL were mistakenly placed inside `window.onStopSectionShow` (which only fires for `breakup-stop-*` and `progress`). Moved to dedicated CL IIFE wrapper.
+- **Header verbatim copy fix:** both CL entry and CL pre check-in headers replaced verbatim from STOP pre check-in's working flex `step-hdr` pattern to resolve audio toggle + Crisis Support chip overlap.
+
+### Shared CSS classes (`.cl-*`):
+`.cl-write-stack` · `.cl-field-label` · `.cl-textarea` · `.cl-helper` · `.cl-cta` · `.cl-pd-row` · `.cl-pd` · `.cl-pd-line` · `.cl-choice-section` · `.cl-choice-card` · `.cl-choice-title` · `.cl-choice-subline`
+
+Shell classes: `.sec-cl-p1` / `.sec-cl-p2` / `.sec-cl-p3` — 370×780px, `background: #F9EDD8`
+
+### Cosmetic fixes (same session):
+- P3 textarea scrollbar hidden: `scrollbar-width: none; -ms-overflow-style: none` + `::-webkit-scrollbar { display: none }`
+- Progress dots lifted: `.cl-write-stack` padding `0 32px 56px` (from 20px → 32px → 56px, two passes)
+- Part 3 compensation to prevent overflow: textarea 80px, write-stack gap 8px, choice-section gap 4px
+
+### Voice copy locked:
+- CL entry: "If you're here, something has been left unsaid. That's heavy to carry. The closure letter is a way to put that weight down. You'll write in three parts — what happened, what you needed, and what you want to say now. Not to send. Just to release."
+- CL pre check-in: "Before we begin. Notice how you're feeling. Pick up to three emotions and rate each."
+- Part 1: "Part one. The truth. Write what happened — and what it did to you. Don't soften it. This is your space."
+- Part 2: "Part two. The need. Name what you actually needed from them — what you were hoping they would see. The unmet need is worth saying out loud."
+- Part 3: "Part three. The closing. Write what you want to say, now that it's over. Then choose how to release it."
+
+### Commits:
+- `713c615` — Patch 1: demolition + entry screen
+- `6184880` — Patch 2: pre check-in
+- `19ca1fa` — Patch 2 fix: chips + voice + header spacing
+- `71ebff3` — header verbatim copy from STOP for entry + pre check-in
+- `1b2259a` — warmer entry voice cue
+- `e1cd900` — Patch 3: Part 1 (The Truth) + shared practice CSS
+- `896eff8` — Patch 4: Parts 2 + 3 + closure ritual cards
+- `a8c1387` — hide P3 textarea scrollbar + lift progress dots
+- `8b37039` — aggressive lift on progress dots, Part 3 layout compensation
+
+### Screenshots pending (user action):
+- `screenshots/closure-letter/03-p1-v3.png`
+- `screenshots/closure-letter/04-p2-v3.png`
+- `screenshots/closure-letter/05-p3-v3.png`
+
+### Pending (Patches 5–6):
+- `section-cl-post-checkin` — emotion re-rating using `.spostc-*` engine pattern
+- `section-cl-complete` — session summary + `clSaveSession()` + `clRenderComplete()`

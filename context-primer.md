@@ -36,7 +36,7 @@
 
 ---
 
-## Current Wireframe State (as of 2026-05-14)
+## Current Wireframe State (as of 2026-05-15)
 
 ### Screens Built and Locked
 1. Pre-onboarding gate — 4 screens (age, safety, consent, crisis)
@@ -55,12 +55,24 @@
 14. **Post check-in (functional, mandatory)** (`section-breakup-stop-post-checkin`) — LOCKED (2026-05-14), wedged between S4 and Complete
 15. **STOP Complete (redesigned)** (`section-breakup-stop-complete`) — LOCKED (2026-05-14), shift visualization + session summary
 16. **Progress tab** (`section-progress`) — LOCKED (2026-05-14), localStorage persistence + 30-day display cap
+17. **Closure Letter Entry** (`section-cl-entry`) — 2026-05-15, technique entry + speakClEntry voice
+18. **Closure Letter Pre Check-in** (`section-cl-pre-checkin`) — 2026-05-15, 8-emotion chip+dot grid
+19. **Closure Letter Part 1** (`section-cl-p1`) — 2026-05-15, "The Truth" writing screen
+20. **Closure Letter Part 2** (`section-cl-p2`) — 2026-05-15, "The Need" writing screen
+21. **Closure Letter Part 3** (`section-cl-p3`) — 2026-05-15, "The Closing" + 4 ritual choice cards
 
 ### Screens In-Progress / Pending
+- **Closure Letter Patch 5:** `section-cl-post-checkin` (emotion re-rating, `.spostc-*` engine)
+- **Closure Letter Patch 6:** `section-cl-complete` + `clSaveSession()` + `clRenderComplete()`
 - STOP Quick Reset mode (stub `startStopGuided()` exists; full implementation pending)
 - PMR Entry + Complete — alignment to STOP canonical templates (in parallel chat session)
-- Closure Letter — new module (3rd Free technique in Breakup Recovery)
 - Progress tab Phase 2: chart views, filter chips, archive with month navigation
+
+### New canonical patterns established 2026-05-15
+- **CL dispatch IIFE wrapper** — layered after STOP voice cancel wrapper; handles `cl-entry`, `cl-pre-checkin`, `cl-p1`, `cl-p2`, `cl-p3`; does NOT use DOMContentLoaded (correct pattern for late-in-file wrappers)
+- **`clspc-*` DOM ID prefix** — all CL pre check-in dynamic IDs use this prefix to avoid collision with STOP's `spc-*` IDs
+- **CL dispatch hook rule** — CL cases must NOT go inside `window.onStopSectionShow` (fires only for `breakup-stop-*` and `progress`)
+- **`sec-stop-step` class reuse** — all CL screens use this class on their outer div to inherit the full STOP step-hdr CSS (back + audio + Crisis Support) without duplicating rules
 
 ### New canonical patterns established 2026-05-14
 - **Pre/Post check-in chip+dot rating engine** (`.spc-*`, `.spostc-*`) — reusable for other modules
@@ -152,11 +164,11 @@ When a visual issue keeps recurring after multiple CSS-only fixes (e.g. the conf
 
 ## Key Pending Work (Next Steps, in order)
 
-1. ~~Build STOP Step 2 (T — Take a Breath)~~ — DONE (Phase 2b, 2026-05-13)
-2. Build STOP Step 3 (O — Observe) using canonical S1 pattern + ChatGPT design (chip grids for Emotions + Body)
-3. Build STOP Step 4 (P — Proceed) using canonical S1 pattern + 4 action cards spec (Rest and breathe / Journal this moment / Talk to someone safe / Do something gentle)
-4. Build STOP Complete screen
-5. Align PMR screens to canonical practice-screen pattern
+1. ~~Build STOP Steps 1–4, pre/post check-in, Complete, Progress~~ — ALL DONE (2026-05-13/14)
+2. **→ Closure Letter Patch 5:** `section-cl-post-checkin` — emotion re-rating using `.spostc-*` engine pattern (mirrors STOP post check-in)
+3. **→ Closure Letter Patch 6:** `section-cl-complete` + `clSaveSession()` + `clRenderComplete()`
+4. PMR Entry + Complete — alignment to STOP canonical templates (parallel chat session)
+5. STOP Quick Reset mode (stub `startStopGuided()` exists; needs full implementation)
 6. Psychologist sync on the 5 open questions
 7. Resolve "heal from within" sub-brand
 8. Source production-resolution illustration assets
