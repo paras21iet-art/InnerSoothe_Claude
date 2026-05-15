@@ -2653,6 +2653,88 @@
   position: relative;
 }
 
+/* ===== Closure Letter — Part 2 shell ===== */
+.sec-cl-p2 {
+  width: 370px;
+  height: 780px;
+  border-radius: 48px;
+  box-shadow: 0 28px 70px rgba(30,20,8,0.13),
+              0 0 0 1.5px rgba(30,20,8,0.10),
+              inset 0 0 0 1px rgba(255,255,255,0.60);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #F9EDD8;
+  position: relative;
+}
+
+/* ===== Closure Letter — Part 3 shell ===== */
+.sec-cl-p3 {
+  width: 370px;
+  height: 780px;
+  border-radius: 48px;
+  box-shadow: 0 28px 70px rgba(30,20,8,0.13),
+              0 0 0 1.5px rgba(30,20,8,0.10),
+              inset 0 0 0 1px rgba(255,255,255,0.60);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #F9EDD8;
+  position: relative;
+}
+
+/* ===== Closure Letter — Closure ritual CSS + Part 3 overrides ===== */
+.cl-choice-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cl-choice-card {
+  background: rgba(243, 233, 220, 0.80);
+  border: 1px solid rgba(62, 42, 31, 0.10);
+  border-radius: 14px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: all 180ms ease;
+  width: 100%;
+  font-family: inherit;
+}
+.cl-choice-card:hover {
+  background: rgba(243, 233, 220, 0.99);
+  border-color: rgba(160, 104, 50, 0.22);
+}
+.cl-choice-card.selected {
+  border-color: #A06832;
+  background: rgba(160, 104, 50, 0.12);
+  box-shadow: inset 0 1px 4px rgba(160, 104, 50, 0.12);
+}
+.cl-choice-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #3E2A1F;
+}
+.cl-choice-subline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(62, 42, 31, 0.55);
+  line-height: 1.4;
+}
+.sec-cl-p3 .cl-textarea {
+  flex: none;
+  min-height: 90px;
+  height: 90px;
+}
+.sec-cl-p3 .cl-write-stack {
+  gap: 12px;
+}
+
 /* ===== PMR Technique — All 4 Screens ===== */
 .pmr-phone { width: 370px; height: 780px; border-radius: 44px; box-shadow: 0 18px 50px rgba(33,24,12,0.10), 0 0 0 1px rgba(33,24,12,0.06); overflow: hidden; display: flex; flex-direction: column; position: relative; flex-shrink: 0; }
 .pmr-status { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px 0; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; color: rgba(30,20,8,0.45); flex-shrink: 0; }
@@ -10831,6 +10913,41 @@ function clP1UpdateCTA() {
   if (!textarea || !cta) return;
   cta.disabled = textarea.value.trim().length === 0;
 }
+function speakClP2() {
+  stopSpeak("Part two. The need. Name what you actually needed from them — what you were hoping they would see. The unmet need is worth saying out loud.");
+}
+function speakClP3() {
+  stopSpeak("Part three. The closing. Write what you want to say, now that it's over. Then choose how to release it.");
+}
+function clP2UpdateCTA() {
+  var textarea = document.getElementById('cl-p2-textarea');
+  var cta = document.getElementById('cl-p2-cta');
+  if (!textarea || !cta) return;
+  cta.disabled = textarea.value.trim().length === 0;
+}
+function clP3UpdateCTA() {
+  var textarea = document.getElementById('cl-p3-textarea');
+  var cta = document.getElementById('cl-p3-cta');
+  if (!textarea || !cta) return;
+  var hasText = textarea.value.trim().length > 0;
+  var hasChoice = window.clChoice !== null;
+  cta.disabled = !(hasText && hasChoice);
+}
+function clSelectChoice(value) {
+  window.clChoice = value;
+  document.querySelectorAll('#section-cl-p3 .cl-choice-card').forEach(function(el) {
+    if (el.getAttribute('data-choice') === value) {
+      el.classList.add('selected');
+    } else {
+      el.classList.remove('selected');
+    }
+  });
+  clP3UpdateCTA();
+}
+function clCompleteTheLetter() {
+  window.clLetter.part3 = document.getElementById('cl-p3-textarea').value;
+  showSection('cl-post-checkin');
+}
 function speakStopS1() {
   if (!window.stopSpeakSequence) return;
   window.stopSpeakSequence([
@@ -11797,6 +11914,143 @@ function s4SelectAction(el) {
   </div>
 </div>
 <!-- /section-cl-p1 -->
+
+<!-- ══════════ CLOSURE LETTER — PART 2: THE NEED ══════════ -->
+<div class="screens-area sec-stop-step" id="section-cl-p2">
+  <div class="sec-cl-p2">
+
+    <!-- Status bar -->
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+
+    <!-- Header row — verbatim; back onclick changed only -->
+    <div class="step-hdr">
+      <div class="step-back" onclick="showSection('cl-p1')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eyebrow -->
+    <div style="padding:16px 24px 0;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#A06832;text-align:center;">PART 2 OF 3 · THE NEED</div>
+
+    <!-- Headline -->
+    <div style="padding:8px 24px 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;line-height:1.2;color:#1E1408;text-wrap:balance;text-align:center;">What did you actually need from them? What were you hoping they would see?</div>
+
+    <!-- Subhead -->
+    <div style="padding:8px 24px 16px;font-family:'DM Sans',sans-serif;font-weight:300;font-size:12px;color:rgba(62,42,31,0.65);line-height:1.55;text-align:center;">This is often the most important part — and the part most people skip. Naming the unmet need is what creates real closure.</div>
+
+    <!-- Writing stack -->
+    <div class="cl-write-stack">
+      <div class="cl-field-label">WHAT I NEEDED FROM YOU</div>
+      <textarea id="cl-p2-textarea" class="cl-textarea" placeholder="What I needed was..." oninput="clP2UpdateCTA()"></textarea>
+      <div class="cl-helper">This need is yours. It is valid. It may never have been met by them — but it can still be met, by yourself and by others.</div>
+      <button id="cl-p2-cta" class="cl-cta" disabled onclick="window.clLetter.part2 = document.getElementById('cl-p2-textarea').value; showSection('cl-p3');">Continue →</button>
+      <div class="cl-pd-row">
+        <span class="cl-pd">1</span>
+        <span class="cl-pd-line"></span>
+        <span class="cl-pd on">2</span>
+        <span class="cl-pd-line"></span>
+        <span class="cl-pd">3</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- /section-cl-p2 -->
+
+<!-- ══════════ CLOSURE LETTER — PART 3: THE CLOSING ══════════ -->
+<div class="screens-area sec-stop-step" id="section-cl-p3">
+  <div class="sec-cl-p3">
+
+    <!-- Status bar -->
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+
+    <!-- Header row — verbatim; back onclick changed only -->
+    <div class="step-hdr">
+      <div class="step-back" onclick="showSection('cl-p2')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eyebrow -->
+    <div style="padding:16px 24px 0;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#A06832;text-align:center;">PART 3 OF 3 · THE CLOSING</div>
+
+    <!-- Headline -->
+    <div style="padding:8px 24px 0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;line-height:1.2;color:#1E1408;text-wrap:balance;text-align:center;">What do you want to say, now that it's over?</div>
+
+    <!-- Subhead -->
+    <div style="padding:8px 24px 16px;font-family:'DM Sans',sans-serif;font-weight:300;font-size:12px;color:rgba(62,42,31,0.65);line-height:1.55;text-align:center;">This can be anger, grief, gratitude, or goodbye. There is no right answer. Just what is true for you today.</div>
+
+    <!-- Writing stack -->
+    <div class="cl-write-stack">
+      <div class="cl-field-label">WHAT I WANT TO SAY TO YOU NOW</div>
+      <textarea id="cl-p3-textarea" class="cl-textarea" placeholder="This could be: goodbye, I forgive you, I will never forgive you, thank you, I wish things had been different — whatever is most true right now." oninput="clP3UpdateCTA()"></textarea>
+      <div class="cl-helper">Whatever comes out is the right thing to write. There is no wrong ending.</div>
+      <div class="cl-field-label" style="margin-top:4px;">WHAT I CHOOSE TO DO WITH THIS LETTER</div>
+      <div class="cl-choice-section">
+        <button type="button" class="cl-choice-card" data-choice="keep" onclick="clSelectChoice('keep')">
+          <span class="cl-choice-title">Keep it for myself</span>
+          <span class="cl-choice-subline">Saved to your Journal.</span>
+        </button>
+        <button type="button" class="cl-choice-card" data-choice="delete" onclick="clSelectChoice('delete')">
+          <span class="cl-choice-title">Delete it after reading</span>
+          <span class="cl-choice-subline">Let the words go.</span>
+        </button>
+        <button type="button" class="cl-choice-card" data-choice="burn" onclick="clSelectChoice('burn')">
+          <span class="cl-choice-title">Burn it ritually</span>
+          <span class="cl-choice-subline">A symbolic release. The text is discarded.</span>
+        </button>
+        <button type="button" class="cl-choice-card" data-choice="read-aloud" onclick="clSelectChoice('read-aloud')">
+          <span class="cl-choice-title">Read it aloud alone</span>
+          <span class="cl-choice-subline">Speak it once. The text is discarded.</span>
+        </button>
+      </div>
+      <button id="cl-p3-cta" class="cl-cta" disabled onclick="clCompleteTheLetter()">Complete the letter →</button>
+      <div class="cl-pd-row">
+        <span class="cl-pd">1</span>
+        <span class="cl-pd-line"></span>
+        <span class="cl-pd">2</span>
+        <span class="cl-pd-line"></span>
+        <span class="cl-pd on">3</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- /section-cl-p3 -->
 
 <script>
 (function(){
@@ -18556,6 +18810,10 @@ function showSection(id) {
       setTimeout(speakClPreCheckin, 400);
     } else if (id === 'cl-p1') {
       setTimeout(speakClP1, 400);
+    } else if (id === 'cl-p2') {
+      setTimeout(speakClP2, 400);
+    } else if (id === 'cl-p3') {
+      setTimeout(speakClP3, 400);
     }
     return result;
   };
