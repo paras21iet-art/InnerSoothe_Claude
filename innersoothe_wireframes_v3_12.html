@@ -2504,10 +2504,10 @@
 .pmr-exit-btn { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.55); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; }
 .pmr-session-crisis { display: flex; align-items: center; gap: 5px; padding: 5px 11px; background: rgba(160,104,50,0.12); border: 0.5px solid rgba(160,104,50,0.35); border-radius: 16px; cursor: pointer; }
 .pmr-session-crisis span { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #A06832; }
-.pmr-phase-eyebrow { margin: 28px 0 0; text-align: center; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-style: italic; font-size: 12px; color: #A06832; letter-spacing: 2px; text-transform: uppercase; flex-shrink: 0; transition: opacity 2s ease; }
+.pmr-phase-eyebrow { margin: 20px 0 0; text-align: center; font-family: 'DM Sans', sans-serif; font-weight: 600; font-style: normal; font-size: 11px; color: #A06832; letter-spacing: 2.4px; text-transform: uppercase; flex-shrink: 0; transition: opacity 2s ease; }
 .pmr-schematic-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 12px 0; }
 .pmr-muscle-name { text-align: center; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 32px; color: #1E1408; line-height: 1.2; margin: 4px 0 0; flex-shrink: 0; }
-.pmr-caption { margin: 14px 20px 10px; padding: 11px 14px; background: rgba(33,24,12,0.04); border-top: 0.5px solid rgba(33,24,12,0.10); border-bottom: 0.5px solid rgba(33,24,12,0.10); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-style: italic; font-size: 12px; color: rgba(30,20,8,0.62); text-align: center; line-height: 1.5; flex-shrink: 0; }
+.pmr-caption { margin: 12px 20px 10px; padding: 11px 14px; background: rgba(33,24,12,0.05); border-top: 0.5px solid rgba(33,24,12,0.14); border-bottom: 0.5px solid rgba(33,24,12,0.14); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-style: italic; font-size: 13px; color: rgba(30,20,8,0.78); text-align: center; line-height: 1.5; flex-shrink: 0; }
 .pmr-controls { display: flex; justify-content: space-around; align-items: center; padding: 6px 18px 12px; flex-shrink: 0; }
 .pmr-ctrl { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 36px; cursor: pointer; background: none; border: none; padding: 0; }
 .pmr-ctrl-lbl { font-family: 'DM Sans', sans-serif; font-size: 8.5px; font-weight: 300; color: rgba(30,20,8,0.55); }
@@ -11870,27 +11870,27 @@ window.onStopSectionShow = function(sectionId) {
     <div class="pmr-phase-eyebrow">LOWER BODY</div>
 
     <div class="pmr-schematic-wrap">
-      <svg class="pmr-body" width="180" height="450" viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
+      <svg class="pmr-body" width="240" height="420" viewBox="0 0 200 350" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <filter id="pmr-bloom" x="-100%" y="-60%" width="300%" height="220%">
             <feGaussianBlur stdDeviation="10"/>
           </filter>
         </defs>
-        <!-- Layer 1: sourced anatomical line drawing (gender-neutral). Scales to fill width=200, height=350, centered vertically in 500-unit viewBox (occupies y=75 to y=425). -->
-        <image href="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-body.png" x="0" y="0" width="200" height="500" preserveAspectRatio="xMidYMid meet"/>
-        <!-- Layer 2: invisible regions, coordinated to PNG body anatomy (PNG occupies viewBox y 75-425). -->
+        <!-- Layer 1: sourced anatomical line drawing (gender-neutral, transparent bg). Fills viewBox exactly — no letterboxing. -->
+        <image href="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-body.svg" x="0" y="0" width="200" height="350" preserveAspectRatio="xMidYMid meet"/>
+        <!-- Layer 2: invisible regions, coordinated to body anatomy in viewBox 200x350. -->
         <g class="pmr-regions" fill="transparent" stroke="none">
-          <path id="chest"           d="M72,149 L131,149 L131,197 L72,197 Z"/>
-          <path id="abdomen"         d="M74,197 L129,197 L129,237 L74,237 Z"/>
-          <path id="hips"            d="M72,237 L131,237 L131,259 L72,259 Z"/>
-          <path id="right-upper-arm" d="M129,138 L144,138 L144,218 L129,218 Z"/>
-          <path id="left-upper-arm"  d="M57,138  L72,138  L72,218  L57,218  Z"/>
-          <path id="right-forearm"   d="M129,218 L144,218 L144,294 L129,294 Z"/>
-          <path id="left-forearm"    d="M57,218  L72,218  L72,294  L57,294  Z"/>
-          <path id="right-thigh"     d="M101,259 L131,259 L131,337 L101,337 Z"/>
-          <path id="left-thigh"      d="M72,259  L101,259 L101,337 L72,337  Z"/>
-          <path id="right-calf"      d="M105,337 L129,337 L129,392 L105,392 Z"/>
-          <path id="left-calf"       d="M74,337  L97,337  L97,392  L74,392  Z"/>
+          <path id="chest"           d="M72,74  L131,74  L131,122 L72,122 Z"/>
+          <path id="abdomen"         d="M74,122 L129,122 L129,162 L74,162 Z"/>
+          <path id="hips"            d="M72,162 L131,162 L131,184 L72,184 Z"/>
+          <path id="right-upper-arm" d="M129,63 L144,63  L144,143 L129,143 Z"/>
+          <path id="left-upper-arm"  d="M57,63  L72,63   L72,143  L57,143  Z"/>
+          <path id="right-forearm"   d="M129,143 L144,143 L144,219 L129,219 Z"/>
+          <path id="left-forearm"    d="M57,143  L72,143  L72,219  L57,219  Z"/>
+          <path id="right-thigh"     d="M101,184 L131,184 L131,262 L101,262 Z"/>
+          <path id="left-thigh"      d="M72,184  L101,184 L101,262 L72,262  Z"/>
+          <path id="right-calf"      d="M105,262 L129,262 L129,317 L105,317 Z"/>
+          <path id="left-calf"       d="M74,262  L97,262  L97,317  L74,317  Z"/>
         </g>
       </svg>
     </div>
