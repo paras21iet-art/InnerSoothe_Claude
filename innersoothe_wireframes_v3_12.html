@@ -11880,6 +11880,8 @@ window.onStopSectionShow = function(sectionId) {
         <image href="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-body.svg" x="0" y="0" width="200" height="350" preserveAspectRatio="xMidYMid meet"/>
         <!-- Layer 2: invisible regions, coordinated to body anatomy in viewBox 200x350. -->
         <g class="pmr-regions" fill="transparent" stroke="none">
+          <path id="head"            d="M86,18  L114,18  L114,63  L86,63   Z"/>
+          <path id="neck"            d="M90,60  L110,60  L110,78  L90,78   Z"/>
           <path id="chest"           d="M72,74  L131,74  L131,122 L72,122 Z"/>
           <path id="abdomen"         d="M74,122 L129,122 L129,162 L74,162 Z"/>
           <path id="hips"            d="M72,162 L131,162 L131,184 L72,184 Z"/>
@@ -12131,12 +12133,36 @@ var _pmrDemoTimer = null;
 var _pmrDimTimer  = null;
 
 var PMR_MUSCLES = [
-  { id: 'right-calf',  name: 'Right calf',  caption: 'Tense the muscles in your right calf… hold… 5… 4… 3… 2… 1… release.' },
-  { id: 'left-calf',   name: 'Left calf',   caption: 'Now your left calf. Tense… hold… and release.' },
-  { id: 'right-thigh', name: 'Right thigh', caption: 'Bring your attention to your right thigh. Squeeze… and let go.' },
-  { id: 'left-thigh',  name: 'Left thigh',  caption: 'Left thigh. Tense for five… release.' }
+  // Phase: Lower Body
+  { id: 'right-calf',      name: 'Right calf',      phase: 'LOWER BODY',  caption: 'Tense the muscles in your right calf… hold… 5… 4… 3… 2… 1… release.' },
+  { id: 'left-calf',       name: 'Left calf',       phase: 'LOWER BODY',  caption: 'Now your left calf. Tense… hold… and release.' },
+  { id: 'right-thigh',     name: 'Right thigh',     phase: 'LOWER BODY',  caption: 'Bring your attention to your right thigh. Squeeze… and let go.' },
+  { id: 'left-thigh',      name: 'Left thigh',      phase: 'LOWER BODY',  caption: 'Left thigh. Tense for five… and release.' },
+  // Phase: Core
+  { id: 'hips',            name: 'Hips',            phase: 'CORE',        caption: 'Hips. Tighten the muscles around your hips… hold… release.' },
+  { id: 'abdomen',         name: 'Abdomen',         phase: 'CORE',        caption: 'Now your abdomen. Pull your belly gently in… hold… and release.' },
+  // Phase: Upper Body
+  { id: 'chest',           name: 'Chest',           phase: 'UPPER BODY',  caption: 'Bring focus to your chest. Tighten the chest muscles… and soften.' },
+  { id: 'right-forearm',   name: 'Right forearm',   phase: 'UPPER BODY',  caption: 'Right forearm. Make a gentle fist… hold… and release.' },
+  { id: 'left-forearm',    name: 'Left forearm',    phase: 'UPPER BODY',  caption: 'Left forearm. Tense… and release.' },
+  { id: 'right-upper-arm', name: 'Right upper arm', phase: 'UPPER BODY',  caption: 'Right upper arm. Squeeze toward your shoulder… and let go.' },
+  { id: 'left-upper-arm',  name: 'Left upper arm',  phase: 'UPPER BODY',  caption: 'Left upper arm. Tense… and release.' },
+  // Phase: Head & Neck
+  { id: 'neck',            name: 'Neck',            phase: 'HEAD & NECK', caption: 'Gently tense your neck. Hold for five… and release slowly.' },
+  { id: 'head',            name: 'Face & jaw',      phase: 'HEAD & NECK', caption: 'Now your face. Scrunch your eyes and clench your jaw… hold… and soften.' }
 ];
 var pmrIdx = 0;
+
+function pmrUpdatePhase(newPhase) {
+  var eyebrow = document.querySelector('#section-breakup-pmr-session .pmr-phase-eyebrow');
+  if (!eyebrow) return;
+  if (eyebrow.textContent === newPhase) return;
+  eyebrow.style.opacity = '0';
+  setTimeout(function() {
+    eyebrow.textContent = newPhase;
+    eyebrow.style.opacity = '';
+  }, 700);
+}
 
 function pmrTick() {
   clearTimeout(_pmrDemoTimer);
@@ -12144,6 +12170,7 @@ function pmrTick() {
     p.classList.remove('pmr-active');
   });
   var m = PMR_MUSCLES[pmrIdx];
+  if (m.phase) pmrUpdatePhase(m.phase);
   var nameEl    = document.querySelector('.pmr-muscle-name');
   var captionEl = document.querySelector('.pmr-caption');
   if (nameEl)    nameEl.textContent    = m.name;
