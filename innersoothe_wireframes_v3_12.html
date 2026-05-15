@@ -2509,24 +2509,6 @@
 .cl-entry-cta:active {
   transform: scale(0.98);
 }
-.sec-cl-entry .stop-mute-btn {
-  position: absolute;
-  top: 46px; right: 130px;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  background: rgba(255,251,243,0.85);
-  border: 1px solid rgba(160,104,50,0.30);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  color: #A06832;
-  transition: opacity 200ms ease;
-  z-index: 30;
-}
-.sec-cl-entry .stop-mute-btn .icon-vol-on { display: block; }
-.sec-cl-entry .stop-mute-btn .icon-vol-off { display: none; }
-.sec-cl-entry .stop-mute-btn.muted { opacity: 0.6; }
-.sec-cl-entry .stop-mute-btn.muted .icon-vol-on { display: none; }
-.sec-cl-entry .stop-mute-btn.muted .icon-vol-off { display: block; }
 
 /* ===== Closure Letter — Pre Check-in ===== */
 .sec-cl-pre-checkin {
@@ -11518,11 +11500,11 @@ function s4SelectAction(el) {
 </div><!-- /section-breakup-stop-complete -->
 
 <!-- ══════════ CLOSURE LETTER — ENTRY ══════════ -->
-<div class="screens-area" id="section-cl-entry">
+<div class="screens-area sec-stop-step" id="section-cl-entry">
   <div class="sec-cl-entry">
 
     <!-- Status bar -->
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px 4px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;color:rgba(33,24,12,0.45);flex-shrink:0;position:relative;z-index:10;">
+    <div class="status">
       <span>9:41</span>
       <div style="display:flex;align-items:center;gap:6px;">
         <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
@@ -11531,21 +11513,21 @@ function s4SelectAction(el) {
       </div>
     </div>
 
-    <!-- Back button (absolute, floats over hero) -->
-    <div class="stop-back" onclick="showSection('module-breakup-recovery')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-    </div>
-
-    <!-- Audio toggle (absolute) -->
-    <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
-      <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-      <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-    </button>
-
-    <!-- Crisis Support chip (absolute, floats over hero) -->
-    <div class="stop-crisis" onclick="showSection('crisis-resources')">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span class="stop-crisis-label">Crisis Support</span>
+    <!-- Header row — verbatim from STOP pre check-in; back onclick changed only -->
+    <div class="step-hdr">
+      <div class="step-back" onclick="showSection('module-breakup-recovery')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
     </div>
 
     <div class="cl-entry-hero">
@@ -11574,7 +11556,7 @@ function s4SelectAction(el) {
 <div class="screens-area sec-stop-step" id="section-cl-pre-checkin">
   <div class="sec-cl-pre-checkin">
 
-    <!-- Status bar -->
+    <!-- Status bar — verbatim from STOP pre check-in -->
     <div class="status">
       <span>9:41</span>
       <div style="display:flex;align-items:center;gap:6px;">
@@ -11584,7 +11566,7 @@ function s4SelectAction(el) {
       </div>
     </div>
 
-    <!-- Header row -->
+    <!-- Header row — verbatim from STOP pre check-in; back onclick changed only -->
     <div class="step-hdr">
       <div class="step-back" onclick="showSection('cl-entry')">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
