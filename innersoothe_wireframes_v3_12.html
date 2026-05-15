@@ -2513,12 +2513,16 @@
 .pmr-ctrl-lbl { font-family: 'DM Sans', sans-serif; font-size: 8.5px; font-weight: 300; color: rgba(30,20,8,0.55); }
 .pmr-progress { height: 2px; background: rgba(33,24,12,0.08); flex-shrink: 0; }
 .pmr-progress-fill { height: 100%; width: 35%; background: #A06832; opacity: 0.75; }
+.pmr-end-cta-wrap { padding: 10px 22px 14px; flex-shrink: 0; background: rgba(250,244,234,0.95); }
+.pmr-end-cta { width: 100%; padding: 11px; border-radius: 22px; background: #A06832; color: #F3E9DC; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 12px; border: none; cursor: pointer; box-shadow: 0 3px 10px rgba(122,82,48,0.20); transition: box-shadow 180ms ease; }
+.pmr-end-cta:hover { box-shadow: 0 4px 14px rgba(122,82,48,0.30); }
 .pmr-phone.pmr-dimmed .pmr-session-bar,
 .pmr-phone.pmr-dimmed .pmr-phase-eyebrow,
 .pmr-phone.pmr-dimmed .pmr-muscle-name,
 .pmr-phone.pmr-dimmed .pmr-caption,
 .pmr-phone.pmr-dimmed .pmr-controls,
-.pmr-phone.pmr-dimmed .pmr-progress { opacity: 0.5; transition: opacity 800ms ease; }
+.pmr-phone.pmr-dimmed .pmr-progress,
+.pmr-phone.pmr-dimmed .pmr-end-cta-wrap { opacity: 0.5; transition: opacity 800ms ease; }
 @media (prefers-reduced-motion: reduce) { .pmr-active-muscle animate { display: none; } }
 .pmr-mute-btn.pmr-muted .pmr-icon-volume { display: none; }
 .pmr-mute-btn.pmr-muted .pmr-icon-volume-off { display: block; }
@@ -11931,6 +11935,10 @@ window.onStopSectionShow = function(sectionId) {
       <div class="pmr-progress-fill"></div>
     </div>
 
+    <div class="pmr-end-cta-wrap">
+      <button class="pmr-end-cta" onclick="pmrEndSession()">Complete session →</button>
+    </div>
+
   </div></div></div>
 </div><!-- /section-breakup-pmr-session -->
 
@@ -11979,10 +11987,38 @@ window.onStopSectionShow = function(sectionId) {
       </div>
     </div>
 
-    <div style="padding:80px 24px 24px;display:flex;flex-direction:column;gap:20px;flex:1;">
-      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:30px;color:#1E1408;">Well done.</div>
-      <div style="font-family:'DM Sans',sans-serif;font-weight:300;font-size:13px;color:rgba(33,24,12,0.65);">PMR complete template — to be inherited from STOP Complete template once locked.</div>
-      <button onclick="showSection('module-breakup-recovery')" style="width:100%;height:52px;border-radius:28px;background:#A06832;color:#F3E9DC;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border:none;cursor:pointer;">Back to module</button>
+    <div style="display:flex;justify-content:flex-end;align-items:center;padding:8px 16px 4px;flex-shrink:0;">
+      <div onclick="showSection('crisis-resources')" style="display:flex;align-items:center;gap:5px;background:rgba(160,104,50,0.10);border:1px solid rgba(160,104,50,0.35);border-radius:16px;padding:5px 11px;cursor:pointer;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span style="font-family:'DM Sans',sans-serif;font-weight:500;font-size:12px;color:#A06832;">Crisis Support</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;align-items:center;padding:6px 0 2px;">
+      <div style="width:62px;height:62px;border-radius:50%;border:1.5px solid #A06832;background:rgba(160,104,50,0.08);display:flex;align-items:center;justify-content:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+    <div style="text-align:center;padding:2px 28px 6px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">Session Complete</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:23px;line-height:1.2;color:#1E1408;margin-bottom:8px;">Your body let go.</div>
+      <div style="font-family:'DM Sans',sans-serif;font-weight:300;font-size:12px;font-style:italic;line-height:1.5;color:rgba(33,24,12,0.60);">You softened what was tight.<br>That alone is healing.</div>
+    </div>
+    <div id="pmr-complete-shift-card" style="margin:0 22px 7px;padding:11px 14px;background:rgba(255,255,255,0.55);border:1px solid rgba(160,104,50,0.18);border-radius:14px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">Your shift</div>
+      <div id="pmr-complete-shift-rows" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+    <div style="margin:0 22px 7px;padding:11px 14px;background:rgba(255,255,255,0.55);border:1px solid rgba(160,104,50,0.18);border-radius:14px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:#A06832;margin-bottom:10px;">This Session</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="display:flex;align-items:flex-start;gap:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#1E1408;line-height:1.4;"><span style="width:7px;height:7px;border-radius:50%;background:#A06832;flex-shrink:0;margin-top:5px;"></span><span>Tension noticed at: <span id="pmr-complete-regions-summary" style="color:rgba(33,24,12,0.70);">—</span></span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#1E1408;"><span style="width:7px;height:7px;border-radius:50%;background:#7CA39E;flex-shrink:0;"></span><span>Body work: <span style="color:rgba(33,24,12,0.70);">Progressive muscle release · 4 phases</span></span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#1E1408;"><span style="width:7px;height:7px;border-radius:50%;background:#A8B89A;flex-shrink:0;"></span><span>Reflection: <span style="color:rgba(33,24,12,0.70);">Rest before moving on</span></span></div>
+      </div>
+    </div>
+    <div style="padding:0 22px 4px;display:flex;flex-direction:column;gap:5px;">
+      <button onclick="showSection('module-breakup-recovery')" style="width:100%;padding:13px;border-radius:24px;border:none;background:#A06832;color:#fff;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;">Return to Breakup Recovery →</button>
+      <button onclick="showSection('module-breakup-recovery')" style="width:100%;padding:12px;border-radius:24px;border:1.5px solid #A06832;background:transparent;color:#A06832;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;">Journal this moment</button>
+      <div onclick="showSection('module-breakup-recovery')" style="text-align:center;font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(33,24,12,0.50);cursor:pointer;padding:4px;">Maybe later</div>
     </div>
 
     <div style="display:flex;justify-content:space-around;align-items:flex-end;padding:10px 4px 22px;border-top:1px solid rgba(30,20,8,0.07);background:rgba(250,244,234,0.98);flex-shrink:0;position:relative;">
@@ -12236,9 +12272,63 @@ window.addEventListener('DOMContentLoaded', function() {
     var result = _orig.apply(this, arguments);
     if (id === 'breakup-pmr-pre-checkin') setTimeout(ppcRender, 100);
     if (id === 'breakup-pmr-post-checkin') setTimeout(ppostcRender, 100);
+    if (id === 'breakup-pmr-complete') setTimeout(function(){
+      if (typeof pmrRenderComplete === 'function') pmrRenderComplete();
+      if (typeof pmrSaveSession === 'function') pmrSaveSession();
+    }, 100);
     return result;
   };
 });
+
+function pmrEndSession() {
+  if (window.pmrStopSpeech) window.pmrStopSpeech();
+  showSection('breakup-pmr-post-checkin');
+}
+
+function pmrRenderComplete() {
+  var regions = window.pmrPreSelected || [];
+  var rEl = document.getElementById('pmr-complete-regions-summary');
+  if (rEl) rEl.textContent = regions.length ? regions.join(', ') : '—';
+  var card = document.getElementById('pmr-complete-shift-card');
+  var rows = document.getElementById('pmr-complete-shift-rows');
+  if (!card || !rows) return;
+  rows.innerHTML = '';
+  if (regions.length === 0) { card.style.display = 'none'; return; }
+  card.style.display = '';
+  var pre = window.pmrPreRatings || {};
+  var post = window.pmrPostRatings || {};
+  regions.forEach(function(region) {
+    var p = pre[region] || 0;
+    var q = (post[region] != null) ? post[region] : p;
+    var improved = q < p;
+    var row = document.createElement('div');
+    row.style.cssText = "display:flex;align-items:center;justify-content:space-between;font-family:'DM Sans',sans-serif;font-size:12px;";
+    var left  = '<div style="display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:#A06832;flex-shrink:0;"></span><span style="color:#1E1408;">' + region + '</span></div>';
+    var right = '<div style="display:flex;align-items:center;gap:6px;"><span style="color:rgba(33,24,12,0.45);font-size:11px;">' + p + '/5</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.30)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span style="color:' + (improved ? '#5C8A60' : 'rgba(33,24,12,0.65)') + ';font-size:13px;font-weight:600;">' + q + '/5</span></div>';
+    row.innerHTML = left + right;
+    rows.appendChild(row);
+  });
+}
+
+function pmrSaveSession() {
+  var pre = window.pmrPreRatings || {};
+  if (Object.keys(pre).length === 0) return;
+  var KEY = 'innersoothe_sessions';
+  var session = {
+    id: Date.now(),
+    date: new Date().toISOString(),
+    technique: 'PMR',
+    module: 'Breakup Recovery',
+    pre: JSON.parse(JSON.stringify(pre)),
+    preEmojis: {},
+    post: JSON.parse(JSON.stringify(window.pmrPostRatings || {})),
+    cycles: 0
+  };
+  var stored = [];
+  try { stored = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(e) {}
+  stored.unshift(session);
+  try { localStorage.setItem(KEY, JSON.stringify(stored)); } catch(e) {}
+}
 </script>
 
 
