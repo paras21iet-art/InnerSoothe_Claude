@@ -2416,7 +2416,6 @@
   flex-direction: column;
   background: #F9EDD8;
   position: relative;
-  margin: 0 auto;
 }
 .cl-entry-hero {
   width: 100%;
@@ -2528,6 +2527,21 @@
 .sec-cl-entry .stop-mute-btn.muted { opacity: 0.6; }
 .sec-cl-entry .stop-mute-btn.muted .icon-vol-on { display: none; }
 .sec-cl-entry .stop-mute-btn.muted .icon-vol-off { display: block; }
+
+/* ===== Closure Letter — Pre Check-in ===== */
+.sec-cl-pre-checkin {
+  width: 370px;
+  height: 780px;
+  border-radius: 48px;
+  box-shadow: 0 28px 70px rgba(30,20,8,0.13),
+              0 0 0 1.5px rgba(30,20,8,0.10),
+              inset 0 0 0 1px rgba(255,255,255,0.60);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #F9EDD8;
+  position: relative;
+}
 
 /* ===== PMR Technique — All 4 Screens ===== */
 .pmr-phone { width: 370px; height: 780px; border-radius: 44px; box-shadow: 0 18px 50px rgba(33,24,12,0.10), 0 0 0 1px rgba(33,24,12,0.06); overflow: hidden; display: flex; flex-direction: column; position: relative; flex-shrink: 0; }
@@ -10695,6 +10709,9 @@ window.sec_stop_mode = 'guided';
 function speakClEntry() {
   stopSpeak("Closure letter. Three parts. The truth, the need, the closing. Write what was never said.");
 }
+function speakClPreCheckin() {
+  stopSpeak("Before we begin. Notice how you're feeling. Pick up to three emotions and rate each.");
+}
 function speakStopS1() {
   if (!window.stopSpeakSequence) return;
   window.stopSpeakSequence([
@@ -11553,6 +11570,136 @@ function s4SelectAction(el) {
 </div>
 <!-- /section-cl-entry -->
 
+<!-- ══════════ CLOSURE LETTER — PRE CHECK-IN ══════════ -->
+<div class="screens-area sec-stop-step" id="section-cl-pre-checkin">
+  <div class="sec-cl-pre-checkin">
+
+    <!-- Status bar -->
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+
+    <!-- Header row -->
+    <div class="step-hdr">
+      <div class="step-back" onclick="showSection('cl-entry')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="spc-body">
+      <div class="spc-eyebrow">EMOTION CHECK-IN · BEFORE</div>
+      <div class="spc-headline">How are you feeling right now?</div>
+      <div class="spc-subhead">Select up to 3 emotions and rate each. We'll check in again after the letter to see what shifted.</div>
+      <div class="spc-counter">Selected · <b><span id="clspc-count">0</span>/3</b></div>
+      <div class="spc-grid" id="clspc-grid"></div>
+      <div class="spc-divider"></div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:9.5px;color:rgba(62,42,31,0.45);text-align:center;font-style:italic;margin-bottom:6px;">1/5 = a little · 5/5 = a lot</div>
+      <div class="spc-chips" id="clspc-chips"><div class="spc-chips-hint" id="clspc-chips-hint">Tap an emotion above to rate</div></div>
+      <div class="spc-nudge" id="clspc-nudge">↑ Tap the dots to rate each feeling</div>
+      <button class="spc-cta" id="clspc-cta" onclick="clPreBeginTap()">I'm ready →</button>
+      <div class="spc-cta-hint" id="clspc-cta-hint">Rate each feeling above to continue</div>
+    </div>
+
+  </div>
+</div>
+<!-- /section-cl-pre-checkin -->
+<script>
+(function(){
+  var emotionSet = [
+    {em:'💔',nm:'Grief'},{em:'😔',nm:'Sadness'},{em:'😠',nm:'Anger'},{em:'😞',nm:'Guilt'},
+    {em:'😳',nm:'Shame'},{em:'🫥',nm:'Loneliness'},{em:'😰',nm:'Anxiety'},{em:'😶',nm:'Numb'}
+  ];
+
+  window.clBuildPreGrid = function(){
+    var grid = document.getElementById('clspc-grid'); if (!grid) return;
+    grid.innerHTML = '';
+    window.clPreSelected = []; window.clPreRatings = {};
+    var chips = document.getElementById('clspc-chips');
+    if (chips) chips.innerHTML = '<div class="spc-chips-hint" id="clspc-chips-hint">Tap an emotion above to rate</div>';
+    var cnt = document.getElementById('clspc-count'); if (cnt) cnt.textContent = '0';
+    clPreCheckReady();
+    emotionSet.forEach(function(e){
+      var p = document.createElement('div'); p.className = 'spc-pill';
+      p.innerHTML = '<span class="em">'+e.em+'</span><span class="nm">'+e.nm+'</span>';
+      p.onclick = function(){ clPreToggle(p, e.nm, e.em); };
+      grid.appendChild(p);
+    });
+  };
+
+  function clPreToggle(el, emotion, emoji){
+    var idx = window.clPreSelected.indexOf(emotion);
+    if (idx > -1){
+      window.clPreSelected.splice(idx, 1);
+      delete window.clPreRatings[emotion];
+      el.classList.remove('on');
+      var c = document.getElementById('clspc-chip-'+emotion); if (c && c.parentNode) c.parentNode.removeChild(c);
+    } else {
+      if (window.clPreSelected.length >= 3) return;
+      window.clPreSelected.push(emotion);
+      el.classList.add('on');
+      clPreAddChip(emotion, emoji);
+    }
+    var n = window.clPreSelected.length;
+    var cnt = document.getElementById('clspc-count'); if (cnt) cnt.textContent = n;
+    var h = document.getElementById('clspc-chips-hint'); if (h) h.style.display = n > 0 ? 'none' : 'block';
+    clPreCheckReady();
+  }
+
+  function clPreAddChip(emotion, emoji){
+    var a = document.getElementById('clspc-chips');
+    var c = document.createElement('div'); c.className = 'spc-chip'; c.id = 'clspc-chip-'+emotion;
+    var h = '<span class="em">'+emoji+'</span><span class="nm">'+emotion+'</span><div class="spc-dots">';
+    for (var i=1;i<=5;i++) h += '<div class="spc-dot" id="clspc-dot-'+emotion+'-'+i+'" onclick="event.stopPropagation();window.clPreDot(\''+emotion+'\','+i+')"></div>';
+    h += '</div><span class="spc-lbl" id="clspc-lbl-'+emotion+'"></span>';
+    c.innerHTML = h; a.appendChild(c);
+  }
+
+  window.clPreDot = function(emotion, n){
+    window.clPreRatings[emotion] = n;
+    for (var i=1;i<=5;i++){
+      var d = document.getElementById('clspc-dot-'+emotion+'-'+i);
+      if (d){ if (i<=n) d.classList.add('filled'); else d.classList.remove('filled'); }
+    }
+    var l = document.getElementById('clspc-lbl-'+emotion); if (l) l.textContent = n+'/5';
+    clPreCheckReady();
+  };
+
+  function clPreCheckReady(){
+    var sel = window.clPreSelected;
+    var all = sel.length > 0 && sel.every(function(e){ return window.clPreRatings[e]; });
+    var some = sel.length > 0 && !all;
+    var b = document.getElementById('clspc-cta');
+    var nudge = document.getElementById('clspc-nudge');
+    if (b){ if (all) b.classList.add('enabled'); else b.classList.remove('enabled'); }
+    if (nudge) nudge.style.display = some ? 'block' : 'none';
+  }
+  window.clPreCheckReady = clPreCheckReady;
+
+  window.clPreBeginTap = function(){
+    var sel = window.clPreSelected;
+    var all = sel.length > 0 && sel.every(function(e){ return window.clPreRatings[e]; });
+    if (all){ stopCancelVoice(); showSection('cl-p1'); return; }
+    var h = document.getElementById('clspc-cta-hint'); if (h) h.style.display = 'block';
+  };
+})();
+</script>
+
 <!-- ══════════ PROGRESS TAB ══════════ -->
 <div class="screens-area" id="section-progress">
   <div class="phone-grid"><div class="phone-wrap"><div class="phone" style="background:linear-gradient(160deg,#FAF0E4 0%,#EDE0CC 50%,#E2CEB8 100%);display:flex;flex-direction:column;overflow:hidden;padding-top:8px;">
@@ -11843,6 +11990,7 @@ window.onStopSectionShow = function(sectionId) {
     else if (sectionId === 'breakup-stop-complete') { if (typeof stopRenderComplete === 'function') stopRenderComplete(); if (typeof stopSaveSession === 'function') stopSaveSession(); }
     else if (sectionId === 'progress') { if (typeof renderProgress === 'function') renderProgress(); }
     else if (sectionId === 'cl-entry') { setTimeout(speakClEntry, 400); }
+    else if (sectionId === 'cl-pre-checkin') { if (typeof clBuildPreGrid === 'function') clBuildPreGrid(); setTimeout(speakClPreCheckin, 400); }
   }, 400);
 };
 </script>
