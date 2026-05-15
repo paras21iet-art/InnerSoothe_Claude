@@ -11703,7 +11703,7 @@ window.onStopSectionShow = function(sectionId) {
 
 
 <!-- ══════════ PMR Screen 2 of 4: Setup ══════════ -->
-<div class="screens-area" id="section-breakup-pmr-pre-checkin" style="display:none;">
+<div class="screens-area" id="section-breakup-pmr-pre-checkin">
   <div class="phone pmr-phone pmr-prechk-phone">
     <div class="pmr-status">
       <div>9:41</div>
@@ -11934,7 +11934,7 @@ window.onStopSectionShow = function(sectionId) {
   </div></div></div>
 </div><!-- /section-breakup-pmr-session -->
 
-<div class="screens-area" id="section-breakup-pmr-post-checkin" style="display:none;">
+<div class="screens-area" id="section-breakup-pmr-post-checkin">
   <div class="phone pmr-phone pmr-postchk-phone">
     <div class="pmr-status">
       <div>9:41</div>
@@ -12224,18 +12224,21 @@ function ppostcProceed() {
   showSection('breakup-pmr-complete');
 }
 
-// Render hooks on section show — idempotent wrapper
-(function() {
+// Render hooks on section show — defer wrapping until all scripts parsed
+// (function showSection is declared in a later script block, so wrapping at
+// parse time fails — block B hoisting overwrites the wrapper. Defer to DOMContentLoaded.)
+window.addEventListener('DOMContentLoaded', function() {
   if (window._showSectionWrappedForPmrCheckins) return;
+  if (typeof window.showSection !== 'function') return;
   window._showSectionWrappedForPmrCheckins = true;
-  const _orig = window.showSection;
+  var _orig = window.showSection;
   window.showSection = function(id) {
-    const result = _orig.apply(this, arguments);
+    var result = _orig.apply(this, arguments);
     if (id === 'breakup-pmr-pre-checkin') setTimeout(ppcRender, 100);
     if (id === 'breakup-pmr-post-checkin') setTimeout(ppostcRender, 100);
     return result;
   };
-})();
+});
 </script>
 
 
