@@ -2527,7 +2527,7 @@
 
 /* ===== Closure Letter — Shared practice-screen classes (Parts 1–3) ===== */
 .cl-write-stack {
-  padding: 0 32px 20px;
+  padding: 0 32px 32px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -2730,6 +2730,11 @@
   flex: none;
   min-height: 90px;
   height: 90px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.sec-cl-p3 .cl-textarea::-webkit-scrollbar {
+  display: none;
 }
 .sec-cl-p3 .cl-write-stack {
   gap: 12px;
