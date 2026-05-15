@@ -2425,6 +2425,58 @@
 .pmr-info-text { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 11.5px; color: rgba(33,24,12,0.65); }
 .pmr-info-time { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 11.5px; color: #A06832; }
 .pmr-info-dot  { width: 4px; height: 4px; border-radius: 50%; background: #A06832; opacity: 0.5; }
+/* PMR Setup — redesigned */
+.pmr-setup-body { flex: 1; padding: 16px 22px 4px; overflow-y: auto; scrollbar-width: none; display: flex; flex-direction: column; gap: 18px; }
+.pmr-setup-body::-webkit-scrollbar { display: none; }
+.pmr-setup-header { padding-top: 8px; }
+.pmr-setup-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 26px; color: #1E1408; line-height: 1.2; margin: 0 0 4px; }
+.pmr-setup-sub { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 12px; color: rgba(33,24,12,0.55); margin: 0; }
+.pmr-setup-section { display: flex; flex-direction: column; gap: 10px; }
+.pmr-setup-eyebrow { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 9.5px; color: #A06832; letter-spacing: 1.5px; text-transform: uppercase; }
+.pmr-pose-cards { display: flex; gap: 10px; }
+.pmr-pose-card { flex: 1; border-radius: 14px; overflow: hidden; background: rgba(252,242,232,0.6); border: 1px solid rgba(33,24,12,0.06); position: relative; }
+.pmr-pose-img { width: 100%; height: 90px; object-fit: cover; object-position: center; display: block; }
+.pmr-pose-card-pad { padding: 8px 10px 10px; }
+.pmr-pose-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: 14px; color: #1E1408; }
+.pmr-pose-badge { position: absolute; top: 6px; right: 6px; background: rgba(160,104,50,0.92); color: #FAF0E4; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 8px; letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 7px; border-radius: 99px; }
+.pmr-env-row { display: flex; gap: 8px; }
+.pmr-env-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 10px 6px; border-radius: 12px; background: rgba(252,242,232,0.6); border: 1px solid rgba(33,24,12,0.06); text-align: center; }
+.pmr-env-icon { color: #A06832; flex-shrink: 0; }
+.pmr-env-label { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 10.5px; color: rgba(33,24,12,0.70); line-height: 1.2; }
+.pmr-safety-details { background: rgba(252,242,232,0.4); border: 1px solid rgba(33,24,12,0.06); border-radius: 12px; overflow: hidden; }
+.pmr-safety-summary { list-style: none; display: flex; align-items: center; gap: 8px; padding: 11px 14px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 12px; color: #1E1408; }
+.pmr-safety-summary::-webkit-details-marker { display: none; }
+.pmr-safety-summary span { flex: 1; }
+.pmr-safety-chevron { transition: transform 0.2s; }
+.pmr-safety-details[open] .pmr-safety-chevron { transform: rotate(180deg); }
+.pmr-safety-list { list-style: none; padding: 0 14px 12px; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.pmr-safety-list li { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 11px; color: rgba(33,24,12,0.60); line-height: 1.5; padding-left: 12px; position: relative; }
+.pmr-safety-list li::before { content: ''; position: absolute; left: 0; top: 7px; width: 4px; height: 4px; border-radius: 50%; background: #A06832; opacity: 0.5; }
+/* PMR Pre/Post Check-in — shared engine */
+.pmr-prechk-phone, .pmr-postchk-phone { background: #FAF0E4; display: flex; flex-direction: column; }
+.pmr-prechk-topbar, .pmr-postchk-topbar { display: flex; justify-content: space-between; align-items: center; padding: 50px 16px 0; flex-shrink: 0; }
+.pmr-prechk-back { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.55); display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; }
+.pmr-postchk-mute { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.55); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.pmr-prechk-crisis, .pmr-postchk-crisis { display: flex; align-items: center; gap: 5px; background: rgba(160,104,50,0.12); border: 0.5px solid rgba(160,104,50,0.35); border-radius: 16px; padding: 5px 11px; cursor: pointer; }
+.pmr-prechk-crisis span, .pmr-postchk-crisis span { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 12px; color: #A06832; }
+.pmr-prechk-body, .pmr-postchk-body { flex: 1; padding: 24px 22px 0; overflow-y: auto; scrollbar-width: none; }
+.pmr-prechk-body::-webkit-scrollbar, .pmr-postchk-body::-webkit-scrollbar { display: none; }
+.ppc-eyebrow, .ppostc-eyebrow { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 10px; color: #A06832; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+.ppc-headline, .ppostc-headline { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 26px; color: #1E1408; line-height: 1.2; margin: 0 0 8px; }
+.ppc-subhead, .ppostc-subhead { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 13px; color: rgba(33,24,12,0.60); line-height: 1.5; margin: 0 0 12px; }
+.ppc-scale-helper, .ppostc-scale-helper { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 11px; color: rgba(33,24,12,0.45); font-style: italic; margin-bottom: 18px; }
+.ppc-chips, .ppostc-chips { display: flex; flex-direction: column; gap: 8px; padding-bottom: 12px; }
+.ppc-pill, .ppostc-pill { display: flex; align-items: center; justify-content: space-between; background: rgba(252,242,232,0.6); border-radius: 14px; padding: 10px 14px; transition: all 0.2s ease; box-sizing: border-box; }
+.ppc-pill.on, .ppostc-pill.on { background: rgba(160,104,50,0.10); box-shadow: inset 0 0 0 1px rgba(160,104,50,0.30); }
+.ppc-chip, .ppostc-chip { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13px; color: #1E1408; cursor: pointer; user-select: none; }
+.ppc-pill.on .ppc-chip, .ppostc-pill.on .ppostc-chip { color: #A06832; }
+.ppc-dots, .ppostc-dots { display: none; gap: 5px; }
+.ppc-pill.on .ppc-dots, .ppostc-pill.on .ppostc-dots { display: flex; }
+.ppc-dot, .ppostc-dot { width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,0.6); border: 1px solid rgba(160,104,50,0.30); display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 11px; color: rgba(33,24,12,0.45); cursor: pointer; user-select: none; }
+.ppc-dot.active, .ppostc-dot.active { background: #A06832; border-color: #A06832; color: #FFF; }
+.pmr-prechk-cta-bar, .pmr-postchk-cta-bar { padding: 12px 20px 16px; background: rgba(252,244,234,0.98); border-top: 1px solid rgba(160,104,50,0.15); flex-shrink: 0; }
+.pmr-prechk-cta, .pmr-postchk-cta { width: 100%; height: 52px; border-radius: 28px; background: #A06832; color: #F3E9DC; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px; border: none; cursor: pointer; transition: opacity 0.3s; }
+.pmr-prechk-cta:disabled, .pmr-postchk-cta:disabled { opacity: 0.3; cursor: not-allowed; }
 .pmr-cta-btn { display: block; width: calc(100% - 40px); margin: 26px 20px 0; height: 52px; border-radius: 28px; background: #A06832; color: #F3E9DC; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; border: none; cursor: pointer; }
 .pmr-footer-note { margin: 12px 20px 24px; text-align: center; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; color: rgba(33,24,12,0.45); }
 /* Setup */
@@ -11615,7 +11667,7 @@ window.onStopSectionShow = function(sectionId) {
   <span class="pmr-info-time">18 minutes</span>
 </div>
 
-      <button class="pmr-cta-btn" onclick="showSection('breakup-pmr-setup')">I'm ready to begin</button>
+      <button class="pmr-cta-btn" onclick="showSection('breakup-pmr-pre-checkin')">I'm ready to begin</button>
 
       <div class="pmr-footer-note">You can pause anytime</div>
 
@@ -11651,6 +11703,33 @@ window.onStopSectionShow = function(sectionId) {
 
 
 <!-- ══════════ PMR Screen 2 of 4: Setup ══════════ -->
+<div class="screens-area" id="section-breakup-pmr-pre-checkin" style="display:none;">
+  <div class="phone pmr-phone pmr-prechk-phone">
+    <div class="pmr-status">
+      <div>9:41</div>
+      <div>● ● ● ● ●</div>
+    </div>
+    <div class="pmr-prechk-topbar">
+      <button class="pmr-prechk-back" onclick="showSection('breakup-pmr-entry')" aria-label="Back">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="pmr-prechk-crisis" onclick="showSection('crisis-resources')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Crisis Support</span>
+      </div>
+    </div>
+    <div class="pmr-prechk-body">
+      <div class="ppc-eyebrow">BODY CHECK-IN · BEFORE</div>
+      <h1 class="ppc-headline">Where do you feel tension?</h1>
+      <p class="ppc-subhead">Select up to 3 regions and rate each. We'll check in again after the session to see what shifted.</p>
+      <div class="ppc-scale-helper">1/5 = barely · 5/5 = a lot</div>
+      <div class="ppc-chips" id="ppc-chips-container"></div>
+    </div>
+    <div class="pmr-prechk-cta-bar">
+      <button class="pmr-prechk-cta" id="ppc-cta" disabled onclick="ppcProceed()">I'm ready →</button>
+    </div>
+  </div>
+</div>
 <div class="screens-area" id="section-breakup-pmr-setup">
   <div class="phone-grid"><div class="phone-wrap"><div class="pmr-phone" style="background:#FAF0E4;">
 
@@ -11663,7 +11742,7 @@ window.onStopSectionShow = function(sectionId) {
       </div>
     </div>
 
-    <div class="pmr-back" onclick="showSection('breakup-pmr-entry')">
+    <div class="pmr-back" onclick="showSection('breakup-pmr-pre-checkin')">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
     </div>
 
@@ -11674,65 +11753,81 @@ window.onStopSectionShow = function(sectionId) {
 
     <div class="pmr-scroll" style="padding-bottom:100px;">
 
-      <div class="pmr-setup-hdr">
-        <div class="pmr-setup-title">Before we begin</div>
-        <div class="pmr-setup-sub">Two minutes to settle. This is part of the practice.</div>
-      </div>
+      <div class="pmr-setup-body">
 
-      <!-- HOW TO SIT -->
-      <div class="pmr-sect" style="margin-top:28px;">
-        <div class="pmr-eyebrow">HOW TO SIT</div>
-        <div class="pmr-card">
-          <span class="pmr-badge-rec">RECOMMENDED</span>
-          <div class="pmr-card-title">Seated, upright</div>
-          <div class="pmr-card-body">Feet flat. Hands resting on your thighs. Spine tall but not stiff. Best for staying present.</div>
-        </div>
-        <div class="pmr-card">
-          <div class="pmr-card-title">Lying down</div>
-          <div class="pmr-card-body">Flat on your back, arms slightly away from your sides. Comfortable — but you may drift off, and that's fine if it happens.</div>
-        </div>
-      </div>
+  <div class="pmr-setup-header">
+    <h1 class="pmr-setup-title">Before we begin</h1>
+    <p class="pmr-setup-sub">Two minutes to settle.</p>
+  </div>
 
-      <!-- HOW IT WORKS -->
-      <div class="pmr-sect">
-        <div class="pmr-eyebrow">HOW IT WORKS</div>
-        <div class="pmr-card">
-          <div class="pmr-card-body">You'll close your eyes for most of this. Voice will guide you through each muscle group. The screen is here if you need to check something — but you won't need it once you settle in.</div>
+  <div class="pmr-setup-section">
+    <div class="pmr-setup-eyebrow">HOW TO SIT</div>
+    <div class="pmr-pose-cards">
+      <div class="pmr-pose-card">
+        <img src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-pose-seated.png" alt="" class="pmr-pose-img"/>
+        <div class="pmr-pose-card-pad">
+          <div class="pmr-pose-title">Seated</div>
+        </div>
+        <div class="pmr-pose-badge">RECOMMENDED</div>
+      </div>
+      <div class="pmr-pose-card">
+        <img src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-pose-lying.png" alt="" class="pmr-pose-img"/>
+        <div class="pmr-pose-card-pad">
+          <div class="pmr-pose-title">Lying down</div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- BEFORE YOU START -->
-      <div class="pmr-sect">
-        <div class="pmr-eyebrow">BEFORE YOU START</div>
-        <ul class="pmr-bullet-list">
-          <li class="pmr-bullet-row"><div class="pmr-dot"></div><span>Skip any muscle group with a recent injury, surgery, or pain. Never push through it.</span></li>
-          <li class="pmr-bullet-row"><div class="pmr-dot"></div><span>If you have low blood pressure, a cardiovascular condition, or fibromyalgia, check with your doctor before practising regularly.</span></li>
-          <li class="pmr-bullet-row"><div class="pmr-dot"></div><span>Don't do this while driving or operating anything.</span></li>
-          <li class="pmr-bullet-row"><div class="pmr-dot"></div><span>If tensing increases your anxiety, switch to passive release: just notice the muscle without tensing it.</span></li>
-        </ul>
+  <div class="pmr-setup-section">
+    <div class="pmr-setup-eyebrow">SETTING UP</div>
+    <div class="pmr-env-row">
+      <div class="pmr-env-item">
+        <svg class="pmr-env-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+          <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+        </svg>
+        <div class="pmr-env-label">Headphones</div>
       </div>
-
-      <!-- SETTING UP -->
-      <div class="pmr-sect">
-        <div class="pmr-eyebrow">SETTING UP</div>
-        <div class="pmr-env-rows">
-          <div class="pmr-env-row">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-            Headphones recommended
-          </div>
-          <div class="pmr-env-row">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            Phone on Do Not Disturb
-          </div>
-          <div class="pmr-env-row">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-            Loose, comfortable clothes
-          </div>
-        </div>
+      <div class="pmr-env-item">
+        <svg class="pmr-env-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          <path d="M18.63 13A17.89 17.89 0 0 1 18 8"/>
+          <path d="M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14"/>
+          <path d="M18 8a6 6 0 0 0-9.33-5"/>
+          <line x1="1" y1="1" x2="23" y2="23"/>
+        </svg>
+        <div class="pmr-env-label">Do Not Disturb</div>
       </div>
+      <div class="pmr-env-item">
+        <svg class="pmr-env-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+        </svg>
+        <div class="pmr-env-label">Loose clothing</div>
+      </div>
+    </div>
+  </div>
 
-      <!-- ONE THING TO KNOW -->
-      <div class="pmr-insight">The goal isn't to relax. It's to notice the contrast between tense and released. The relaxation comes from the noticing.</div>
+  <details class="pmr-safety-details">
+    <summary class="pmr-safety-summary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="16" x2="12" y2="12"/>
+        <line x1="12" y1="8" x2="12.01" y2="8"/>
+      </svg>
+      <span>Safety notes</span>
+      <svg class="pmr-safety-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(33,24,12,0.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </summary>
+    <ul class="pmr-safety-list">
+      <li>Skip any muscle group with a recent injury, surgery, or pain.</li>
+      <li>If you have low blood pressure or a cardiovascular condition, check with your doctor before practising regularly.</li>
+      <li>If tensing increases your anxiety, just notice the muscle without tensing it.</li>
+    </ul>
+  </details>
+
+</div>
 
     </div><!-- /pmr-scroll -->
 
@@ -11839,6 +11934,36 @@ window.onStopSectionShow = function(sectionId) {
   </div></div></div>
 </div><!-- /section-breakup-pmr-session -->
 
+<div class="screens-area" id="section-breakup-pmr-post-checkin" style="display:none;">
+  <div class="phone pmr-phone pmr-postchk-phone">
+    <div class="pmr-status">
+      <div>9:41</div>
+      <div>● ● ● ● ●</div>
+    </div>
+    <div class="pmr-postchk-topbar">
+      <button class="pmr-postchk-mute" onclick="if (window.pmrToggleMute) window.pmrToggleMute()" aria-label="Toggle voice">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        </svg>
+      </button>
+      <div class="pmr-postchk-crisis" onclick="showSection('crisis-resources')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Crisis Support</span>
+      </div>
+    </div>
+    <div class="pmr-postchk-body">
+      <div class="ppostc-eyebrow">BODY CHECK-IN · AFTER</div>
+      <h1 class="ppostc-headline">How does your body feel now?</h1>
+      <p class="ppostc-subhead">Rate the same regions — let's see what shifted.</p>
+      <div class="ppostc-scale-helper">1/5 = barely · 5/5 = a lot</div>
+      <div class="ppostc-chips" id="ppostc-chips-container"></div>
+    </div>
+    <div class="pmr-postchk-cta-bar">
+      <button class="pmr-postchk-cta" id="ppostc-cta" disabled onclick="ppostcProceed()">See your shift →</button>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════ PMR Screen 4 of 4: Complete (SCAFFOLD ONLY) ══════════ -->
 <!-- PMR Complete — SCAFFOLD ONLY. Sync to STOP Complete template in follow-up prompt once STOP locks. -->
@@ -12022,6 +12147,95 @@ function pmrStartSession() {
     if (section) section.addEventListener('click', pmrResetDim);
   }, 200);
 }
+
+// PMR Pre/Post Check-in state engine
+const PMR_REGIONS = ['Shoulders', 'Jaw', 'Chest', 'Lower back', 'Stomach', 'Hands', 'Hips', 'Legs', 'Neck', 'Whole body'];
+window.pmrPreSelected = window.pmrPreSelected || [];
+window.pmrPreRatings  = window.pmrPreRatings  || {};
+window.pmrPostRatings = window.pmrPostRatings || {};
+
+function ppcRender() {
+  const container = document.getElementById('ppc-chips-container');
+  if (!container) return;
+  container.innerHTML = '';
+  PMR_REGIONS.forEach(region => {
+    const isOn = window.pmrPreSelected.includes(region);
+    const pill = document.createElement('div');
+    pill.className = 'ppc-pill' + (isOn ? ' on' : '');
+    pill.innerHTML = `
+      <span class="ppc-chip" onclick="ppcToggleRegion('${region.replace(/'/g, "\\'")}')">${region}</span>
+      <div class="ppc-dots">
+        ${[1,2,3,4,5].map(n => `<span class="ppc-dot${window.pmrPreRatings[region]===n?' active':''}" onclick="ppcSetRating('${region.replace(/'/g, "\\'")}',${n})">${n}</span>`).join('')}
+      </div>`;
+    container.appendChild(pill);
+  });
+  ppcUpdateCta();
+}
+function ppcToggleRegion(region) {
+  const idx = window.pmrPreSelected.indexOf(region);
+  if (idx >= 0) { window.pmrPreSelected.splice(idx, 1); delete window.pmrPreRatings[region]; }
+  else { if (window.pmrPreSelected.length >= 3) return; window.pmrPreSelected.push(region); }
+  ppcRender();
+}
+function ppcSetRating(region, value) {
+  if (!window.pmrPreSelected.includes(region)) return;
+  window.pmrPreRatings[region] = value;
+  ppcRender();
+}
+function ppcUpdateCta() {
+  const cta = document.getElementById('ppc-cta');
+  if (!cta) return;
+  cta.disabled = !(window.pmrPreSelected.length > 0 && window.pmrPreSelected.every(r => window.pmrPreRatings[r]));
+}
+function ppcProceed() {
+  const cta = document.getElementById('ppc-cta');
+  if (cta && cta.disabled) return;
+  showSection('breakup-pmr-setup');
+}
+
+function ppostcRender() {
+  const container = document.getElementById('ppostc-chips-container');
+  if (!container) return;
+  container.innerHTML = '';
+  window.pmrPreSelected.forEach(region => {
+    const pill = document.createElement('div');
+    pill.className = 'ppostc-pill on';
+    pill.innerHTML = `
+      <span class="ppostc-chip">${region}</span>
+      <div class="ppostc-dots">
+        ${[1,2,3,4,5].map(n => `<span class="ppostc-dot${window.pmrPostRatings[region]===n?' active':''}" onclick="ppostcSetRating('${region.replace(/'/g, "\\'")}',${n})">${n}</span>`).join('')}
+      </div>`;
+    container.appendChild(pill);
+  });
+  ppostcUpdateCta();
+}
+function ppostcSetRating(region, value) {
+  window.pmrPostRatings[region] = value;
+  ppostcRender();
+}
+function ppostcUpdateCta() {
+  const cta = document.getElementById('ppostc-cta');
+  if (!cta) return;
+  cta.disabled = !(window.pmrPreSelected.length > 0 && window.pmrPreSelected.every(r => window.pmrPostRatings[r]));
+}
+function ppostcProceed() {
+  const cta = document.getElementById('ppostc-cta');
+  if (cta && cta.disabled) return;
+  showSection('breakup-pmr-complete');
+}
+
+// Render hooks on section show — idempotent wrapper
+(function() {
+  if (window._showSectionWrappedForPmrCheckins) return;
+  window._showSectionWrappedForPmrCheckins = true;
+  const _orig = window.showSection;
+  window.showSection = function(id) {
+    const result = _orig.apply(this, arguments);
+    if (id === 'breakup-pmr-pre-checkin') setTimeout(ppcRender, 100);
+    if (id === 'breakup-pmr-post-checkin') setTimeout(ppostcRender, 100);
+    return result;
+  };
+})();
 </script>
 
 
