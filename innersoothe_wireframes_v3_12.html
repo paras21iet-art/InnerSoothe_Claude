@@ -3026,7 +3026,10 @@
 
 /* Mannequin stage + saffron glow regions */
 .pmrq-body-stage { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; min-height: 0; }
-.pmrq-mannequin { max-height: 100%; max-width: 100%; object-fit: contain; display: block; }
+.pmrq-mannequin { width: 100%; height: 100%; object-fit: contain; display: block; }
+.pmrq-pose { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; pointer-events: none; transition: opacity 1s ease-in; }
+.pmrq-pose.active { opacity: 1; transition: opacity 1s ease-in; }
+.pmrq-pose.releasing { opacity: 0; transition: opacity 6s ease-out; }
 .pmrq-regions { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
 .pmrq-region { fill: #A06832; fill-opacity: 0; filter: url(#pmrq-soften); transition: fill-opacity 1.0s ease-in-out; }
 .pmrq-region.tensing { animation: pmrq-pulse 1.6s ease-in-out infinite; }
@@ -12921,11 +12924,11 @@ window.onStopSectionShow = function(sectionId) {
       <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
         <button class="pmr-cta-btn" onclick="window.pmrMode='quick';showSection('breakup-pmr-pre-checkin')" style="display:flex;flex-direction:column;align-items:center;gap:1px;padding:9px 13px;line-height:1.2;">
           <span style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:14px;color:#F3E9DC;">Quick Reset</span>
-          <span style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:10px;color:rgba(243,233,220,0.78);letter-spacing:0.3px;">6 min · 7 groups</span>
+          <span style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:10px;color:rgba(243,233,220,0.78);letter-spacing:0.3px;">Bernstein-Borkovec · 6 min · 7 groups</span>
         </button>
         <button onclick="window.pmrMode='full';showSection('breakup-pmr-pre-checkin')" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:1px;padding:9px 13px;border-radius:24px;background:transparent;border:1.5px solid #A06832;cursor:pointer;line-height:1.2;">
           <span style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:14px;color:#A06832;">Full Session</span>
-          <span style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:10px;color:rgba(160,104,50,0.72);letter-spacing:0.3px;">15 min · 16 groups</span>
+          <span style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:10px;color:rgba(160,104,50,0.72);letter-spacing:0.3px;">Jacobson · 15 min · 16 groups</span>
         </button>
       </div>
 
@@ -13229,6 +13232,12 @@ window.onStopSectionShow = function(sectionId) {
       </div>
       <div class="pmrq-body-stage">
         <img class="pmrq-mannequin" src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin.png" alt="" />
+        <img class="pmrq-pose" data-pose="hands"     src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-hands.png" alt="" />
+        <img class="pmrq-pose" data-pose="shoulders" src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-shoulders.png" alt="" />
+        <img class="pmrq-pose" data-pose="neck"      src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-neck.png" alt="" />
+        <img class="pmrq-pose" data-pose="torso"     src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-torso.png" alt="" />
+        <img class="pmrq-pose" data-pose="thighs"    src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-thighs.png" alt="" />
+        <img class="pmrq-pose" data-pose="feet"      src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-feet.png" alt="" />
         <svg class="pmrq-regions" viewBox="0 0 100 150" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <filter id="pmrq-soften" x="-50%" y="-50%" width="200%" height="200%">
@@ -13705,13 +13714,13 @@ function pmrSetupContinue() {
 
 (function() {
   var QUICK_SCRIPT = [
-    { id: 'pmrq-r-hands',  name: 'Hands & forearms',      prep: 'Both fists.',                  instruct: "Make tight fists. Both hands. Squeeze hard.",                           countdown: "Hold. Five… four… three… two… one.", release: "Open.",    closing: "Let them fall heavy. Whatever you've been clutching — your body just released it." },
-    { id: 'pmrq-r-arms',   name: 'Upper arms & shoulders', prep: 'Shoulders to your ears.',      instruct: "Lift your shoulders up to your ears. Bend your elbows. Flex.",           countdown: "Hold. Five… four… three… two… one.", release: "Drop.",    closing: "Let your shoulders fall away. They're not meant to live up there." },
-    { id: 'pmrq-r-face',   name: 'Face',                   prep: 'Scrunch your whole face.',     instruct: "Scrunch your whole face. Eyes shut. Jaw tight. Lips pressed.",           countdown: "Hold. Five… four… three… two… one.", release: "Soften.",  closing: "Let everything fall. Your face is allowed to rest." },
-    { id: 'pmrq-r-neck',   name: 'Neck',                   prep: 'Head pressed gently back.',    instruct: "Press the back of your head gently into the surface behind you.",       countdown: "Hold. Five… four… three… two… one.", release: "Release.", closing: "This is where you've been carrying it. Let your neck float." },
-    { id: 'pmrq-r-torso',  name: 'Chest & abdomen',        prep: 'Deep breath. Pull belly in.',  instruct: "Take a deep breath in. Hold it. Pull your stomach in tight.",            countdown: "Hold. Five… four… three… two… one.", release: "Exhale.",  closing: "Empty. That breath was just for you." },
-    { id: 'pmrq-r-thighs', name: 'Thighs & glutes',        prep: 'Knees together. Squeeze.',     instruct: "Press your knees together. Squeeze your buttocks. Lock your hips.",     countdown: "Hold. Five… four… three… two… one.", release: "Let go.",  closing: "Heavy legs. Soft seat. You're grounded." },
-    { id: 'pmrq-r-legs',   name: 'Calves & feet',          prep: 'Toes up. Toes curl.',          instruct: "Point your toes up toward your knees. Curl your toes at the same time.", countdown: "Hold. Five… four… three… two… one.", release: "Release.", closing: "Feel the floor. You are here, in your body, right now." }
+    { id: 'pmrq-r-hands',  pose: 'hands',     name: 'Hands & forearms',      prep: 'Both fists.',                  instruct: "Make tight fists. Both hands. Squeeze hard.",                                                         countdown: "Hold. Five… four… three… two… one.", release: "Open.",    closing: "Let them fall heavy. Whatever you've been clutching — your body just released it." },
+    { id: 'pmrq-r-arms',   pose: 'shoulders', name: 'Upper arms & shoulders', prep: 'Shoulders to your ears.',      instruct: "Lift your shoulders up to your ears. Bend your elbows. Flex.",                                         countdown: "Hold. Five… four… three… two… one.", release: "Drop.",    closing: "Let your shoulders fall away. They're not meant to live up there." },
+    { id: 'pmrq-r-face',   pose: null,        name: 'Face',                   prep: 'Scrunch your whole face.',     instruct: "Scrunch your whole face. Eyes shut. Jaw tight. Lips pressed.",                                         countdown: "Hold. Five… four… three… two… one.", release: "Soften.",  closing: "Let everything fall. Your face is allowed to rest." },
+    { id: 'pmrq-r-neck',   pose: 'neck',      name: 'Neck',                   prep: 'Head pressed gently back.',    instruct: "Press the back of your head gently into the surface behind you.",                                     countdown: "Hold. Five… four… three… two… one.", release: "Release.", closing: "This is where you've been carrying it. Let your neck float." },
+    { id: 'pmrq-r-torso',  pose: 'torso',     name: 'Chest & abdomen',        prep: 'Deep breath. Pull belly in.',  instruct: "Take a deep breath in. Hold it. Pull your stomach in tight.",                                          countdown: "Hold. Five… four… three… two… one.", release: "Exhale.",  closing: "Empty. That breath was just for you." },
+    { id: 'pmrq-r-thighs', pose: 'thighs',    name: 'Thighs & glutes',        prep: 'Knees together. Squeeze.',     instruct: "Press your knees together. Squeeze your buttocks. Lock your hips.",                                   countdown: "Hold. Five… four… three… two… one.", release: "Let go.",  closing: "Heavy legs. Soft seat. You're grounded." },
+    { id: 'pmrq-r-legs',   pose: 'feet',      name: 'Calves & feet',          prep: 'Press feet down. Lift heels.', instruct: "Press the balls of your feet down into the floor. Lift your heels up. Curl your toes at the same time.", countdown: "Hold. Five… four… three… two… one.", release: "Release.", closing: "Feel the floor. You are here, in your body, right now." }
   ];
 
   var QUICK_INTRO = "This Quick Reset takes about six minutes. Find a comfortable position. We'll move through your body in seven groups. For each one, you'll tense for five seconds, then let go.";
@@ -13728,6 +13737,24 @@ function pmrSetupContinue() {
     document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-region').forEach(function(p){
       p.classList.remove('tensing','releasing');
     });
+    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose').forEach(function(p){
+      p.classList.remove('active','releasing');
+    });
+  }
+
+  function setPose(poseSlug) {
+    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose').forEach(function(p) {
+      p.classList.remove('active','releasing');
+      if (poseSlug && p.dataset.pose === poseSlug) {
+        p.classList.add('active');
+      }
+    });
+  }
+
+  function releasePose(poseSlug) {
+    if (!poseSlug) return;
+    var el = document.querySelector('#section-breakup-pmr-session-quick .pmrq-pose[data-pose="' + poseSlug + '"]');
+    if (el) { el.classList.remove('active'); el.classList.add('releasing'); }
   }
 
   function timer(fn, ms) {
@@ -13779,9 +13806,10 @@ function pmrSetupContinue() {
     updateSidebar(idx);
     setProgress((idx / QUICK_SCRIPT.length) * 100);
     setState('tense');
-    // Apply glow immediately as the instruction begins
+    // Glow on + pose fade-in (body visibly assumes the action position)
     var rNow = document.getElementById(g.id);
     if (rNow) rNow.classList.add('tensing');
+    setPose(g.pose);
     speak(g.instruct);
 
     timer(function() {
@@ -13795,6 +13823,8 @@ function pmrSetupContinue() {
       var r = document.getElementById(g.id);
       if (r) { r.classList.remove('tensing'); r.classList.add('releasing'); }
       setState('release');
+      // Body relaxes back to neutral over 6s (matches glow fade timing)
+      releasePose(g.pose);
       speak(g.release + ' ' + g.closing);
     }, 13000);
 
@@ -13807,6 +13837,8 @@ function pmrSetupContinue() {
       if (sid !== _sid) return;
       var r = document.getElementById(g.id);
       if (r) r.classList.remove('releasing');
+      var poseEl = g.pose ? document.querySelector('#section-breakup-pmr-session-quick .pmrq-pose[data-pose="' + g.pose + '"]') : null;
+      if (poseEl) poseEl.classList.remove('releasing');
       runGroup(sid, idx + 1);
     }, 37000);
   }
