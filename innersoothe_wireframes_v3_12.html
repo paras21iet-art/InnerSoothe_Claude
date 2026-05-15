@@ -2740,6 +2740,21 @@
   gap: 8px;
 }
 
+/* ===== Closure Letter — Post Check-in shell ===== */
+.sec-cl-post-checkin {
+  width: 370px;
+  height: 780px;
+  border-radius: 48px;
+  box-shadow: 0 28px 70px rgba(30,20,8,0.13),
+              0 0 0 1.5px rgba(30,20,8,0.10),
+              inset 0 0 0 1px rgba(255,255,255,0.60);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #F9EDD8;
+  position: relative;
+}
+
 /* ===== PMR Technique — All 4 Screens ===== */
 .pmr-phone { width: 370px; height: 780px; border-radius: 44px; box-shadow: 0 18px 50px rgba(33,24,12,0.10), 0 0 0 1px rgba(33,24,12,0.06); overflow: hidden; display: flex; flex-direction: column; position: relative; flex-shrink: 0; }
 .pmr-status { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px 0; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; color: rgba(30,20,8,0.45); flex-shrink: 0; }
@@ -10924,6 +10939,9 @@ function speakClP2() {
 function speakClP3() {
   stopSpeak("Part three. The closing. Write what you want to say, now that it's over. Then choose how to release it.");
 }
+function speakClPostCheckin() {
+  stopSpeak("Now. Let's check in again. Rate the same feelings to see what shifted.");
+}
 function clP2UpdateCTA() {
   var textarea = document.getElementById('cl-p2-textarea');
   var cta = document.getElementById('cl-p2-cta');
@@ -12056,6 +12074,109 @@ function s4SelectAction(el) {
   </div>
 </div>
 <!-- /section-cl-p3 -->
+
+<!-- ══════════ CLOSURE LETTER — POST CHECK-IN ══════════ -->
+<div class="screens-area sec-stop-step" id="section-cl-post-checkin">
+  <div class="sec-cl-post-checkin">
+
+    <div class="status">
+      <span>9:41</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.8 2.5 11.9 3.4 13.4 4.9L14.7 3.6C12.9 1.8 10.3 0.7 7.5 0.7C4.7 0.7 2.1 1.8 0.3 3.6L1.6 4.9C3.1 3.4 5.2 2.5 7.5 2.5Z" fill="rgba(30,20,8,0.50)"/><path d="M7.5 5.5C8.9 5.5 10.2 6.1 11.1 7L12.4 5.7C11.2 4.5 9.4 3.7 7.5 3.7C5.6 3.7 3.8 4.5 2.6 5.7L3.9 7C4.8 6.1 6.1 5.5 7.5 5.5Z" fill="rgba(30,20,8,0.50)"/><circle cx="7.5" cy="9.5" r="1.5" fill="rgba(30,20,8,0.50)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      </div>
+    </div>
+    <div class="step-hdr" style="justify-content:flex-end;">
+      <div class="step-mute-area">
+        <button class="stop-mute-btn" onclick="stopToggleMute()" aria-label="Mute">
+          <svg class="icon-vol-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <svg class="icon-vol-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="step-crisis" onclick="showSection('crisis-resources')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="step-crisis-label">Crisis Support</span>
+        </div>
+      </div>
+    </div>
+    <div class="spostc-body">
+      <div class="spostc-eyebrow">EMOTION CHECK-IN · AFTER</div>
+      <div class="spostc-headline">How do you feel now?</div>
+      <div class="spostc-subhead">Rate the same feelings — let's see what shifted.</div>
+      <div class="spostc-counter">Rated · <b><span id="clspostc-count">0/0</span></b></div>
+      <div class="spostc-divider"></div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:9.5px;color:rgba(62,42,31,0.45);text-align:center;font-style:italic;margin-bottom:6px;">1/5 = a little · 5/5 = a lot</div>
+      <div class="spostc-chips" id="clspostc-chips"><div class="spostc-chips-hint" id="clspostc-chips-hint">No emotions to rate</div></div>
+      <div class="spostc-nudge" id="clspostc-nudge">↑ Tap the dots to rate how you feel now</div>
+      <button class="spostc-cta" id="clspostc-cta" onclick="clPostShiftTap()">See your shift →</button>
+      <div class="spostc-cta-hint" id="clspostc-cta-hint">Rate each feeling above to continue</div>
+    </div>
+
+  </div>
+</div>
+<!-- /section-cl-post-checkin -->
+<script>
+(function(){
+  var clEmoji = {
+    'Grief':'💔','Sadness':'😔','Anger':'😠','Guilt':'😞',
+    'Shame':'😳','Loneliness':'🫥','Anxiety':'😰','Numb':'😶'
+  };
+
+  window.clBuildPostChips = function(){
+    var a = document.getElementById('clspostc-chips'); if (!a) return;
+    a.innerHTML = ''; window.clPostRatings = {};
+    var sel = window.clPreSelected || [];
+    if (sel.length === 0){
+      a.innerHTML = '<div class="spostc-chips-hint">No emotions to rate</div>';
+      var el = document.getElementById('clspostc-count'); if (el) el.textContent = '0/0';
+      clPostCheckReady(); return;
+    }
+    sel.forEach(function(emotion){
+      var emoji = clEmoji[emotion] || '●';
+      var c = document.createElement('div'); c.className = 'spostc-chip'; c.id = 'clspostc-chip-'+emotion;
+      var h = '<span class="em">'+emoji+'</span><span class="nm">'+emotion+'</span><div class="spostc-dots">';
+      for (var i=1;i<=5;i++) h += '<div class="spostc-dot" id="clspostc-dot-'+emotion+'-'+i+'" onclick="clPostDot(\''+emotion+'\','+i+')"></div>';
+      h += '</div><span class="spostc-lbl" id="clspostc-lbl-'+emotion+'">0/5</span>';
+      c.innerHTML = h; a.appendChild(c);
+    });
+    clPostUpdateCounter(); clPostCheckReady();
+  };
+
+  window.clPostDot = function(emotion, n){
+    window.clPostRatings[emotion] = n;
+    for (var i=1;i<=5;i++){
+      var d = document.getElementById('clspostc-dot-'+emotion+'-'+i);
+      if (d){ if (i<=n) d.classList.add('filled'); else d.classList.remove('filled'); }
+    }
+    var l = document.getElementById('clspostc-lbl-'+emotion); if (l) l.textContent = n+'/5';
+    clPostUpdateCounter(); clPostCheckReady();
+  };
+
+  function clPostUpdateCounter(){
+    var sel = window.clPreSelected || [];
+    var rated = sel.filter(function(e){ return window.clPostRatings[e]; }).length;
+    var el = document.getElementById('clspostc-count'); if (el) el.textContent = rated+'/'+sel.length;
+  }
+
+  function clPostCheckReady(){
+    var sel = window.clPreSelected || [];
+    var all = sel.length > 0 && sel.every(function(e){ return window.clPostRatings[e]; });
+    var some = sel.length > 0 && !all;
+    var b = document.getElementById('clspostc-cta');
+    var n = document.getElementById('clspostc-nudge');
+    if (b){ if (all) b.classList.add('enabled'); else b.classList.remove('enabled'); }
+    if (n) n.style.display = some ? 'block' : 'none';
+  }
+  window.clPostCheckReady = clPostCheckReady;
+
+  window.clPostShiftTap = function(){
+    var sel = window.clPreSelected || [];
+    var all = sel.length > 0 && sel.every(function(e){ return window.clPostRatings[e]; });
+    if (all){ stopCancelVoice(); showSection('cl-complete'); return; }
+    var h = document.getElementById('clspostc-cta-hint'); if (h) h.style.display = 'block';
+  };
+})();
+</script>
 
 <script>
 (function(){
@@ -18819,6 +18940,9 @@ function showSection(id) {
       setTimeout(speakClP2, 400);
     } else if (id === 'cl-p3') {
       setTimeout(speakClP3, 400);
+    } else if (id === 'cl-post-checkin') {
+      if (typeof window.clBuildPostChips === 'function') window.clBuildPostChips();
+      setTimeout(speakClPostCheckin, 400);
     }
     return result;
   };
