@@ -2993,7 +2993,7 @@
 /* Session */
 .pmr-session-bar { padding: 50px 16px 0; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
 .pmr-exit-btn { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.55); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-.pmr-session-crisis { display: flex; align-items: center; gap: 5px; padding: 5px 11px; background: rgba(250, 240, 228, 0.92); border: 1px solid rgba(160,104,50,0.45); border-radius: 16px; cursor: pointer; box-shadow: 0 2px 8px rgba(33,24,12,0.10); }
+.pmr-session-crisis { display: flex; align-items: center; gap: 6px; background: #FAF0E4; border: 1.5px solid #A06832; border-radius: 22px; padding: 6px 12px; cursor: pointer; box-shadow: 0 2px 10px rgba(33,24,12,0.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); position: relative; z-index: 5; }
 .pmr-session-crisis span { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #A06832; }
 .pmr-phase-eyebrow { margin: 20px 0 0; text-align: center; font-family: 'DM Sans', sans-serif; font-weight: 600; font-style: normal; font-size: 11px; color: #A06832; letter-spacing: 2.4px; text-transform: uppercase; flex-shrink: 0; transition: opacity 2s ease; }
 .pmr-schematic-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 12px 0; }
@@ -3017,7 +3017,7 @@
 .pmrq-body-wrap { flex: 1; position: relative; min-height: 0; }
 
 /* Full-phone-height image layer (sits behind everything) */
-.pmrq-body-layer { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.pmrq-body-layer { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; overflow: hidden; pointer-events: none; isolation: isolate; }
 
 /* Phone shell becomes positioned stacking context */
 .pmrq-phone { position: relative; overflow: hidden; }
@@ -3104,9 +3104,9 @@
 .pmrq-pose { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; pointer-events: none; transition: opacity 1s ease-in; }
 .pmrq-pose.active { opacity: 1; transition: opacity 1s ease-in; }
 .pmrq-pose.releasing { opacity: 0; transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1); }
-.pmrq-regions { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
-.pmrq-region { fill: #A06832; fill-opacity: 0; filter: url(#pmrq-soften); transition: fill-opacity 1.0s ease-in-out; }
-.pmrq-region.tensing { animation: pmrq-pulse 1.6s ease-in-out infinite; }
+.pmrq-regions { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: soft-light; }
+.pmrq-region { fill: #E89B4A; fill-opacity: 0; filter: url(#pmrq-soften); transition: fill-opacity 1.0s ease-in-out; }
+.pmrq-region.tensing { animation: pmrq-pulse 2s ease-in-out infinite; }
 .pmrq-region.releasing { animation: none; fill-opacity: 0; transition: fill-opacity 6s ease-out; }
 
 /* Ambient pulse during rest — gentle warmth across the body so the screen doesn't feel frozen */
@@ -3120,8 +3120,8 @@
   .pmrq-ambient.active { animation: none; }
 }
 @keyframes pmrq-pulse {
-  0%, 100% { fill-opacity: 0.42; }
-  50% { fill-opacity: 0.68; }
+  0%, 100% { fill-opacity: 0.65; }
+  50% { fill-opacity: 1; }
 }
 
 /* Muscle name + 4-state cycle indicator */
