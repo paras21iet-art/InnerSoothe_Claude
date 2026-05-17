@@ -13886,7 +13886,7 @@ function pmrSetupContinue() {
   // Chain-structured groups: voice drives timing, each utterance has phase + text + pause-before
   var QUICK_GROUPS = [
     {
-      id: 'pmrq-r-hands', pose: 'hands', name: 'Hands & forearms',
+      id: 'pmrq-r-hands', pose: 'hands', name: 'Hands & forearms', action: 'Squeeze fists',
       chain: [
         { phase: 'tense',   text: "Rest your hands on your thighs. Now slowly close them into tight fists. Squeeze hard. Feel your forearms tighten." },
         { phase: 'hold',    text: "Hold. Five. Four. Three. Two. One.",                                                                              pause: 600 },
@@ -13896,7 +13896,7 @@ function pmrSetupContinue() {
       ]
     },
     {
-      id: 'pmrq-r-arms', pose: 'shoulders', name: 'Upper arms & shoulders',
+      id: 'pmrq-r-arms', pose: 'shoulders', name: 'Upper arms & shoulders', action: 'Lift shoulders to ears',
       chain: [
         { phase: 'tense',   text: "Lift both shoulders up toward your ears. Bend your elbows close to your sides. Curl your fists up near your shoulders. Flex hard." },
         { phase: 'hold',    text: "Hold. Five. Four. Three. Two. One.",                                                                              pause: 600 },
@@ -13906,7 +13906,7 @@ function pmrSetupContinue() {
       ]
     },
     {
-      id: 'pmrq-r-face', pose: null, name: 'Face',
+      id: 'pmrq-r-face', pose: null, name: 'Face', action: 'Scrunch face',
       chain: [
         { phase: 'tense',   text: "Scrunch your whole face tight. Close your eyes hard. Clench your jaw. Press your lips together." },
         { phase: 'hold',    text: "Hold. Five. Four. Three. Two. One.",                                                                              pause: 600 },
@@ -13916,7 +13916,7 @@ function pmrSetupContinue() {
       ]
     },
     {
-      id: 'pmrq-r-neck', pose: 'neck', name: 'Neck',
+      id: 'pmrq-r-neck', pose: 'neck', name: 'Neck', action: 'Tilt head back',
       chain: [
         { phase: 'tense',   text: "Gently tilt your head backward. Lift your chin slightly upward. Feel the front of your neck stretch." },
         { phase: 'hold',    text: "Hold. Five. Four. Three. Two. One.",                                                                              pause: 600 },
@@ -13926,7 +13926,7 @@ function pmrSetupContinue() {
       ]
     },
     {
-      id: 'pmrq-r-torso', pose: 'torso', name: 'Chest & abdomen',
+      id: 'pmrq-r-torso', pose: 'torso', name: 'Chest & abdomen', action: 'Breathe in + belly tight',
       chain: [
         { phase: 'tense',   text: "Take a slow deep breath in through your nose. Hold the air in. Pull your stomach in tight. Lift your chest." },
         { phase: 'hold',    text: "Hold. Five. Four. Three. Two. One.",                                                                              pause: 600 },
@@ -13936,7 +13936,7 @@ function pmrSetupContinue() {
       ]
     },
     {
-      id: 'pmrq-r-thighs', pose: 'thighs', name: 'Thighs & glutes',
+      id: 'pmrq-r-thighs', pose: 'thighs', name: 'Thighs & glutes', action: 'Knees together',
       chain: [
         { phase: 'tense',   text: "Press your knees firmly together. Squeeze your buttocks tight. Lock your hips in place." },
         { phase: 'hold',    text: "Hold. Five. Four. Three. Two. One.",                                                                              pause: 600 },
@@ -13946,7 +13946,7 @@ function pmrSetupContinue() {
       ]
     },
     {
-      id: 'pmrq-r-legs', pose: 'feet', name: 'Calves & feet',
+      id: 'pmrq-r-legs', pose: 'feet', name: 'Calves & feet', action: 'Lift heels',
       chain: [
         { phase: 'tense',   text: "Press the balls of both feet down hard into the floor. Lift your heels up. At the same time, curl your toes." },
         { phase: 'hold',    text: "Hold. Five. Four. Three. Two. One.",                                                                              pause: 600 },
