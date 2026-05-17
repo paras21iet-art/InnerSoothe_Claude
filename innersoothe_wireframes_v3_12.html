@@ -3103,7 +3103,12 @@
 .pmrq-mannequin { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
 .pmrq-pose { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; pointer-events: none; transition: opacity 3s cubic-bezier(0.4, 0, 0.6, 1); }
 .pmrq-pose.active { opacity: 1; transition: opacity 3s cubic-bezier(0.4, 0, 0.6, 1); }
-.pmrq-pose.releasing { opacity: 0; transition: opacity 5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.pmrq-pose.releasing { animation: pmrq-pose-release 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+@keyframes pmrq-pose-release {
+  0% { opacity: 1; filter: blur(0px); }
+  35% { opacity: 0.55; filter: blur(3px); }
+  100% { opacity: 0; filter: blur(0px); }
+}
 .pmrq-regions { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: soft-light; }
 .pmrq-region { fill: #E89B4A; fill-opacity: 0; filter: url(#pmrq-soften); transition: fill-opacity 1.0s ease-in-out; }
 .pmrq-region.tensing { animation: pmrq-pulse 2s ease-in-out infinite; }
@@ -13384,8 +13389,8 @@ window.onStopSectionShow = function(sectionId) {
           <use href="#pmrq-arrow-shape" x="57" y="55" width="11" height="11" transform="rotate(-90 62.5 60.5)" class="staggered"/>
         </g>
         <g data-group="thighs">
-          <use href="#pmrq-arrow-shape" x="28" y="83" width="11" height="11" transform="rotate(90 33.5 88.5)"/>
-          <use href="#pmrq-arrow-shape" x="61" y="83" width="11" height="11" transform="rotate(-90 66.5 88.5)" class="staggered"/>
+          <use href="#pmrq-arrow-shape" x="20" y="92" width="10" height="10" transform="rotate(90 25 97)"/>
+          <use href="#pmrq-arrow-shape" x="70" y="92" width="10" height="10" transform="rotate(-90 75 97)" class="staggered"/>
         </g>
         <g data-group="feet">
           <use href="#pmrq-arrow-shape" x="18" y="120" width="11" height="11"/>
@@ -14035,7 +14040,10 @@ function pmrSetupContinue() {
       if (group.pose) releasePose(group.pose);
       setArrows(null);
       setActionLabel('');
+      // Exhale wash — warm saffron wave begins flowing across the body the moment release starts
+      if (amb) amb.classList.add('active');
     } else if (phase === 'rest') {
+      // Wash continues through rest (already active)
       if (amb) amb.classList.add('active');
     }
   }
