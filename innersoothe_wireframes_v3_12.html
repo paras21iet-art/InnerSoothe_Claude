@@ -3101,8 +3101,8 @@
 /* Mannequin stage + saffron glow regions */
 /* body-stage CSS removed — content moved to body-layer */
 .pmrq-mannequin { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
-.pmrq-pose { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; pointer-events: none; transition: opacity 1s ease-in; }
-.pmrq-pose.active { opacity: 1; transition: opacity 1s ease-in; }
+.pmrq-pose { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; pointer-events: none; transition: opacity 3s cubic-bezier(0.4, 0, 0.6, 1); }
+.pmrq-pose.active { opacity: 1; transition: opacity 3s cubic-bezier(0.4, 0, 0.6, 1); }
 .pmrq-pose.releasing { opacity: 0; transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1); }
 .pmrq-regions { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: soft-light; }
 .pmrq-region { fill: #E89B4A; fill-opacity: 0; filter: url(#pmrq-soften); transition: fill-opacity 1.0s ease-in-out; }
@@ -3118,6 +3118,29 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .pmrq-ambient.active { animation: none; }
+}
+
+.pmrq-action-label {
+  position: relative; z-index: 2;
+  background: rgba(250, 240, 228, 0.92);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #A06832;
+  text-align: center;
+  padding: 0 16px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease, max-height 0.5s ease, padding 0.5s ease;
+}
+.pmrq-action-label.visible {
+  opacity: 1;
+  max-height: 50px;
+  padding: 10px 16px 4px;
 }
 @keyframes pmrq-pulse {
   0%, 100% { fill-opacity: 0.65; }
@@ -13350,6 +13373,7 @@ window.onStopSectionShow = function(sectionId) {
       </div>
     </div>
 
+    <div class="pmrq-action-label"></div>
     <div class="pmrq-muscle-name">Settling in</div>
     <div class="pmrq-states">
       <div class="pmrq-state-pill" data-state="tense">Tense</div>
