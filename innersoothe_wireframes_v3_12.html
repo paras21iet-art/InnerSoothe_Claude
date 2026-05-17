@@ -14199,12 +14199,24 @@ function pmrSetupContinue() {
 
   function finish(sid) {
     if (sid !== _sid) return;
-    setName('Complete');
+    // Clear all active state — body settles to fully neutral as outro begins
+    setArrows(null);
+    setActionLabel('');
+    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-region').forEach(function(r){
+      r.classList.remove('tensing','releasing');
+      r.style.fillOpacity = '0';
+    });
+    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose').forEach(function(p){
+      p.classList.remove('active','releasing');
+    });
+    // Saffron warmth wash continues across full body during outro
+    var amb = document.querySelector('#section-breakup-pmr-session-quick .pmrq-ambient');
+    if (amb) amb.classList.add('active');
+    // Replace muscle name with completion indication
     setState(null);
     updateSidebar(QUICK_GROUPS.length);
     setProgress(100);
-    var amb = document.querySelector('#section-breakup-pmr-session-quick .pmrq-ambient');
-    if (amb) amb.classList.add('active');
+    setName('Session complete');
 
     try {
       var u = new SpeechSynthesisUtterance(QUICK_OUTRO);
@@ -14222,12 +14234,13 @@ function pmrSetupContinue() {
       u.onend = function() {
         if (sid !== _sid) return;
         stopMusic();
-        setTimeout(function() { showSection('breakup-pmr-post-checkin'); }, 1500);
+        // Longer pause for the moment to land before navigation
+        setTimeout(function() { showSection('breakup-pmr-post-checkin'); }, 3000);
       };
       u.onerror = function() {
         if (sid !== _sid) return;
         stopMusic();
-        setTimeout(function() { showSection('breakup-pmr-post-checkin'); }, 1500);
+        setTimeout(function() { showSection('breakup-pmr-post-checkin'); }, 3000);
       };
       speechSynthesis.cancel();
       speechSynthesis.speak(u);
@@ -14341,21 +14354,20 @@ function pmrSetupContinue() {
 
   window.pmrqJumpTo = function(idx) {
     if (typeof idx !== 'number' || idx < 0 || idx >= QUICK_GROUPS.length) return;
-    var sid = _sid;
+    if (idx === _idx) return;
+    // Cancel current speech + timers
+    try { speechSynthesis.cancel(); } catch(e) {}
     _timers.forEach(function(t){ clearTimeout(t); });
     _timers = [];
-    try { speechSynthesis.cancel(); } catch(e) {}
-    if (window.pmrStopSpeech) window.pmrStopSpeech();
-    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-region').forEach(function(p){
-      p.classList.remove('tensing','releasing');
-    });
-    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose').forEach(function(p){
-      p.classList.remove('active','releasing');
-    });
-    var amb2 = document.querySelector('#section-breakup-pmr-session-quick .pmrq-ambient');
-    if (amb2) amb2.classList.remove('active');
-    _currentPhase = null;
-    runGroup(sid, idx);
+    // Bump session ID — invalidates any stale callbacks from old group's chain
+    _sid++;
+    // Hard reset all visuals (poses, arrows, label, glow, ambient)
+    clearAll();
+    _idx = idx;
+    // Brief pause for DOM to settle before starting new group
+    _timers.push(setTimeout(function() {
+      runGroup(_sid, idx);
+    }, 200));
   };
 })();
 
