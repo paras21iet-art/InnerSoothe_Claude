@@ -3142,6 +3142,20 @@
   max-height: 50px;
   padding: 10px 16px 4px;
 }
+
+.pmrq-arrows { position: absolute; inset: 0; pointer-events: none; z-index: 4; opacity: 0; transition: opacity 0.6s ease; }
+.pmrq-arrows.visible { opacity: 1; }
+.pmrq-arrows g[data-group] { opacity: 0; transition: opacity 0.4s ease; }
+.pmrq-arrows g[data-group].active { opacity: 1; }
+.pmrq-arrow { fill: #A06832; stroke: rgba(255,255,255,0.85); stroke-width: 1.2; animation: pmrq-arrow-pulse 2s ease-in-out infinite; filter: drop-shadow(0 1px 3px rgba(33,24,12,0.35)); }
+@keyframes pmrq-arrow-pulse {
+  0%, 100% { transform: scale(0.94); }
+  50% { transform: scale(1.12); }
+}
+.pmrq-arrow.staggered { animation-delay: 0.6s; }
+@media (prefers-reduced-motion: reduce) {
+  .pmrq-arrow { animation: none; }
+}
 @keyframes pmrq-pulse {
   0%, 100% { fill-opacity: 0.65; }
   50% { fill-opacity: 1; }
@@ -13345,6 +13359,43 @@ window.onStopSectionShow = function(sectionId) {
       <img class="pmrq-pose" data-pose="torso"     src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-torso.png" alt="" />
       <img class="pmrq-pose" data-pose="thighs"    src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-thighs.png" alt="" />
       <img class="pmrq-pose" data-pose="feet"      src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-feet.png" alt="" />
+      <svg class="pmrq-arrows" viewBox="0 0 100 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;">
+        <defs>
+          <symbol id="pmrq-arrow-shape" viewBox="-10 -10 20 20">
+            <path d="M -5 4 L 0 -6 L 5 4 L 2 4 L 2 8 L -2 8 L -2 4 Z" class="pmrq-arrow"/>
+          </symbol>
+        </defs>
+        <g data-group="hands">
+          <use href="#pmrq-arrow-shape" x="33" y="79" width="11" height="11" transform="rotate(90 38.5 84.5)"/>
+          <use href="#pmrq-arrow-shape" x="56" y="79" width="11" height="11" transform="rotate(-90 61.5 84.5)" class="staggered"/>
+        </g>
+        <g data-group="shoulders">
+          <use href="#pmrq-arrow-shape" x="35" y="22" width="11" height="11"/>
+          <use href="#pmrq-arrow-shape" x="54" y="22" width="11" height="11" class="staggered"/>
+        </g>
+        <g data-group="face">
+          <use href="#pmrq-arrow-shape" x="44" y="6" width="9" height="9" transform="rotate(180 48.5 10.5)"/>
+          <use href="#pmrq-arrow-shape" x="55" y="14" width="9" height="9" transform="rotate(-90 59.5 18.5)" class="staggered"/>
+          <use href="#pmrq-arrow-shape" x="44" y="22" width="9" height="9"/>
+          <use href="#pmrq-arrow-shape" x="33" y="14" width="9" height="9" transform="rotate(90 37.5 18.5)" class="staggered"/>
+        </g>
+        <g data-group="neck">
+          <use href="#pmrq-arrow-shape" x="51" y="20" width="11" height="11" transform="rotate(180 56.5 25.5)"/>
+        </g>
+        <g data-group="torso">
+          <use href="#pmrq-arrow-shape" x="48" y="30" width="11" height="11"/>
+          <use href="#pmrq-arrow-shape" x="35" y="55" width="11" height="11" transform="rotate(90 40.5 60.5)" class="staggered"/>
+          <use href="#pmrq-arrow-shape" x="57" y="55" width="11" height="11" transform="rotate(-90 62.5 60.5)" class="staggered"/>
+        </g>
+        <g data-group="thighs">
+          <use href="#pmrq-arrow-shape" x="28" y="83" width="11" height="11" transform="rotate(90 33.5 88.5)"/>
+          <use href="#pmrq-arrow-shape" x="61" y="83" width="11" height="11" transform="rotate(-90 66.5 88.5)" class="staggered"/>
+        </g>
+        <g data-group="feet">
+          <use href="#pmrq-arrow-shape" x="18" y="120" width="11" height="11"/>
+          <use href="#pmrq-arrow-shape" x="38" y="120" width="11" height="11" class="staggered"/>
+        </g>
+      </svg>
       <svg class="pmrq-regions" viewBox="0 0 100 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;">
         <defs>
           <filter id="pmrq-soften" x="-50%" y="-50%" width="200%" height="200%">
