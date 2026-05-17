@@ -13975,10 +13975,37 @@ function pmrSetupContinue() {
     });
     var amb = document.querySelector('#section-breakup-pmr-session-quick .pmrq-ambient');
     if (amb) amb.classList.remove('active');
+    var arrowsContainer = document.querySelector('#section-breakup-pmr-session-quick .pmrq-arrows');
+    if (arrowsContainer) {
+      arrowsContainer.classList.remove('visible');
+      arrowsContainer.querySelectorAll('g[data-group]').forEach(function(g){ g.classList.remove('active'); });
+    }
+    var labelEl = document.querySelector('#section-breakup-pmr-session-quick .pmrq-action-label');
+    if (labelEl) { labelEl.classList.remove('visible'); labelEl.textContent = ''; }
     _currentPhase = null;
   }
 
   var _currentPhase = null;
+
+  function setArrows(groupKey) {
+    var container = document.querySelector('#section-breakup-pmr-session-quick .pmrq-arrows');
+    if (!container) return;
+    container.classList.toggle('visible', !!groupKey);
+    container.querySelectorAll('g[data-group]').forEach(function(g){
+      g.classList.toggle('active', !!groupKey && g.getAttribute('data-group') === groupKey);
+    });
+  }
+
+  function setActionLabel(text) {
+    var el = document.querySelector('#section-breakup-pmr-session-quick .pmrq-action-label');
+    if (!el) return;
+    if (text) {
+      el.textContent = text;
+      el.classList.add('visible');
+    } else {
+      el.classList.remove('visible');
+    }
+  }
 
   function applyPhase(phase, group) {
     if (phase === _currentPhase && phase !== 'tense') return;
@@ -14001,10 +14028,17 @@ function pmrSetupContinue() {
       if (r) r.classList.add('tensing');
       if (group.pose) setPose(group.pose);
       setProgress((group.idx / QUICK_GROUPS.length) * 100);
+      var arrowKey = group.id.replace('pmrq-r-','').replace('arms','shoulders').replace('legs','feet');
+      setArrows(arrowKey);
+      setActionLabel(group.action || '');
+    } else if (phase === 'hold') {
+      // arrows + label remain visible
     } else if (phase === 'release') {
       var r2 = document.getElementById(group.id);
       if (r2) { r2.classList.remove('tensing'); r2.classList.add('releasing'); }
       if (group.pose) releasePose(group.pose);
+      setArrows(null);
+      setActionLabel('');
     } else if (phase === 'rest') {
       if (amb) amb.classList.add('active');
     }
