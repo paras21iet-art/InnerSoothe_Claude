@@ -3103,11 +3103,11 @@
 .pmrq-mannequin { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
 .pmrq-pose { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; pointer-events: none; transition: opacity 3s cubic-bezier(0.4, 0, 0.6, 1); }
 .pmrq-pose.active { opacity: 1; transition: opacity 3s cubic-bezier(0.4, 0, 0.6, 1); }
-.pmrq-pose.releasing { opacity: 0; transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1); }
+.pmrq-pose.releasing { opacity: 0; transition: opacity 5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .pmrq-regions { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: soft-light; }
 .pmrq-region { fill: #E89B4A; fill-opacity: 0; filter: url(#pmrq-soften); transition: fill-opacity 1.0s ease-in-out; }
 .pmrq-region.tensing { animation: pmrq-pulse 2s ease-in-out infinite; }
-.pmrq-region.releasing { animation: none; fill-opacity: 0; transition: fill-opacity 6s ease-out; }
+.pmrq-region.releasing { animation: none; fill-opacity: 0; transition: fill-opacity 8s ease-out; }
 
 /* Ambient pulse during rest — gentle warmth across the body so the screen doesn't feel frozen */
 .pmrq-ambient { position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0; background: rgba(160,104,50,0.04); transition: opacity 1.5s ease; }
