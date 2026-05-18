@@ -13959,8 +13959,27 @@ function pmrSetupContinue() {
     }
   ];
 
-  var QUICK_INTRO = "Welcome. This Progressive Muscle Relaxation will take about six minutes. Find a comfortable seated position — feet flat on the floor, spine tall but at ease, hands resting on your thighs. If you feel comfortable, gently close your eyes. Otherwise, let your gaze soften toward the floor. Let's settle with three slow breaths. Breathe in deeply… and exhale fully. Again, breathe in… and let it go. One more time, breathe in deeply… and exhale completely. Now we'll move through your body in seven groups. For each one — you'll breathe in as you tighten, hold the tension for five counts, and breathe out as you release. Beginning now.";
-  var QUICK_OUTRO = "Your whole body is soft now. From head to feet. Take a slow breath in… and exhale. Notice how heavy you are, how settled. This calm — it was always inside you. You just made the space for it. When you're ready, take one more deep breath. Slowly open your eyes. Gently come back to the room. You did this.";
+  var QUICK_INTRO_CHUNKS = [
+    "Welcome. This Progressive Muscle Relaxation will take about six minutes.",
+    "Find a comfortable seated position — feet flat on the floor, spine tall but at ease, hands resting on your thighs.",
+    "If you feel comfortable, gently close your eyes. Otherwise, let your gaze soften toward the floor.",
+    "Let's settle with three slow breaths. Breathe in deeply… and exhale fully.",
+    "Again, breathe in… and let it go.",
+    "One more time, breathe in deeply… and exhale completely.",
+    "Now we'll move through your body in seven groups.",
+    "For each one — you'll breathe in as you tighten, hold the tension for five counts, and breathe out as you release.",
+    "Beginning now."
+  ];
+
+  var QUICK_OUTRO_CHUNKS = [
+    "Your whole body is soft now. From head to feet.",
+    "Take a slow breath in… and exhale.",
+    "Notice how heavy you are, how settled.",
+    "This calm — it was always inside you. You just made the space for it.",
+    "When you're ready, take one more deep breath.",
+    "Slowly open your eyes. Gently come back to the room.",
+    "You did this."
+  ];
 
   var _sid = 0;
   var _idx = 0;
@@ -14109,6 +14128,55 @@ function pmrSetupContinue() {
     });
   }
 
+  function speakChunks(sid, chunks, idx, onComplete) {
+    if (sid !== _sid || _paused) return;
+    if (idx >= chunks.length) { onComplete(); return; }
+    var text = chunks[idx];
+    try {
+      var u = new SpeechSynthesisUtterance(text);
+      var voices = (window.speechSynthesis && speechSynthesis.getVoices) ? speechSynthesis.getVoices() : [];
+      var pref = ['Samantha','Karen','Google US English'];
+      var chosen = null;
+      for (var i = 0; i < pref.length && !chosen; i++) {
+        for (var j = 0; j < voices.length; j++) {
+          if (voices[j].name.indexOf(pref[i]) !== -1) { chosen = voices[j]; break; }
+        }
+      }
+      if (!chosen) {
+        for (var k = 0; k < voices.length; k++) {
+          if (voices[k].lang && voices[k].lang.indexOf('en') === 0) { chosen = voices[k]; break; }
+        }
+      }
+      if (chosen) u.voice = chosen;
+      u.rate = 1.0; u.pitch = 0.9; u.volume = 0.85;
+
+      var advanced = false;
+      var safetyTimer = null;
+      function advance() {
+        if (advanced) return;
+        advanced = true;
+        if (safetyTimer) clearTimeout(safetyTimer);
+        speakChunks(sid, chunks, idx + 1, onComplete);
+      }
+      u.onstart = function() { if (idx === 0) duckMusic(); };
+      u.onend   = advance;
+      u.onerror = advance;
+
+      // Safety net: if onend never fires (Chrome long-utterance bug
+      // can recur even on shorter chunks), force advance based on
+      // estimated speech duration.
+      var estMs = Math.max(3000, text.length * 80 + 2000);
+      safetyTimer = setTimeout(advance, estMs);
+      _timers.push(safetyTimer);
+
+      speechSynthesis.cancel();
+      speechSynthesis.speak(u);
+    } catch(e) {
+      var t = setTimeout(function() { speakChunks(sid, chunks, idx + 1, onComplete); }, 2000);
+      _timers.push(t);
+    }
+  }
+
   function setPose(poseSlug) {
     document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose').forEach(function(p) {
       p.classList.remove('active','releasing');
@@ -14218,40 +14286,14 @@ function pmrSetupContinue() {
     setProgress(100);
     setName('Session complete');
 
-    try {
-      var u = new SpeechSynthesisUtterance(QUICK_OUTRO);
-      var voices = (window.speechSynthesis && speechSynthesis.getVoices) ? speechSynthesis.getVoices() : [];
-      var chosen = null;
-      var pref = ['Samantha','Karen','Google US English'];
-      for (var i=0; i<pref.length && !chosen; i++) {
-        for (var j=0; j<voices.length; j++) {
-          if (voices[j].name.indexOf(pref[i]) !== -1) { chosen = voices[j]; break; }
-        }
-      }
-      if (chosen) u.voice = chosen;
-      u.rate = 1.0; u.pitch = 0.9; u.volume = 0.85;
-      u.onstart = function() { duckMusic(); };
-      u.onend = function() {
+    speakChunks(sid, QUICK_OUTRO_CHUNKS, 0, function() {
+      if (sid !== _sid) return;
+      stopMusic();
+      setTimeout(function() {
         if (sid !== _sid) return;
-        stopMusic();
-        // Longer pause for the moment to land before navigation
-        setTimeout(function() { showSection('breakup-pmr-post-checkin'); }, 3000);
-      };
-      u.onerror = function() {
-        if (sid !== _sid) return;
-        stopMusic();
-        setTimeout(function() { showSection('breakup-pmr-post-checkin'); }, 3000);
-      };
-      speechSynthesis.cancel();
-      speechSynthesis.speak(u);
-    } catch(e) {
-      var t = setTimeout(function() {
-        if (sid !== _sid) return;
-        stopMusic();
         showSection('breakup-pmr-post-checkin');
-      }, 22000);
-      _timers.push(t);
-    }
+      }, 3000);
+    });
   }
 
   window.pmrqStart = function() {
@@ -14266,40 +14308,15 @@ function pmrSetupContinue() {
     setProgress(0);
     startMusic();
 
-    try {
-      var u = new SpeechSynthesisUtterance(QUICK_INTRO);
-      var voices = (window.speechSynthesis && speechSynthesis.getVoices) ? speechSynthesis.getVoices() : [];
-      var chosen = null;
-      var pref = ['Samantha','Karen','Google US English'];
-      for (var i=0; i<pref.length && !chosen; i++) {
-        for (var j=0; j<voices.length; j++) {
-          if (voices[j].name.indexOf(pref[i]) !== -1) { chosen = voices[j]; break; }
-        }
-      }
-      if (chosen) u.voice = chosen;
-      u.rate = 1.0; u.pitch = 0.9; u.volume = 0.85;
-      u.onstart = function() { duckMusic(); };
-      u.onend = function() {
+    speakChunks(sid, QUICK_INTRO_CHUNKS, 0, function() {
+      if (sid !== _sid) return;
+      unduckMusic();
+      var t = setTimeout(function() {
         if (sid !== _sid) return;
-        unduckMusic();
-        var t = setTimeout(function() {
-          if (sid !== _sid) return;
-          runGroup(sid, 0);
-        }, 1500);
-        _timers.push(t);
-      };
-      u.onerror = function() {
-        if (sid !== _sid) return;
-        unduckMusic();
-        var t2 = setTimeout(function() { if (sid === _sid) runGroup(sid, 0); }, 1500);
-        _timers.push(t2);
-      };
-      speechSynthesis.cancel();
-      speechSynthesis.speak(u);
-    } catch(e) {
-      var t3 = setTimeout(function() { if (sid === _sid) runGroup(sid, 0); }, 14000);
-      _timers.push(t3);
-    }
+        runGroup(sid, 0);
+      }, 1500);
+      _timers.push(t);
+    });
   };
 
   window.pmrqExit = function() {
