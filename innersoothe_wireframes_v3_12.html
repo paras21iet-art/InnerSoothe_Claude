@@ -3106,9 +3106,32 @@
 .pmrq-pose.releasing { animation: pmrq-pose-release 7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .pmrq-pose-tense { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; pointer-events: none; z-index: 2; transition: opacity 2.5s cubic-bezier(0.4, 0, 0.6, 1); }
 .pmrq-pose-tense.active { opacity: 1; }
-/* Temporarily hide face arrows while we transition to closeup viewport.
-   Will re-enable with new closeup-tuned coordinates in a follow-up edit. */
-.pmrq-arrows g[data-group="face"].active { opacity: 0; }
+
+/* Face arrows: closeup conveys the action directly, no arrows needed */
+.pmrq-arrows g[data-group="face"] { display: none !important; }
+
+/* Face closeup sizing: smaller centered image so background shows around it cleanly */
+.pmrq-pose[data-pose="face"],
+.pmrq-pose-tense[data-pose="face"] {
+  width: 80%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+
+/* Slower face transitions for a smoother body-to-closeup flow */
+.pmrq-pose[data-pose="face"] { transition: opacity 4s cubic-bezier(0.4, 0, 0.6, 1); }
+.pmrq-pose[data-pose="face"].active { transition-delay: 0.8s; }
+.pmrq-pose-tense[data-pose="face"].active { transition-delay: 1.8s; }
+
+/* Body layer keeps the warm-beige base so it shows around the smaller face closeup */
+.pmrq-body-layer { background-color: #F2E4CE; }
+
+/* Full-body mannequin fades out when face group is active so the bg shows cleanly around the closeup */
+.pmrq-mannequin { transition: opacity 2s cubic-bezier(0.4, 0, 0.6, 1); }
+.pmrq-mannequin.face-hidden { opacity: 0; }
 @keyframes pmrq-pose-release {
   0%   { opacity: 1; filter: blur(0px);  transform: scale(1); }
   100% { opacity: 0; filter: blur(2px);  transform: scale(0.995); }
@@ -14004,6 +14027,8 @@ function pmrSetupContinue() {
     document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose-tense').forEach(function(p){
       p.classList.remove('active');
     });
+    var mannequinReset = document.querySelector('#section-breakup-pmr-session-quick .pmrq-mannequin');
+    if (mannequinReset) mannequinReset.classList.remove('face-hidden');
     var amb = document.querySelector('#section-breakup-pmr-session-quick .pmrq-ambient');
     if (amb) amb.classList.remove('active');
     var arrowsContainer = document.querySelector('#section-breakup-pmr-session-quick .pmrq-arrows');
@@ -14204,6 +14229,14 @@ function pmrSetupContinue() {
     document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose-tense').forEach(function(p){
       p.classList.remove('active');
     });
+    var mannequinEl = document.querySelector('#section-breakup-pmr-session-quick .pmrq-mannequin');
+    if (mannequinEl) {
+      if (poseSlug === 'face') {
+        mannequinEl.classList.add('face-hidden');
+      } else {
+        mannequinEl.classList.remove('face-hidden');
+      }
+    }
   }
 
   function releasePose(poseSlug) {
