@@ -3104,6 +3104,11 @@
 .pmrq-pose { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; pointer-events: none; transition: opacity 5s cubic-bezier(0.16, 1, 0.3, 1); }
 .pmrq-pose.active { opacity: 1; transition: opacity 5s cubic-bezier(0.16, 1, 0.3, 1); }
 .pmrq-pose.releasing { animation: pmrq-pose-release 7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.pmrq-pose-tense { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; pointer-events: none; z-index: 2; transition: opacity 2.5s cubic-bezier(0.4, 0, 0.6, 1); }
+.pmrq-pose-tense.active { opacity: 1; }
+/* Temporarily hide face arrows while we transition to closeup viewport.
+   Will re-enable with new closeup-tuned coordinates in a follow-up edit. */
+.pmrq-arrows g[data-group="face"].active { opacity: 0; }
 @keyframes pmrq-pose-release {
   0%   { opacity: 1; filter: blur(0px);  transform: scale(1); }
   100% { opacity: 0; filter: blur(2px);  transform: scale(0.995); }
@@ -13359,6 +13364,8 @@ window.onStopSectionShow = function(sectionId) {
       <img class="pmrq-pose" data-pose="torso"     src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-torso.png" alt="" />
       <img class="pmrq-pose" data-pose="thighs"    src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-thighs.png" alt="" />
       <img class="pmrq-pose" data-pose="feet"      src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-feet.png" alt="" />
+      <img class="pmrq-pose" data-pose="face"      src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-face-closeup.png" alt="" />
+      <img class="pmrq-pose-tense" data-pose="face" src="assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-face-closeup-tense.png" alt="" />
       <svg class="pmrq-arrows" viewBox="0 0 100 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;">
         <defs>
           <symbol id="pmrq-arrow-shape" viewBox="-10 -10 20 20">
@@ -13908,7 +13915,7 @@ function pmrSetupContinue() {
       ]
     },
     {
-      id: 'pmrq-r-face', pose: null, name: 'Face', action: 'Squeeze face',
+      id: 'pmrq-r-face', pose: 'face', name: 'Face', action: 'Squeeze face',
       chain: [
         { phase: 'tense',   text: "Breathe in slowly… and squeeze your whole face tight. Close your eyes hard. Clench your jaw. Press your lips together." },
         { phase: 'hold',    text: "Hold your breath and the tension. Five. Four. Three. Two. One.",                                                  pause: 600 },
@@ -13994,6 +14001,9 @@ function pmrSetupContinue() {
     document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose').forEach(function(p){
       p.classList.remove('active','releasing');
     });
+    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose-tense').forEach(function(p){
+      p.classList.remove('active');
+    });
     var amb = document.querySelector('#section-breakup-pmr-session-quick .pmrq-ambient');
     if (amb) amb.classList.remove('active');
     var arrowsContainer = document.querySelector('#section-breakup-pmr-session-quick .pmrq-arrows');
@@ -14052,6 +14062,10 @@ function pmrSetupContinue() {
       var arrowKey = group.id.replace('pmrq-r-','').replace('arms','shoulders').replace('legs','feet');
       setArrows(arrowKey);
       setActionLabel(group.action || '');
+      if (group.id === 'pmrq-r-face') {
+        var faceTense = document.querySelector('#section-breakup-pmr-session-quick .pmrq-pose-tense[data-pose="face"]');
+        if (faceTense) faceTense.classList.add('active');
+      }
     } else if (phase === 'hold') {
       // arrows + label remain visible
     } else if (phase === 'release') {
@@ -14062,6 +14076,10 @@ function pmrSetupContinue() {
       setActionLabel('');
       // Exhale wash — warm saffron wave begins flowing across the body the moment release starts
       if (amb) amb.classList.add('active');
+      if (group.id === 'pmrq-r-face') {
+        var faceTenseRel = document.querySelector('#section-breakup-pmr-session-quick .pmrq-pose-tense[data-pose="face"]');
+        if (faceTenseRel) faceTenseRel.classList.remove('active');
+      }
     } else if (phase === 'rest') {
       // Wash continues through rest (already active)
       if (amb) amb.classList.add('active');
@@ -14182,6 +14200,9 @@ function pmrSetupContinue() {
       if (poseSlug && p.dataset.pose === poseSlug) {
         p.classList.add('active');
       }
+    });
+    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose-tense').forEach(function(p){
+      p.classList.remove('active');
     });
   }
 
