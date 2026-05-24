@@ -3136,9 +3136,8 @@
 }
 
 /* Slower face transitions for a smoother body-to-closeup flow */
-.pmrq-pose[data-pose="face"] { transition: opacity 4s cubic-bezier(0.4, 0, 0.6, 1); }
-.pmrq-pose[data-pose="face"].active { transition-delay: 0.8s; }
-.pmrq-pose-tense[data-pose="face"].active { transition-delay: 1.8s; }
+.pmrq-pose[data-pose="face"] { transition: opacity 1.5s cubic-bezier(0.4, 0, 0.6, 1); }
+.pmrq-pose-tense[data-pose="face"] { transition: opacity 1.5s cubic-bezier(0.4, 0, 0.6, 1); }
 
 /* Body layer keeps the warm-beige base so it shows around the smaller face closeup */
 .pmrq-body-layer { background-color: #EDCFB5; }
@@ -13441,9 +13440,9 @@ window.onStopSectionShow = function(sectionId) {
         </g>
         <g data-group="thighs">
           <use href="#pmrq-arrow-shape" x="20" y="75" width="10" height="10" transform="rotate(90 25 80)"/>
-          <use href="#pmrq-arrow-shape" x="52" y="75" width="10" height="10" transform="rotate(-90 57 80)" class="staggered"/>
+          <use href="#pmrq-arrow-shape" x="43" y="75" width="10" height="10" transform="rotate(-90 48 80)" class="staggered"/>
           <use href="#pmrq-arrow-shape" x="20" y="92" width="10" height="10" transform="rotate(90 25 97)"/>
-          <use href="#pmrq-arrow-shape" x="52" y="92" width="10" height="10" transform="rotate(-90 57 97)" class="staggered"/>
+          <use href="#pmrq-arrow-shape" x="43" y="92" width="10" height="10" transform="rotate(-90 48 97)" class="staggered"/>
         </g>
         <g data-group="feet">
           <use href="#pmrq-arrow-shape" x="18" y="120" width="11" height="11"/>
@@ -14115,6 +14114,10 @@ function pmrSetupContinue() {
       }
     } else if (phase === 'hold') {
       // arrows + label remain visible
+      if (group.id === 'pmrq-r-face') {
+        var faceTenseHold = document.querySelector('#section-breakup-pmr-session-quick .pmrq-pose-tense[data-pose="face"]');
+        if (faceTenseHold) faceTenseHold.classList.add('active');
+      }
     } else if (phase === 'release') {
       var r2 = document.getElementById(group.id);
       if (r2) { r2.classList.remove('tensing'); r2.classList.add('releasing'); }
@@ -14130,6 +14133,10 @@ function pmrSetupContinue() {
     } else if (phase === 'rest') {
       // Wash continues through rest (already active)
       if (amb) amb.classList.add('active');
+      if (group.id === 'pmrq-r-face') {
+        var faceTenseRest = document.querySelector('#section-breakup-pmr-session-quick .pmrq-pose-tense[data-pose="face"]');
+        if (faceTenseRest) faceTenseRest.classList.remove('active');
+      }
     }
   }
 
@@ -14160,15 +14167,23 @@ function pmrSetupContinue() {
         }
         if (chosen) u.voice = chosen;
         u.rate = 1.0; u.pitch = 0.9; u.volume = 0.85;
+        var advanced = false;
+        var safetyTimer = null;
+        function advanceChain() {
+          if (advanced) return;
+          advanced = true;
+          if (safetyTimer) clearTimeout(safetyTimer);
+          unduckMusic();
+          speakChainGroup(sid, group, chainIdx + 1, onComplete);
+        }
         u.onstart = function() { duckMusic(); };
-        u.onend = function() {
-          unduckMusic();
-          speakChainGroup(sid, group, chainIdx + 1, onComplete);
-        };
-        u.onerror = function() {
-          unduckMusic();
-          speakChainGroup(sid, group, chainIdx + 1, onComplete);
-        };
+        u.onend = advanceChain;
+        u.onerror = advanceChain;
+        // Safety net: online voices on file:// origins often never fire onend,
+        // which freezes the chain. Force-advance after estimated speech duration.
+        var estMs = Math.max(3500, step.text.length * 80 + 2500);
+        safetyTimer = setTimeout(advanceChain, estMs);
+        _timers.push(safetyTimer);
         speechSynthesis.cancel();
         speechSynthesis.speak(u);
       } catch(e) {
@@ -14248,9 +14263,11 @@ function pmrSetupContinue() {
         p.classList.add('active');
       }
     });
-    document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose-tense').forEach(function(p){
-      p.classList.remove('active');
-    });
+    if (poseSlug !== 'face') {
+      document.querySelectorAll('#section-breakup-pmr-session-quick .pmrq-pose-tense').forEach(function(p){
+        p.classList.remove('active');
+      });
+    }
     var mannequinEl = document.querySelector('#section-breakup-pmr-session-quick .pmrq-mannequin');
     if (mannequinEl) {
       if (poseSlug === 'face') {
@@ -14414,14 +14431,21 @@ function pmrSetupContinue() {
 
   window.pmrqTogglePause = function() {
     _paused = !_paused;
+    var btn = document.getElementById('pmrq-pause-btn');
+    var svg = btn ? btn.querySelector('svg') : null;
+    var lbl = btn ? btn.querySelector('.pmr-ctrl-lbl') : null;
     if (_paused) {
       _timers.forEach(function(t){ clearTimeout(t); });
       _timers = [];
       try { speechSynthesis.cancel(); } catch(e) {}
       if (window.pmrStopSpeech) window.pmrStopSpeech();
       duckMusic();
+      if (svg) svg.innerHTML = '<polygon points="6 4 18 12 6 20 6 4"/>';
+      if (lbl) lbl.textContent = 'Resume';
     } else {
       unduckMusic();
+      if (svg) svg.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+      if (lbl) lbl.textContent = 'Pause';
       runGroup(_sid, _idx);
     }
   };
