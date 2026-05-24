@@ -11529,8 +11529,10 @@ function speakStopS1() {
       return;
     }
 
-    /* Fallback timer — if voice never completes (browser hiccup), start cycles after 18s */
-    fb = setTimeout(startCycle, 18000);
+    /* Fallback timer — if voice never completes (browser hiccup), start cycles after 28s.
+       Intro is now 5 phrases + pauses (~18-22s spoken); fallback must exceed that so it
+       only fires on genuine TTS failure, never mid-intro. */
+    fb = setTimeout(startCycle, 28000);
 
     if (typeof window.stopSpeakSequence === 'function') {
       window.stopSpeakSequence([
