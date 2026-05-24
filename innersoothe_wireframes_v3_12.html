@@ -1846,6 +1846,18 @@
   height: 780px;
   overflow: hidden;
 }
+.sec-stop-s1 .s1-flow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 0 0;
+}
+.sec-stop-s1 .s1-top-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
 /* Eyebrow ABOVE pill+word */
 .sec-stop-s1 .s1-eyebrow {
@@ -1902,7 +1914,7 @@
   line-height: 1.25;
   color: #1E1408;
   padding: 0 24px;
-  margin: 0 0 10px;
+  margin: 0;
   text-wrap: balance;
 }
 
@@ -1915,7 +1927,7 @@
   line-height: 1.55;
   color: rgba(33, 24, 12, 0.55);
   padding: 0 28px;
-  margin: 0 0 0;
+  margin: 0;
 }
 
 /* Hero image — 200px, cover so orb stays centred, aggressive mask dissolves edges to parchment */
@@ -1939,15 +1951,15 @@
   mask-image: radial-gradient(ellipse 60% 70% at center 50%, black 0%, black 22%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.32) 72%, rgba(0,0,0,0.08) 88%, transparent 100%);
 }
 
-/* Bottom stack — 32px horizontal inset, 20px bottom breathing, 2px top margin */
+/* Bottom stack — 32px horizontal inset, 24px bottom breathing, flex handles top spacing */
 .sec-stop-s1 .s1-bottom-stack {
-  padding: 0 32px 20px;
+  padding: 0 32px 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
   box-sizing: border-box;
-  margin-top: 2px;
+  margin-top: 0;
 }
 
 /* Quote card */
@@ -11162,25 +11174,28 @@ window.sec_stop_mode = 'guided';
       </div>
     </div>
 
-    <div class="s1-eyebrow">STEP 1 OF 4</div>
+    <div class="s1-flow">
 
-    <div class="s1-letter-row">
-      <div class="s1-pill"><span>S</span></div>
-      <div class="s1-pill-word">Stop</div>
-    </div>
+      <div class="s1-top-content">
+        <div class="s1-eyebrow">STEP 1 OF 4</div>
 
-    <h2 class="s1-headline">Whatever you're about to do —<br>don't do it yet.</h2>
+        <div class="s1-letter-row">
+          <div class="s1-pill"><span>S</span></div>
+          <div class="s1-pill-word">Stop</div>
+        </div>
 
-    <p class="s1-body">Don't send that message. Don't scroll back through the photos. Your emotions are running fast — that's exactly when to pause.</p>
+        <h2 class="s1-headline">Whatever you're about to do —<br>don't do it yet.</h2>
 
-    <div class="s1-hero">
-      <img src="assets/illustrations/Relationships/Modules/BreakupRecovery/stop-s1-hero.png" alt="" class="s1-hero-img">
-    </div>
+        <p class="s1-body">Don't send that message. Don't scroll back through the photos. Your emotions are running fast — that's exactly when to pause.</p>
+      </div>
 
-    <div class="s1-bottom-stack">
+      <div class="s1-hero">
+        <img src="assets/illustrations/Relationships/Modules/BreakupRecovery/stop-s1-hero.png" alt="" class="s1-hero-img">
+      </div>
 
+      <div class="s1-bottom-stack">
 
-      <button class="s1-confirm" id="s1-confirm-card" onclick="confirmStopS1()">
+        <button class="s1-confirm" id="s1-confirm-card" onclick="confirmStopS1()">
         <span class="s1-confirm-check" id="s1-check-circle"></span>
         <span class="s1-confirm-label">I've stopped. I'm not acting on anything right now.</span>
         <span class="s1-confirm-hint">Tap to confirm</span>
@@ -11213,6 +11228,8 @@ window.sec_stop_mode = 'guided';
       </div>
 
     </div>
+
+    </div><!-- /s1-flow -->
 
   </div></div></div>
 </div><!-- /section-breakup-stop-s1 -->
@@ -11353,7 +11370,7 @@ function clCompleteTheLetter() {
 function speakStopS1() {
   if (!window.stopSpeakSequence) return;
   window.stopSpeakSequence([
-    "Step one. Stop.",
+    "Step one. S, for Stop.",
     1000,
     "Whatever you're about to do, don't do it yet.",
     1200,
@@ -11517,11 +11534,13 @@ function speakStopS1() {
 
     if (typeof window.stopSpeakSequence === 'function') {
       window.stopSpeakSequence([
-        "Step two. Take a Breath. We will do four cycles of box breathing.",
+        "Step two. T, for Take a Breath. We'll do four cycles of box breathing.",
         1000,
         "Breathe in through your nose. Hold. Breathe out through your mouth. Hold. Four counts each.",
         600,
-        "Focus on the circle, and follow it. Let's begin."
+        "Focus on the circle throughout, and let it guide your breath.",
+        600,
+        "Let's begin."
       ], startCycle);
     } else {
       startCycle();
@@ -11844,7 +11863,7 @@ function speakStopS1() {
 <script>
 function speakStopS3() {
   if (typeof window.stopSpeak === 'function') {
-    window.stopSpeak("Step three. Observe. Now notice what you're feeling, and where in your body.");
+    window.stopSpeak("Step three. O, for Observe. Now notice what you're feeling, and where in your body.");
   }
 }
 window._s3HasSpoken = false;
@@ -12061,7 +12080,7 @@ function s3ToggleChip(el) {
 <script>
 function speakStopS4() {
   if (typeof window.stopSpeak === 'function') {
-    window.stopSpeak("Step four. Proceed. Choose your next gentle step — the thoughtful one, not the impulsive one.");
+    window.stopSpeak("Step four. P, for Proceed. Choose your next gentle step — the thoughtful one, not the impulsive one.");
   }
 }
 window._s4HasSpoken = false;
