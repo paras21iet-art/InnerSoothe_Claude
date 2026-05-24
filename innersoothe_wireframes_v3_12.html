@@ -11388,7 +11388,10 @@ function speakStopS1() {
     if (!card || card.classList.contains('confirmed')) return;
     card.classList.add('confirmed');
     if (cta) cta.disabled = false;
-    if (window.stopSpeak) window.stopSpeak("Good. You've paused.");
+    if (window.stopCancelVoice) window.stopCancelVoice();
+    setTimeout(function() {
+      if (window.stopSpeak) window.stopSpeak("Good. You've paused.");
+    }, 250);
   };
   window.advanceStopS1 = function() {
     if (window.stopCancelVoice) window.stopCancelVoice();
