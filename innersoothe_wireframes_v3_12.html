@@ -11428,7 +11428,7 @@ function speakStopS1() {
       <img src="assets/illustrations/Relationships/Modules/BreakupRecovery/stop-s1-hero.png" alt="" class="s2-hero-img">
     </div>
 
-    <p class="s2-phase-label">Breathe in</p>
+    <p class="s2-phase-label">Breathe in — through your nose</p>
     <p class="s2-cycle">Cycle 1 of 4</p>
     <div class="s2-timeline">
       <div class="s2-timeline-segment" data-phase="0">
@@ -11523,9 +11523,9 @@ function speakStopS1() {
       window.stopSpeakSequence([
         "Step two. Take a Breath. We will do four cycles of box breathing.",
         1000,
-        "Breathe in. Hold. Breathe out. Hold. Four counts each.",
+        "Breathe in through your nose. Hold. Breathe out through your mouth. Hold. Four counts each.",
         600,
-        "Let's begin."
+        "Focus on the circle, and follow it. Let's begin."
       ], startCycle);
     } else {
       startCycle();
@@ -11540,10 +11540,10 @@ function speakStopS1() {
     var COUNT_INTERVAL  = 800;
 
     var phases = [
-      { name: 'inhale',      label: 'Breathe in',  voice: 'Breathe in',  startScale: 0.92, endScale: 1.05 },
-      { name: 'hold-top',    label: 'Hold',         voice: 'Hold',        startScale: 1.05, endScale: 1.05 },
-      { name: 'exhale',      label: 'Breathe out',  voice: 'Breathe out', startScale: 1.05, endScale: 0.92 },
-      { name: 'hold-bottom', label: 'Hold',         voice: 'Hold',        startScale: 0.92, endScale: 0.92 }
+      { name: 'inhale',      label: 'Breathe in — through your nose',   voice: 'Breathe in',  startScale: 0.92, endScale: 1.05 },
+      { name: 'hold-top',    label: 'Hold',                              voice: 'Hold',        startScale: 1.05, endScale: 1.05 },
+      { name: 'exhale',      label: 'Breathe out — through your mouth',  voice: 'Breathe out', startScale: 1.05, endScale: 0.92 },
+      { name: 'hold-bottom', label: 'Hold',                              voice: 'Hold',        startScale: 0.92, endScale: 0.92 }
     ];
 
     var s2CyclesCompleted = 0;
@@ -12996,7 +12996,7 @@ window.onStopSectionShow = function(sectionId) {
     var cta = document.getElementById('s2-cta');
     var more = document.getElementById('s2-more-cycle');
     if (img) { img.className = 's2-hero-img waiting'; img.style.transform = ''; }
-    if (lbl) lbl.textContent = 'Breathe in';
+    if (lbl) lbl.textContent = 'Breathe in — through your nose';
     if (cyc) cyc.textContent = 'Cycle 1 of 4';
     document.querySelectorAll('.sec-stop-s2 .s2-timeline-count').forEach(function(el){ el.textContent = ''; });
     document.querySelectorAll('.sec-stop-s2 .s2-timeline-segment').forEach(function(seg){ seg.classList.remove('active','completed'); seg.querySelector('.s2-timeline-fill').style.width = '0%'; });
