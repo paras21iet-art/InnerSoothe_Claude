@@ -3123,14 +3123,10 @@
 .pmrq-arrows g[data-group="face"] { display: none !important; }
 .pmrq-arrow-label {
   font-family: 'DM Sans', sans-serif;
-  font-size: 2px;
-  font-weight: 500;
-  fill: #A0561E;
-  paint-order: stroke;
-  stroke: rgba(255,255,255,0.92);
-  stroke-width: 0.6px;
-  stroke-linejoin: round;
-  letter-spacing: 0.1px;
+  font-size: 2.1px;
+  font-weight: 600;
+  fill: #4A2408;
+  letter-spacing: 0.15px;
 }
 
 /* Face closeup sizing: smaller centered image so background shows around it cleanly */
@@ -3149,6 +3145,18 @@
 /* Slower face transitions for a smoother body-to-closeup flow */
 .pmrq-pose[data-pose="face"] { transition: opacity 1.5s cubic-bezier(0.4, 0, 0.6, 1); }
 .pmrq-pose-tense[data-pose="face"] { transition: opacity 1.5s cubic-bezier(0.4, 0, 0.6, 1); }
+  .pmrq-pose[data-pose="feet"] {
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    object-position: center 92%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .pmrq-mannequin.feet-hidden { opacity: 0; }
 
 /* Body layer keeps the warm-beige base so it shows around the smaller face closeup */
 .pmrq-body-layer { background-color: #EDCFB5; }
@@ -13429,13 +13437,13 @@ window.onStopSectionShow = function(sectionId) {
         </defs>
         <g data-group="hands">
           <use href="#pmrq-arrow-shape" x="26" y="74.5" width="7" height="7" transform="rotate(90 29.5 78)"/>
-          <use href="#pmrq-arrow-shape" x="58" y="74.5" width="7" height="7" transform="rotate(-90 61.5 78)" class="staggered"/>
-          <text class="pmrq-arrow-label" x="66" y="80" text-anchor="start">Fists</text>
+          <use href="#pmrq-arrow-shape" x="55" y="79" width="7" height="7" transform="rotate(-90 58.5 82.5)" class="staggered"/>
+          <text class="pmrq-arrow-label" x="63" y="84" text-anchor="start">Fists</text>
         </g>
         <g data-group="shoulders">
-          <use href="#pmrq-arrow-shape" x="38" y="22" width="11" height="11"/>
-          <use href="#pmrq-arrow-shape" x="60" y="22" width="11" height="11" class="staggered"/>
-          <text class="pmrq-arrow-label" x="72" y="28" text-anchor="start">Shoulders</text>
+          <use href="#pmrq-arrow-shape" x="44" y="24" width="7" height="7"/>
+          <use href="#pmrq-arrow-shape" x="64" y="24" width="7" height="7" class="staggered"/>
+          <text class="pmrq-arrow-label" x="72" y="29" text-anchor="start">Shoulders</text>
         </g>
         <g data-group="face">
           <use href="#pmrq-arrow-shape" x="52" y="0" width="8" height="8" transform="rotate(180 56 4)"/>
@@ -13444,27 +13452,27 @@ window.onStopSectionShow = function(sectionId) {
           <use href="#pmrq-arrow-shape" x="39" y="11" width="8" height="8" transform="rotate(90 43 15)" class="staggered"/>
         </g>
         <g data-group="neck">
-          <use href="#pmrq-arrow-shape" x="51" y="22" width="11" height="11"/>
-          <text class="pmrq-arrow-label" x="63" y="27" text-anchor="start">Neck</text>
+          <use href="#pmrq-arrow-shape" x="53" y="22" width="7" height="7" class="staggered"/>
+          <text class="pmrq-arrow-label" x="62" y="27" text-anchor="start">Neck</text>
         </g>
         <g data-group="torso">
-          <use href="#pmrq-arrow-shape" x="49" y="22" width="11" height="11"/>
-          <text class="pmrq-arrow-label" x="54.5" y="37" text-anchor="middle">Chest</text>
-          <use href="#pmrq-arrow-shape" x="34" y="48" width="11" height="11" transform="rotate(90 39.5 53.5)"/>
-          <use href="#pmrq-arrow-shape" x="62" y="48" width="11" height="11" transform="rotate(-90 67.5 53.5)" class="staggered"/>
-          <text class="pmrq-arrow-label" x="74" y="55" text-anchor="start">Core</text>
+          <use href="#pmrq-arrow-shape" x="51" y="34" width="7" height="7"/>
+          <text class="pmrq-arrow-label" x="54.5" y="33" text-anchor="middle">Chest</text>
+          <use href="#pmrq-arrow-shape" x="36" y="59" width="7" height="7" transform="rotate(90 39.5 62.5)"/>
+          <use href="#pmrq-arrow-shape" x="64" y="59" width="7" height="7" transform="rotate(-90 67.5 62.5)" class="staggered"/>
+          <text class="pmrq-arrow-label" x="53.5" y="61" text-anchor="middle">Core</text>
         </g>
         <g data-group="thighs">
-          <use href="#pmrq-arrow-shape" x="20" y="80" width="10" height="10" transform="rotate(90 25 85)"/>
-          <use href="#pmrq-arrow-shape" x="50" y="80" width="10" height="10" transform="rotate(-90 55 85)" class="staggered"/>
-          <text class="pmrq-arrow-label" x="62" y="87" text-anchor="start">Knees</text>
-          <use href="#pmrq-arrow-shape" x="52" y="64" width="9" height="9" transform="rotate(-135 56.5 68.5)" class="staggered"/>
-          <text class="pmrq-arrow-label" x="62" y="70" text-anchor="start">Glutes</text>
+          <use href="#pmrq-arrow-shape" x="24" y="88" width="7" height="7" transform="rotate(90 27.5 91.5)"/>
+          <use href="#pmrq-arrow-shape" x="44" y="88" width="7" height="7" transform="rotate(-90 47.5 91.5)" class="staggered"/>
+          <text class="pmrq-arrow-label" x="52" y="91" text-anchor="start">Knees</text>
+          <use href="#pmrq-arrow-shape" x="67" y="80" width="7" height="7" transform="rotate(-90 70.5 83.5)" class="staggered"/>
+          <text class="pmrq-arrow-label" x="76" y="85" text-anchor="start">Glutes</text>
         </g>
         <g data-group="feet">
-          <use href="#pmrq-arrow-shape" x="18" y="116" width="10" height="10" transform="rotate(90 23 121)"/>
-          <use href="#pmrq-arrow-shape" x="38" y="116" width="10" height="10" transform="rotate(-90 43 121)" class="staggered"/>
-          <text class="pmrq-arrow-label" x="50" y="123" text-anchor="start">Calves</text>
+          <use href="#pmrq-arrow-shape" x="16" y="104" width="7" height="7" transform="rotate(90 19.5 107.5)"/>
+          <use href="#pmrq-arrow-shape" x="46" y="104" width="7" height="7" transform="rotate(-90 49.5 107.5)" class="staggered"/>
+          <text class="pmrq-arrow-label" x="55" y="109" text-anchor="start">Calves</text>
         </g>
       </svg>
       <svg class="pmrq-regions" viewBox="0 0 100 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;">
@@ -14288,11 +14296,8 @@ function pmrSetupContinue() {
     }
     var mannequinEl = document.querySelector('#section-breakup-pmr-session-quick .pmrq-mannequin');
     if (mannequinEl) {
-      if (poseSlug === 'face') {
-        mannequinEl.classList.add('face-hidden');
-      } else {
-        mannequinEl.classList.remove('face-hidden');
-      }
+      mannequinEl.classList.toggle('face-hidden', poseSlug === 'face');
+      mannequinEl.classList.toggle('feet-hidden', poseSlug === 'feet');
     }
   }
 
