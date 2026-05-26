@@ -3116,6 +3116,12 @@
 .pmrq-pose { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; pointer-events: none; transition: opacity 5s cubic-bezier(0.16, 1, 0.3, 1); }
 .pmrq-pose.active { opacity: 1; transition: opacity 5s cubic-bezier(0.16, 1, 0.3, 1); }
 .pmrq-pose.releasing { animation: pmrq-pose-release 7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.pmrq-pose[data-pose="feet"].releasing {
+  animation: none;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
 .pmrq-pose-tense { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; pointer-events: none; z-index: 2; transition: opacity 2.5s cubic-bezier(0.4, 0, 0.6, 1); }
 .pmrq-pose-tense.active { opacity: 1; }
 
@@ -3146,28 +3152,29 @@
 .pmrq-pose[data-pose="face"] { transition: opacity 1.5s cubic-bezier(0.4, 0, 0.6, 1); }
 .pmrq-pose-tense[data-pose="face"] { transition: opacity 1.5s cubic-bezier(0.4, 0, 0.6, 1); }
   .pmrq-pose[data-pose="feet"] {
-    width: 90%;
-    height: 90%;
-    top: 42%;
+    width: 96%;
+    height: 96%;
+    top: 36%;
     left: 50%;
     transform: translate(-50%, -50%);
     object-fit: contain;
-    -webkit-mask-image: radial-gradient(ellipse 78% 82% at center, black 64%, transparent 97%);
-    mask-image: radial-gradient(ellipse 78% 82% at center, black 64%, transparent 97%);
+    -webkit-mask-image: radial-gradient(ellipse 88% 90% at center, black 70%, transparent 99%);
+    mask-image: radial-gradient(ellipse 88% 90% at center, black 70%, transparent 99%);
   }
   .pmrq-mannequin.feet-hidden {
-    width: 90%;
-    height: 90%;
-    top: 42%;
+    width: 96%;
+    height: 96%;
+    top: 36%;
     left: 50%;
     transform: translate(-50%, -50%);
     object-fit: contain;
-    -webkit-mask-image: radial-gradient(ellipse 78% 82% at center, black 64%, transparent 97%);
-    mask-image: radial-gradient(ellipse 78% 82% at center, black 64%, transparent 97%);
+    -webkit-mask-image: radial-gradient(ellipse 88% 90% at center, black 70%, transparent 99%);
+    mask-image: radial-gradient(ellipse 88% 90% at center, black 70%, transparent 99%);
   }
 
 /* Body layer keeps the warm-beige base so it shows around the smaller face closeup */
-.pmrq-body-layer { background-color: #EDCFB5; }
+.pmrq-body-layer { background-color: #EDCFB5; transition: background-color 1.5s ease; }
+.pmrq-body-layer.feet-bg { background-color: #D9BFA8; }
 
 /* Full-body mannequin fades out when face group is active so the bg shows cleanly around the closeup */
 .pmrq-mannequin { transition: opacity 2s cubic-bezier(0.4, 0, 0.6, 1); }
@@ -13537,7 +13544,7 @@ window.onStopSectionShow = function(sectionId) {
     </div>
 
     <div class="pmr-end-cta-wrap">
-      <button class="pmr-end-cta" onclick="pmrqEndEarly()">Complete session →</button>
+      <button class="pmr-end-cta" onclick="pmrqEndEarly(); showSection('breakup-pmr-post-checkin');">Complete session →</button>
     </div>
 
   </div></div></div>
@@ -14303,6 +14310,8 @@ function pmrSetupContinue() {
     if (mannequinEl) {
       mannequinEl.classList.toggle('face-hidden', poseSlug === 'face');
       mannequinEl.classList.toggle('feet-hidden', poseSlug === 'feet');
+      var bodyLayerEl = document.querySelector('#section-breakup-pmr-session-quick .pmrq-body-layer');
+      if (bodyLayerEl) bodyLayerEl.classList.toggle('feet-bg', poseSlug === 'feet');
     }
   }
 
@@ -14409,10 +14418,7 @@ function pmrSetupContinue() {
     speakChunks(sid, QUICK_OUTRO_CHUNKS, 0, function() {
       if (sid !== _sid) return;
       stopMusic();
-      setTimeout(function() {
-        if (sid !== _sid) return;
-        showSection('breakup-pmr-post-checkin');
-      }, 3000);
+      // Do NOT auto-advance. User taps "Complete session" to continue to the check-in.
     });
   }
 
