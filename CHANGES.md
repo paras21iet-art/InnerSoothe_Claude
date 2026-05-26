@@ -445,6 +445,39 @@ Shell classes: `.sec-cl-p1` / `.sec-cl-p2` / `.sec-cl-p3` — 370×780px, `backg
 
 ---
 
+## 2026-05-26 — Hypnodrama Session: merge hyp-merge-block verbatim into wireframe
+
+**File:** `innersoothe_wireframes_v3_12.html`  
+**Section:** `section-breakup-hypnodrama-session`  
+**Commit:** `67b1ace`
+
+Replaced the prior assistant-built Hypnodrama section (`.hyp-phone` pattern, old BEATS rewrite) with the fully spec'd block from `hyp-merge-block.html` (Dr. Anu Teotia's verbatim BEATS, `.hyp-shell` pattern, `window.InnerSootheHyp` API).
+
+### Three changes made:
+1. **CSS removal** — old scoped `.hyp-phone` CSS block (~160 lines) removed from `<head>`. Replaced with single comment; CSS now lives inline inside the section.
+2. **Section HTML replacement** — entire `section-breakup-hypnodrama-session` replaced verbatim with spec block. `phone-wrap` parent given `position:relative;overflow:hidden` so `position:absolute;inset:0` on the shell fills the frame. Navigation wiring applied inside the spec script only:
+   - `hyp-backBtn` → `InnerSootheHyp.stop(); showSection('module-breakup-recovery')`
+   - `hyp-continueBtn` → `InnerSootheHyp.stop(); showSection('breakup-hypnodrama-post-checkin')`
+   - `crisis()` → `showSection('crisis-resources')` (was placeholder `alert()`)
+3. **Old IIFE replacement** — 220-line beat-driven IIFE replaced with 9-line `InnerSootheHyp.start/stop` lifecycle wrapper. Guard flag `_showSectionWrappedForHyp` preserved.
+
+### Status bar note:
+`.hyp-statusbar` left in place — consistent with all other sections, each of which includes its own faux status bar.
+
+### Verification results:
+- `id="section-breakup-hypnodrama-session"` count: **1** ✓
+- Card 4 onclick: `showSection('breakup-hypnodrama-session')` at line 10529 ✓
+- `InnerSootheHyp.start` count: **2** ✓
+- `InnerSootheHyp.stop` count: **3** ✓
+- `id="phone"` count: **0** ✓
+
+### What was NOT changed:
+- Old `section-hypnodrama` (dark navy "The Healing Conversation" comparison screen) — untouched
+- All other sections, global CSS, global JS, bottom nav, fonts
+- BEATS array content (verbatim Dr. Anu Teotia script from spec)
+
+---
+
 ## 2026-05-26 — PMR Quick Session: full visual pass complete (all 7 muscle groups)
 
 **File:** `innersoothe_wireframes_v3_12.html`

@@ -63,6 +63,7 @@
 22. **Closure Letter Post check-in** (`section-cl-post-checkin`) — LOCKED (2026-05-15), MANDATORY screen, chips auto-sync from CL pre
 23. **Closure Letter Complete** (`section-cl-complete`) — LOCKED (2026-05-15), hybrid composition with YOUR SHIFT + THIS SESSION cards, Q4 honor-the-choice save logic
 24. **PMR Quick Session** (`section-breakup-pmr-session-quick`) — VISUAL PASS COMPLETE (2026-05-26). All 7 muscle groups (Hands, Arms/Shoulders, Face, Neck, Torso, Thighs, Legs/Calves) have body-map arrows + labels. Face uses a closeup pair; Legs uses a baked-in-arrows image. TTS chain safety-net, pause/resume feedback, no-auto-advance (user taps "Complete session" to reach the post-checkin). "Good enough" — see Known Compromises.
+25. **Hypnodrama Session** (`section-breakup-hypnodrama-session`) — LOCKED (2026-05-26). Verbatim merge of `hyp-merge-block.html` (Dr. Anu Teotia's BEATS, `.hyp-shell` pattern). Beat-driven playback engine with 9 phases × 28 beats, count sequences (10→0, 3→1 ×2, 1→5), linger beats, pause/resume, voice toggle, `window.InnerSootheHyp.start/stop` API. Back → module-breakup-recovery; Continue → breakup-hypnodrama-post-checkin (stub).
 
 ### Screens In-Progress / Pending
 - STOP Quick Reset mode (stub `startStopGuided()` exists; full implementation pending)
@@ -72,6 +73,12 @@
 ### Known Compromises — carry into React Native build (do NOT re-polish in wireframe)
 - **PMR body-map / Legs feet view**: the opaque porcelain photo has a gradient background that cannot perfectly match a flat screen color, leaving a faint seam; and SVG arrows fought a coordinate-space mismatch with the scaled pose image (Legs arrows had to be baked into the image as a workaround). Native build: use a TRANSPARENT-bg or VECTOR body-map asset and position arrows as native elements anchored to the figure. Removes the entire class of bug.
 - **PMR clinical content UNVERIFIED**: the 7 group actions (esp. "Thighs: squeeze knees + glutes" — glutes are hidden in a seated pose) and voiceover scripts have NOT been clinically reviewed. Confirm all actions, ordering, and scripts with Dr. Anu Teotia before building natively.
+
+### New canonical patterns established 2026-05-26 (Hypnodrama merge)
+- **`window.InnerSootheHyp.start/stop` API** — spec script defines the API inline inside the section; a 9-line showSection wrapper at bottom of file calls it. Pattern separates playback logic (inline) from lifecycle wiring (global wrapper). Reusable for any session-length immersive technique.
+- **Inline `<style>` in `<body>` pattern** — spec CSS lives inside the section div, not in `<head>`. Valid HTML5; preferred when CSS is tightly scoped to a single section with a unique namespace prefix (`hyp-`).
+- **Positioned phone-wrap parent** — `<div class="phone-wrap" style="position:relative;overflow:hidden;">` required so that `position:absolute;inset:0` on the session shell fills the frame without overflow. Apply to any full-bleed section.
+- **Beat-driven immersive engine schema** — BEATS array entries: `{phase, type:'line'|'count', text, linger?, hold?}` for lines; `{phase, type:'count', up?, counts:{intro, seq[], resolve}}` for count sequences. `linger:true` shows the linger tag; `hold:N` overrides auto-calculated hold time. TIMING object controls all durations.
 
 ### New canonical patterns established 2026-05-26 (PMR body-map session)
 - **Body-map arrow + label system** — shared SVG `<symbol id="pmrq-arrow-shape">` referenced via `<use>`, standard width 7 in a `0 0 100 150` viewBox (slice). Arrow fill `#A06832`, thin white stroke 0.7, soft shadow, subtle pulse. Reusable for any guided body-region technique.
@@ -184,12 +191,14 @@ When a visual issue keeps recurring after multiple CSS-only fixes (e.g. the conf
 1. ~~Build STOP Steps 1–4, pre/post check-in, Complete, Progress~~ — ALL DONE (2026-05-13/14)
 2. ~~Build Closure Letter 7 sections end-to-end~~ — DONE LOCKED (2026-05-15)
 3. ~~PMR Quick Session body-map (7 groups, arrows, voice, transitions)~~ — VISUAL PASS DONE (2026-05-26), "good enough"
-4. **→ Clinical content review with Dr. Anu Teotia** — confirm PMR group actions (esp. Thighs), ordering, and all voiceover scripts BEFORE native build
-5. PMR Entry + Complete + Full-session variant — alignment to STOP canonical templates
-6. STOP Quick Reset mode (stub `startStopGuided()` exists; needs full implementation)
-7. Psychologist sync on the 5 open questions
-8. Resolve "heal from within" sub-brand
-9. Source production-resolution illustration assets
-10. Psychologist records voice (Cord Cutting first)
-11. **Set up full React Native modular architecture** — use transparent/vector body-map assets + native arrow positioning (see Known Compromises)
-12. Build React Native screens (onboarding first)
+4. ~~Hypnodrama Session merge (hyp-merge-block verbatim)~~ — DONE LOCKED (2026-05-26)
+5. **→ Clinical content review with Dr. Anu Teotia** — confirm PMR group actions (esp. Thighs), ordering, and all voiceover scripts BEFORE native build
+6. Build `section-breakup-hypnodrama-post-checkin` (stub target for Hypnodrama Continue button)
+7. PMR Entry + Complete + Full-session variant — alignment to STOP canonical templates
+8. STOP Quick Reset mode (stub `startStopGuided()` exists; needs full implementation)
+9. Psychologist sync on the 5 open questions
+10. Resolve "heal from within" sub-brand
+11. Source production-resolution illustration assets
+12. Psychologist records voice (Cord Cutting first)
+13. **Set up full React Native modular architecture** — use transparent/vector body-map assets + native arrow positioning (see Known Compromises)
+14. Build React Native screens (onboarding first)
