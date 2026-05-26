@@ -6522,168 +6522,7 @@
 .hyp-q-name { font-size:11px; font-weight:700; color:white; margin-bottom:2px; }
 .hyp-q-sub { font-size:10px; color:rgba(255,255,255,0.4); line-height:1.5; }
 
-/* ===== Hypnodrama Session (breakup-hypnodrama-session) — spec build, hyp- namespace ===== */
-#section-breakup-hypnodrama-session .hyp-phone {
-  width:370px;height:780px;border-radius:48px;overflow:hidden;position:relative;
-  display:flex;flex-direction:column;
-  box-shadow:0 28px 70px rgba(30,20,8,0.45),0 0 0 1.5px rgba(30,20,8,0.10),inset 0 0 0 1px rgba(255,255,255,0.60);
-  background:radial-gradient(ellipse 160% 140% at 50% 46%, #F3E9D6 0%, #F0E5D0 64%, #EBDEC7 100%);
-  isolation:isolate;
-  animation:hyp-tonalbreath 29s ease-in-out infinite;
-}
-@keyframes hyp-tonalbreath{0%,100%{filter:brightness(1) saturate(1);}50%{filter:brightness(1.013) saturate(1.025);}}
-#section-breakup-hypnodrama-session .hyp-descent {
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse 96% 84% at 50% 44%, transparent 48%, rgba(92,58,24,0.055) 80%, rgba(72,48,22,0.11) 100%);
-  opacity:var(--depth,0);transition:opacity 3000ms ease;
-}
-#section-breakup-hypnodrama-session .hyp-descent-breath {
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse 100% 90% at 50% 46%, transparent 56%, rgba(92,58,24,0.05) 100%);
-  animation:hyp-vbreath 23s ease-in-out infinite;
-}
-@keyframes hyp-vbreath{0%,100%{opacity:0.28;}50%{opacity:0.52;}}
-#section-breakup-hypnodrama-session .hyp-presence {
-  position:absolute;left:45%;top:40%;width:540px;height:540px;
-  transform:translate(-50%,-50%);z-index:1;pointer-events:none;
-  opacity:var(--presence,0.5);transition:opacity 3600ms ease,transform 3600ms ease;
-}
-#section-breakup-hypnodrama-session .hyp-glow {position:absolute;border-radius:50%;will-change:transform,opacity;}
-#section-breakup-hypnodrama-session .hyp-glow-1 {
-  width:620px;height:500px;left:39%;top:41%;
-  background:radial-gradient(ellipse at 52% 46%, rgba(199,156,112,0.13) 0%, rgba(172,120,62,0.05) 54%, transparent 84%);
-  animation:hyp-driftA 46s ease-in-out infinite;
-}
-#section-breakup-hypnodrama-session .hyp-glow-2 {
-  width:380px;height:520px;left:66%;top:62%;
-  background:radial-gradient(ellipse at 50% 50%, rgba(210,168,120,0.085) 0%, rgba(184,126,64,0.034) 58%, transparent 86%);
-  animation:hyp-driftB 38s ease-in-out infinite;
-}
-@keyframes hyp-driftA{0%{transform:translate(-50%,-50%) scale(1.000);opacity:0.50;}32%{transform:translate(-51%,-49.2%) scale(1.022);opacity:0.56;}66%{transform:translate(-49.4%,-50.8%) scale(0.992);opacity:0.45;}100%{transform:translate(-50%,-50%) scale(1.000);opacity:0.50;}}
-@keyframes hyp-driftB{0%{transform:translate(-50%,-50%) scale(1.000);opacity:0.46;}38%{transform:translate(-49.3%,-50.7%) scale(0.986);opacity:0.40;}72%{transform:translate(-50.7%,-49.5%) scale(1.018);opacity:0.52;}100%{transform:translate(-50%,-50%) scale(1.000);opacity:0.46;}}
-#section-breakup-hypnodrama-session .hyp-presence.emerge{transform:translate(-50%,-50%) scale(1.06);}
-#section-breakup-hypnodrama-session .hyp-statusbar {
-  position:relative;z-index:20;flex-shrink:0;padding:14px 26px 0;
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:11px;font-weight:600;color:rgba(30,20,8,0.42);transition:opacity 1100ms ease;
-  font-family:'DM Sans',sans-serif;
-}
-#section-breakup-hypnodrama-session .hyp-sb-right{display:flex;align-items:center;gap:6px;}
-#section-breakup-hypnodrama-session .hyp-sb-right svg{display:block;}
-#section-breakup-hypnodrama-session .hyp-topbar {
-  position:absolute;top:42px;left:0;right:0;z-index:21;
-  display:flex;align-items:center;justify-content:space-between;padding:0 18px;transition:opacity 1100ms ease;
-}
-#section-breakup-hypnodrama-session .hyp-ticon {
-  width:38px;height:38px;border-radius:19px;display:flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,0.50);border:1px solid rgba(58,40,28,0.06);cursor:pointer;
-  transition:background 160ms ease,transform 120ms ease;
-}
-#section-breakup-hypnodrama-session .hyp-ticon svg{stroke:#3A2A1F;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-#section-breakup-hypnodrama-session .hyp-crisis-quiet {
-  font-family:'DM Sans',sans-serif;font-size:10.5px;font-weight:500;color:#A06832;letter-spacing:0.2px;
-  background:rgba(160,104,50,0.07);border:1px solid rgba(160,104,50,0.20);border-radius:16px;
-  padding:5px 11px;cursor:pointer;transition:background 160ms ease;
-}
-#section-breakup-hypnodrama-session .hyp-stage {
-  position:relative;z-index:5;flex:1;display:flex;flex-direction:column;align-items:center;
-  padding:0 38px;text-align:center;animation:hyp-surrender 85s ease-out 8s forwards;
-}
-@keyframes hyp-surrender{from{opacity:1;}to{opacity:0.88;}}
-#section-breakup-hypnodrama-session .hyp-phasewrap {
-  margin-top:112px;display:flex;flex-direction:column;align-items:center;gap:12px;transition:opacity 1300ms ease;
-}
-#section-breakup-hypnodrama-session .hyp-eyebrow {
-  font-family:'DM Sans',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:2.6px;
-  text-transform:uppercase;color:rgba(160,104,50,0.78);transition:opacity 1100ms ease;
-}
-#section-breakup-hypnodrama-session .hyp-rail{display:flex;align-items:center;gap:5px;}
-#section-breakup-hypnodrama-session .hyp-tick{width:13px;height:2px;border-radius:2px;background:rgba(30,20,8,0.15);transition:background 1100ms ease,width 1100ms ease;}
-#section-breakup-hypnodrama-session .hyp-tick.done{background:rgba(160,104,50,0.28);}
-#section-breakup-hypnodrama-session .hyp-tick.now{background:rgba(160,104,50,0.85);width:20px;}
-#section-breakup-hypnodrama-session .hyp-focalwrap{flex:1;display:flex;align-items:center;justify-content:center;width:100%;animation:hyp-textbreath 10s ease-in-out infinite;}
-@keyframes hyp-textbreath{0%,100%{opacity:1;}50%{opacity:0.92;}}
-#section-breakup-hypnodrama-session .hyp-focal {
-  font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:27px;
-  line-height:1.56;color:rgba(58,40,28,0.84);text-wrap:balance;max-width:296px;
-  opacity:0;transform:translateY(6px);transition:opacity 1900ms ease,transform 1900ms ease;
-}
-#section-breakup-hypnodrama-session .hyp-focal.show{opacity:1;transform:translateY(0);}
-#section-breakup-hypnodrama-session .hyp-count {
-  font-family:'Cormorant Garamond',serif;font-weight:300;font-variant-numeric:lining-nums;font-size:104px;
-  line-height:1;color:rgba(150,106,66,0.82);opacity:0;transform:scale(0.86);display:none;
-  transition:opacity 900ms ease,transform 1100ms cubic-bezier(0.22,0.61,0.36,1);
-}
-#section-breakup-hypnodrama-session .hyp-count.show{opacity:1;transform:scale(1);}
-#section-breakup-hypnodrama-session .hyp-resolve{font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:24px;color:rgba(58,40,28,0.84);letter-spacing:0.3px;}
-#section-breakup-hypnodrama-session .hyp-lingertag {
-  margin-top:18px;font-family:'DM Sans',sans-serif;font-size:9.5px;font-weight:500;letter-spacing:1.4px;
-  text-transform:uppercase;color:rgba(58,40,28,0.40);opacity:0;transition:opacity 1800ms ease;
-  display:flex;align-items:center;gap:7px;
-}
-#section-breakup-hypnodrama-session .hyp-lingertag.show{opacity:1;}
-#section-breakup-hypnodrama-session .hyp-linger-dot{width:5px;height:5px;border-radius:50%;background:rgba(160,104,50,0.8);animation:hyp-linger 4s ease-in-out infinite;}
-@keyframes hyp-linger{0%,100%{opacity:0.28;}50%{opacity:0.9;}}
-#section-breakup-hypnodrama-session .hyp-footer{position:relative;z-index:6;flex-shrink:0;padding:0 38px 30px;}
-#section-breakup-hypnodrama-session .hyp-taphint{text-align:center;font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(58,40,28,0.28);letter-spacing:0.4px;margin-bottom:16px;transition:opacity 1100ms ease;}
-#section-breakup-hypnodrama-session .hyp-progress-track{height:2px;border-radius:99px;background:rgba(30,20,8,0.15);overflow:hidden;}
-#section-breakup-hypnodrama-session .hyp-progress-fill{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,rgba(160,104,50,0.85),rgba(196,149,106,0.85));transition:width 1600ms linear;}
-#section-breakup-hypnodrama-session .hyp-phone.hyp-dimmed .hyp-statusbar,
-#section-breakup-hypnodrama-session .hyp-phone.hyp-dimmed .hyp-topbar,
-#section-breakup-hypnodrama-session .hyp-phone.hyp-dimmed .hyp-phasewrap,
-#section-breakup-hypnodrama-session .hyp-phone.hyp-dimmed .hyp-taphint,
-#section-breakup-hypnodrama-session .hyp-phone.hyp-dimmed .hyp-progress-track{opacity:0.06;}
-#section-breakup-hypnodrama-session .hyp-pausewrap {
-  position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;
-  align-items:center;justify-content:flex-end;padding:0 30px 46px;
-  background:radial-gradient(ellipse 120% 90% at 50% 50%, rgba(244,234,216,0.38), rgba(238,225,202,0.88));
-  opacity:0;pointer-events:none;transition:opacity 460ms ease;
-}
-#section-breakup-hypnodrama-session .hyp-pausewrap.show{opacity:1;pointer-events:auto;}
-#section-breakup-hypnodrama-session .hyp-pause-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:26px;color:rgba(58,40,28,0.92);margin-bottom:6px;text-align:center;}
-#section-breakup-hypnodrama-session .hyp-pause-sub{font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(58,40,28,0.55);text-align:center;margin-bottom:26px;line-height:1.5;max-width:240px;}
-#section-breakup-hypnodrama-session .hyp-pause-stack{width:100%;display:flex;flex-direction:column;gap:11px;}
-#section-breakup-hypnodrama-session .hyp-btn-primary {
-  width:100%;padding:14px;border:none;border-radius:24px;background:#A06832;color:#F3E9DC;
-  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;
-  box-shadow:0 6px 18px rgba(122,82,48,0.28);transition:transform 120ms ease;
-}
-#section-breakup-hypnodrama-session .hyp-btn-row{display:flex;gap:11px;}
-#section-breakup-hypnodrama-session .hyp-btn-ghost {
-  flex:1;padding:12px;border-radius:20px;border:1px solid rgba(160,104,50,0.30);
-  background:rgba(243,233,220,0.7);color:#A06832;font-family:'DM Sans',sans-serif;
-  font-size:12.5px;font-weight:500;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:7px;
-  transition:background 160ms ease,transform 120ms ease;
-}
-#section-breakup-hypnodrama-session .hyp-btn-ghost svg{stroke:#A06832;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-#section-breakup-hypnodrama-session .hyp-pause-crisis{margin-top:20px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:#A06832;cursor:pointer;display:flex;align-items:center;gap:7px;}
-#section-breakup-hypnodrama-session .hyp-pause-crisis svg{stroke:#A06832;stroke-width:2;fill:none;}
-#section-breakup-hypnodrama-session .hyp-pause-end{margin-top:14px;font-family:'DM Sans',sans-serif;font-size:11.5px;color:rgba(58,40,28,0.40);cursor:pointer;}
-#section-breakup-hypnodrama-session .hyp-complete {
-  position:absolute;inset:0;z-index:30;display:none;flex-direction:column;
-  align-items:center;justify-content:center;padding:0 40px;text-align:center;
-}
-#section-breakup-hypnodrama-session .hyp-complete.show{display:flex;}
-#section-breakup-hypnodrama-session .hyp-complete-mark{width:64px;height:64px;border-radius:32px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 38% 34%, rgba(196,149,106,0.26), rgba(160,104,50,0.12));border:1px solid rgba(160,104,50,0.26);margin-bottom:22px;}
-#section-breakup-hypnodrama-session .hyp-complete-mark svg{stroke:#A06832;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-#section-breakup-hypnodrama-session .hyp-complete-eyebrow{font-family:'DM Sans',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:2.6px;text-transform:uppercase;color:rgba(160,104,50,0.78);margin-bottom:12px;}
-#section-breakup-hypnodrama-session .hyp-complete-title{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:32px;color:rgba(58,40,28,0.88);line-height:1.15;margin-bottom:14px;}
-#section-breakup-hypnodrama-session .hyp-complete-body{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:300;line-height:1.65;color:rgba(58,40,28,0.55);max-width:262px;margin-bottom:34px;}
-#section-breakup-hypnodrama-session .hyp-complete .hyp-btn-primary{max-width:300px;}
-#section-breakup-hypnodrama-session .hyp-complete-secondary{margin-top:14px;font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:500;color:#A06832;cursor:pointer;}
-@media(prefers-reduced-motion:reduce){
-  #section-breakup-hypnodrama-session .hyp-glow,
-  #section-breakup-hypnodrama-session .hyp-phone,
-  #section-breakup-hypnodrama-session .hyp-focalwrap,
-  #section-breakup-hypnodrama-session .hyp-stage{animation:none!important;}
-  #section-breakup-hypnodrama-session .hyp-stage{opacity:1!important;}
-  #section-breakup-hypnodrama-session .hyp-descent-breath{animation:none!important;opacity:0.4!important;}
-  #section-breakup-hypnodrama-session .hyp-focal{transition:opacity 1000ms ease;transform:none;}
-  #section-breakup-hypnodrama-session .hyp-focal.show{transform:none;}
-  #section-breakup-hypnodrama-session .hyp-count{transition:opacity 400ms ease;transform:none;}
-  #section-breakup-hypnodrama-session .hyp-count.show{transform:none;}
-}
+/* ===== Hypnodrama Session — CSS lives inline in section-breakup-hypnodrama-session ===== */
 
 /* ===== Shifting Identity / Core Beliefs ===== */
 .sec-sch {
@@ -13820,9 +13659,138 @@ window.onStopSectionShow = function(sectionId) {
   </div></div></div>
 </div><!-- /section-breakup-pmr-complete -->
 
+<!-- ====== InnerSoothe · Breakup Recovery · Hypnodrama session (namespaced: hyp-) ====== -->
 <div class="screens-area" id="section-breakup-hypnodrama-session">
-  <div class="phone-grid"><div class="phone-wrap">
-  <div class="hyp-phone" id="hyp-phone" style="--depth:0;--presence:0.5;">
+<div class="phone-grid"><div class="phone-wrap" style="position:relative;overflow:hidden;">
+<style>
+#section-breakup-hypnodrama-session{position:absolute;inset:0;
+    --sage:#A06832; --sage-light:#C4956A; --bark:#8C5A1E; --charcoal:#1E1408;
+    --ink-92:rgba(58,40,28,0.92); --ink-72:rgba(58,40,28,0.72);
+    --ink-55:rgba(58,40,28,0.55); --ink-40:rgba(58,40,28,0.40);
+    --ink-28:rgba(58,40,28,0.28); --ink-15:rgba(58,40,28,0.15);
+  }
+  #section-breakup-hypnodrama-session *{box-sizing:border-box;margin:0;padding:0;}
+  .hyp-shell{
+    width:100%;height:100%;overflow:hidden;position:relative;
+    display:flex;flex-direction:column;
+    box-shadow:none;
+    background:radial-gradient(ellipse 160% 140% at 50% 46%, #F3E9D6 0%, #F0E5D0 64%, #EBDEC7 100%);
+    isolation:isolate;
+    animation:hyp-tonalbreath 12s ease-in-out infinite;
+  }
+  @keyframes hyp-tonalbreath{0%,100%{filter:brightness(1) contrast(1) saturate(1);}50%{filter:brightness(1.012) contrast(0.992) saturate(1.02);}}
+  .hyp-descent{
+    position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(ellipse 96% 84% at 50% 44%,
+      transparent 48%, rgba(92,58,24,0.055) 80%, rgba(72,48,22,0.11) 100%);
+    opacity:var(--depth,0);transition:opacity 3000ms ease;
+  }
+  .hyp-descent-breath{
+    position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(ellipse 100% 90% at 50% 46%, transparent 56%, rgba(92,58,24,0.05) 100%);
+    animation:hyp-vbreath 12s ease-in-out -4s infinite;
+  }
+  @keyframes hyp-vbreath{0%,100%{opacity:0.28;}50%{opacity:0.52;}}
+  .hyp-presence{
+    position:absolute;left:45%;top:40%;width:540px;height:540px;
+    transform:translate(-50%,-50%);
+    z-index:1;pointer-events:none;
+    opacity:var(--presence,0.5);
+    transition:opacity 3600ms ease, transform 3600ms ease;
+  }
+  .hyp-glow{position:absolute;border-radius:50%;will-change:transform,opacity;}
+  .hyp-glow-1{
+    width:620px;height:500px;left:39%;top:41%;
+    background:radial-gradient(ellipse at 52% 46%, rgba(199,156,112,0.17) 0%, rgba(172,120,62,0.065) 54%, transparent 84%);
+    animation:hyp-driftA 46s ease-in-out infinite;
+  }
+  .hyp-glow-2{
+    width:380px;height:520px;left:66%;top:62%;
+    background:radial-gradient(ellipse at 50% 50%, rgba(210,168,120,0.115) 0%, rgba(184,126,64,0.045) 58%, transparent 86%);
+    animation:hyp-driftB 38s ease-in-out infinite;
+  }
+  @keyframes hyp-driftA{
+    0%{transform:translate(-50%,-50%) scale(1.000);opacity:0.50;}
+    32%{transform:translate(-51%,-49.2%) scale(1.022);opacity:0.56;}
+    66%{transform:translate(-49.4%,-50.8%) scale(0.992);opacity:0.45;}
+    100%{transform:translate(-50%,-50%) scale(1.000);opacity:0.50;}
+  }
+  @keyframes hyp-driftB{
+    0%{transform:translate(-50%,-50%) scale(1.000);opacity:0.46;}
+    38%{transform:translate(-49.3%,-50.7%) scale(0.986);opacity:0.40;}
+    72%{transform:translate(-50.7%,-49.5%) scale(1.018);opacity:0.52;}
+    100%{transform:translate(-50%,-50%) scale(1.000);opacity:0.46;}
+  }
+  .hyp-presence.hyp-emerge{transform:translate(-50%,-50%) scale(1.06);}
+  .hyp-statusbar{
+    position:relative;z-index:20;flex-shrink:0;padding:14px 26px 0;
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:11px;font-weight:600;color:rgba(30,20,8,0.42);transition:opacity 1100ms ease;
+  }
+  .hyp-sb-right{display:flex;align-items:center;gap:6px;}.hyp-sb-right svg{display:block;}
+  .hyp-topbar{position:absolute;top:42px;left:0;right:0;z-index:21;display:flex;align-items:center;justify-content:space-between;padding:0 18px;transition:opacity 1100ms ease;}
+  .hyp-ticon{width:38px;height:38px;border-radius:19px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.50);border:1px solid rgba(58,40,28,0.06);cursor:pointer;transition:background 160ms ease, transform 120ms ease;}
+  .hyp-ticon:active{transform:scale(0.94);}
+  .hyp-ticon svg{stroke:#3A2A1F;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .hyp-crisis-quiet{font-family:'DM Sans';font-size:10.5px;font-weight:500;color:var(--sage);letter-spacing:0.2px;background:rgba(160,104,50,0.07);border:1px solid rgba(160,104,50,0.20);border-radius:16px;padding:5px 11px;cursor:pointer;transition:background 160ms ease;}
+  .hyp-crisis-quiet:active{background:rgba(160,104,50,0.16);}
+  .hyp-stage{position:relative;z-index:5;flex:1;display:flex;flex-direction:column;align-items:center;padding:0 42px 0 34px;text-align:center;animation:hyp-surrender 85s ease-out 8s forwards;}
+  @keyframes hyp-surrender{from{opacity:1;}to{opacity:0.93;}}
+  .hyp-phasewrap{margin-top:112px;display:flex;flex-direction:column;align-items:center;gap:12px;transition:opacity 1300ms ease;}
+  .hyp-eyebrow{font-family:'DM Sans';font-size:9.5px;font-weight:600;letter-spacing:2.6px;text-transform:uppercase;color:rgba(58,40,28,0.80);transition:opacity 1100ms ease;}
+  .hyp-rail{display:flex;align-items:center;gap:5px;}
+  .hyp-rail .hyp-tick{width:13px;height:2px;border-radius:2px;background:rgba(58,40,28,0.22);transition:background 1100ms ease, width 1100ms ease;}
+  .hyp-rail .hyp-tick.hyp-done{background:var(--ink-40);}
+  .hyp-rail .hyp-tick.hyp-now{background:var(--ink-72);width:20px;}
+  .hyp-focalwrap{position:relative;flex:1;display:flex;align-items:center;justify-content:center;width:100%;animation:hyp-textbreath 12s ease-in-out -8s infinite;}
+  @keyframes hyp-textbreath{0%,100%{opacity:1;}50%{opacity:0.92;}}
+  .hyp-focal{font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:26px;line-height:1.6;color:rgba(58,40,28,0.86);text-wrap:balance;max-width:294px;opacity:0;transform:translateY(6px);transition:opacity 1400ms ease, transform 1400ms ease;}
+  .hyp-focal.hyp-show{opacity:1;transform:translateY(0);}
+  .hyp-count{position:absolute;left:50%;top:50%;font-family:'Cormorant Garamond',serif;font-weight:300;font-variant-numeric:lining-nums;font-size:104px;line-height:1;color:rgba(150,106,66,0.82);opacity:0;transform:translate(-50%,-50%) scale(0.86);display:none;transition:opacity 900ms ease, transform 1100ms cubic-bezier(0.22,0.61,0.36,1);}
+  .hyp-count.hyp-show{opacity:1;transform:translate(-50%,-50%) scale(1);}
+  .hyp-resolve{font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:24px;color:rgba(58,40,28,0.84);letter-spacing:0.3px;}
+  .hyp-lingertag{margin-top:18px;font-family:'DM Sans';font-size:9.5px;font-weight:500;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-40);opacity:0;transition:opacity 1800ms ease;display:flex;align-items:center;gap:7px;}
+  .hyp-lingertag.hyp-show{opacity:1;}
+  .hyp-lingertag .hyp-dot{width:5px;height:5px;border-radius:50%;background:rgba(160,104,50,0.8);animation:hyp-linger 4s ease-in-out infinite;}
+  @keyframes hyp-linger{0%,100%{opacity:0.28;}50%{opacity:0.9;}}
+  .hyp-footer{position:relative;z-index:6;flex-shrink:0;padding:0 38px 30px;}
+  .hyp-taphint{text-align:center;font-family:'DM Sans';font-size:10px;color:var(--ink-55);letter-spacing:0.4px;margin-bottom:16px;transition:opacity 1100ms ease;}
+  .hyp-progress-track{height:2px;border-radius:99px;background:var(--ink-28);overflow:hidden;}
+  .hyp-progress-fill{height:100%;width:0%;border-radius:99px;background:rgba(58,40,28,0.85);transition:width 1600ms linear;}
+  .hyp-shell.hyp-dimmed .hyp-statusbar,.hyp-shell.hyp-dimmed .hyp-topbar{opacity:0.28;}
+  .hyp-pausewrap{position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 30px 46px;background:radial-gradient(ellipse 120% 90% at 50% 50%, rgba(244,234,216,0.38), rgba(238,225,202,0.88));opacity:0;pointer-events:none;transition:opacity 460ms ease;}
+  .hyp-pausewrap.hyp-show{opacity:1;pointer-events:auto;}
+  .hyp-pause-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:26px;color:var(--ink-92);margin-bottom:6px;text-align:center;}
+  .hyp-pause-sub{font-family:'DM Sans';font-size:12px;color:var(--ink-55);text-align:center;margin-bottom:26px;line-height:1.5;max-width:240px;}
+  .hyp-pause-stack{width:100%;display:flex;flex-direction:column;gap:11px;}
+  .hyp-btn-primary{width:100%;padding:14px;border:none;border-radius:24px;background:var(--sage);color:#F3E9DC;font-family:'DM Sans';font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(122,82,48,0.28);transition:transform 120ms ease;}
+  .hyp-btn-primary:active{transform:scale(0.98);}
+  .hyp-btn-row{display:flex;gap:11px;}
+  .hyp-btn-ghost{flex:1;padding:12px;border-radius:20px;border:1px solid rgba(160,104,50,0.30);background:rgba(243,233,220,0.7);color:var(--sage);font-family:'DM Sans';font-size:12.5px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:background 160ms ease, transform 120ms ease;}
+  .hyp-btn-ghost:active{transform:scale(0.97);}
+  .hyp-btn-ghost svg{stroke:var(--sage);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .hyp-pause-crisis{margin-top:20px;font-family:'DM Sans';font-size:12px;font-weight:600;color:var(--sage);cursor:pointer;display:flex;align-items:center;gap:7px;}
+  .hyp-pause-crisis svg{stroke:var(--sage);stroke-width:2;fill:none;}
+  .hyp-pause-end{margin-top:14px;font-family:'DM Sans';font-size:11.5px;color:var(--ink-40);cursor:pointer;}
+  .hyp-complete{position:absolute;inset:0;z-index:30;display:none;flex-direction:column;align-items:center;justify-content:center;padding:0 40px;text-align:center;}
+  .hyp-complete.hyp-show{display:flex;}
+  .hyp-complete-mark{width:64px;height:64px;border-radius:32px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 38% 34%, rgba(196,149,106,0.26), rgba(160,104,50,0.12));border:1px solid rgba(160,104,50,0.26);margin-bottom:22px;}
+  .hyp-complete-mark svg{stroke:var(--sage);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .hyp-complete-eyebrow{font-family:'DM Sans';font-size:9.5px;font-weight:600;letter-spacing:2.6px;text-transform:uppercase;color:rgba(160,104,50,0.78);margin-bottom:12px;}
+  .hyp-complete-title{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:32px;color:rgba(58,40,28,0.88);line-height:1.15;margin-bottom:14px;}
+  .hyp-complete-body{font-family:'DM Sans';font-size:13px;font-weight:300;line-height:1.65;color:var(--ink-55);max-width:262px;margin-bottom:34px;}
+  .hyp-complete .hyp-btn-primary{max-width:300px;}
+  .hyp-complete-secondary{margin-top:14px;font-family:'DM Sans';font-size:12.5px;font-weight:500;color:var(--sage);cursor:pointer;}
+  @media (prefers-reduced-motion: reduce){
+    .hyp-glow,.hyp-shell,.hyp-focalwrap,.hyp-stage{animation:none!important;}
+    .hyp-stage{opacity:1!important;}
+    .hyp-descent-breath{animation:none!important;opacity:0.4!important;}
+    .hyp-focal{transition:opacity 1000ms ease;transform:none;}.hyp-focal.hyp-show{transform:none;}
+    .hyp-count{transition:opacity 400ms ease;transform:none;}.hyp-count.hyp-show{transform:none;}
+  }
+</style>
+
+<div class="hyp-shell" id="hyp-phone" style="--depth:0;--presence:0.5;">
 
     <div class="hyp-descent" id="hyp-descent"></div>
     <div class="hyp-descent-breath"></div>
@@ -13840,12 +13808,12 @@ window.onStopSectionShow = function(sectionId) {
       </span>
     </div>
 
-    <div class="hyp-topbar">
-      <div class="hyp-ticon" id="hyp-backBtn" onclick="hypExit(); showSection('module-breakup-recovery');"><svg width="20" height="20" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></div>
-      <div class="hyp-crisis-quiet" id="hyp-crisisQuiet" onclick="showSection('crisis-resources');">Crisis support</div>
+    <div class="hyp-topbar" id="hyp-topbar">
+      <div class="hyp-ticon" id="hyp-backBtn" title="Leave session"><svg width="20" height="20" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></div>
+      <div class="hyp-crisis-quiet" id="hyp-crisisQuiet">Crisis support</div>
     </div>
 
-    <div class="hyp-stage" id="hyp-stageEl">
+    <div class="hyp-stage">
       <div class="hyp-phasewrap" id="hyp-phasewrap">
         <div class="hyp-eyebrow" id="hyp-eyebrow">Settling</div>
         <div class="hyp-rail" id="hyp-rail"></div>
@@ -13854,7 +13822,7 @@ window.onStopSectionShow = function(sectionId) {
         <div class="hyp-focal" id="hyp-focal"></div>
         <div class="hyp-count" id="hyp-count"></div>
       </div>
-      <div class="hyp-lingertag" id="hyp-lingertag"><span class="hyp-linger-dot"></span><span>Take your time</span></div>
+      <div class="hyp-lingertag" id="hyp-lingertag"><span class="hyp-dot"></span><span>Take your time</span></div>
     </div>
 
     <div class="hyp-footer">
@@ -13878,7 +13846,7 @@ window.onStopSectionShow = function(sectionId) {
           </button>
         </div>
       </div>
-      <div class="hyp-pause-crisis" id="hyp-pauseCrisis" onclick="showSection('crisis-resources');"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Crisis support</div>
+      <div class="hyp-pause-crisis" id="hyp-pauseCrisis"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Crisis support</div>
       <div class="hyp-pause-end" id="hyp-endBtn">End session</div>
     </div>
 
@@ -13887,12 +13855,248 @@ window.onStopSectionShow = function(sectionId) {
       <div class="hyp-complete-eyebrow">Session complete</div>
       <div class="hyp-complete-title">Welcome back.</div>
       <div class="hyp-complete-body">You did real work in there. Carry the insight gently with you — there's no need to do anything with it right now.</div>
-      <button class="hyp-btn-primary" id="hyp-continueBtn" onclick="hypExit(); showSection('breakup-hypnodrama-post-checkin');">Complete session →</button>
+      <button class="hyp-btn-primary" id="hyp-continueBtn">Complete session →</button>
       <div class="hyp-complete-secondary" id="hyp-replayBtn">Return to the session</div>
     </div>
 
-  </div></div></div>
+  </div>
+
+</div></div>
 </div><!-- /section-breakup-hypnodrama-session -->
+<script>
+(function(){
+  "use strict";
+
+  var TIMING={
+    startDelay:1800, fadeIn:1400, fadeOut:1400, gap:700,
+    holdMin:9500, holdPerCh:135, holdMax:24000,
+    introMin:9500, countFade:900, countHold:3200, countGap:800, resolveHold:7500
+  };
+
+  var PHASES=["Settling","Deepening","The safe place","The encounter",
+              "Expression","The dialogue","The release","The insight","Returning"];
+
+  var BEATS=[
+    {phase:0,type:'line',text:"Sit comfortably, leave the weight of the body on to the chair or bed you are sitting on."},
+    {phase:0,type:'line',text:"Close your eyes, keep your hand on your heart and start feeling your breath going in going out."},
+    {phase:0,type:'line',text:"Focus on every single Breath You Take. Feel it going in and going out, the breath going in might feel a bit dry, breath coming out might feel a bit wet."},
+    {phase:0,type:'line',text:"As you keep taking deep breaths, you might feel your breath is becoming deep and rhythmic."},
+
+    {phase:1,type:'line',text:"As you feel the rhythmic breath, you feel your body is getting lighter and lighter as light as loud, the lighter you feel."},
+    {phase:1,type:'line',text:"More relaxed your feel, more relaxed you feel, deeper you go, deeper you go more relaxed you feel."},
+    {phase:1,type:'count',counts:{intro:"Now I will count you down 10 to 0 you will go deeper and deeper inside you, connecting with yourself with every single count going twice deeper than before. Start going down and deeper with",seq:["10","9","8","7","6","5","4","3","2","1","0"],resolve:"Deep Sleep."}},
+
+    {phase:2,type:'line',text:"keep feeling your breath, and slowly and gradually think about the person you are facing issues with."},
+    {phase:2,type:'count',counts:{intro:"Now as I count 3 to 1, you will see yourself siting with that person in a comfortable safe place, your mind provides for you. This will be the place, where you feel completely safe and protected. Keep going towards the place as I count",seq:["3","2","1"],resolve:""}},
+
+    {phase:3,type:'line',text:"imagine that person siting in front of you. How does he or she look, what he or she is wearing?"},
+    {phase:3,type:'line',text:"Now take a good look of yourself, what are you wearing? After noticing everything outside, bring your attention inwards, what are you feeling when you at this person."},
+
+    {phase:4,type:'line',text:"Now start expressing yourself completely to this person, say whatever you always wanted to say, do whatever you always wanted to do."},
+    {phase:4,type:'line',text:"All the pain, all the suffering, let that come up. Take your time. you have all time in the world.",linger:true,hold:18000},
+
+    {phase:5,type:'line',text:"Now when you have said all that what you always wanted to say, look at him or her, is there anything this person wants to say in return. listen to him or her."},
+    {phase:5,type:'line',text:"What do you want to say to him or her after listening to him or her."},
+    {phase:5,type:'line',text:"keep this conversation going on till the moment you feel that you have expressed yourself completely. Open your heart to him or her."},
+    {phase:5,type:'line',text:"Good, bad, ugly everything should be said. Also keep listening to his or her part of the story. Give him or her also time and space to speak."},
+    {phase:5,type:'line',text:"Remember nothing should be left unsaid from either of the side."},
+    {phase:5,type:'line',text:"Take as much time as you want.",linger:true,hold:20000},
+
+    {phase:6,type:'line',text:"Now if you feel that you have got your answers and expressed yourself and listened to him or her completely, you can allow this person to go."},
+    {phase:6,type:'line',text:"Say thank you for being here to have this conversation and let him or her go back."},
+    {phase:6,type:'line',text:"See the person going and then bring your attention to yourself."},
+
+    {phase:7,type:'line',text:"Now let you subconscious mind guide you to acknowledge whatever needed to be acknowledged here."},
+    {phase:7,type:'line',text:"Let your subconscious provide you the insight or message to heal you completely With regard to this particular relationship."},
+    {phase:7,type:'count',counts:{intro:"As I count 3 to 1, let the insight come.",seq:["3","2","1"],resolve:""}},
+    {phase:7,type:'line',text:"Now let the insight stay with you. let the healing stay with you forever."},
+
+    {phase:8,type:'line',text:"Now I'll bring you up, out of trance. I'll count 1 to 5 and you will come out of the trance, feeling really happy with the work you have done with yourself, completely aware of all the insights you got, feeling more and more calm, composed and healed."},
+    {phase:8,type:'count',up:true,counts:{intro:"Start coming up with",seq:["1","2","3","4","5"],resolve:"eyes open wide awake."}}
+  ];
+
+  var VOICE={rate:0.58,pitch:0.86,volume:0.82,pref:["Samantha","Karen","Google US English"]};
+  var muted=true, chosenVoice=null, speakToken=0;
+  function pickVoice(){
+    if(!('speechSynthesis'in window))return;
+    var vs=speechSynthesis.getVoices(),i,p;
+    for(p=0;p<VOICE.pref.length;p++){for(i=0;i<vs.length;i++){if(vs[i].name.indexOf(VOICE.pref[p])>=0){chosenVoice=vs[i];return;}}}
+    for(i=0;i<vs.length;i++){if(vs[i].lang.indexOf('en-US')>=0){chosenVoice=vs[i];return;}}
+    chosenVoice=vs[0]||null;
+  }
+  if('speechSynthesis'in window){speechSynthesis.onvoiceschanged=pickVoice;pickVoice();}
+  function cancelVoice(){speakToken++;if('speechSynthesis'in window){try{speechSynthesis.cancel();}catch(e){}}}
+  function speak(text){
+    if(muted||!text||!('speechSynthesis'in window))return;
+    cancelVoice();
+    var myTok=speakToken, parts=text.match(/[^,.;—]+[,.;—]?/g)||[text], i=0;
+    (function go(){
+      if(myTok!==speakToken||muted||i>=parts.length)return;
+      var clause=parts[i].trim(); if(!clause){i++;return go();}
+      var u=new SpeechSynthesisUtterance(clause);
+      u.rate=VOICE.rate;u.pitch=VOICE.pitch;u.volume=VOICE.volume; if(chosenVoice)u.voice=chosenVoice;
+      var last=clause.slice(-1), gap=(last==='.'||last===';'||last==='—')?2400:1100, advanced=false;
+      function adv(){if(advanced||myTok!==speakToken)return;advanced=true;i++;setTimeout(go,gap);}
+      u.onend=adv; setTimeout(adv, Math.max(1600, clause.length*150)+1200);
+      try{speechSynthesis.speak(u);}catch(e){adv();}
+    })();
+  }
+
+  var phone=document.getElementById('hyp-phone'),presence=document.getElementById('hyp-presence'),
+      eyebrow=document.getElementById('hyp-eyebrow'),rail=document.getElementById('hyp-rail'),
+      focal=document.getElementById('hyp-focal'),countEl=document.getElementById('hyp-count'),
+      lingertag=document.getElementById('hyp-lingertag'),taphint=document.getElementById('hyp-taphint'),
+      progressFill=document.getElementById('hyp-progressFill'),pausewrap=document.getElementById('hyp-pausewrap'),
+      complete=document.getElementById('hyp-complete'),soundLabel=document.getElementById('hyp-soundLabel'),
+      soundIcon=document.getElementById('hyp-soundIcon'),stageEl=document.querySelector('.hyp-stage');
+
+  PHASES.forEach(function(){var t=document.createElement('div');t.className='hyp-tick';rail.appendChild(t);});
+  var ticks=rail.querySelectorAll('.hyp-tick');
+
+  var idx=-1,playing=false,paused=false,beatTimer=null,dimTimer=null,gen=0;
+  var PRESENCE_BY_PHASE=[0.60,0.54,0.46,0.42,0.38,0.36,0.42,0.38,0.54];
+  var DEPTH_BY_PHASE   =[0.06,0.16,0.24,0.30,0.34,0.38,0.30,0.24,0.06];
+
+  function holdFor(b){return b.hold?b.hold:Math.min(TIMING.holdMax,Math.max(TIMING.holdMin,(b.text||'').length*TIMING.holdPerCh+3000));}
+
+  function setPhase(p){
+    eyebrow.style.opacity=0;
+    setTimeout(function(){eyebrow.textContent=PHASES[p];eyebrow.style.opacity=1;},450);
+    ticks.forEach(function(t,i){t.classList.remove('hyp-done','hyp-now');if(i<p)t.classList.add('hyp-done');else if(i===p)t.classList.add('hyp-now');});
+    presence.className='hyp-presence';
+    phone.style.setProperty('--presence',PRESENCE_BY_PHASE[p]);
+    phone.style.setProperty('--depth',DEPTH_BY_PHASE[p]);
+  }
+
+  function showFocal(html){
+    var wasShown=focal.classList.contains('hyp-show');
+    focal.classList.remove('hyp-show'); countEl.classList.remove('hyp-show'); countEl.style.display='none';
+    setTimeout(function(){focal.innerHTML=html;focal.classList.add('hyp-show');}, wasShown?(TIMING.fadeOut+150):90);
+  }
+  function setProgress(){progressFill.style.width=Math.round(((idx+1)/BEATS.length)*100)+'%';}
+
+  function nextBeat(){
+    if(paused)return;
+    idx++; if(idx>=BEATS.length){finish();return;}
+    var b=BEATS[idx],myGen=++gen;
+    setProgress();
+    if(idx===0||b.phase!==BEATS[idx-1].phase)setPhase(b.phase);
+    lingertag.classList.toggle('hyp-show',!!b.linger);
+
+    if(b.type==='line'){
+      showFocal(b.text); speak(b.text);
+      var hold=holdFor(b);
+      beatTimer=setTimeout(function(){
+        if(myGen!==gen)return;
+        focal.classList.remove('hyp-show');
+        beatTimer=setTimeout(function(){if(myGen===gen)nextBeat();}, TIMING.fadeOut+TIMING.gap);
+      }, TIMING.fadeIn+hold);
+    } else { runCount(b,myGen); }
+  }
+
+  function runCount(b,myGen){
+    var c=b.counts;
+    showFocal(c.intro); speak(c.intro);
+    var hold=Math.min(13500,Math.max(TIMING.introMin,c.intro.length*TIMING.holdPerCh+2800));
+    beatTimer=setTimeout(function(){
+      if(myGen!==gen)return;
+      focal.classList.remove('hyp-show');
+      beatTimer=setTimeout(function(){if(myGen===gen)stepCount(c,0,b.up,myGen);}, TIMING.fadeOut+700);
+    }, TIMING.fadeIn+hold);
+  }
+
+  function stepCount(c,i,up,myGen){
+    if(myGen!==gen)return;
+    if(i>=c.seq.length){
+      countEl.classList.remove('hyp-show');
+      setTimeout(function(){
+        if(myGen!==gen)return;
+        countEl.style.display='none';
+        if(c.resolve){
+          focal.innerHTML='<span class="hyp-resolve">'+c.resolve+'</span>'; focal.classList.add('hyp-show'); speak(c.resolve);
+          beatTimer=setTimeout(function(){
+            if(myGen!==gen)return;
+            focal.classList.remove('hyp-show');
+            beatTimer=setTimeout(function(){if(myGen===gen)nextBeat();}, TIMING.fadeOut+TIMING.gap);
+          }, TIMING.fadeIn+TIMING.resolveHold);
+        } else {
+          beatTimer=setTimeout(function(){if(myGen===gen)nextBeat();}, TIMING.gap);
+        }
+      }, TIMING.countFade);
+      return;
+    }
+    focal.classList.remove('hyp-show');
+    countEl.style.display='block'; countEl.classList.remove('hyp-show'); void countEl.offsetWidth;
+    countEl.textContent=c.seq[i]; countEl.classList.add('hyp-show');
+    speak(c.seq[i]);
+    if(up){
+      var d=0.30-(i/(c.seq.length-1))*0.26;
+      phone.style.setProperty('--depth',Math.max(0.04,d).toFixed(2));
+      phone.style.setProperty('--presence',(0.34+(i/(c.seq.length-1))*0.26).toFixed(2));
+      if(i===c.seq.length-1) presence.classList.add('hyp-emerge');
+    }
+    beatTimer=setTimeout(function(){
+      if(myGen!==gen)return;
+      countEl.classList.remove('hyp-show');
+      setTimeout(function(){if(myGen===gen)stepCount(c,i+1,up,myGen);}, TIMING.countFade+TIMING.countGap);
+    }, TIMING.countFade+TIMING.countHold);
+  }
+
+  function finish(){playing=false;cancelVoice();progressFill.style.width='100%';phone.classList.remove('hyp-dimmed');clearTimeout(dimTimer);complete.classList.add('hyp-show');}
+
+  function resetDim(){
+    phone.classList.remove('hyp-dimmed');clearTimeout(dimTimer);
+    if(playing&&!paused){dimTimer=setTimeout(function(){if(playing&&!paused)phone.classList.add('hyp-dimmed');},4500);}
+  }
+
+  function start(){
+    playing=true;paused=false;idx=-1;gen++;
+    presence.className='hyp-presence';
+    phone.style.setProperty('--presence',0.50);phone.style.setProperty('--depth',0.06);
+    if(stageEl){stageEl.style.animation='none';void stageEl.offsetWidth;stageEl.style.animation='';}
+    complete.classList.remove('hyp-show');pausewrap.classList.remove('hyp-show');
+    nextBeat();resetDim();
+  }
+  function pause(){if(!playing||paused)return;paused=true;gen++;clearTimeout(beatTimer);clearTimeout(dimTimer);cancelVoice();phone.classList.remove('hyp-dimmed');pausewrap.classList.add('hyp-show');}
+  function resume(){if(!paused)return;paused=false;pausewrap.classList.remove('hyp-show');idx--;nextBeat();resetDim();}
+
+  document.querySelector('.hyp-stage').addEventListener('click',function(){if(playing&&!paused)pause();});
+  taphint.addEventListener('click',function(){if(playing&&!paused)pause();});
+  document.getElementById('hyp-resumeBtn').addEventListener('click',resume);
+  document.getElementById('hyp-restartBtn').addEventListener('click',start);
+  document.getElementById('hyp-replayBtn').addEventListener('click',start);
+  document.getElementById('hyp-endBtn').addEventListener('click',finish);
+  document.getElementById('hyp-backBtn').addEventListener('click',function(){
+    if(window.InnerSootheHyp)window.InnerSootheHyp.stop();
+    showSection('module-breakup-recovery');
+  });
+  document.getElementById('hyp-continueBtn').addEventListener('click',function(){
+    if(window.InnerSootheHyp)window.InnerSootheHyp.stop();
+    showSection('breakup-hypnodrama-post-checkin');
+  });
+  function toggleSound(){
+    muted=!muted;soundLabel.textContent=muted?'Voice off':'Voice on';
+    if(muted){cancelVoice();soundIcon.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/>';}
+    else{soundIcon.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>';}
+  }
+  document.getElementById('hyp-soundBtn').addEventListener('click',toggleSound);
+  function crisis(){showSection('crisis-resources');}
+  document.getElementById('hyp-crisisQuiet').addEventListener('click',function(e){e.stopPropagation();crisis();});
+  document.getElementById('hyp-pauseCrisis').addEventListener('click',crisis);
+
+  var hypStartTimer=null;
+  window.InnerSootheHyp={
+    start:function(){clearTimeout(hypStartTimer);hypStartTimer=setTimeout(start,TIMING.startDelay);},
+    stop:function(){clearTimeout(hypStartTimer);playing=false;paused=false;gen++;
+      clearTimeout(beatTimer);clearTimeout(dimTimer);cancelVoice();
+      if(phone)phone.classList.remove('hyp-dimmed');
+      if(pausewrap)pausewrap.classList.remove('hyp-show');
+      if(complete)complete.classList.remove('hyp-show');
+      if(focal)focal.classList.remove('hyp-show');
+      if(countEl){countEl.classList.remove('hyp-show');countEl.style.display='none';}}
+  };
+})();
+</script>
 
 <script>
 /* ================================================================
@@ -20132,226 +20336,15 @@ function showSection(id) {
   };
 })();
 
-/* Hypnodrama session — beat-driven spec build. Auto-starts on section show, cancels on nav away. */
+/* Hypnodrama — showSection lifecycle wiring for InnerSootheHyp.start/stop */
 (function(){
-  "use strict";
   if(window._showSectionWrappedForHyp)return;
   window._showSectionWrappedForHyp=true;
-
-  var TIMING={startDelay:1800,fadeIn:1900,fadeOut:1900,gap:3200,holdMin:7800,holdPerCh:108,holdMax:14500,introMin:8800,countFade:900,countHold:3200,countGap:1100,resolveHold:6800};
-  var PHASES=["Settling","Deepening","The safe place","The encounter","Expression","The dialogue","The release","The insight","Returning"];
-  var BEATS=[
-    {phase:0,type:'line',text:"Sit comfortably. Let the weight of your body rest into the chair or bed beneath you."},
-    {phase:0,type:'line',text:"Close your eyes. Rest one hand over your heart, and begin to feel your breath — moving in, and moving out."},
-    {phase:0,type:'line',text:"Focus on every breath. The breath going in may feel a little dry; the breath leaving you, a little wet."},
-    {phase:0,type:'line',text:"As you keep breathing, your breath grows slow, deep, and rhythmic."},
-    {phase:1,type:'line',text:"With each rhythmic breath, your body grows lighter and lighter. The lighter you feel, the more relaxed you become."},
-    {phase:1,type:'line',text:"The more relaxed you feel, the deeper you go. The deeper you go, the more relaxed you feel."},
-    {phase:1,type:'count',counts:{intro:"Now I'll count down from ten to zero. With every count, you drift twice as deep — connecting further with yourself.",seq:["10","9","8","7","6","5","4","3","2","1","0"],resolve:"Deep sleep."}},
-    {phase:2,type:'line',text:"Keep feeling your breath. Gently, bring to mind the person you've been carrying this difficulty with."},
-    {phase:2,type:'count',counts:{intro:"As I count three to one, you'll find yourself with them — in a place your mind makes for you, where you feel completely safe and protected.",seq:["3","2","1"],resolve:"You are here, together, in your safe place."}},
-    {phase:3,type:'line',text:"Imagine that person sitting in front of you. How do they look? What are they wearing?"},
-    {phase:3,type:'line',text:"Now look at yourself. What are you wearing? And turning your attention inward — what are you feeling as you look at them?"},
-    {phase:4,type:'line',text:"Now begin to express yourself, completely. Say everything you've always wanted to say. Do everything you've wanted to do."},
-    {phase:4,type:'line',text:"All the pain. All the suffering. Let it rise, and let it come through.",linger:true,hold:18000},
-    {phase:5,type:'line',text:"When you've said all you needed to, look at them. Is there something they want to say in return? Listen."},
-    {phase:5,type:'line',text:"And after you've listened — what do you want to say back to them?"},
-    {phase:5,type:'line',text:"Let the conversation continue. Open your heart — the good, the bad, the ugly. Let all of it be said, and keep listening to their side too."},
-    {phase:5,type:'line',text:"Give them space to speak. Let nothing be left unsaid, from either of you.",linger:true,hold:20000},
-    {phase:6,type:'line',text:"When you have your answers — when you've expressed yourself and truly listened — you can let this person go."},
-    {phase:6,type:'line',text:"Thank them for being here, for having this conversation with you. And gently, let them go back."},
-    {phase:6,type:'line',text:"Watch them leave. Then bring your attention home, to yourself."},
-    {phase:7,type:'line',text:"Now let your subconscious mind guide you — to acknowledge whatever needs to be acknowledged here."},
-    {phase:7,type:'line',text:"Let it offer you the insight, the message, that heals you completely in this relationship."},
-    {phase:7,type:'count',counts:{intro:"As I count three to one, let the insight come.",seq:["3","2","1"],resolve:"Let it arrive."}},
-    {phase:7,type:'line',text:"Now let the insight stay with you. Let the healing stay with you — forever."},
-    {phase:8,type:'line',text:"Now I'll bring you up, out of the trance — happy with the work you've done, aware of every insight, calmer and more composed, more healed."},
-    {phase:8,type:'count',up:true,counts:{intro:"As I count from one to five, you return to the room.",seq:["1","2","3","4","5"],resolve:"Eyes open. Wide awake."}}
-  ];
-
-  var VOICE={rate:0.58,pitch:0.86,volume:0.82,pref:["Samantha","Karen","Google US English"]};
-  var _hypMuted=true,_hypChosenVoice=null,_hypSpeakToken=0;
-  function pickVoice(){if(!('speechSynthesis'in window))return;var vs=speechSynthesis.getVoices(),i,p;for(p=0;p<VOICE.pref.length;p++){for(i=0;i<vs.length;i++){if(vs[i].name.indexOf(VOICE.pref[p])>=0){_hypChosenVoice=vs[i];return;}}}for(i=0;i<vs.length;i++){if(vs[i].lang.indexOf('en-US')>=0){_hypChosenVoice=vs[i];return;}}_hypChosenVoice=vs[0]||null;}
-  if('speechSynthesis'in window){speechSynthesis.onvoiceschanged=pickVoice;pickVoice();}
-  function cancelVoice(){_hypSpeakToken++;if('speechSynthesis'in window){try{speechSynthesis.cancel();}catch(e){}}}
-  function speak(text){
-    if(_hypMuted||!text||!('speechSynthesis'in window))return;
-    cancelVoice();
-    var myTok=_hypSpeakToken,parts=text.match(/[^,.;—]+[,.;—]?/g)||[text],i=0;
-    (function go(){
-      if(myTok!==_hypSpeakToken||_hypMuted||i>=parts.length)return;
-      var clause=parts[i].trim();if(!clause){i++;return go();}
-      var u=new SpeechSynthesisUtterance(clause);
-      u.rate=VOICE.rate;u.pitch=VOICE.pitch;u.volume=VOICE.volume;if(_hypChosenVoice)u.voice=_hypChosenVoice;
-      var last=clause.slice(-1),gap=(last==='.'||last===';'||last==='—')?2400:1100,advanced=false;
-      function adv(){if(advanced||myTok!==_hypSpeakToken)return;advanced=true;i++;setTimeout(go,gap);}
-      u.onend=adv;setTimeout(adv,Math.max(1600,clause.length*150)+1200);
-      try{speechSynthesis.speak(u);}catch(e){adv();}
-    })();
-  }
-
-  function gEl(id){return document.getElementById(id);}
-
-  function buildRail(){
-    var rail=gEl('hyp-rail');if(!rail)return;
-    rail.innerHTML='';
-    PHASES.forEach(function(){var t=document.createElement('div');t.className='hyp-tick';rail.appendChild(t);});
-  }
-
-  var _hypIdx=-1,_hypPlaying=false,_hypPaused=false,_hypBeatTimer=null,_hypDimTimer=null,_hypGen=0,_hypEventsAttached=false;
-  var PRESENCE_BY_PHASE=[0.50,0.42,0.32,0.25,0.18,0.15,0.22,0.20,0.40];
-  var DEPTH_BY_PHASE   =[0.06,0.16,0.24,0.30,0.34,0.38,0.30,0.24,0.06];
-
-  function holdFor(b){return b.hold?b.hold:Math.min(TIMING.holdMax,Math.max(TIMING.holdMin,(b.text||'').length*TIMING.holdPerCh+3000));}
-
-  function setPhase(p){
-    var ew=gEl('hyp-eyebrow');
-    if(ew){ew.style.opacity=0;setTimeout(function(){ew.textContent=PHASES[p];ew.style.opacity=1;},450);}
-    var ticks=document.querySelectorAll('#section-breakup-hypnodrama-session .hyp-tick');
-    ticks.forEach(function(t,i){t.classList.remove('done','now');if(i<p)t.classList.add('done');else if(i===p)t.classList.add('now');});
-    var pres=gEl('hyp-presence');if(pres)pres.className='hyp-presence';
-    var ph=gEl('hyp-phone');
-    if(ph){ph.style.setProperty('--presence',PRESENCE_BY_PHASE[p]);ph.style.setProperty('--depth',DEPTH_BY_PHASE[p]);}
-  }
-  function showFocal(html){
-    var foc=gEl('hyp-focal'),cnt=gEl('hyp-count');if(!foc)return;
-    var wasShown=foc.classList.contains('show');
-    foc.classList.remove('show');if(cnt){cnt.classList.remove('show');cnt.style.display='none';}
-    setTimeout(function(){foc.innerHTML=html;foc.classList.add('show');},wasShown?(TIMING.fadeOut+150):90);
-  }
-  function setProgress(){var fill=gEl('hyp-progressFill');if(fill)fill.style.width=Math.round(((_hypIdx+1)/BEATS.length)*100)+'%';}
-
-  function nextBeat(){
-    if(_hypPaused)return;
-    _hypIdx++;if(_hypIdx>=BEATS.length){finish();return;}
-    var b=BEATS[_hypIdx],myGen=++_hypGen;
-    setProgress();
-    if(_hypIdx===0||b.phase!==BEATS[_hypIdx-1].phase)setPhase(b.phase);
-    var lt=gEl('hyp-lingertag');if(lt)lt.classList.toggle('show',!!b.linger);
-    if(b.type==='line'){
-      showFocal(b.text);speak(b.text);
-      var hold=holdFor(b);
-      _hypBeatTimer=setTimeout(function(){
-        if(myGen!==_hypGen)return;
-        var foc=gEl('hyp-focal');if(foc)foc.classList.remove('show');
-        _hypBeatTimer=setTimeout(function(){if(myGen===_hypGen)nextBeat();},TIMING.fadeOut+TIMING.gap);
-      },TIMING.fadeIn+hold);
-    } else { runCount(b,myGen); }
-  }
-
-  function runCount(b,myGen){
-    var c=b.counts;showFocal(c.intro);speak(c.intro);
-    var hold=Math.min(13500,Math.max(TIMING.introMin,c.intro.length*TIMING.holdPerCh+2800));
-    _hypBeatTimer=setTimeout(function(){
-      if(myGen!==_hypGen)return;
-      var foc=gEl('hyp-focal');if(foc)foc.classList.remove('show');
-      _hypBeatTimer=setTimeout(function(){if(myGen===_hypGen)stepCount(c,0,b.up,myGen);},TIMING.fadeOut+700);
-    },TIMING.fadeIn+hold);
-  }
-
-  function stepCount(c,i,up,myGen){
-    if(myGen!==_hypGen)return;
-    var cnt=gEl('hyp-count'),foc=gEl('hyp-focal'),ph=gEl('hyp-phone'),pres=gEl('hyp-presence');
-    if(i>=c.seq.length){
-      if(cnt)cnt.classList.remove('show');
-      setTimeout(function(){
-        if(myGen!==_hypGen)return;
-        if(cnt)cnt.style.display='none';
-        if(foc){foc.innerHTML='<span class="hyp-resolve">'+c.resolve+'</span>';foc.classList.add('show');}
-        speak(c.resolve);
-        _hypBeatTimer=setTimeout(function(){
-          if(myGen!==_hypGen)return;
-          if(foc)foc.classList.remove('show');
-          _hypBeatTimer=setTimeout(function(){if(myGen===_hypGen)nextBeat();},TIMING.fadeOut+TIMING.gap);
-        },TIMING.fadeIn+TIMING.resolveHold);
-      },TIMING.countFade);
-      return;
-    }
-    if(foc)foc.classList.remove('show');
-    if(cnt){cnt.style.display='block';cnt.classList.remove('show');void cnt.offsetWidth;cnt.textContent=c.seq[i];cnt.classList.add('show');}
-    speak(c.seq[i]);
-    if(up&&ph){
-      var d=0.30-(i/(c.seq.length-1))*0.26;
-      ph.style.setProperty('--depth',Math.max(0.04,d).toFixed(2));
-      ph.style.setProperty('--presence',(0.34+(i/(c.seq.length-1))*0.26).toFixed(2));
-      if(i===c.seq.length-1&&pres)pres.classList.add('emerge');
-    }
-    _hypBeatTimer=setTimeout(function(){
-      if(myGen!==_hypGen)return;
-      if(cnt)cnt.classList.remove('show');
-      setTimeout(function(){if(myGen===_hypGen)stepCount(c,i+1,up,myGen);},TIMING.countFade+TIMING.countGap);
-    },TIMING.countFade+TIMING.countHold);
-  }
-
-  function finish(){
-    _hypPlaying=false;cancelVoice();
-    var fill=gEl('hyp-progressFill');if(fill)fill.style.width='100%';
-    var ph=gEl('hyp-phone');if(ph)ph.classList.remove('hyp-dimmed');
-    clearTimeout(_hypDimTimer);
-    var comp=gEl('hyp-complete');if(comp)comp.classList.add('show');
-  }
-  function resetDim(){
-    var ph=gEl('hyp-phone');if(ph)ph.classList.remove('hyp-dimmed');clearTimeout(_hypDimTimer);
-    if(_hypPlaying&&!_hypPaused){_hypDimTimer=setTimeout(function(){if(_hypPlaying&&!_hypPaused){var p=gEl('hyp-phone');if(p)p.classList.add('hyp-dimmed');}},4500);}
-  }
-  function start(){
-    _hypPlaying=true;_hypPaused=false;_hypIdx=-1;_hypGen++;
-    buildRail();
-    var pres=gEl('hyp-presence');if(pres)pres.className='hyp-presence';
-    var ph=gEl('hyp-phone');if(ph){ph.style.setProperty('--presence',0.50);ph.style.setProperty('--depth',0.06);}
-    var stg=document.querySelector('#section-breakup-hypnodrama-session .hyp-stage');
-    if(stg){stg.style.animation='none';void stg.offsetWidth;stg.style.animation='';}
-    var comp=gEl('hyp-complete'),pw=gEl('hyp-pausewrap');
-    if(comp)comp.classList.remove('show');if(pw)pw.classList.remove('show');
-    nextBeat();resetDim();
-  }
-  function pause(){
-    if(!_hypPlaying||_hypPaused)return;
-    _hypPaused=true;_hypGen++;clearTimeout(_hypBeatTimer);clearTimeout(_hypDimTimer);
-    cancelVoice();var ph=gEl('hyp-phone');if(ph)ph.classList.remove('hyp-dimmed');
-    var pw=gEl('hyp-pausewrap');if(pw)pw.classList.add('show');
-  }
-  function resume(){
-    if(!_hypPaused)return;_hypPaused=false;
-    var pw=gEl('hyp-pausewrap');if(pw)pw.classList.remove('show');
-    _hypIdx--;nextBeat();resetDim();
-  }
-
-  window.hypExit=function(){
-    _hypPlaying=false;_hypPaused=false;_hypGen++;
-    clearTimeout(_hypBeatTimer);clearTimeout(_hypDimTimer);cancelVoice();
-    var ph=gEl('hyp-phone');if(ph)ph.classList.remove('hyp-dimmed');
-    var pw=gEl('hyp-pausewrap');if(pw)pw.classList.remove('show');
-    var comp=gEl('hyp-complete');if(comp)comp.classList.remove('show');
-  };
-
-  function attachEvents(){
-    if(_hypEventsAttached)return;_hypEventsAttached=true;
-    var stg=document.querySelector('#section-breakup-hypnodrama-session .hyp-stage');
-    if(stg)stg.addEventListener('click',function(){if(_hypPlaying&&!_hypPaused)pause();});
-    var th=gEl('hyp-taphint');if(th)th.addEventListener('click',function(){if(_hypPlaying&&!_hypPaused)pause();});
-    var rb=gEl('hyp-resumeBtn');if(rb)rb.addEventListener('click',resume);
-    var rst=gEl('hyp-restartBtn');if(rst)rst.addEventListener('click',start);
-    var rep=gEl('hyp-replayBtn');if(rep)rep.addEventListener('click',start);
-    var end=gEl('hyp-endBtn');if(end)end.addEventListener('click',finish);
-    var sb=gEl('hyp-soundBtn');
-    if(sb)sb.addEventListener('click',function(){
-      _hypMuted=!_hypMuted;
-      var sl=gEl('hyp-soundLabel'),si=gEl('hyp-soundIcon');
-      if(sl)sl.textContent=_hypMuted?'Voice off':'Voice on';
-      if(si){if(_hypMuted){si.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/>';}else{si.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>';}}
-      if(_hypMuted)cancelVoice();
-    });
-  }
-
   var _prevHyp=window.showSection;
   window.showSection=function(id){
-    if(_hypPlaying&&id!=='breakup-hypnodrama-session'){window.hypExit();}
+    if(id!=='breakup-hypnodrama-session'&&window.InnerSootheHyp){window.InnerSootheHyp.stop();}
     var result=_prevHyp.apply(this,arguments);
-    if(id==='breakup-hypnodrama-session'){
-      attachEvents();
-      setTimeout(start,TIMING.startDelay);
-    }
+    if(id==='breakup-hypnodrama-session'&&window.InnerSootheHyp){window.InnerSootheHyp.start();}
     return result;
   };
 })();
