@@ -14143,7 +14143,7 @@ function pmrSetupContinue() {
     } else if (phase === 'release') {
       var r2 = document.getElementById(group.id);
       if (r2) { r2.classList.remove('tensing'); r2.classList.add('releasing'); }
-      if (group.pose && group.id !== 'pmrq-r-face' && group.id !== 'pmrq-r-legs') releasePose(group.pose);
+      if (group.pose && group.id !== 'pmrq-r-face') releasePose(group.pose);
       setArrows(null);
       setActionLabel('');
       // Exhale wash — warm saffron wave begins flowing across the body the moment release starts
