@@ -13663,7 +13663,7 @@ window.onStopSectionShow = function(sectionId) {
 <div class="screens-area" id="section-breakup-hypnodrama-session">
 <div class="phone-grid"><div class="phone-wrap" style="position:relative;overflow:hidden;">
 <style>
-#section-breakup-hypnodrama-session{position:fixed;inset:0;z-index:9000;
+#section-breakup-hypnodrama-session{
     --sage:#A06832; --sage-light:#C4956A; --bark:#8C5A1E; --charcoal:#1E1408;
     --ink-92:rgba(58,40,28,0.92); --ink-72:rgba(58,40,28,0.72);
     --ink-55:rgba(58,40,28,0.55); --ink-40:rgba(58,40,28,0.40);
@@ -13671,7 +13671,7 @@ window.onStopSectionShow = function(sectionId) {
   }
   #section-breakup-hypnodrama-session *{box-sizing:border-box;margin:0;padding:0;}
   .hyp-shell{
-    width:100%;height:100%;overflow:hidden;position:relative;
+    position:fixed;inset:0;z-index:99999;overflow:hidden;
     display:flex;flex-direction:column;
     box-shadow:none;
     background:radial-gradient(ellipse 160% 140% at 50% 46%, #F3E9D6 0%, #F0E5D0 64%, #EBDEC7 100%);
