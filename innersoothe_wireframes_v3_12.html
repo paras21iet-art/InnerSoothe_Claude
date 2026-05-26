@@ -6522,30 +6522,168 @@
 .hyp-q-name { font-size:11px; font-weight:700; color:white; margin-bottom:2px; }
 .hyp-q-sub { font-size:10px; color:rgba(255,255,255,0.4); line-height:1.5; }
 
-/* ===== Hypnodrama Parchment Session (breakup-hypnodrama-session) — hyp- namespace ===== */
-#section-breakup-hypnodrama-session .hyp-shell { background:#FAF0E4; display:flex; flex-direction:column; }
-#section-breakup-hypnodrama-session .hyp-session-bar { display:flex; align-items:center; padding:4px 16px 0; flex-shrink:0; }
-#section-breakup-hypnodrama-session .hyp-exit-btn { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.85); border:1px solid rgba(33,24,12,0.08); display:flex; align-items:center; justify-content:center; cursor:pointer; }
-#section-breakup-hypnodrama-session .hyp-stage { flex:1; display:flex; align-items:center; justify-content:center; min-height:0; }
-#section-breakup-hypnodrama-session .hyp-orb-wrap { position:relative; width:160px; height:160px; display:flex; align-items:center; justify-content:center; }
-#section-breakup-hypnodrama-session .hyp-orb-halo { position:absolute; width:160px; height:160px; border-radius:50%; background:radial-gradient(circle, var(--hyp-col,#C9A84C) 0%, transparent 70%); opacity:0.18; filter:blur(24px); animation:hyp-sess-pulse 5s ease-in-out infinite; }
-#section-breakup-hypnodrama-session .hyp-orb { width:96px; height:96px; border-radius:50%; background:radial-gradient(circle at 38% 38%, rgba(255,255,255,0.55) 0%, var(--hyp-col,#C9A84C) 45%, rgba(33,24,12,0.12) 100%); box-shadow:0 6px 32px rgba(33,24,12,0.12); animation:hyp-sess-pulse 5s ease-in-out infinite; }
-@keyframes hyp-sess-pulse { 0%,100%{transform:scale(1);opacity:0.88} 50%{transform:scale(1.07);opacity:1} }
-#section-breakup-hypnodrama-session .hyp-phase-tag { text-align:center; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:1.8px; text-transform:uppercase; color:rgba(160,104,50,0.55); margin:0 0 4px; flex-shrink:0; }
-#section-breakup-hypnodrama-session .hyp-phase-name { text-align:center; font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; color:#1E1408; margin:0 0 4px; flex-shrink:0; }
-#section-breakup-hypnodrama-session .hyp-phase-desc { text-align:center; font-family:'DM Sans',sans-serif; font-size:11.5px; font-weight:300; color:rgba(33,24,12,0.5); margin:0 0 14px; flex-shrink:0; }
-#section-breakup-hypnodrama-session .hyp-dots { display:flex; justify-content:center; gap:6px; margin-bottom:14px; flex-shrink:0; }
-#section-breakup-hypnodrama-session .hyp-dot { width:6px; height:6px; border-radius:50%; background:rgba(160,104,50,0.18); transition:background 0.6s, transform 0.3s; }
-#section-breakup-hypnodrama-session .hyp-dot.active { background:rgba(160,104,50,0.40); }
-#section-breakup-hypnodrama-session .hyp-dot.current { background:#A06832; transform:scale(1.3); }
-#section-breakup-hypnodrama-session .hyp-controls { display:flex; justify-content:center; gap:28px; margin-bottom:12px; flex-shrink:0; }
-#section-breakup-hypnodrama-session .hyp-ctrl { display:flex; flex-direction:column; align-items:center; gap:4px; background:none; border:none; cursor:pointer; padding:4px 8px; }
-#section-breakup-hypnodrama-session .hyp-ctrl-lbl { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:400; color:rgba(30,20,8,0.72); }
-#section-breakup-hypnodrama-session .hyp-mute-btn.muted .hyp-ctrl-lbl { color:rgba(30,20,8,0.38); }
-#section-breakup-hypnodrama-session .hyp-progress { height:3px; background:rgba(160,104,50,0.12); margin:0 24px 12px; border-radius:2px; flex-shrink:0; }
-#section-breakup-hypnodrama-session .hyp-progress-fill { height:100%; background:#A06832; border-radius:2px; width:0; transition:width 0.5s linear; }
-#section-breakup-hypnodrama-session .hyp-cta-wrap { padding:0 24px 20px; flex-shrink:0; }
-#section-breakup-hypnodrama-session .hyp-cta { width:100%; padding:13px; border-radius:14px; background:#A06832; border:none; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; color:white; cursor:pointer; letter-spacing:0.2px; }
+/* ===== Hypnodrama Session (breakup-hypnodrama-session) — spec build, hyp- namespace ===== */
+#section-breakup-hypnodrama-session .hyp-phone {
+  width:370px;height:780px;border-radius:48px;overflow:hidden;position:relative;
+  display:flex;flex-direction:column;
+  box-shadow:0 28px 70px rgba(30,20,8,0.45),0 0 0 1.5px rgba(30,20,8,0.10),inset 0 0 0 1px rgba(255,255,255,0.60);
+  background:radial-gradient(ellipse 160% 140% at 50% 46%, #F3E9D6 0%, #F0E5D0 64%, #EBDEC7 100%);
+  isolation:isolate;
+  animation:hyp-tonalbreath 29s ease-in-out infinite;
+}
+@keyframes hyp-tonalbreath{0%,100%{filter:brightness(1) saturate(1);}50%{filter:brightness(1.013) saturate(1.025);}}
+#section-breakup-hypnodrama-session .hyp-descent {
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 96% 84% at 50% 44%, transparent 48%, rgba(92,58,24,0.055) 80%, rgba(72,48,22,0.11) 100%);
+  opacity:var(--depth,0);transition:opacity 3000ms ease;
+}
+#section-breakup-hypnodrama-session .hyp-descent-breath {
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 100% 90% at 50% 46%, transparent 56%, rgba(92,58,24,0.05) 100%);
+  animation:hyp-vbreath 23s ease-in-out infinite;
+}
+@keyframes hyp-vbreath{0%,100%{opacity:0.28;}50%{opacity:0.52;}}
+#section-breakup-hypnodrama-session .hyp-presence {
+  position:absolute;left:45%;top:40%;width:540px;height:540px;
+  transform:translate(-50%,-50%);z-index:1;pointer-events:none;
+  opacity:var(--presence,0.5);transition:opacity 3600ms ease,transform 3600ms ease;
+}
+#section-breakup-hypnodrama-session .hyp-glow {position:absolute;border-radius:50%;will-change:transform,opacity;}
+#section-breakup-hypnodrama-session .hyp-glow-1 {
+  width:620px;height:500px;left:39%;top:41%;
+  background:radial-gradient(ellipse at 52% 46%, rgba(199,156,112,0.13) 0%, rgba(172,120,62,0.05) 54%, transparent 84%);
+  animation:hyp-driftA 46s ease-in-out infinite;
+}
+#section-breakup-hypnodrama-session .hyp-glow-2 {
+  width:380px;height:520px;left:66%;top:62%;
+  background:radial-gradient(ellipse at 50% 50%, rgba(210,168,120,0.085) 0%, rgba(184,126,64,0.034) 58%, transparent 86%);
+  animation:hyp-driftB 38s ease-in-out infinite;
+}
+@keyframes hyp-driftA{0%{transform:translate(-50%,-50%) scale(1.000);opacity:0.50;}32%{transform:translate(-51%,-49.2%) scale(1.022);opacity:0.56;}66%{transform:translate(-49.4%,-50.8%) scale(0.992);opacity:0.45;}100%{transform:translate(-50%,-50%) scale(1.000);opacity:0.50;}}
+@keyframes hyp-driftB{0%{transform:translate(-50%,-50%) scale(1.000);opacity:0.46;}38%{transform:translate(-49.3%,-50.7%) scale(0.986);opacity:0.40;}72%{transform:translate(-50.7%,-49.5%) scale(1.018);opacity:0.52;}100%{transform:translate(-50%,-50%) scale(1.000);opacity:0.46;}}
+#section-breakup-hypnodrama-session .hyp-presence.emerge{transform:translate(-50%,-50%) scale(1.06);}
+#section-breakup-hypnodrama-session .hyp-statusbar {
+  position:relative;z-index:20;flex-shrink:0;padding:14px 26px 0;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:11px;font-weight:600;color:rgba(30,20,8,0.42);transition:opacity 1100ms ease;
+  font-family:'DM Sans',sans-serif;
+}
+#section-breakup-hypnodrama-session .hyp-sb-right{display:flex;align-items:center;gap:6px;}
+#section-breakup-hypnodrama-session .hyp-sb-right svg{display:block;}
+#section-breakup-hypnodrama-session .hyp-topbar {
+  position:absolute;top:42px;left:0;right:0;z-index:21;
+  display:flex;align-items:center;justify-content:space-between;padding:0 18px;transition:opacity 1100ms ease;
+}
+#section-breakup-hypnodrama-session .hyp-ticon {
+  width:38px;height:38px;border-radius:19px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.50);border:1px solid rgba(58,40,28,0.06);cursor:pointer;
+  transition:background 160ms ease,transform 120ms ease;
+}
+#section-breakup-hypnodrama-session .hyp-ticon svg{stroke:#3A2A1F;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+#section-breakup-hypnodrama-session .hyp-crisis-quiet {
+  font-family:'DM Sans',sans-serif;font-size:10.5px;font-weight:500;color:#A06832;letter-spacing:0.2px;
+  background:rgba(160,104,50,0.07);border:1px solid rgba(160,104,50,0.20);border-radius:16px;
+  padding:5px 11px;cursor:pointer;transition:background 160ms ease;
+}
+#section-breakup-hypnodrama-session .hyp-stage {
+  position:relative;z-index:5;flex:1;display:flex;flex-direction:column;align-items:center;
+  padding:0 38px;text-align:center;animation:hyp-surrender 85s ease-out 8s forwards;
+}
+@keyframes hyp-surrender{from{opacity:1;}to{opacity:0.88;}}
+#section-breakup-hypnodrama-session .hyp-phasewrap {
+  margin-top:112px;display:flex;flex-direction:column;align-items:center;gap:12px;transition:opacity 1300ms ease;
+}
+#section-breakup-hypnodrama-session .hyp-eyebrow {
+  font-family:'DM Sans',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:2.6px;
+  text-transform:uppercase;color:rgba(160,104,50,0.78);transition:opacity 1100ms ease;
+}
+#section-breakup-hypnodrama-session .hyp-rail{display:flex;align-items:center;gap:5px;}
+#section-breakup-hypnodrama-session .hyp-tick{width:13px;height:2px;border-radius:2px;background:rgba(30,20,8,0.15);transition:background 1100ms ease,width 1100ms ease;}
+#section-breakup-hypnodrama-session .hyp-tick.done{background:rgba(160,104,50,0.28);}
+#section-breakup-hypnodrama-session .hyp-tick.now{background:rgba(160,104,50,0.85);width:20px;}
+#section-breakup-hypnodrama-session .hyp-focalwrap{flex:1;display:flex;align-items:center;justify-content:center;width:100%;animation:hyp-textbreath 10s ease-in-out infinite;}
+@keyframes hyp-textbreath{0%,100%{opacity:1;}50%{opacity:0.92;}}
+#section-breakup-hypnodrama-session .hyp-focal {
+  font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:27px;
+  line-height:1.56;color:rgba(58,40,28,0.84);text-wrap:balance;max-width:296px;
+  opacity:0;transform:translateY(6px);transition:opacity 1900ms ease,transform 1900ms ease;
+}
+#section-breakup-hypnodrama-session .hyp-focal.show{opacity:1;transform:translateY(0);}
+#section-breakup-hypnodrama-session .hyp-count {
+  font-family:'Cormorant Garamond',serif;font-weight:300;font-variant-numeric:lining-nums;font-size:104px;
+  line-height:1;color:rgba(150,106,66,0.82);opacity:0;transform:scale(0.86);display:none;
+  transition:opacity 900ms ease,transform 1100ms cubic-bezier(0.22,0.61,0.36,1);
+}
+#section-breakup-hypnodrama-session .hyp-count.show{opacity:1;transform:scale(1);}
+#section-breakup-hypnodrama-session .hyp-resolve{font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:24px;color:rgba(58,40,28,0.84);letter-spacing:0.3px;}
+#section-breakup-hypnodrama-session .hyp-lingertag {
+  margin-top:18px;font-family:'DM Sans',sans-serif;font-size:9.5px;font-weight:500;letter-spacing:1.4px;
+  text-transform:uppercase;color:rgba(58,40,28,0.40);opacity:0;transition:opacity 1800ms ease;
+  display:flex;align-items:center;gap:7px;
+}
+#section-breakup-hypnodrama-session .hyp-lingertag.show{opacity:1;}
+#section-breakup-hypnodrama-session .hyp-linger-dot{width:5px;height:5px;border-radius:50%;background:rgba(160,104,50,0.8);animation:hyp-linger 4s ease-in-out infinite;}
+@keyframes hyp-linger{0%,100%{opacity:0.28;}50%{opacity:0.9;}}
+#section-breakup-hypnodrama-session .hyp-footer{position:relative;z-index:6;flex-shrink:0;padding:0 38px 30px;}
+#section-breakup-hypnodrama-session .hyp-taphint{text-align:center;font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(58,40,28,0.28);letter-spacing:0.4px;margin-bottom:16px;transition:opacity 1100ms ease;}
+#section-breakup-hypnodrama-session .hyp-progress-track{height:2px;border-radius:99px;background:rgba(30,20,8,0.15);overflow:hidden;}
+#section-breakup-hypnodrama-session .hyp-progress-fill{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,rgba(160,104,50,0.85),rgba(196,149,106,0.85));transition:width 1600ms linear;}
+#section-breakup-hypnodrama-session .hyp-phone.hyp-dimmed .hyp-statusbar,
+#section-breakup-hypnodrama-session .hyp-phone.hyp-dimmed .hyp-topbar,
+#section-breakup-hypnodrama-session .hyp-phone.hyp-dimmed .hyp-phasewrap,
+#section-breakup-hypnodrama-session .hyp-phone.hyp-dimmed .hyp-taphint,
+#section-breakup-hypnodrama-session .hyp-phone.hyp-dimmed .hyp-progress-track{opacity:0.06;}
+#section-breakup-hypnodrama-session .hyp-pausewrap {
+  position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-end;padding:0 30px 46px;
+  background:radial-gradient(ellipse 120% 90% at 50% 50%, rgba(244,234,216,0.38), rgba(238,225,202,0.88));
+  opacity:0;pointer-events:none;transition:opacity 460ms ease;
+}
+#section-breakup-hypnodrama-session .hyp-pausewrap.show{opacity:1;pointer-events:auto;}
+#section-breakup-hypnodrama-session .hyp-pause-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:26px;color:rgba(58,40,28,0.92);margin-bottom:6px;text-align:center;}
+#section-breakup-hypnodrama-session .hyp-pause-sub{font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(58,40,28,0.55);text-align:center;margin-bottom:26px;line-height:1.5;max-width:240px;}
+#section-breakup-hypnodrama-session .hyp-pause-stack{width:100%;display:flex;flex-direction:column;gap:11px;}
+#section-breakup-hypnodrama-session .hyp-btn-primary {
+  width:100%;padding:14px;border:none;border-radius:24px;background:#A06832;color:#F3E9DC;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;
+  box-shadow:0 6px 18px rgba(122,82,48,0.28);transition:transform 120ms ease;
+}
+#section-breakup-hypnodrama-session .hyp-btn-row{display:flex;gap:11px;}
+#section-breakup-hypnodrama-session .hyp-btn-ghost {
+  flex:1;padding:12px;border-radius:20px;border:1px solid rgba(160,104,50,0.30);
+  background:rgba(243,233,220,0.7);color:#A06832;font-family:'DM Sans',sans-serif;
+  font-size:12.5px;font-weight:500;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  transition:background 160ms ease,transform 120ms ease;
+}
+#section-breakup-hypnodrama-session .hyp-btn-ghost svg{stroke:#A06832;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+#section-breakup-hypnodrama-session .hyp-pause-crisis{margin-top:20px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:#A06832;cursor:pointer;display:flex;align-items:center;gap:7px;}
+#section-breakup-hypnodrama-session .hyp-pause-crisis svg{stroke:#A06832;stroke-width:2;fill:none;}
+#section-breakup-hypnodrama-session .hyp-pause-end{margin-top:14px;font-family:'DM Sans',sans-serif;font-size:11.5px;color:rgba(58,40,28,0.40);cursor:pointer;}
+#section-breakup-hypnodrama-session .hyp-complete {
+  position:absolute;inset:0;z-index:30;display:none;flex-direction:column;
+  align-items:center;justify-content:center;padding:0 40px;text-align:center;
+}
+#section-breakup-hypnodrama-session .hyp-complete.show{display:flex;}
+#section-breakup-hypnodrama-session .hyp-complete-mark{width:64px;height:64px;border-radius:32px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 38% 34%, rgba(196,149,106,0.26), rgba(160,104,50,0.12));border:1px solid rgba(160,104,50,0.26);margin-bottom:22px;}
+#section-breakup-hypnodrama-session .hyp-complete-mark svg{stroke:#A06832;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+#section-breakup-hypnodrama-session .hyp-complete-eyebrow{font-family:'DM Sans',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:2.6px;text-transform:uppercase;color:rgba(160,104,50,0.78);margin-bottom:12px;}
+#section-breakup-hypnodrama-session .hyp-complete-title{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:32px;color:rgba(58,40,28,0.88);line-height:1.15;margin-bottom:14px;}
+#section-breakup-hypnodrama-session .hyp-complete-body{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:300;line-height:1.65;color:rgba(58,40,28,0.55);max-width:262px;margin-bottom:34px;}
+#section-breakup-hypnodrama-session .hyp-complete .hyp-btn-primary{max-width:300px;}
+#section-breakup-hypnodrama-session .hyp-complete-secondary{margin-top:14px;font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:500;color:#A06832;cursor:pointer;}
+@media(prefers-reduced-motion:reduce){
+  #section-breakup-hypnodrama-session .hyp-glow,
+  #section-breakup-hypnodrama-session .hyp-phone,
+  #section-breakup-hypnodrama-session .hyp-focalwrap,
+  #section-breakup-hypnodrama-session .hyp-stage{animation:none!important;}
+  #section-breakup-hypnodrama-session .hyp-stage{opacity:1!important;}
+  #section-breakup-hypnodrama-session .hyp-descent-breath{animation:none!important;opacity:0.4!important;}
+  #section-breakup-hypnodrama-session .hyp-focal{transition:opacity 1000ms ease;transform:none;}
+  #section-breakup-hypnodrama-session .hyp-focal.show{transform:none;}
+  #section-breakup-hypnodrama-session .hyp-count{transition:opacity 400ms ease;transform:none;}
+  #section-breakup-hypnodrama-session .hyp-count.show{transform:none;}
+}
 
 /* ===== Shifting Identity / Core Beliefs ===== */
 .sec-sch {
@@ -13683,59 +13821,74 @@ window.onStopSectionShow = function(sectionId) {
 </div><!-- /section-breakup-pmr-complete -->
 
 <div class="screens-area" id="section-breakup-hypnodrama-session">
-  <div class="phone-grid"><div class="phone-wrap"><div class="pmr-phone hyp-shell">
+  <div class="phone-grid"><div class="phone-wrap">
+  <div class="hyp-phone" id="hyp-phone" style="--depth:0;--presence:0.5;">
 
-    <div class="pmr-status">
+    <div class="hyp-descent" id="hyp-descent"></div>
+    <div class="hyp-descent-breath"></div>
+    <div class="hyp-presence" id="hyp-presence">
+      <div class="hyp-glow hyp-glow-1"></div>
+      <div class="hyp-glow hyp-glow-2"></div>
+    </div>
+
+    <div class="hyp-statusbar">
       <span>9:41</span>
-      <div style="display:flex;align-items:center;gap:6px;">
-        <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="rgba(30,20,8,0.50)"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="rgba(30,20,8,0.50)"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="rgba(30,20,8,0.38)" stroke-width="1"/><rect x="22" y="3.5" width="2.5" height="5" rx="1" fill="rgba(30,20,8,0.38)"/><rect x="1.5" y="1.5" width="17" height="9" rx="1.5" fill="rgba(30,20,8,0.55)"/></svg>
+      <span class="hyp-sb-right">
+        <svg width="17" height="11" viewBox="0 0 17 11"><g fill="rgba(30,20,8,0.48)"><rect x="0" y="7" width="3" height="4" rx="0.6"/><rect x="4.5" y="5" width="3" height="6" rx="0.6"/><rect x="9" y="2.5" width="3" height="8.5" rx="0.6"/><rect x="13.5" y="0" width="3" height="11" rx="0.6"/></g></svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M1 4.2 A9 9 0 0 1 14 4.2" stroke="rgba(30,20,8,0.48)" stroke-width="1.4" stroke-linecap="round"/><path d="M3.6 6.6 A5.2 5.2 0 0 1 11.4 6.6" stroke="rgba(30,20,8,0.48)" stroke-width="1.4" stroke-linecap="round"/><circle cx="7.5" cy="9.2" r="1.3" fill="rgba(30,20,8,0.48)"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.6" y="0.6" width="21" height="10.8" rx="2.6" fill="none" stroke="rgba(30,20,8,0.36)" stroke-width="1"/><rect x="2.2" y="2.2" width="16" height="7.6" rx="1.4" fill="rgba(30,20,8,0.52)"/><rect x="22.8" y="3.6" width="1.8" height="4.8" rx="0.9" fill="rgba(30,20,8,0.36)"/></svg>
+      </span>
+    </div>
+
+    <div class="hyp-topbar">
+      <div class="hyp-ticon" id="hyp-backBtn" onclick="hypExit(); showSection('module-breakup-recovery');"><svg width="20" height="20" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></div>
+      <div class="hyp-crisis-quiet" id="hyp-crisisQuiet" onclick="showSection('crisis-resources');">Crisis support</div>
+    </div>
+
+    <div class="hyp-stage" id="hyp-stageEl">
+      <div class="hyp-phasewrap" id="hyp-phasewrap">
+        <div class="hyp-eyebrow" id="hyp-eyebrow">Settling</div>
+        <div class="hyp-rail" id="hyp-rail"></div>
       </div>
-    </div>
-
-    <div class="hyp-session-bar">
-      <button class="hyp-exit-btn" onclick="hypExit(); showSection('module-breakup-recovery');" aria-label="Exit session">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1E1408" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-
-    <div class="hyp-stage">
-      <div class="hyp-orb-wrap">
-        <div class="hyp-orb-halo" id="hyp-orb-halo"></div>
-        <div class="hyp-orb" id="hyp-orb"></div>
+      <div class="hyp-focalwrap">
+        <div class="hyp-focal" id="hyp-focal"></div>
+        <div class="hyp-count" id="hyp-count"></div>
       </div>
+      <div class="hyp-lingertag" id="hyp-lingertag"><span class="hyp-linger-dot"></span><span>Take your time</span></div>
     </div>
 
-    <div class="hyp-phase-tag" id="hyp-phase-tag">PHASE 1 OF 6</div>
-    <div class="hyp-phase-name" id="hyp-phase-name">Settling</div>
-    <div class="hyp-phase-desc" id="hyp-phase-desc">Breathe and let the body soften</div>
-
-    <div class="hyp-dots">
-      <div class="hyp-dot" data-phase="0"></div>
-      <div class="hyp-dot" data-phase="1"></div>
-      <div class="hyp-dot" data-phase="2"></div>
-      <div class="hyp-dot" data-phase="3"></div>
-      <div class="hyp-dot" data-phase="4"></div>
-      <div class="hyp-dot" data-phase="5"></div>
+    <div class="hyp-footer">
+      <div class="hyp-taphint" id="hyp-taphint">Tap anywhere to pause</div>
+      <div class="hyp-progress-track"><div class="hyp-progress-fill" id="hyp-progressFill"></div></div>
     </div>
 
-    <div class="hyp-controls">
-      <button class="hyp-ctrl" id="hyp-pause-btn" onclick="hypTogglePause()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-        <span class="hyp-ctrl-lbl">Pause</span>
-      </button>
-      <button class="hyp-ctrl hyp-mute-btn" id="hyp-mute-btn" onclick="hypToggleMute()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A06832" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-        <span class="hyp-ctrl-lbl">Sound</span>
-      </button>
+    <div class="hyp-pausewrap" id="hyp-pausewrap">
+      <div class="hyp-pause-title">Paused</div>
+      <div class="hyp-pause-sub">Stay as long as you need. The session will continue when you're ready.</div>
+      <div class="hyp-pause-stack">
+        <button class="hyp-btn-primary" id="hyp-resumeBtn">Resume →</button>
+        <div class="hyp-btn-row">
+          <button class="hyp-btn-ghost" id="hyp-soundBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24" id="hyp-soundIcon"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>
+            <span id="hyp-soundLabel">Voice off</span>
+          </button>
+          <button class="hyp-btn-ghost" id="hyp-restartBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.5 15a9 9 0 1 0 2.1-9.4L1 10"/></svg>
+            <span>Start over</span>
+          </button>
+        </div>
+      </div>
+      <div class="hyp-pause-crisis" id="hyp-pauseCrisis" onclick="showSection('crisis-resources');"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Crisis support</div>
+      <div class="hyp-pause-end" id="hyp-endBtn">End session</div>
     </div>
 
-    <div class="hyp-progress">
-      <div class="hyp-progress-fill" id="hyp-progress"></div>
-    </div>
-
-    <div class="hyp-cta-wrap">
-      <button class="hyp-cta" onclick="hypExit(); showSection('breakup-hypnodrama-post-checkin');">Complete session →</button>
+    <div class="hyp-complete" id="hyp-complete">
+      <div class="hyp-complete-mark"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><path d="M9 11l2 2 4-4"/></svg></div>
+      <div class="hyp-complete-eyebrow">Session complete</div>
+      <div class="hyp-complete-title">Welcome back.</div>
+      <div class="hyp-complete-body">You did real work in there. Carry the insight gently with you — there's no need to do anything with it right now.</div>
+      <button class="hyp-btn-primary" id="hyp-continueBtn" onclick="hypExit(); showSection('breakup-hypnodrama-post-checkin');">Complete session →</button>
+      <div class="hyp-complete-secondary" id="hyp-replayBtn">Return to the session</div>
     </div>
 
   </div></div></div>
@@ -19979,124 +20132,225 @@ function showSection(id) {
   };
 })();
 
-/* Hypnodrama parchment session — autostart on section-show, cancel on nav away.
-   Layered after CL wrapper. Uses hdScript (global var from existing hypnodrama JS). */
-(function() {
-  if (window._showSectionWrappedForHyp) return;
-  window._showSectionWrappedForHyp = true;
+/* Hypnodrama session — beat-driven spec build. Auto-starts on section show, cancels on nav away. */
+(function(){
+  "use strict";
+  if(window._showSectionWrappedForHyp)return;
+  window._showSectionWrappedForHyp=true;
 
-  var _hypGen = 0;
-  var _hypTimer = null;
-  var _hypElapsed = 0;
-  var _hypDur = 298;
-  var _hypPaused = false;
-  var _hypMuted = false;
-  var _hypActive = false;
-
-  var HYP_PHASES = [
-    { end:  45, idx: 0, name: 'Settling',         desc: 'Breathe and let the body soften',  tag: 'PHASE 1 OF 6', col: '#C9A84C' },
-    { end:  90, idx: 1, name: 'Descending',       desc: 'Going deeper within',               tag: 'PHASE 2 OF 6', col: '#8B6A9E' },
-    { end: 120, idx: 2, name: 'Safe Place',       desc: 'Finding your inner sanctuary',      tag: 'PHASE 3 OF 6', col: '#5C8A60' },
-    { end: 210, idx: 3, name: 'The Conversation', desc: 'Meeting them within',               tag: 'PHASE 4 OF 6', col: '#B85C5C' },
-    { end: 260, idx: 4, name: 'Release',          desc: 'Letting go with grace',             tag: 'PHASE 5 OF 6', col: '#A06832' },
-    { end: 298, idx: 5, name: 'Returning',        desc: 'Coming back gently',                tag: 'PHASE 6 OF 6', col: '#C9A84C' },
+  var TIMING={startDelay:1800,fadeIn:1900,fadeOut:1900,gap:3200,holdMin:7800,holdPerCh:108,holdMax:14500,introMin:8800,countFade:900,countHold:3200,countGap:1100,resolveHold:6800};
+  var PHASES=["Settling","Deepening","The safe place","The encounter","Expression","The dialogue","The release","The insight","Returning"];
+  var BEATS=[
+    {phase:0,type:'line',text:"Sit comfortably. Let the weight of your body rest into the chair or bed beneath you."},
+    {phase:0,type:'line',text:"Close your eyes. Rest one hand over your heart, and begin to feel your breath — moving in, and moving out."},
+    {phase:0,type:'line',text:"Focus on every breath. The breath going in may feel a little dry; the breath leaving you, a little wet."},
+    {phase:0,type:'line',text:"As you keep breathing, your breath grows slow, deep, and rhythmic."},
+    {phase:1,type:'line',text:"With each rhythmic breath, your body grows lighter and lighter. The lighter you feel, the more relaxed you become."},
+    {phase:1,type:'line',text:"The more relaxed you feel, the deeper you go. The deeper you go, the more relaxed you feel."},
+    {phase:1,type:'count',counts:{intro:"Now I'll count down from ten to zero. With every count, you drift twice as deep — connecting further with yourself.",seq:["10","9","8","7","6","5","4","3","2","1","0"],resolve:"Deep sleep."}},
+    {phase:2,type:'line',text:"Keep feeling your breath. Gently, bring to mind the person you've been carrying this difficulty with."},
+    {phase:2,type:'count',counts:{intro:"As I count three to one, you'll find yourself with them — in a place your mind makes for you, where you feel completely safe and protected.",seq:["3","2","1"],resolve:"You are here, together, in your safe place."}},
+    {phase:3,type:'line',text:"Imagine that person sitting in front of you. How do they look? What are they wearing?"},
+    {phase:3,type:'line',text:"Now look at yourself. What are you wearing? And turning your attention inward — what are you feeling as you look at them?"},
+    {phase:4,type:'line',text:"Now begin to express yourself, completely. Say everything you've always wanted to say. Do everything you've wanted to do."},
+    {phase:4,type:'line',text:"All the pain. All the suffering. Let it rise, and let it come through.",linger:true,hold:18000},
+    {phase:5,type:'line',text:"When you've said all you needed to, look at them. Is there something they want to say in return? Listen."},
+    {phase:5,type:'line',text:"And after you've listened — what do you want to say back to them?"},
+    {phase:5,type:'line',text:"Let the conversation continue. Open your heart — the good, the bad, the ugly. Let all of it be said, and keep listening to their side too."},
+    {phase:5,type:'line',text:"Give them space to speak. Let nothing be left unsaid, from either of you.",linger:true,hold:20000},
+    {phase:6,type:'line',text:"When you have your answers — when you've expressed yourself and truly listened — you can let this person go."},
+    {phase:6,type:'line',text:"Thank them for being here, for having this conversation with you. And gently, let them go back."},
+    {phase:6,type:'line',text:"Watch them leave. Then bring your attention home, to yourself."},
+    {phase:7,type:'line',text:"Now let your subconscious mind guide you — to acknowledge whatever needs to be acknowledged here."},
+    {phase:7,type:'line',text:"Let it offer you the insight, the message, that heals you completely in this relationship."},
+    {phase:7,type:'count',counts:{intro:"As I count three to one, let the insight come.",seq:["3","2","1"],resolve:"Let it arrive."}},
+    {phase:7,type:'line',text:"Now let the insight stay with you. Let the healing stay with you — forever."},
+    {phase:8,type:'line',text:"Now I'll bring you up, out of the trance — happy with the work you've done, aware of every insight, calmer and more composed, more healed."},
+    {phase:8,type:'count',up:true,counts:{intro:"As I count from one to five, you return to the room.",seq:["1","2","3","4","5"],resolve:"Eyes open. Wide awake."}}
   ];
 
-  function getPhase(t) {
-    for (var i = 0; i < HYP_PHASES.length; i++) {
-      if (t < HYP_PHASES[i].end) return HYP_PHASES[i];
-    }
-    return HYP_PHASES[HYP_PHASES.length - 1];
+  var VOICE={rate:0.58,pitch:0.86,volume:0.82,pref:["Samantha","Karen","Google US English"]};
+  var _hypMuted=true,_hypChosenVoice=null,_hypSpeakToken=0;
+  function pickVoice(){if(!('speechSynthesis'in window))return;var vs=speechSynthesis.getVoices(),i,p;for(p=0;p<VOICE.pref.length;p++){for(i=0;i<vs.length;i++){if(vs[i].name.indexOf(VOICE.pref[p])>=0){_hypChosenVoice=vs[i];return;}}}for(i=0;i<vs.length;i++){if(vs[i].lang.indexOf('en-US')>=0){_hypChosenVoice=vs[i];return;}}_hypChosenVoice=vs[0]||null;}
+  if('speechSynthesis'in window){speechSynthesis.onvoiceschanged=pickVoice;pickVoice();}
+  function cancelVoice(){_hypSpeakToken++;if('speechSynthesis'in window){try{speechSynthesis.cancel();}catch(e){}}}
+  function speak(text){
+    if(_hypMuted||!text||!('speechSynthesis'in window))return;
+    cancelVoice();
+    var myTok=_hypSpeakToken,parts=text.match(/[^,.;—]+[,.;—]?/g)||[text],i=0;
+    (function go(){
+      if(myTok!==_hypSpeakToken||_hypMuted||i>=parts.length)return;
+      var clause=parts[i].trim();if(!clause){i++;return go();}
+      var u=new SpeechSynthesisUtterance(clause);
+      u.rate=VOICE.rate;u.pitch=VOICE.pitch;u.volume=VOICE.volume;if(_hypChosenVoice)u.voice=_hypChosenVoice;
+      var last=clause.slice(-1),gap=(last==='.'||last===';'||last==='—')?2400:1100,advanced=false;
+      function adv(){if(advanced||myTok!==_hypSpeakToken)return;advanced=true;i++;setTimeout(go,gap);}
+      u.onend=adv;setTimeout(adv,Math.max(1600,clause.length*150)+1200);
+      try{speechSynthesis.speak(u);}catch(e){adv();}
+    })();
   }
 
-  function hypUpdateUI(t) {
-    var phase = getPhase(t);
-    var pct = Math.min((t / _hypDur) * 100, 100);
-    var fill = document.getElementById('hyp-progress');
-    if (fill) fill.style.width = pct + '%';
-    var tag  = document.getElementById('hyp-phase-tag');
-    var name = document.getElementById('hyp-phase-name');
-    var desc = document.getElementById('hyp-phase-desc');
-    var orb  = document.getElementById('hyp-orb');
-    var halo = document.getElementById('hyp-orb-halo');
-    if (tag)  tag.textContent  = phase.tag;
-    if (name) name.textContent = phase.name;
-    if (desc) desc.textContent = phase.desc;
-    if (orb)  orb.style.setProperty('--hyp-col', phase.col);
-    if (halo) halo.style.setProperty('--hyp-col', phase.col);
-    document.querySelectorAll('#section-breakup-hypnodrama-session .hyp-dot').forEach(function(d, i) {
-      d.classList.toggle('active', i < phase.idx);
-      d.classList.toggle('current', i === phase.idx);
+  function gEl(id){return document.getElementById(id);}
+
+  function buildRail(){
+    var rail=gEl('hyp-rail');if(!rail)return;
+    rail.innerHTML='';
+    PHASES.forEach(function(){var t=document.createElement('div');t.className='hyp-tick';rail.appendChild(t);});
+  }
+
+  var _hypIdx=-1,_hypPlaying=false,_hypPaused=false,_hypBeatTimer=null,_hypDimTimer=null,_hypGen=0,_hypEventsAttached=false;
+  var PRESENCE_BY_PHASE=[0.50,0.42,0.32,0.25,0.18,0.15,0.22,0.20,0.40];
+  var DEPTH_BY_PHASE   =[0.06,0.16,0.24,0.30,0.34,0.38,0.30,0.24,0.06];
+
+  function holdFor(b){return b.hold?b.hold:Math.min(TIMING.holdMax,Math.max(TIMING.holdMin,(b.text||'').length*TIMING.holdPerCh+3000));}
+
+  function setPhase(p){
+    var ew=gEl('hyp-eyebrow');
+    if(ew){ew.style.opacity=0;setTimeout(function(){ew.textContent=PHASES[p];ew.style.opacity=1;},450);}
+    var ticks=document.querySelectorAll('#section-breakup-hypnodrama-session .hyp-tick');
+    ticks.forEach(function(t,i){t.classList.remove('done','now');if(i<p)t.classList.add('done');else if(i===p)t.classList.add('now');});
+    var pres=gEl('hyp-presence');if(pres)pres.className='hyp-presence';
+    var ph=gEl('hyp-phone');
+    if(ph){ph.style.setProperty('--presence',PRESENCE_BY_PHASE[p]);ph.style.setProperty('--depth',DEPTH_BY_PHASE[p]);}
+  }
+  function showFocal(html){
+    var foc=gEl('hyp-focal'),cnt=gEl('hyp-count');if(!foc)return;
+    var wasShown=foc.classList.contains('show');
+    foc.classList.remove('show');if(cnt){cnt.classList.remove('show');cnt.style.display='none';}
+    setTimeout(function(){foc.innerHTML=html;foc.classList.add('show');},wasShown?(TIMING.fadeOut+150):90);
+  }
+  function setProgress(){var fill=gEl('hyp-progressFill');if(fill)fill.style.width=Math.round(((_hypIdx+1)/BEATS.length)*100)+'%';}
+
+  function nextBeat(){
+    if(_hypPaused)return;
+    _hypIdx++;if(_hypIdx>=BEATS.length){finish();return;}
+    var b=BEATS[_hypIdx],myGen=++_hypGen;
+    setProgress();
+    if(_hypIdx===0||b.phase!==BEATS[_hypIdx-1].phase)setPhase(b.phase);
+    var lt=gEl('hyp-lingertag');if(lt)lt.classList.toggle('show',!!b.linger);
+    if(b.type==='line'){
+      showFocal(b.text);speak(b.text);
+      var hold=holdFor(b);
+      _hypBeatTimer=setTimeout(function(){
+        if(myGen!==_hypGen)return;
+        var foc=gEl('hyp-focal');if(foc)foc.classList.remove('show');
+        _hypBeatTimer=setTimeout(function(){if(myGen===_hypGen)nextBeat();},TIMING.fadeOut+TIMING.gap);
+      },TIMING.fadeIn+hold);
+    } else { runCount(b,myGen); }
+  }
+
+  function runCount(b,myGen){
+    var c=b.counts;showFocal(c.intro);speak(c.intro);
+    var hold=Math.min(13500,Math.max(TIMING.introMin,c.intro.length*TIMING.holdPerCh+2800));
+    _hypBeatTimer=setTimeout(function(){
+      if(myGen!==_hypGen)return;
+      var foc=gEl('hyp-focal');if(foc)foc.classList.remove('show');
+      _hypBeatTimer=setTimeout(function(){if(myGen===_hypGen)stepCount(c,0,b.up,myGen);},TIMING.fadeOut+700);
+    },TIMING.fadeIn+hold);
+  }
+
+  function stepCount(c,i,up,myGen){
+    if(myGen!==_hypGen)return;
+    var cnt=gEl('hyp-count'),foc=gEl('hyp-focal'),ph=gEl('hyp-phone'),pres=gEl('hyp-presence');
+    if(i>=c.seq.length){
+      if(cnt)cnt.classList.remove('show');
+      setTimeout(function(){
+        if(myGen!==_hypGen)return;
+        if(cnt)cnt.style.display='none';
+        if(foc){foc.innerHTML='<span class="hyp-resolve">'+c.resolve+'</span>';foc.classList.add('show');}
+        speak(c.resolve);
+        _hypBeatTimer=setTimeout(function(){
+          if(myGen!==_hypGen)return;
+          if(foc)foc.classList.remove('show');
+          _hypBeatTimer=setTimeout(function(){if(myGen===_hypGen)nextBeat();},TIMING.fadeOut+TIMING.gap);
+        },TIMING.fadeIn+TIMING.resolveHold);
+      },TIMING.countFade);
+      return;
+    }
+    if(foc)foc.classList.remove('show');
+    if(cnt){cnt.style.display='block';cnt.classList.remove('show');void cnt.offsetWidth;cnt.textContent=c.seq[i];cnt.classList.add('show');}
+    speak(c.seq[i]);
+    if(up&&ph){
+      var d=0.30-(i/(c.seq.length-1))*0.26;
+      ph.style.setProperty('--depth',Math.max(0.04,d).toFixed(2));
+      ph.style.setProperty('--presence',(0.34+(i/(c.seq.length-1))*0.26).toFixed(2));
+      if(i===c.seq.length-1&&pres)pres.classList.add('emerge');
+    }
+    _hypBeatTimer=setTimeout(function(){
+      if(myGen!==_hypGen)return;
+      if(cnt)cnt.classList.remove('show');
+      setTimeout(function(){if(myGen===_hypGen)stepCount(c,i+1,up,myGen);},TIMING.countFade+TIMING.countGap);
+    },TIMING.countFade+TIMING.countHold);
+  }
+
+  function finish(){
+    _hypPlaying=false;cancelVoice();
+    var fill=gEl('hyp-progressFill');if(fill)fill.style.width='100%';
+    var ph=gEl('hyp-phone');if(ph)ph.classList.remove('hyp-dimmed');
+    clearTimeout(_hypDimTimer);
+    var comp=gEl('hyp-complete');if(comp)comp.classList.add('show');
+  }
+  function resetDim(){
+    var ph=gEl('hyp-phone');if(ph)ph.classList.remove('hyp-dimmed');clearTimeout(_hypDimTimer);
+    if(_hypPlaying&&!_hypPaused){_hypDimTimer=setTimeout(function(){if(_hypPlaying&&!_hypPaused){var p=gEl('hyp-phone');if(p)p.classList.add('hyp-dimmed');}},4500);}
+  }
+  function start(){
+    _hypPlaying=true;_hypPaused=false;_hypIdx=-1;_hypGen++;
+    buildRail();
+    var pres=gEl('hyp-presence');if(pres)pres.className='hyp-presence';
+    var ph=gEl('hyp-phone');if(ph){ph.style.setProperty('--presence',0.50);ph.style.setProperty('--depth',0.06);}
+    var stg=document.querySelector('#section-breakup-hypnodrama-session .hyp-stage');
+    if(stg){stg.style.animation='none';void stg.offsetWidth;stg.style.animation='';}
+    var comp=gEl('hyp-complete'),pw=gEl('hyp-pausewrap');
+    if(comp)comp.classList.remove('show');if(pw)pw.classList.remove('show');
+    nextBeat();resetDim();
+  }
+  function pause(){
+    if(!_hypPlaying||_hypPaused)return;
+    _hypPaused=true;_hypGen++;clearTimeout(_hypBeatTimer);clearTimeout(_hypDimTimer);
+    cancelVoice();var ph=gEl('hyp-phone');if(ph)ph.classList.remove('hyp-dimmed');
+    var pw=gEl('hyp-pausewrap');if(pw)pw.classList.add('show');
+  }
+  function resume(){
+    if(!_hypPaused)return;_hypPaused=false;
+    var pw=gEl('hyp-pausewrap');if(pw)pw.classList.remove('show');
+    _hypIdx--;nextBeat();resetDim();
+  }
+
+  window.hypExit=function(){
+    _hypPlaying=false;_hypPaused=false;_hypGen++;
+    clearTimeout(_hypBeatTimer);clearTimeout(_hypDimTimer);cancelVoice();
+    var ph=gEl('hyp-phone');if(ph)ph.classList.remove('hyp-dimmed');
+    var pw=gEl('hyp-pausewrap');if(pw)pw.classList.remove('show');
+    var comp=gEl('hyp-complete');if(comp)comp.classList.remove('show');
+  };
+
+  function attachEvents(){
+    if(_hypEventsAttached)return;_hypEventsAttached=true;
+    var stg=document.querySelector('#section-breakup-hypnodrama-session .hyp-stage');
+    if(stg)stg.addEventListener('click',function(){if(_hypPlaying&&!_hypPaused)pause();});
+    var th=gEl('hyp-taphint');if(th)th.addEventListener('click',function(){if(_hypPlaying&&!_hypPaused)pause();});
+    var rb=gEl('hyp-resumeBtn');if(rb)rb.addEventListener('click',resume);
+    var rst=gEl('hyp-restartBtn');if(rst)rst.addEventListener('click',start);
+    var rep=gEl('hyp-replayBtn');if(rep)rep.addEventListener('click',start);
+    var end=gEl('hyp-endBtn');if(end)end.addEventListener('click',finish);
+    var sb=gEl('hyp-soundBtn');
+    if(sb)sb.addEventListener('click',function(){
+      _hypMuted=!_hypMuted;
+      var sl=gEl('hyp-soundLabel'),si=gEl('hyp-soundIcon');
+      if(sl)sl.textContent=_hypMuted?'Voice off':'Voice on';
+      if(si){if(_hypMuted){si.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/>';}else{si.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>';}}
+      if(_hypMuted)cancelVoice();
     });
   }
 
-  function hypBeginSession(gen) {
-    _hypActive = true;
-    _hypElapsed = 0;
-    _hypPaused = false;
-    hypUpdateUI(0);
-    var btn = document.getElementById('hyp-pause-btn');
-    if (btn) {
-      var s = btn.querySelector('svg'); var l = btn.querySelector('.hyp-ctrl-lbl');
-      if (s) s.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-      if (l) l.textContent = 'Pause';
-    }
-    if (window.speechSynthesis && !_hypMuted && window.hdScript) {
-      try {
-        speechSynthesis.cancel();
-        var utt = new SpeechSynthesisUtterance(window.hdScript);
-        utt.rate = 0.72; utt.pitch = 0.95; utt.volume = 0.85;
-        speechSynthesis.speak(utt);
-      } catch(e) {}
-    }
-    _hypTimer = setInterval(function() {
-      if (gen !== _hypGen) { clearInterval(_hypTimer); _hypTimer = null; return; }
-      if (_hypPaused) return;
-      _hypElapsed += 0.1;
-      hypUpdateUI(_hypElapsed);
-      if (_hypElapsed >= _hypDur) { clearInterval(_hypTimer); _hypTimer = null; }
-    }, 100);
-  }
-
-  window.hypExit = function() {
-    _hypActive = false;
-    _hypGen++;
-    if (_hypTimer) { clearInterval(_hypTimer); _hypTimer = null; }
-    try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch(e) {}
-  };
-
-  window.hypTogglePause = function() {
-    _hypPaused = !_hypPaused;
-    var btn = document.getElementById('hyp-pause-btn');
-    var s = btn ? btn.querySelector('svg') : null;
-    var l = btn ? btn.querySelector('.hyp-ctrl-lbl') : null;
-    if (_hypPaused) {
-      try { speechSynthesis.pause(); } catch(e) {}
-      if (s) s.innerHTML = '<polygon points="6 4 18 12 6 20 6 4"/>';
-      if (l) l.textContent = 'Resume';
-    } else {
-      try { speechSynthesis.resume(); } catch(e) {}
-      if (s) s.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-      if (l) l.textContent = 'Pause';
-    }
-  };
-
-  window.hypToggleMute = function() {
-    _hypMuted = !_hypMuted;
-    if (_hypMuted) { try { speechSynthesis.cancel(); } catch(e) {} }
-    var mb = document.getElementById('hyp-mute-btn');
-    if (mb) mb.classList.toggle('muted', _hypMuted);
-    var ml = mb ? mb.querySelector('.hyp-ctrl-lbl') : null;
-    if (ml) ml.textContent = _hypMuted ? 'Muted' : 'Sound';
-  };
-
-  var _prevHyp = window.showSection;
-  window.showSection = function(id) {
-    if (_hypActive && id !== 'breakup-hypnodrama-session') { window.hypExit(); }
-    var result = _prevHyp.apply(this, arguments);
-    if (id === 'breakup-hypnodrama-session') {
-      var gen = ++_hypGen;
-      setTimeout(function() { hypBeginSession(gen); }, 400);
+  var _prevHyp=window.showSection;
+  window.showSection=function(id){
+    if(_hypPlaying&&id!=='breakup-hypnodrama-session'){window.hypExit();}
+    var result=_prevHyp.apply(this,arguments);
+    if(id==='breakup-hypnodrama-session'){
+      attachEvents();
+      setTimeout(start,TIMING.startDelay);
     }
     return result;
   };
