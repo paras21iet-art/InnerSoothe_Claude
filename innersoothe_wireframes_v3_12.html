@@ -13663,7 +13663,7 @@ window.onStopSectionShow = function(sectionId) {
 <div class="screens-area" id="section-breakup-hypnodrama-session">
 <div class="phone-grid"><div class="phone-wrap" style="position:relative;overflow:hidden;">
 <style>
-#section-breakup-hypnodrama-session{position:absolute;inset:0;
+#section-breakup-hypnodrama-session{position:fixed;inset:0;z-index:9000;
     --sage:#A06832; --sage-light:#C4956A; --bark:#8C5A1E; --charcoal:#1E1408;
     --ink-92:rgba(58,40,28,0.92); --ink-72:rgba(58,40,28,0.72);
     --ink-55:rgba(58,40,28,0.55); --ink-40:rgba(58,40,28,0.40);
@@ -14066,14 +14066,10 @@ window.onStopSectionShow = function(sectionId) {
   document.getElementById('hyp-restartBtn').addEventListener('click',start);
   document.getElementById('hyp-replayBtn').addEventListener('click',start);
   document.getElementById('hyp-endBtn').addEventListener('click',finish);
-  document.getElementById('hyp-backBtn').addEventListener('click',function(){
-    if(window.InnerSootheHyp)window.InnerSootheHyp.stop();
-    showSection('module-breakup-recovery');
-  });
-  document.getElementById('hyp-continueBtn').addEventListener('click',function(){
-    if(window.InnerSootheHyp)window.InnerSootheHyp.stop();
-    showSection('breakup-hypnodrama-post-checkin');
-  });
+  var HYP_EXIT_SECTION='module-breakup-recovery';  /* set to the section the card was opened from */
+  function hypExit(){if(window.InnerSootheHyp)window.InnerSootheHyp.stop();if(typeof showSection==='function')showSection(HYP_EXIT_SECTION);}
+  document.getElementById('hyp-backBtn').addEventListener('click',hypExit);
+  document.getElementById('hyp-continueBtn').addEventListener('click',hypExit);
   function toggleSound(){
     muted=!muted;soundLabel.textContent=muted?'Voice off':'Voice on';
     if(muted){cancelVoice();soundIcon.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/>';}
