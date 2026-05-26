@@ -36,7 +36,7 @@
 
 ---
 
-## Current Wireframe State (as of 2026-05-15)
+## Current Wireframe State (as of 2026-05-26)
 
 ### Screens Built and Locked
 1. Pre-onboarding gate — 4 screens (age, safety, consent, crisis)
@@ -62,11 +62,24 @@
 21. **Closure Letter Part 3 — The Closing** (`section-cl-p3`) — LOCKED (2026-05-15), with 4-option closure ritual cards
 22. **Closure Letter Post check-in** (`section-cl-post-checkin`) — LOCKED (2026-05-15), MANDATORY screen, chips auto-sync from CL pre
 23. **Closure Letter Complete** (`section-cl-complete`) — LOCKED (2026-05-15), hybrid composition with YOUR SHIFT + THIS SESSION cards, Q4 honor-the-choice save logic
+24. **PMR Quick Session** (`section-breakup-pmr-session-quick`) — VISUAL PASS COMPLETE (2026-05-26). All 7 muscle groups (Hands, Arms/Shoulders, Face, Neck, Torso, Thighs, Legs/Calves) have body-map arrows + labels. Face uses a closeup pair; Legs uses a baked-in-arrows image. TTS chain safety-net, pause/resume feedback, no-auto-advance (user taps "Complete session" to reach the post-checkin). "Good enough" — see Known Compromises.
 
 ### Screens In-Progress / Pending
 - STOP Quick Reset mode (stub `startStopGuided()` exists; full implementation pending)
-- PMR Entry + Complete — alignment to STOP canonical templates (in parallel chat session)
+- PMR Entry + Complete + Full-session variant — alignment to STOP canonical templates
 - Progress tab Phase 2: chart views, filter chips, archive with month navigation
+
+### Known Compromises — carry into React Native build (do NOT re-polish in wireframe)
+- **PMR body-map / Legs feet view**: the opaque porcelain photo has a gradient background that cannot perfectly match a flat screen color, leaving a faint seam; and SVG arrows fought a coordinate-space mismatch with the scaled pose image (Legs arrows had to be baked into the image as a workaround). Native build: use a TRANSPARENT-bg or VECTOR body-map asset and position arrows as native elements anchored to the figure. Removes the entire class of bug.
+- **PMR clinical content UNVERIFIED**: the 7 group actions (esp. "Thighs: squeeze knees + glutes" — glutes are hidden in a seated pose) and voiceover scripts have NOT been clinically reviewed. Confirm all actions, ordering, and scripts with Dr. Anu Teotia before building natively.
+
+### New canonical patterns established 2026-05-26 (PMR body-map session)
+- **Body-map arrow + label system** — shared SVG `<symbol id="pmrq-arrow-shape">` referenced via `<use>`, standard width 7 in a `0 0 100 150` viewBox (slice). Arrow fill `#A06832`, thin white stroke 0.7, soft shadow, subtle pulse. Reusable for any guided body-region technique.
+- **Arrow label convention** — `.pmrq-arrow-label`: DM Sans 600, ~2.1 viewBox-units, fill `#4A2408`, no white outline. Label to the RIGHT of the rightmost arrow; exceptions: below an up-arrow, or centered between an inward pair.
+- **Closeup-pose pattern (Face)** — for small/detail muscle groups: a neutral + tense image pair, object-fit contain with bottom-fade mask, equal 1.5s transitions, releasePose skipped so neutral persists. Hands is a future candidate for the same treatment natively.
+- **Baked-in-arrows image (Legs workaround)** — when SVG arrows can't align with a scaled pose image, bake arrows into the image and empty the SVG group. Wireframe-only fix; native build should use vector/transparent assets.
+- **TTS chain safety-net** — online voices on file:// often never fire onend, freezing the chain. speakChainGroup/speakChunks use a duration timer (max(3500, len*80+2500)ms) to force-advance. Apply to any voice-driven multi-step chain.
+- **Per-group body-layer bg shift** — `.pmrq-body-layer.feet-bg` toggled in setPose changes background color to match a contained pose image's tone, hiding the seam.
 
 ### New canonical patterns established 2026-05-15
 - **CL dispatch IIFE wrapper** — layered after STOP voice cancel wrapper; handles all 7 CL section IDs; does NOT use DOMContentLoaded (correct pattern for late-in-file wrappers)
@@ -170,11 +183,13 @@ When a visual issue keeps recurring after multiple CSS-only fixes (e.g. the conf
 
 1. ~~Build STOP Steps 1–4, pre/post check-in, Complete, Progress~~ — ALL DONE (2026-05-13/14)
 2. ~~Build Closure Letter 7 sections end-to-end~~ — DONE LOCKED (2026-05-15)
-3. **→ PMR Entry + Complete — alignment to STOP canonical templates** (parallel chat session)
-4. STOP Quick Reset mode (stub `startStopGuided()` exists; needs full implementation)
-6. Psychologist sync on the 5 open questions
-7. Resolve "heal from within" sub-brand
-8. Source production-resolution illustration assets
-9. Psychologist records voice (Cord Cutting first)
-10. Set up full React Native modular architecture
-11. Build React Native screens (onboarding first)
+3. ~~PMR Quick Session body-map (7 groups, arrows, voice, transitions)~~ — VISUAL PASS DONE (2026-05-26), "good enough"
+4. **→ Clinical content review with Dr. Anu Teotia** — confirm PMR group actions (esp. Thighs), ordering, and all voiceover scripts BEFORE native build
+5. PMR Entry + Complete + Full-session variant — alignment to STOP canonical templates
+6. STOP Quick Reset mode (stub `startStopGuided()` exists; needs full implementation)
+7. Psychologist sync on the 5 open questions
+8. Resolve "heal from within" sub-brand
+9. Source production-resolution illustration assets
+10. Psychologist records voice (Cord Cutting first)
+11. **Set up full React Native modular architecture** — use transparent/vector body-map assets + native arrow positioning (see Known Compromises)
+12. Build React Native screens (onboarding first)

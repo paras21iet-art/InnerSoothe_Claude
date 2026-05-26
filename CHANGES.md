@@ -442,3 +442,61 @@ Shell classes: `.sec-cl-p1` / `.sec-cl-p2` / `.sec-cl-p3` — 370×780px, `backg
 - `8b37039` — aggressive dots lift + Part 3 compensation
 - `26c2c87` — Patch 5: post check-in
 - `10a78c7` — Patch 6: Complete + save logic + Progress integration
+
+---
+
+## 2026-05-26 — PMR Quick Session: full visual pass complete (all 7 muscle groups)
+
+**File:** `innersoothe_wireframes_v3_12.html`
+**Section:** `section-breakup-pmr-session-quick`
+
+Completed the body-map arrow + label system for all 7 PMR muscle groups, plus several behavioural fixes. The PMR Quick session is now feature-complete on the visual pass (treated as "good enough" — remaining refinement deferred to React Native build).
+
+### Arrow + label system (all groups)
+- Arrows drawn via shared SVG `<symbol id="pmrq-arrow-shape">`, referenced with `<use>`. Standard size **width 7** in a `0 0 100 150` viewBox (`xMidYMid slice`).
+- Arrow style: fill `#A06832`, thin white stroke `0.7`, soft drop-shadow, subtle pulse animation. Deliberately slim/calm — not fitness-aggressive.
+- Label class `.pmrq-arrow-label`: DM Sans, font-size `2.1px` (viewBox units, ~10px on screen), weight 600, fill `#4A2408`, no white outline.
+- Convention: label sits to the RIGHT of the rightmost arrow, EXCEPT Torso "Chest" (below its arrow) and "Core" (centered between the two core arrows).
+
+### Per-group final positions
+- Hands ("Fists"): 2 inward arrows on fists, x=26 / x=58, y≈74.5.
+- Shoulders ("Shoulders"): 2 up arrows on shoulder caps, x=44 / x=64, y=24.
+- Face: closeup mode, arrows hidden.
+- Neck ("Neck"): 1 up arrow at chin, x=53, y=22.
+- Torso ("Chest" + "Core"): chest up-arrow x=51 y=34 (label below y=46); core inward arrows x=36 / x=64 y=59 (label centered x=53.5 y=61).
+- Thighs ("Knees" + "Glutes"): knee arrows x=20 / x=44 y=88; single glute arrow from the right x=67 y=80.
+- Legs/Calves ("Feet"): arrows BAKED INTO the image.
+
+### Face closeup fixes
+- Neutral (pmr-face-closeup.png) + tense overlay (pmr-face-closeup-tense.png); were originally swapped, renamed correctly by user.
+- Sized 80%/top 33%/left 58%, object-fit contain, linear bottom-fade mask.
+- Fixed flicker: removed conflicting transition-delays (both fade equal 1.5s); setPose does NOT clear tense overlay when poseSlug==='face'; releasePose skipped for face so neutral persists through release/rest.
+
+### Legs/Calves — baked-in arrows (key workaround)
+- SVG arrows could not align with the feet (coordinate-space mismatch between scaled pose image and arrow viewBox). After many failed cover/contain attempts, arrows were baked into a new image: pmr-mannequin-calves-arrows.png (two up-arrows beneath the feet + "Feet" label). SVG <g data-group="feet"> is now empty.
+- Both relaxed base mannequin (during Legs) and feet pose shown object-fit contain at width 96% / top 36% with a radial edge mask, so full body incl. feet is visible. Base mannequin reframe via .pmrq-mannequin.feet-hidden (REFRAMES rather than hides — same values as feet pose so they align).
+- .pmrq-pose[data-pose="feet"].releasing override: animation:none + opacity fade, preserving translate(-50%,-50%) centering.
+- Body-layer bg shifts to #D9BFA8 during Legs (class .pmrq-body-layer.feet-bg, toggled in setPose) to match image tone and hide the seam. Image bg is a gradient so the match is approximate; residual faint edge accepted as a wireframe compromise.
+
+### Behavioural fixes
+- TTS chain freeze fix: online voices on file:// often never fire onend, freezing the chain. speakChainGroup now has a duration safety timer (estMs = max(3500, text.length*80+2500)) that force-advances. Intro/outro use QUICK_INTRO_CHUNKS / QUICK_OUTRO_CHUNKS + speakChunks with the same net.
+- Pause feedback: pmrqTogglePause swaps icon to a play triangle and label to "Resume" when paused.
+- No auto-advance: session no longer auto-jumps to the post-checkin after the outro; it settles on "Session complete" and waits. The "Complete session →" button (pmrqEndEarly()) now also calls showSection('breakup-pmr-post-checkin').
+
+### Typography refinements (PMR session screen)
+- Eyebrow: DM Sans 600, 11px, letter-spacing 1.0px, #A06832.
+- Muscle name: Cormorant Garamond 400, 27px, #140D04.
+- State pills: DM Sans, 11px, inactive opacity 0.68.
+- Control labels: DM Sans, 11px, opacity 0.72.
+
+### Asset added
+- pmr-mannequin-calves-arrows.png (1024×1536) — calves pose with baked-in up-arrows + "Feet" label.
+
+### Clinical flag (carried forward)
+- The "Thighs: squeeze knees + glutes" action is unverified and may not match standard PMR protocol (glutes hidden in seated pose). All 7 group actions + ordering + voiceover scripts must be confirmed with Dr. Anu Teotia before the native build.
+
+### Process lesson
+- Repeated wasted effort came from local Claude Code edits NOT being pushed to GitHub before review — stale files were debugged for many rounds. Rule going forward: always git push before any review of the repo.
+
+### Known compromise (deferred to React Native)
+- The Legs/feet body-map uses an opaque photo with a gradient background that cannot perfectly match a flat screen color, so a faint seam remains. In the native build, use a transparent-bg or vector body-map asset and position arrows as native elements anchored to the figure.

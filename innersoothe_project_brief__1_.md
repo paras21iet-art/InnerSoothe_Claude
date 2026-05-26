@@ -559,13 +559,13 @@ India: Consumer self-therapy space wide open. First mover available.
 
 ---
 
-## GTM — North India Corridor First
-1. Lucknow / Kanpur
-2. Punjab
-3. Tier-2 Haryana
-4. NCR last (saturated)
+## GTM — Global App
 
-Asset-light virtual model — inspired by WeRize zero-branch approach.
+InnerSoothe is a **global app** — not targeted at any specific country or region. The product, content, imagery, and language are designed to be culturally neutral and broadly accessible (consistent with the "No regionally coded imagery" visual rule).
+
+- Positioning and rollout are global from the outset; no region-first corridor strategy.
+- Asset-light virtual model (no physical/branch footprint).
+- (Any earlier "North India corridor first" framing is superseded — InnerSoothe is global.)
 
 ---
 
@@ -590,6 +590,13 @@ animate with repeatCount="1" and fill="freeze":
 
 | Date | Decision | Status |
 |------|----------|--------|
+| 2026-05-26 | GTM positioning: InnerSoothe is a GLOBAL app — not region-targeted. "North India corridor first" framing superseded. | ✅ Decided |
+| 2026-05-26 | PMR Quick Session: body-map arrow + label system for all 7 muscle groups (width-7 SVG arrows, DM Sans labels, dark brown #4A2408) | ✅ Locked in wireframe |
+| 2026-05-26 | PMR Face group: closeup neutral+tense image pair with bottom-fade mask, releasePose skipped for face | ✅ Locked in wireframe |
+| 2026-05-26 | PMR Legs/Calves: arrows baked into image (pmr-mannequin-calves-arrows.png), SVG group emptied — coordinate-mismatch workaround | ✅ Locked (compromise; redo natively) |
+| 2026-05-26 | PMR session: no auto-advance after outro — user taps "Complete session" to reach post-checkin | ✅ Locked in wireframe |
+| 2026-05-26 | PMR wireframe declared "good enough" — body-map refinement deferred to React Native (transparent/vector assets) | ✅ Decided |
+| 2026-05-26 | PMR group ACTIONS (esp. Thighs "knees + glutes") + voiceover scripts | ⏳ Pending clinical review with Dr. Anu Teotia |
 | — | Psychologist: parchment vs eucalyptus green | ⏳ Superseded — splash now dark |
 | — | Tea plantation photo integration (Pexels 13691355) | ⏳ Embedded inline in wireframe — pending production asset |
 | — | Single-screen vs multi-screen technique format | ⏳ Pending |

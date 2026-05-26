@@ -1161,3 +1161,62 @@ Canonical pattern for expressive-writing techniques. First locked in Closure Let
 - All 7 CL section voice cues use empathic conversational tone, NOT the STOP "Step [N]. [Name]. [Brief instruction]." brisk pattern
 - Entry voice is longest (~19s) — acknowledges user state + names technique + explains parts + reassures
 - Part voice cues are shorter (~12s) — anchor the part + give permission + warm closer
+
+---
+
+## 23. PMR Body-Map Session Patterns (`section-breakup-pmr-session-quick`)
+
+*Extracted 2026-05-26. The PMR Quick Session body-map: a porcelain-mannequin figure with directional arrows + labels indicating which muscle group to tense. Wireframe-level "good enough"; native build should use transparent/vector assets — see Known Compromises in context-primer.*
+
+### Layer architecture
+- `.pmrq-body-layer` — absolute, `inset:0`, `z-index:0`, `overflow:hidden`, `isolation:isolate`. Background `#EDCFB5` (matches mannequin photo tone).
+- Children (paint order): `.pmrq-ambient` (z1, saffron wash) → `.pmrq-mannequin` (relaxed base) → `.pmrq-pose` images (per group, fade in) → `.pmrq-pose-tense` (z2, face only) → `.pmrq-arrows` SVG (z4) → `.pmrq-regions` SVG.
+- Pose images default: `.pmrq-pose { object-fit: cover; object-position: center center; opacity:0; transition: opacity 5s; }`; `.active` sets opacity 1.
+
+### Arrow system
+- Shared symbol: `<symbol id="pmrq-arrow-shape" viewBox="-10 -10 20 20">` referenced via `<use href="#pmrq-arrow-shape">`.
+- Arrows SVG container: `viewBox="0 0 100 150"`, `preserveAspectRatio="xMidYMid slice"`, `z-index:4`, `pointer-events:none`. Default `opacity:0`; `.pmrq-arrows.visible` sets opacity 1.
+- Per-group `<g data-group="...">` is `opacity:0`; `.active` (toggled by `setArrows()`) sets opacity 1. Group key mapping: `group.id.replace('pmrq-r-','').replace('arms','shoulders').replace('legs','feet')`.
+- **Standard arrow size: `width="7" height="7"`** (slim, calm — NOT fitness-aggressive).
+- `.pmrq-arrow` path: `fill:#A06832; stroke:rgba(255,255,255,0.7); stroke-width:0.7; filter:drop-shadow(0 1px 2px rgba(33,24,12,0.22));` + `pmrq-arrow-pulse` 2s animation (`.staggered` delays 0.6s).
+- Arrow direction via `transform="rotate(deg cx cy)"` on the `<use>`. Up arrows have no transform.
+
+### Arrow label style
+- `.pmrq-arrow-label { font-family:'DM Sans'; font-size:2.1px; font-weight:600; fill:#4A2408; letter-spacing:0.15px; }` (font-size is viewBox units → ~10px on screen, matching sidebar chips).
+- **No white outline / stroke** — tried it, looked fuzzy; removed.
+- Convention: label `text-anchor="start"` to the RIGHT of the rightmost arrow. Exceptions: Torso "Chest" BELOW its up-arrow (`text-anchor="middle"`); Torso "Core" centered between the two inward arrows.
+
+### Per-group arrow + label reference (viewBox 0–100 × 0–150)
+- **Hands** — "Fists": L arrow x=26 y=74.5 rotate(90), R arrow x=58 y=74.5 rotate(-90); label x=66 y=80.
+- **Shoulders** — "Shoulders": up arrows x=44 / x=64 at y=24 (no rotate); label x=72 y=29.
+- **Face** — closeup mode; `g[data-group="face"] { display:none; }` (no arrows).
+- **Neck** — "Neck": up arrow x=53 y=22; label x=62 y=27.
+- **Torso** — "Chest" up arrow x=51 y=34 (label x=54.5 y=46, centered, below); "Core" inward arrows x=36 / x=64 at y=59 (label x=53.5 y=61, centered).
+- **Thighs** — "Knees" inward arrows x=20 / x=44 at y=88 (label x=52 y=91); "Glutes" single arrow from right x=67 y=80 rotate(-90) at buttock/seat (label x=76).
+- **Legs/Calves** — "Feet": arrows BAKED INTO the image; SVG `<g data-group="feet">` is empty.
+
+### Face closeup pattern (small-muscle technique)
+- Neutral `.pmrq-pose[data-pose="face"]` + tense `.pmrq-pose-tense[data-pose="face"]`: `width:80%; height:80%; top:33%; left:58%; transform:translate(-50%,-50%); object-fit:contain;` + `mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 90%)`.
+- Both layers `transition: opacity 1.5s` (equal, no conflicting delays).
+- setPose does NOT clear the tense overlay when `poseSlug==='face'`. releasePose skipped for face (neutral persists). Base mannequin hidden via `.pmrq-mannequin.face-hidden { opacity:0; transition: opacity 2s; }`.
+
+### Legs/Calves baked-in-arrows pattern (coordinate-mismatch workaround)
+- Pose `src = pmr-mannequin-calves-arrows.png` (arrows + "Feet" label burned into the 1024×1536 image).
+- `.pmrq-pose[data-pose="feet"]`: `width:96%; height:96%; top:36%; left:50%; transform:translate(-50%,-50%); object-fit:contain;` + radial edge mask `radial-gradient(ellipse 88% 90% at center, black 70%, transparent 99%)`.
+- `.pmrq-mannequin.feet-hidden` REFRAMES (not hides) the base mannequin with the SAME values so relaxed + arrows poses align pixel-perfect; toggled in setPose by `poseSlug==='feet'`.
+- `.pmrq-pose[data-pose="feet"].releasing { animation:none; opacity:0; transform:translate(-50%,-50%); transition:opacity 2s; }` — overrides the scale-release that clobbers centering.
+- `.pmrq-body-layer.feet-bg { background-color:#D9BFA8; }` (+1.5s transition on base rule) — toggled during Legs to match the image bg tone and hide the seam.
+
+### Session typography (this screen)
+- Eyebrow (e.g. "SQUEEZE FISTS"): DM Sans 600, 11px, letter-spacing 1.0px, uppercase, `#A06832`.
+- Muscle name (e.g. "Hands & forearms"): Cormorant Garamond 400, 27px, `#140D04`.
+- State pills (TENSE/HOLD/RELEASE/REST): DM Sans 500, 11px; inactive `rgba(33,24,12,0.68)`, border `rgba(33,24,12,0.24)`.
+- Control labels (Pause/Skip/Sound): DM Sans 400, 11px, `rgba(30,20,8,0.72)`.
+
+### Behaviour
+- Voice chains use a duration safety-net (`speakChainGroup`/`speakChunks`: `estMs = max(3500, len*80+2500)`) because online voices on file:// often never fire onend.
+- Pause button (`pmrqTogglePause`) swaps icon (two bars ↔ play triangle) and label (Pause ↔ Resume).
+- No auto-advance after outro — settles on "Session complete"; "Complete session →" runs `pmrqEndEarly(); showSection('breakup-pmr-post-checkin')`.
+
+### Asset
+- `assets/illustrations/Relationships/Modules/BreakupRecovery/pmr-mannequin-calves-arrows.png` — calves pose with baked-in "Feet" arrows + label.
