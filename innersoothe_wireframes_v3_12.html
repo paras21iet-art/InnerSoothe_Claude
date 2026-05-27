@@ -13803,7 +13803,7 @@ window.onStopSectionShow = function(sectionId) {
   /* ---- Intro / readiness screen ---- */
   .hyp-intro{position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;background:linear-gradient(180deg,#F4E8CF 0%,#F0E4CE 46%);opacity:0;pointer-events:none;transition:opacity 700ms ease;overflow-y:auto;}
   .hyp-intro.hyp-show{opacity:1;pointer-events:auto;}
-  .hyp-intro-art{position:relative;height:330px;flex-shrink:0;overflow:hidden;background:radial-gradient(ellipse 46% 64% at 50% -8%, rgba(255,248,226,0.98) 0%, rgba(243,214,152,0.44) 33%, rgba(222,194,152,0) 66%),linear-gradient(180deg,#ECDBB8 0%,#F2E6D0 100%);}
+  .hyp-intro-art{position:relative;height:240px;flex-shrink:0;overflow:hidden;background:radial-gradient(ellipse 46% 64% at 50% -8%, rgba(255,248,226,0.98) 0%, rgba(243,214,152,0.44) 33%, rgba(222,194,152,0) 66%),linear-gradient(180deg,#ECDBB8 0%,#F2E6D0 100%);}
   .hyp-intro-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
   .hyp-intro-art::after{content:"";position:absolute;left:0;right:0;bottom:0;height:150px;background:linear-gradient(to bottom,rgba(242,230,208,0) 0%,#F0E4CE 100%);pointer-events:none;}
   .hyp-intro-body{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 34px;margin-top:-30px;position:relative;z-index:1;}
@@ -13950,55 +13950,55 @@ window.onStopSectionShow = function(sectionId) {
   "use strict";
 
   var TIMING={
-    startDelay:1800, fadeIn:1400, fadeOut:1400, gap:700,
-    holdMin:9500, holdPerCh:135, holdMax:24000,
-    introMin:9500, countFade:900, countHold:3200, countGap:800, resolveHold:7500
+    startDelay:1500, fadeIn:1100, fadeOut:1000, gap:300,
+    holdMin:8500, holdPerCh:122, holdMax:22000,
+    introMin:8500, countFade:800, countHold:3000, countGap:700, resolveHold:6800
   };
 
   var PHASES=["Settling","Deepening","The safe place","The encounter",
               "Expression","The dialogue","The release","The insight","Returning"];
 
   var BEATS=[
-    {phase:0,type:'line',text:"Sit comfortably, leave the weight of the body on to the chair or bed you are sitting on."},
-    {phase:0,type:'line',text:"Close your eyes, keep your hand on your heart and start feeling your breath going in going out."},
-    {phase:0,type:'line',text:"Focus on every single Breath You Take. Feel it going in and going out, the breath going in might feel a bit dry, breath coming out might feel a bit wet."},
+    {phase:0,type:'line',text:"Sit comfortably. Let the weight of your body rest onto the chair or bed you are sitting on."},
+    {phase:0,type:'line',text:"Close your eyes, keep your hand on your heart and start feeling your breath going in, going out."},
+    {phase:0,type:'line',text:"Focus on every single breath you take. Feel it going in and going out — the breath going in might feel a bit dry, the breath coming out might feel a bit wet."},
     {phase:0,type:'line',text:"As you keep taking deep breaths, you might feel your breath is becoming deep and rhythmic."},
 
-    {phase:1,type:'line',text:"As you feel the rhythmic breath, you feel your body is getting lighter and lighter as light as loud, the lighter you feel."},
-    {phase:1,type:'line',text:"More relaxed your feel, more relaxed you feel, deeper you go, deeper you go more relaxed you feel."},
+    {phase:1,type:'line',text:"As you feel the rhythmic breath, you feel your body is getting lighter and lighter — as light as a cloud. The lighter you feel,"},
+    {phase:1,type:'line',text:"the more relaxed you feel. More relaxed you feel, deeper you go. Deeper you go, more relaxed you feel."},
     {phase:1,type:'count',counts:{intro:"Now I will count you down 10 to 0 you will go deeper and deeper inside you, connecting with yourself with every single count going twice deeper than before. Start going down and deeper with",seq:["10","9","8","7","6","5","4","3","2","1","0"],resolve:"Deep Sleep."}},
 
-    {phase:2,type:'line',text:"keep feeling your breath, and slowly and gradually think about the person you are facing issues with."},
-    {phase:2,type:'count',counts:{intro:"Now as I count 3 to 1, you will see yourself siting with that person in a comfortable safe place, your mind provides for you. This will be the place, where you feel completely safe and protected. Keep going towards the place as I count",seq:["3","2","1"],resolve:""}},
+    {phase:2,type:'line',text:"Keep feeling your breath, and slowly and gradually, think about the person you are facing issues with."},
+    {phase:2,type:'count',counts:{intro:"Now as I count 3 to 1, you will see yourself sitting with that person in a comfortable, safe place that your mind provides for you. This will be the place where you feel completely safe and protected. Keep going towards that place as I count",seq:["3","2","1"],resolve:""}},
 
-    {phase:3,type:'line',text:"imagine that person siting in front of you. How does he or she look, what he or she is wearing?"},
-    {phase:3,type:'line',text:"Now take a good look of yourself, what are you wearing? After noticing everything outside, bring your attention inwards, what are you feeling when you at this person."},
+    {phase:3,type:'line',text:"Imagine that person sitting in front of you. How does he or she look? What is he or she wearing?"},
+    {phase:3,type:'line',text:"Now take a good look at yourself. What are you wearing? After noticing everything outside, bring your attention inwards — what are you feeling when you look at this person?"},
 
     {phase:4,type:'line',text:"Now start expressing yourself completely to this person, say whatever you always wanted to say, do whatever you always wanted to do."},
-    {phase:4,type:'line',text:"All the pain, all the suffering, let that come up. Take your time. you have all time in the world.",linger:true,hold:18000},
+    {phase:4,type:'line',text:"All the pain, all the suffering — let it come up. Take your time. You have all the time in the world.",linger:true,hold:18000},
 
-    {phase:5,type:'line',text:"Now when you have said all that what you always wanted to say, look at him or her, is there anything this person wants to say in return. listen to him or her."},
-    {phase:5,type:'line',text:"What do you want to say to him or her after listening to him or her."},
-    {phase:5,type:'line',text:"keep this conversation going on till the moment you feel that you have expressed yourself completely. Open your heart to him or her."},
-    {phase:5,type:'line',text:"Good, bad, ugly everything should be said. Also keep listening to his or her part of the story. Give him or her also time and space to speak."},
-    {phase:5,type:'line',text:"Remember nothing should be left unsaid from either of the side."},
+    {phase:5,type:'line',text:"Now, when you have said all that you always wanted to say, look at him or her. Is there anything this person wants to say in return? Listen to him or her."},
+    {phase:5,type:'line',text:"What do you want to say to him or her, after listening?"},
+    {phase:5,type:'line',text:"Keep this conversation going, until the moment you feel you have expressed yourself completely. Open your heart to him or her."},
+    {phase:5,type:'line',text:"Good, bad, ugly — everything should be said. And keep listening to his or her part of the story. Give him or her time and space to speak."},
+    {phase:5,type:'line',text:"Remember, nothing should be left unsaid, from either side."},
     {phase:5,type:'line',text:"Take as much time as you want.",linger:true,hold:20000},
 
     {phase:6,type:'line',text:"Now if you feel that you have got your answers and expressed yourself and listened to him or her completely, you can allow this person to go."},
     {phase:6,type:'line',text:"Say thank you for being here to have this conversation and let him or her go back."},
     {phase:6,type:'line',text:"See the person going and then bring your attention to yourself."},
 
-    {phase:7,type:'line',text:"Now let you subconscious mind guide you to acknowledge whatever needed to be acknowledged here."},
-    {phase:7,type:'line',text:"Let your subconscious provide you the insight or message to heal you completely With regard to this particular relationship."},
+    {phase:7,type:'line',text:"Now let your subconscious mind guide you to acknowledge whatever needs to be acknowledged here."},
+    {phase:7,type:'line',text:"Let your subconscious provide you the insight or message to heal you completely, with regard to this particular relationship."},
     {phase:7,type:'count',counts:{intro:"As I count 3 to 1, let the insight come.",seq:["3","2","1"],resolve:""}},
-    {phase:7,type:'line',text:"Now let the insight stay with you. let the healing stay with you forever."},
+    {phase:7,type:'line',text:"Now let the insight stay with you. Let the healing stay with you, forever."},
 
     {phase:8,type:'line',text:"Now I'll bring you up, out of trance. I'll count 1 to 5 and you will come out of the trance, feeling really happy with the work you have done with yourself, completely aware of all the insights you got, feeling more and more calm, composed and healed."},
-    {phase:8,type:'count',up:true,counts:{intro:"Start coming up with",seq:["1","2","3","4","5"],resolve:"eyes open wide awake."}}
+    {phase:8,type:'count',up:true,counts:{intro:"Start coming up with",seq:["1","2","3","4","5"],resolve:"Eyes open, wide awake."}}
   ];
 
   /* ---- Voice: slow + spaced ---- */
-  var VOICE={rate:0.58,pitch:0.86,volume:0.82,pref:["Samantha","Karen","Google US English"]};
+  var VOICE={rate:0.72,pitch:0.9,volume:0.82,pref:["Samantha","Karen","Google US English"]};
   var muted=true, chosenVoice=null, speakToken=0;
   function pickVoice(){
     if(!('speechSynthesis'in window))return;
@@ -14009,17 +14009,64 @@ window.onStopSectionShow = function(sectionId) {
   }
   if('speechSynthesis'in window){speechSynthesis.onvoiceschanged=pickVoice;pickVoice();}
   function cancelVoice(){speakToken++;if('speechSynthesis'in window){try{speechSynthesis.cancel();}catch(e){}}}
+
+  /* ---- Ambient drone: warm tonal pad, tuned to sit UNDER the voice ---- */
+  var droneCtx=null, droneGain=null, droneNodes=[], droneOn=false;
+  var DRONE_LEVEL=0.045; /* very low — the voice must always sit on top */
+  function startDrone(){
+    if(droneOn)return;
+    try{
+      var AC=window.AudioContext||window.webkitAudioContext; if(!AC)return;
+      if(!droneCtx)droneCtx=new AC();
+      if(droneCtx.state==='suspended')droneCtx.resume();
+      droneGain=droneCtx.createGain();
+      droneGain.gain.setValueAtTime(0.0001,droneCtx.currentTime);
+      droneGain.gain.exponentialRampToValueAtTime(DRONE_LEVEL,droneCtx.currentTime+4.5); /* slow fade-in */
+      var filter=droneCtx.createBiquadFilter();
+      /* dark cutoff keeps the bed below speech-clarity range, so the voice reads clearly above it */
+      filter.type='lowpass'; filter.frequency.value=430; filter.Q.value=0.5;
+      filter.connect(droneGain); droneGain.connect(droneCtx.destination);
+      /* root + octave only (no chord/fifth) — fuses into one warm note, nothing melodic to follow */
+      var freqs=[110,110.4,220.6];
+      droneNodes=[];
+      freqs.forEach(function(f,i){
+        var o=droneCtx.createOscillator(); o.type='sine'; o.frequency.value=f;
+        var g=droneCtx.createGain(); g.gain.value=(i===2?0.20:0.5); /* octave kept quiet so the low root dominates */
+        /* extremely slow, shallow shimmer so it's almost static — movement steals attention */
+        var lfo=droneCtx.createOscillator(); lfo.type='sine'; lfo.frequency.value=0.016+i*0.006;
+        var lfoG=droneCtx.createGain(); lfoG.gain.value=0.06;
+        lfo.connect(lfoG); lfoG.connect(g.gain);
+        o.connect(g); g.connect(filter); o.start(); lfo.start();
+        droneNodes.push(o,lfo);
+      });
+      droneOn=true;
+    }catch(e){}
+  }
+  /* duck the bed slightly while the voice speaks, so the narration always sits forward */
+  function duckDrone(){if(!droneOn||!droneGain||!droneCtx)return;try{var t=droneCtx.currentTime;droneGain.gain.cancelScheduledValues(t);droneGain.gain.setValueAtTime(droneGain.gain.value,t);droneGain.gain.linearRampToValueAtTime(DRONE_LEVEL*0.55,t+0.5);}catch(e){}}
+  function unduckDrone(){if(!droneOn||!droneGain||!droneCtx)return;try{var t=droneCtx.currentTime;droneGain.gain.cancelScheduledValues(t);droneGain.gain.setValueAtTime(droneGain.gain.value,t);droneGain.gain.linearRampToValueAtTime(DRONE_LEVEL,t+1.4);}catch(e){}}
+  function stopDrone(){
+    if(!droneOn||!droneCtx)return;
+    try{
+      var now=droneCtx.currentTime;
+      if(droneGain){droneGain.gain.cancelScheduledValues(now);droneGain.gain.setValueAtTime(droneGain.gain.value||DRONE_LEVEL,now);droneGain.gain.exponentialRampToValueAtTime(0.0001,now+1.6);}
+      var nodes=droneNodes.slice();
+      setTimeout(function(){nodes.forEach(function(n){try{n.stop();}catch(e){}});},1800);
+    }catch(e){}
+    droneOn=false; droneNodes=[];
+  }
   function speak(text){
     if(muted||!text||!('speechSynthesis'in window))return;
     cancelVoice();
     var myTok=speakToken, parts=text.match(/[^,.;—]+[,.;—]?/g)||[text], i=0;
     (function go(){
-      if(myTok!==speakToken||muted||i>=parts.length)return;
+      if(myTok!==speakToken||muted||i>=parts.length){if(myTok===speakToken)unduckDrone();return;}
       var clause=parts[i].trim(); if(!clause){i++;return go();}
       var u=new SpeechSynthesisUtterance(clause);
       u.rate=VOICE.rate;u.pitch=VOICE.pitch;u.volume=VOICE.volume; if(chosenVoice)u.voice=chosenVoice;
-      var last=clause.slice(-1), gap=(last==='.'||last===';'||last==='—')?2400:1100, advanced=false;
+      var last=clause.slice(-1), gap=(last==='.'||last===';'||last==='—')?1700:850, advanced=false;
       function adv(){if(advanced||myTok!==speakToken)return;advanced=true;i++;setTimeout(go,gap);}
+      u.onstart=function(){if(myTok===speakToken)duckDrone();};
       u.onend=adv; setTimeout(adv, Math.max(1600, clause.length*150)+1200);
       try{speechSynthesis.speak(u);}catch(e){adv();}
     })();
@@ -14129,7 +14176,7 @@ window.onStopSectionShow = function(sectionId) {
     }, TIMING.countFade+TIMING.countHold);
   }
 
-  function finish(){playing=false;cancelVoice();progressFill.style.width='100%';phone.classList.remove('hyp-dimmed');clearTimeout(dimTimer);complete.classList.add('hyp-show');}
+  function finish(){playing=false;cancelVoice();stopDrone();progressFill.style.width='100%';phone.classList.remove('hyp-dimmed');clearTimeout(dimTimer);complete.classList.add('hyp-show');}
 
   function resetDim(){
     phone.classList.remove('hyp-dimmed');clearTimeout(dimTimer);
@@ -14144,8 +14191,8 @@ window.onStopSectionShow = function(sectionId) {
     complete.classList.remove('hyp-show');pausewrap.classList.remove('hyp-show');
     nextBeat();resetDim();
   }
-  function pause(){if(!playing||paused)return;paused=true;gen++;clearTimeout(beatTimer);clearTimeout(dimTimer);cancelVoice();phone.classList.remove('hyp-dimmed');phone.classList.add('is-paused');pausewrap.classList.add('hyp-show');}
-  function resume(){if(!paused)return;paused=false;phone.classList.remove('is-paused');pausewrap.classList.remove('hyp-show');idx--;nextBeat();resetDim();}
+  function pause(){if(!playing||paused)return;paused=true;gen++;clearTimeout(beatTimer);clearTimeout(dimTimer);cancelVoice();stopDrone();phone.classList.remove('hyp-dimmed');phone.classList.add('is-paused');pausewrap.classList.add('hyp-show');}
+  function resume(){if(!paused)return;paused=false;phone.classList.remove('is-paused');pausewrap.classList.remove('hyp-show');if(!muted)startDrone();idx--;nextBeat();resetDim();}
 
   document.querySelector('.hyp-stage').addEventListener('click',function(){if(playing&&!paused)pause();});
   taphint.addEventListener('click',function(){if(playing&&!paused)pause();});
@@ -14158,8 +14205,8 @@ window.onStopSectionShow = function(sectionId) {
   document.getElementById('hyp-continueBtn').addEventListener('click',hypExit);
   function toggleSound(){
     muted=!muted;soundLabel.textContent=muted?'Voice off':'Voice on';
-    if(muted){cancelVoice();soundIcon.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/>';}
-    else{soundIcon.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>';}
+    if(muted){cancelVoice();stopDrone();soundIcon.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/>';}
+    else{if(playing&&!paused)startDrone();soundIcon.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>';}
   }
   document.getElementById('hyp-soundBtn').addEventListener('click',toggleSound);
   function crisis(){showSection('crisis-resources');}
@@ -14174,15 +14221,16 @@ window.onStopSectionShow = function(sectionId) {
   }
   function showIntro(){
     if(window.InnerSootheHyp)window.InnerSootheHyp.stop&&window.InnerSootheHyp.stop();
-    playing=false;paused=false;gen++;clearTimeout(beatTimer);clearTimeout(dimTimer);
+    playing=false;paused=false;gen++;clearTimeout(beatTimer);clearTimeout(dimTimer);stopDrone();
     complete.classList.remove('hyp-show');pausewrap.classList.remove('hyp-show');
     focal.classList.remove('hyp-show');phone.classList.remove('is-paused','hyp-dimmed');
     intro.classList.add('hyp-show');intro.scrollTop=0;
   }
   document.getElementById('hyp-beginBtn').addEventListener('click',function(){
-    /* this tap is the user gesture that unlocks browser audio */
+    /* this tap is the user gesture that unlocks browser audio (speech + Web Audio) */
     setVoice(true);
     if('speechSynthesis'in window){try{var w=new SpeechSynthesisUtterance(' ');w.volume=0;speechSynthesis.speak(w);}catch(e){}}
+    startDrone();
     intro.classList.remove('hyp-show');
     setTimeout(start,650);
   });
@@ -14195,7 +14243,7 @@ window.onStopSectionShow = function(sectionId) {
     start:function(){showIntro();},
     exit:function(){this.stop();if(typeof showSection==='function')showSection(HYP_EXIT_SECTION);},
     stop:function(){playing=false;paused=false;gen++;
-      clearTimeout(beatTimer);clearTimeout(dimTimer);cancelVoice();
+      clearTimeout(beatTimer);clearTimeout(dimTimer);cancelVoice();stopDrone();
       if(phone)phone.classList.remove('hyp-dimmed');
       if(phone)phone.classList.remove('is-paused');
       if(intro)intro.classList.remove('hyp-show');
@@ -18019,17 +18067,6 @@ Start slowly counting up — one, two, three, four and five — eyes open, wide 
     <!-- ── Breakup Recovery ── -->
     <div class="paid-group-hdr" style="width:100%;">❤️ &nbsp;Breakup Recovery</div>
     <div style="display:flex;flex-wrap:wrap;gap:32px;margin-bottom:32px;">
-
-      <!-- Hypnodrama -->
-      <div class="phone-wrap">
-        <div class="screen-title">Hypnodrama ✦</div>
-        <div class="phone" style="cursor:pointer;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;" onclick="showSection('hypnodrama')">
-          <div style="font-size:44px;">🎭</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;text-align:center;">Hypnodrama</div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.4);text-align:center;padding:0 20px;line-height:1.6;">Meet them in a safe space. Say everything. Find your insight.</div>
-          <div style="font-size:10px;font-weight:700;padding:6px 16px;border-radius:20px;background:rgba(201,168,76,0.15);color:#C9A84C;border:1px solid rgba(201,168,76,0.30);">Hypnotherapy · 5 min ✦</div>
-        </div>
-      </div>
 
       <!-- Empty Chair -->
       <div class="phone-wrap">
