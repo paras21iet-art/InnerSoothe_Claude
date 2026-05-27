@@ -13789,6 +13789,20 @@ window.onStopSectionShow = function(sectionId) {
     .hyp-count{transition:opacity 400ms ease;transform:none;}.hyp-count.hyp-show{transform:none;}
   }
 </style>
+<style>
+  #section-breakup-hypnodrama-session,
+  #section-breakup-hypnodrama-session *{
+    animation-name: revert;
+  }
+  #section-breakup-hypnodrama-session.screens-area.active{
+    opacity:1 !important;
+    animation:none !important;
+  }
+  #section-breakup-hypnodrama-session .hyp-focal{ animation:none; }
+  #section-breakup-hypnodrama-session .hyp-focal.hyp-show{ opacity:1; }
+  #section-breakup-hypnodrama-session .hyp-topbar{ padding-right:16px; box-sizing:border-box; }
+  #section-breakup-hypnodrama-session .hyp-crisis-quiet{ white-space:nowrap; }
+</style>
 
 <div class="hyp-shell" id="hyp-phone" style="--depth:0;--presence:0.5;">
 
