@@ -13998,62 +13998,76 @@ window.onStopSectionShow = function(sectionId) {
   ];
 
   /* ---- Voice: slow + spaced ---- */
-  var VOICE={rate:0.72,pitch:0.9,volume:0.82,pref:["Samantha","Karen","Google US English"]};
+  /* ---- Voice: matched to PMR (same preference list + selection logic + rate/pitch) ---- */
+  var VOICE_PREFERENCES=[
+    'Microsoft Aria Online (Natural) - English (United States)',
+    'Microsoft Jenny Online (Natural) - English (United States)',
+    'Microsoft Sonia Online (Natural) - English (United Kingdom)',
+    'Microsoft Emma Online (Natural) - English (United States)',
+    'Microsoft Aria - English (United States)',
+    'Microsoft Jenny - English (United States)',
+    'Samantha (Enhanced)',
+    'Ava (Enhanced)',
+    'Samantha',
+    'Karen',
+    'Google UK English Female',
+    'Google US English'
+  ];
+  var VOICE={rate:0.85,pitch:0.95,volume:0.9};
   var muted=true, chosenVoice=null, speakToken=0;
   function pickVoice(){
     if(!('speechSynthesis'in window))return;
-    var vs=speechSynthesis.getVoices(),i,p;
-    for(p=0;p<VOICE.pref.length;p++){for(i=0;i<vs.length;i++){if(vs[i].name.indexOf(VOICE.pref[p])>=0){chosenVoice=vs[i];return;}}}
-    for(i=0;i<vs.length;i++){if(vs[i].lang.indexOf('en-US')>=0){chosenVoice=vs[i];return;}}
+    var vs=speechSynthesis.getVoices(); if(!vs.length)return;
+    for(var i=0;i<VOICE_PREFERENCES.length;i++){
+      for(var j=0;j<vs.length;j++){if(vs[j].name===VOICE_PREFERENCES[i]){chosenVoice=vs[j];return;}}
+    }
+    var good=['aria','jenny','sonia','emma','samantha','ava','karen','natural','enhanced'];
+    for(var k=0;k<vs.length;k++){
+      if(!vs[k].lang||vs[k].lang.indexOf('en')!==0)continue;
+      var ln=vs[k].name.toLowerCase();
+      for(var m=0;m<good.length;m++){if(ln.indexOf(good[m])>-1){chosenVoice=vs[k];return;}}
+    }
+    for(var n=0;n<vs.length;n++){if(vs[n].lang&&vs[n].lang.indexOf('en')===0){chosenVoice=vs[n];return;}}
     chosenVoice=vs[0]||null;
   }
   if('speechSynthesis'in window){speechSynthesis.onvoiceschanged=pickVoice;pickVoice();}
   function cancelVoice(){speakToken++;if('speechSynthesis'in window){try{speechSynthesis.cancel();}catch(e){}}}
 
-  /* ---- Ambient drone: warm tonal pad, tuned to sit UNDER the voice ---- */
-  var droneCtx=null, droneGain=null, droneNodes=[], droneOn=false;
-  var DRONE_LEVEL=0.045; /* very low — the voice must always sit on top */
-  function startDrone(){
-    if(droneOn)return;
-    try{
-      var AC=window.AudioContext||window.webkitAudioContext; if(!AC)return;
-      if(!droneCtx)droneCtx=new AC();
-      if(droneCtx.state==='suspended')droneCtx.resume();
-      droneGain=droneCtx.createGain();
-      droneGain.gain.setValueAtTime(0.0001,droneCtx.currentTime);
-      droneGain.gain.exponentialRampToValueAtTime(DRONE_LEVEL,droneCtx.currentTime+4.5); /* slow fade-in */
-      var filter=droneCtx.createBiquadFilter();
-      /* dark cutoff keeps the bed below speech-clarity range, so the voice reads clearly above it */
-      filter.type='lowpass'; filter.frequency.value=430; filter.Q.value=0.5;
-      filter.connect(droneGain); droneGain.connect(droneCtx.destination);
-      /* root + octave only (no chord/fifth) — fuses into one warm note, nothing melodic to follow */
-      var freqs=[110,110.4,220.6];
-      droneNodes=[];
-      freqs.forEach(function(f,i){
-        var o=droneCtx.createOscillator(); o.type='sine'; o.frequency.value=f;
-        var g=droneCtx.createGain(); g.gain.value=(i===2?0.20:0.5); /* octave kept quiet so the low root dominates */
-        /* extremely slow, shallow shimmer so it's almost static — movement steals attention */
-        var lfo=droneCtx.createOscillator(); lfo.type='sine'; lfo.frequency.value=0.016+i*0.006;
-        var lfoG=droneCtx.createGain(); lfoG.gain.value=0.06;
-        lfo.connect(lfoG); lfoG.connect(g.gain);
-        o.connect(g); g.connect(filter); o.start(); lfo.start();
-        droneNodes.push(o,lfo);
-      });
-      droneOn=true;
-    }catch(e){}
+  /* ---- Background music: same looping MP3 PMR uses (real asset, not a synth bed) ---- */
+  var AMBIENT_SRC='assets/audio/pmr-ambient.mp3';
+  var AMBIENT_LEVEL=0.55;          /* normal music level */
+  var AMBIENT_DUCK=AMBIENT_LEVEL*0.55;  /* lower while voice speaks */
+  var ambientEl=null, ambientFadeRAF=null;
+  function _ambientEnsure(){
+    if(ambientEl)return ambientEl;
+    ambientEl=document.createElement('audio');
+    ambientEl.src=AMBIENT_SRC; ambientEl.loop=true; ambientEl.preload='auto';
+    ambientEl.volume=0;
+    document.body.appendChild(ambientEl);
+    return ambientEl;
   }
-  /* duck the bed slightly while the voice speaks, so the narration always sits forward */
-  function duckDrone(){if(!droneOn||!droneGain||!droneCtx)return;try{var t=droneCtx.currentTime;droneGain.gain.cancelScheduledValues(t);droneGain.gain.setValueAtTime(droneGain.gain.value,t);droneGain.gain.linearRampToValueAtTime(DRONE_LEVEL*0.55,t+0.5);}catch(e){}}
-  function unduckDrone(){if(!droneOn||!droneGain||!droneCtx)return;try{var t=droneCtx.currentTime;droneGain.gain.cancelScheduledValues(t);droneGain.gain.setValueAtTime(droneGain.gain.value,t);droneGain.gain.linearRampToValueAtTime(DRONE_LEVEL,t+1.4);}catch(e){}}
+  function _ambientFadeTo(target,ms){
+    if(!ambientEl)return;
+    if(ambientFadeRAF){cancelAnimationFrame(ambientFadeRAF);ambientFadeRAF=null;}
+    var start=ambientEl.volume, t0=performance.now();
+    function step(t){
+      var p=Math.min(1,(t-t0)/ms);
+      ambientEl.volume=Math.max(0,Math.min(1,start+(target-start)*p));
+      if(p<1)ambientFadeRAF=requestAnimationFrame(step);else ambientFadeRAF=null;
+    }
+    ambientFadeRAF=requestAnimationFrame(step);
+  }
+  function startDrone(){
+    var a=_ambientEnsure();
+    try{var pr=a.play(); if(pr&&pr.catch)pr.catch(function(){});}catch(e){}
+    _ambientFadeTo(AMBIENT_LEVEL,3500);
+  }
+  function duckDrone(){if(ambientEl)_ambientFadeTo(AMBIENT_DUCK,500);}
+  function unduckDrone(){if(ambientEl)_ambientFadeTo(AMBIENT_LEVEL,1400);}
   function stopDrone(){
-    if(!droneOn||!droneCtx)return;
-    try{
-      var now=droneCtx.currentTime;
-      if(droneGain){droneGain.gain.cancelScheduledValues(now);droneGain.gain.setValueAtTime(droneGain.gain.value||DRONE_LEVEL,now);droneGain.gain.exponentialRampToValueAtTime(0.0001,now+1.6);}
-      var nodes=droneNodes.slice();
-      setTimeout(function(){nodes.forEach(function(n){try{n.stop();}catch(e){}});},1800);
-    }catch(e){}
-    droneOn=false; droneNodes=[];
+    if(!ambientEl)return;
+    _ambientFadeTo(0,1600);
+    setTimeout(function(){if(ambientEl){try{ambientEl.pause();ambientEl.currentTime=0;}catch(e){}}},1700);
   }
   function speak(text){
     if(muted||!text||!('speechSynthesis'in window))return;
