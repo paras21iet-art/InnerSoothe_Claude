@@ -13762,7 +13762,7 @@ window.onStopSectionShow = function(sectionId) {
   .hyp-focalwrap{position:relative;flex:1;display:flex;align-items:center;justify-content:center;width:100%;animation:hyp-textbreath 12s ease-in-out -8s infinite;}
   /* text exists in air — microscopic opacity breath */
   @keyframes hyp-textbreath{0%,100%{opacity:1;}50%{opacity:0.92;}}
-  .hyp-focal{font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:26px;line-height:1.6;color:rgba(58,40,28,0.86);text-wrap:balance;max-width:294px;opacity:0;transform:translateY(6px);transition:opacity 1400ms ease, transform 1400ms ease;}
+  .hyp-focal{font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:26px;line-height:1.6;color:rgba(58,40,28,0.86);text-wrap:balance;max-width:294px;opacity:0;transform:translateY(6px);transition:opacity 750ms ease, transform 750ms ease;}
   .hyp-focal.hyp-show{opacity:1;transform:translateY(0);}
   .hyp-count{position:absolute;left:50%;top:50%;font-family:'Cormorant Garamond',serif;font-weight:300;font-variant-numeric:lining-nums;font-size:104px;line-height:1;color:rgba(150,106,66,0.82);opacity:0;transform:translate(-50%,-50%) scale(0.86);display:none;transition:opacity 900ms ease, transform 1100ms cubic-bezier(0.22,0.61,0.36,1);}
   .hyp-count.hyp-show{opacity:1;transform:translate(-50%,-50%) scale(1);}
@@ -13837,7 +13837,7 @@ window.onStopSectionShow = function(sectionId) {
     .hyp-glow,.hyp-shell,.hyp-focalwrap,.hyp-stage{animation:none!important;}
     .hyp-stage{opacity:1!important;}
     .hyp-descent-breath{animation:none!important;opacity:0.4!important;}
-    .hyp-focal{transition:opacity 1000ms ease;transform:none;}.hyp-focal.hyp-show{transform:none;}
+    .hyp-focal{transition:opacity 750ms ease;transform:none;}.hyp-focal.hyp-show{transform:none;}
     .hyp-count{transition:opacity 400ms ease;transform:none;}.hyp-count.hyp-show{transform:none;}
   }
 </style>
@@ -13950,7 +13950,7 @@ window.onStopSectionShow = function(sectionId) {
   "use strict";
 
   var TIMING={
-    startDelay:1500, fadeIn:1100, fadeOut:1000, gap:300,
+    startDelay:1500, fadeIn:750, fadeOut:650, gap:150,
     holdMin:8500, holdPerCh:122, holdMax:22000,
     introMin:8500, countFade:800, countHold:3000, countGap:700, resolveHold:6800
   };
